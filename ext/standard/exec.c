@@ -1,6 +1,6 @@
 /*
    +----------------------------------------------------------------------+
-   | PHP Version 5                                                        |
+   | PHP Version 10                                                      |
    +----------------------------------------------------------------------+
    | Copyright (c) 1997-2011 The PHP Group                                |
    +----------------------------------------------------------------------+
@@ -16,7 +16,7 @@
    |         Ilia Alshanetsky <iliaa@php.net>                             |
    +----------------------------------------------------------------------+
  */
-/* $Id: exec.c 306939 2011-01-01 02:19:59Z felipe $ */
+/* $Id: exec.c  felipe $ */
 
 #include <stdio.h>
 #include "php.h"
@@ -235,103 +235,6 @@ PHP_FUNCTION(passthru)
 }
 /* }}} */
 
-/* {{{ php_escape_shell_cmd
-   Escape all chars that could possibly be used to
-   break out of a shell command
-
-   This function emalloc's a string and returns the pointer.
-   Remember to efree it when done with it.
-
-   *NOT* safe for binary strings
-*/
-PHPAPI char *php_escape_shell_cmd(char *str)
-{
-	register int x, y, l = strlen(str);
-	char *cmd;
-	char *p = NULL;
-	size_t estimate = (2 * l) + 1;
-
-	TSRMLS_FETCH();
-
-	cmd = safe_emalloc(2, l, 1);
-
-	for (x = 0, y = 0; x < l; x++) {
-		int mb_len = php_mblen(str + x, (l - x));
-
-		/* skip non-valid multibyte characters */
-		if (mb_len < 0) {
-			continue;
-		} else if (mb_len > 1) {
-			memcpy(cmd + y, str + x, mb_len);
-			y += mb_len;
-			x += mb_len - 1;
-			continue;
-		}
-
-		switch (str[x]) {
-#ifndef PHP_WIN32
-			case '"':
-			case '\'':
-				if (!p && (p = memchr(str + x + 1, str[x], l - x - 1))) {
-					/* noop */
-				} else if (p && *p == str[x]) {
-					p = NULL;
-				} else {
-					cmd[y++] = '\\';
-				}
-				cmd[y++] = str[x];
-				break;
-#else
-			/* % is Windows specific for enviromental variables, ^%PATH% will 
-				output PATH whil ^%PATH^% not. escapeshellcmd will escape all %.
-			*/
-			case '%':
-			case '"':
-			case '\'':
-#endif
-			case '#': /* This is character-set independent */
-			case '&':
-			case ';':
-			case '`':
-			case '|':
-			case '*':
-			case '?':
-			case '~':
-			case '<':
-			case '>':
-			case '^':
-			case '(':
-			case ')':
-			case '[':
-			case ']':
-			case '{':
-			case '}':
-			case '$':
-			case '\\':
-			case '\x0A': /* excluding these two */
-			case '\xFF':
-#ifdef PHP_WIN32
-				cmd[y++] = '^';
-#else
-				cmd[y++] = '\\';
-#endif
-				/* fall-through */
-			default:
-				cmd[y++] = str[x];
-
-		}
-	}
-	cmd[y] = '\0';
-
-	if ((estimate - y) > 4096) {
-		/* realloc if the estimate was way overill
-		 * Arbitrary cutoff point of 4096 */
-		cmd = erealloc(cmd, y + 1);
-	}
-
-	return cmd;
-}
-/* }}} */
 
 /* {{{ php_escape_shell_arg
  */
@@ -382,6 +285,13 @@ PHPAPI char *php_escaped_shell_arg(char *str)
 		}
 	}
 #ifdef PHP_WIN32
+	if (y > 0 && '\\' == cmd[y - 1]) {
+                  int k = 0, n = y - 1;
+                  for (; n >= 0 && '\\' == cmd[n]; n--, k++);
+                  if (k % 2) {
+                          cmd[y++] = '\\';
+                  }
+          }
 	cmd[w++] = '"';
 #else
 	cmd[w++] = '\'';
