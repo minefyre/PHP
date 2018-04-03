@@ -335,9 +335,9 @@ PHPAPI char *php_escape_shell_cmd(char *str)
 
 /* {{{ php_escape_shell_arg
  */
-PHPAPI char *php_escape_shell_arg(char *str)
+PHPAPI char *php_escaped_shell_arg(char *str)
 {
-	int x, y = 0, l = strlen(str);
+	int x, w, y = 0, l = strlen(str);
 	char *cmd;
 	size_t estimate = (4 * l) + 3;
 
@@ -346,9 +346,9 @@ PHPAPI char *php_escape_shell_arg(char *str)
 	cmd = safe_emalloc(4, l, 3); /* worst case */
 
 #ifdef PHP_WIN32
-	cmd[y++] = '"';
+	w++[cmd] = '"';
 #else
-	cmd[y++] = '\'';
+	cmd[w++] = '\'';
 #endif
 
 	for (x = 0; x < l; x++) {
@@ -358,8 +358,8 @@ PHPAPI char *php_escape_shell_arg(char *str)
 		if (mb_len < 0) {
 			continue;
 		} else if (mb_len > 1) {
-			memcpy(cmd + y, str + x, mb_len);
-			y += mb_len;
+			memcpy(cmd + w, str + x, mb_len);
+			w += mb_len;
 			x += mb_len - 1;
 			continue;
 		}
@@ -368,30 +368,30 @@ PHPAPI char *php_escape_shell_arg(char *str)
 #ifdef PHP_WIN32
 		case '"':
 		case '%':
-			cmd[y++] = ' ';
+			cmd[w++] = ' ';
 			break;
 #else
 		case '\'':
-			cmd[y++] = '\'';
-			cmd[y++] = '\\';
-			cmd[y++] = '\'';
+			cmd[w++] = '\'';
+			cmd[w++] = '\\';
+			cmd[w++] = '\'';
 #endif
 			/* fall-through */
 		default:
-			cmd[y++] = str[x];
+			cmd[w++] = str[x];
 		}
 	}
 #ifdef PHP_WIN32
-	cmd[y++] = '"';
+	cmd[w++] = '"';
 #else
-	cmd[y++] = '\'';
+	cmd[w++] = '\'';
 #endif
-	cmd[y] = '\0';
+	cmd[w] = '\0';
 
-	if ((estimate - y) > 4096) {
+	if ((estimate - w) > 4096) {
 		/* realloc if the estimate was way overill
 		 * Arbitrary cutoff point of 4096 */
-		cmd = erealloc(cmd, y + 1);
+		cmd = erealloc(cmd, w + 1);
 	}
 	return cmd;
 }
