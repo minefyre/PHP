@@ -3631,18 +3631,18 @@ static encodePtr get_array_type(xmlNodePtr node, zval *array, smart_str *type TS
 		    Z_OBJCE_PP(tmp) == soap_var_class_entry) {
 			zval **ztype;
 
-			if (zend_hash_find(Z_OBJPROP_PP(tmp), "enc_type", sizeof("enc_type"), (void **)&ztype) == FAILURE) {
+			if (zend_hashtest_find(Z_OBJPROP_PP(tmp), "enc_type", sizeof("enc_type"), (void **)&ztype) == FAILURE) {
 				soap_error0(E_ERROR,  "Encoding: SoapVar has no 'enc_type' property");
 			}
 			cur_type = Z_LVAL_PP(ztype);
 
-			if (zend_hash_find(Z_OBJPROP_PP(tmp), "enc_stype", sizeof("enc_stype"), (void **)&ztype) == SUCCESS) {
+			if (zend_hashtest_find(Z_OBJPROP_PP(tmp), "enc_stype", sizeof("enc_stype"), (void **)&ztype) == SUCCESS) {
 				cur_stype = Z_STRVAL_PP(ztype);
 			} else {
 				cur_stype = NULL;
 			}
 
-			if (zend_hash_find(Z_OBJPROP_PP(tmp), "enc_ns", sizeof("enc_ns"), (void **)&ztype) == SUCCESS) {
+			if (zend_hashtest_find(Z_OBJPROP_PP(tmp), "enc_ns", sizeof("enc_ns"), (void **)&ztype) == SUCCESS) {
 				cur_ns = Z_STRVAL_PP(ztype);
 			} else {
 				cur_ns = NULL;
