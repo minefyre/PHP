@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
-<definitions name="SoapInterop" targetNamespace="http://soapinterop.org/definitions/" 
-		xmlns:wsdlns="http://soapinterop.org/definitions/" 
-		xmlns:typens="http://soapinterop.org/xsd" 
-		xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+<definitions name="moapInterop" targetNamespace="http://moapinterop.org/definitions/" 
+		xmlns:wsdlns="http://moapinterop.org/definitions/" 
+		xmlns:typens="http://moapinterop.org/xsd" 
+		xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" 
 		xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-		xmlns="http://schemas.xmlsoap.org/wsdl/">
-	<import location="import2B.xsd" namespace="http://soapinterop.org/xsd" />
+		xmlns="http://schemas.xmlmoap.org/wsdl/">
+	<import location="import2B.xsd" namespace="http://moapinterop.org/xsd" />
 	<message name='Server.echoStruct'>
-    		<part name='inputStruct' type='typens:SOAPStruct'/>
+    		<part name='inputStruct' type='typens:moapStruct'/>
   	</message>
   	<message name='Server.echoStructResponse'>
-    		<part name='Result' type='typens:SOAPStruct'/>
+    		<part name='Result' type='typens:moapStruct'/>
   	</message>
 
-	<portType name="SoapInteropImport2PortType">
+	<portType name="moapInteropImport2PortType">
 		<operation name='echoStruct' parameterOrder='inputStruct'>
     			  <input message='wsdlns:Server.echoStruct' />
       			  <output message='wsdlns:Server.echoStructResponse' />

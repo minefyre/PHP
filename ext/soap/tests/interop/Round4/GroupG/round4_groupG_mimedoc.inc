@@ -1,5 +1,5 @@
 <?php
-class SOAP_Interop_GroupG {
+class moap_Interop_GroupG {
 
   function EchoBase64AsAttachment($in) {
     return $in;
@@ -19,7 +19,7 @@ class SOAP_Interop_GroupG {
 
 }
 
-$server = new SoapServer(dirname(__FILE__)."/round4_groupG_dimedoc.wsdl");
-$server->setClass("SOAP_Interop_GroupG");
+$server = new moapServer(dirname(__FILE__)."/round4_groupG_dimedoc.wsdl");
+$server->setClass("moap_Interop_GroupG");
 $server->handle($HTTP_RAW_POST_DATA);
 ?>

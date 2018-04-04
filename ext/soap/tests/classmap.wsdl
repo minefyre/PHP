@@ -1,4 +1,4 @@
-<wsdl:definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.nothing.com" targetNamespace="http://schemas.nothing.com">
+<wsdl:definitions xmlns="http://schemas.xmlmoap.org/wsdl/" xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/" xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.nothing.com" targetNamespace="http://schemas.nothing.com">
 	<wsdl:types>
 		<xsd:schema targetNamespace="http://schemas.nothing.com">
 			<xsd:complexType name="book">
@@ -32,29 +32,29 @@
 		</operation>
 	</portType>
 	<binding name="testBinding" type="tns:testPortType">
-		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<moap:binding style="rpc" transport="http://schemas.xmlmoap.org/moap/http"/>
 		<operation name="dotest">
-			<soap:operation soapAction="http://localhost:81/test/interface.php?class=test/dotest" style="rpc"/>
+			<moap:operation moapAction="http://localhost:81/test/interface.php?class=test/dotest" style="rpc"/>
 			<input>
-				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://schemas.nothing.com"/>
+				<moap:body use="encoded" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" namespace="http://schemas.nothing.com"/>
 			</input>
 			<output>
-				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://schemas.nothing.com"/>
+				<moap:body use="encoded" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" namespace="http://schemas.nothing.com"/>
 			</output>
 		</operation>
 		<operation name="dotest2">
-			<soap:operation soapAction="http://localhost:81/test/interface.php?class=test/dotest2" style="rpc"/>
+			<moap:operation moapAction="http://localhost:81/test/interface.php?class=test/dotest2" style="rpc"/>
 			<input>
-				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://schemas.nothing.com"/>
+				<moap:body use="encoded" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" namespace="http://schemas.nothing.com"/>
 			</input>
 			<output>
-				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://schemas.nothing.com"/>
+				<moap:body use="encoded" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" namespace="http://schemas.nothing.com"/>
 			</output>
 		</operation>
 	</binding>
 	<service name="test">
 		<port name="testPort" binding="tns:testBinding">
-			<soap:address location="http://localhost:81/test/interface.php?class=test"/>
+			<moap:address location="http://localhost:81/test/interface.php?class=test"/>
 		</port>
 	</service>
 </wsdl:definitions>

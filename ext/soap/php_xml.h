@@ -19,8 +19,8 @@
 */
 /* $Id: php_xml.h 306939 2011-01-01 02:19:59Z felipe $ */
 
-#ifndef PHP_SOAP_XML_H
-#define PHP_SOAP_XML_H
+#ifndef PHP_moap_XML_H
+#define PHP_moap_XML_H
 
 #define get_attribute(node, name) get_attribute_ex(node, name, NULL)
 #define get_node(node, name) get_node_ex(node, name, NULL)
@@ -30,8 +30,8 @@
 #define node_is_equal(node, name) node_is_equal_ex(node, name, NULL)
 #define attr_is_equal(node, name) attr_is_equal_ex(node, name, NULL)
 
-xmlDocPtr soap_xmlParseFile(const char *filename TSRMLS_DC);
-xmlDocPtr soap_xmlParseMemory(const void *buf, size_t size);
+xmlDocPtr moap_xmlParseFile(const char *filename TSRMLS_DC);
+xmlDocPtr moap_xmlParseMemory(const void *buf, size_t size);
 
 xmlNsPtr attr_find_ns(xmlAttrPtr node);
 xmlNsPtr node_find_ns(xmlNodePtr node);

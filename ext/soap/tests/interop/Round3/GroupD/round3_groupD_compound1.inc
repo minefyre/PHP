@@ -1,5 +1,5 @@
 <?php
-class SOAP_Interop_GroupD {
+class moap_Interop_GroupD {
     function echoPerson($person)
     {
         return $person;
@@ -11,7 +11,7 @@ class SOAP_Interop_GroupD {
     }
 }
 
-$server = new SoapServer(dirname(__FILE__)."/round3_groupD_compound1.wsdl");
-$server->setClass("SOAP_Interop_GroupD");
+$server = new moapServer(dirname(__FILE__)."/round3_groupD_compound1.wsdl");
+$server->setClass("moap_Interop_GroupD");
 $server->handle($HTTP_RAW_POST_DATA);
 ?>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions name="WSDLInteropTestList" 
-    targetNamespace="http://soapinterop.org/WSDLInteropTestList" 
-    xmlns="http://schemas.xmlsoap.org/wsdl/" 
-    xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" 
-    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
-    xmlns:tns="http://soapinterop.org/WSDLInteropTestList" 
+    targetNamespace="http://moapinterop.org/WSDLInteropTestList" 
+    xmlns="http://schemas.xmlmoap.org/wsdl/" 
+    xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/" 
+    xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" 
+    xmlns:tns="http://moapinterop.org/WSDLInteropTestList" 
     xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-    xmlns:xsd1="http://soapinterop.org/xsd" 
+    xmlns:xsd1="http://moapinterop.org/xsd" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <types>
-        <schema targetNamespace="http://soapinterop.org/xsd" 
+        <schema targetNamespace="http://moapinterop.org/xsd" 
             xmlns="http://www.w3.org/2001/XMLSchema" 
-            xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+            xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/">
            
             <complexType name="List">
                 <all>
@@ -37,16 +37,16 @@
     </portType>
     <binding name="WSDLInteropTestListBinding" 
         type="tns:WSDLInteropTestListPortType">
-        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <moap:binding style="rpc" transport="http://schemas.xmlmoap.org/moap/http"/>
         <operation name="echoLinkedList">
-            <soap:operation soapAction="" style="rpc"/>
+            <moap:operation moapAction="" style="rpc"/>
             <input>
-                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
-                    namespace="http://soapinterop.org/WSDLInteropTestRpcEnc" use="encoded"/>
+                <moap:body encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" 
+                    namespace="http://moapinterop.org/WSDLInteropTestRpcEnc" use="encoded"/>
             </input>
             <output>
-                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
-                    namespace="http://soapinterop.org/WSDLInteropTestRpcEnc" use="encoded"/>
+                <moap:body encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" 
+                    namespace="http://moapinterop.org/WSDLInteropTestRpcEnc" use="encoded"/>
             </output>
         </operation>
       
@@ -54,7 +54,7 @@
     <service name="WSDLInteropTestListService">
         <port binding="tns:WSDLInteropTestListBinding" 
             name="WSDLInteropTestListPort">
-            <soap:address 
+            <moap:address 
                 location="round3_groupE_list.inc"/>
 		</port>
 	</service>

@@ -1,10 +1,10 @@
 --TEST--
-SOAP Server 22: user fault (through throw of subclass)
+moap Server 22: user fault (through throw of subclass)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --FILE--
 <?php
-class MyFault extends SoapFault {
+class MyFault extends moapFault {
 	function __construct() {
 		parent::__construct("MyFault","My fault string");
 	}
@@ -15,21 +15,21 @@ function test() {
 	throw new MyFault;
 }
 
-$server = new soapserver(null,array('uri'=>"http://testuri.org"));
+$server = new moapserver(null,array('uri'=>"http://testuri.org"));
 $server->addfunction("test");
 
 $HTTP_RAW_POST_DATA = <<<EOF
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<SOAP-ENV:Envelope
-  SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+<moap-ENV:Envelope
+  moap-ENV:encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
+  xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:si="http://soapinterop.org/xsd">
-  <SOAP-ENV:Body>
+  xmlns:si="http://moapinterop.org/xsd">
+  <moap-ENV:Body>
     <ns1:test xmlns:ns1="http://testuri.org"/>
-  </SOAP-ENV:Body>
-</SOAP-ENV:Envelope>
+  </moap-ENV:Body>
+</moap-ENV:Envelope>
 EOF;
 
 $server->handle($HTTP_RAW_POST_DATA);
@@ -37,5 +37,5 @@ echo "ok\n";
 ?>
 --EXPECT--
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Body><SOAP-ENV:Fault><faultcode>MyFault</faultcode><faultstring>My fault string</faultstring></SOAP-ENV:Fault></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/"><moap-ENV:Body><moap-ENV:Fault><faultcode>MyFault</faultcode><faultstring>My fault string</faultstring></moap-ENV:Fault></moap-ENV:Body></moap-ENV:Envelope>
 ok

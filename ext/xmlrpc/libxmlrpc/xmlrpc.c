@@ -161,7 +161,7 @@ static const char rcsid[] = "#(@) $Id: xmlrpc.c 270900 2008-12-09 17:22:12Z ilia
 
 #include "xml_to_xmlrpc.h"
 #include "xml_to_dandarpc.h"
-#include "xml_to_soap.h"
+#include "xml_to_moap.h"
 #include "xml_element.h"
 #include "xmlrpc_private.h"
 #include "xmlrpc_introspection_private.h"
@@ -271,7 +271,7 @@ static int date_to_ISO8601 (time_t value, char *buf, int length) {
    if (!tm) {
 	   return 0;
    }
-#if 0  /* TODO: soap seems to favor this method. xmlrpc the latter. */
+#if 0  /* TODO: moap seems to favor this method. xmlrpc the latter. */
 	return strftime (buf, length, "%Y-%m-%dT%H:%M:%SZ", tm);
 #else
    return strftime(buf, length, "%Y%m%dT%H:%M:%SZ", tm);
@@ -698,8 +698,8 @@ char* XMLRPC_REQUEST_ToXML(XMLRPC_REQUEST request, int* buf_len) {
 					request->output.version == xmlrpc_version_none) {
 			root_elem = XMLRPC_REQUEST_to_xml_element (request);
 		}
-		else if (request->output.version == xmlrpc_version_soap_1_1) {
-			root_elem = SOAP_REQUEST_to_xml_element (request);
+		else if (request->output.version == xmlrpc_version_moap_1_1) {
+			root_elem = moap_REQUEST_to_xml_element (request);
 		}
 
       if(root_elem) {
@@ -810,9 +810,9 @@ XMLRPC_REQUEST XMLRPC_REQUEST_FromXML (const char *in_buf, int len,
             request->output.version = xmlrpc_version_simple;
             xml_element_to_DANDARPC_REQUEST(request, root_elem);
          }
-			else if (!strcmp (root_elem->name, "SOAP-ENV:Envelope")) {
-				request->output.version = xmlrpc_version_soap_1_1;
-				xml_element_to_SOAP_REQUEST (request, root_elem);
+			else if (!strcmp (root_elem->name, "moap-ENV:Envelope")) {
+				request->output.version = xmlrpc_version_moap_1_1;
+				xml_element_to_moap_REQUEST (request, root_elem);
 			}
          else {
             request->output.version = xmlrpc_version_1_0;

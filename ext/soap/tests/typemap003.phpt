@@ -1,22 +1,22 @@
 --TEST--
-SOAP Typemap 3: SoapClient support for typemap's from_xml()
+moap Typemap 3: moapClient support for typemap's from_xml()
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 <?php if (!extension_loaded('simplexml')) die("skip simplexml extension not available"); ?>
 --INI--
-soap.wsdl_cache_enabled=0
+moap.wsdl_cache_enabled=0
 --FILE--
 <?php
-class TestSoapClient extends SoapClient{
+class TestmoapClient extends moapClient{
   function __doRequest($request, $location, $action, $version, $one_way = 0) {
 		return <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://schemas.nothing.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><SOAP-ENV:Body>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/" xmlns:ns1="http://schemas.nothing.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/" moap-ENV:encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"><moap-ENV:Body>
 <ns1:dotest2Response><res xsi:type="ns1:book">
   <a xsi:type="xsd:string">foo</a>
   <b xsi:type="xsd:string">bar</b>
 </res>
-</ns1:dotest2Response></SOAP-ENV:Body></SOAP-ENV:Envelope>
+</ns1:dotest2Response></moap-ENV:Body></moap-ENV:Envelope>
 EOF;
 	}	
 }
@@ -42,7 +42,7 @@ $options=Array(
 		                         "from_xml"  => "book_from_xml"))
 		);
 
-$client = new TestSoapClient(dirname(__FILE__)."/classmap.wsdl",$options);
+$client = new TestmoapClient(dirname(__FILE__)."/classmap.wsdl",$options);
 $ret = $client->dotest2("???");
 var_dump($ret);
 echo "ok\n";

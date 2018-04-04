@@ -2448,10 +2448,10 @@
 #undef HAVE_LIBXML
 
 /*   */
-#undef HAVE_SOAP
+#undef HAVE_moap
 
-/* Whether to build soap as dynamic module */
-#undef COMPILE_DL_SOAP
+/* Whether to build moap as dynamic module */
+#undef COMPILE_DL_moap
 
 /* Whether you have struct cmsghdr */
 #undef HAVE_CMSGHDR

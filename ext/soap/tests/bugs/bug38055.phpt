@@ -3,7 +3,7 @@ Bug #38055 (Wrong interpretation of boolean parameters)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --INI--
-soap.wsdl_cache_enabled=0
+moap.wsdl_cache_enabled=0
 --FILE--
 <?php
 function Test($param) {
@@ -13,10 +13,10 @@ function Test($param) {
 	return 1;
 }
 
-class TestSoapClient extends SoapClient {
+class TestmoapClient extends moapClient {
   function __construct($wsdl) {
     parent::__construct($wsdl);
-    $this->server = new SoapServer($wsdl);
+    $this->server = new moapServer($wsdl);
     $this->server->addFunction('Test');
   }
 
@@ -29,7 +29,7 @@ class TestSoapClient extends SoapClient {
   }
 }
 
-$client = new TestSoapClient(dirname(__FILE__).'/bug38055.wsdl');
+$client = new TestmoapClient(dirname(__FILE__).'/bug38055.wsdl');
 $boolA = 1;
 $boolB = '1';
 $res = $client->Test(array('boolA'=>$boolA, 'boolB'=>$boolB));

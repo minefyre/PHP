@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
-	     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+<definitions xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" 
+	     xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/"
              xmlns:s="http://www.w3.org/2001/XMLSchema" 
-             xmlns:tns="http://soapinterop.org/"
-	     xmlns:types="http://soapinterop.org/xsd" 
-             targetNamespace="http://soapinterop.org/" 
-	     xmlns="http://schemas.xmlsoap.org/wsdl/">
+             xmlns:tns="http://moapinterop.org/"
+	     xmlns:types="http://moapinterop.org/xsd" 
+             targetNamespace="http://moapinterop.org/" 
+	     xmlns="http://schemas.xmlmoap.org/wsdl/">
   <types>
-    <s:schema elementFormDefault="qualified" targetNamespace="http://soapinterop.org/xsd">
+    <s:schema elementFormDefault="qualified" targetNamespace="http://moapinterop.org/xsd">
       <s:element name="echoStringParam" type="s:string"/>
          
       <s:element name="echoStringReturn" type="s:string"/>
@@ -49,22 +49,22 @@
     </operation>
   </portType>
   <binding name = "RetHeaderBinding" type="tns:RetHeaderPortType">
-    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <moap:binding transport="http://schemas.xmlmoap.org/moap/http" style="document" />
     <operation name="echoString">
-      <soap:operation soapAction="http://soapinterop.org/" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/" style="document" />
       <input>
-        <soap:body use="literal" />
-        <soap:header message="tns:Header1" part="Header1" use="literal"/>
-        <soap:header message="tns:Header2" part="Header2" use="literal"/>
+        <moap:body use="literal" />
+        <moap:header message="tns:Header1" part="Header1" use="literal"/>
+        <moap:header message="tns:Header2" part="Header2" use="literal"/>
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
   </binding>
   <service name="RetHeaderService">
     <port name="RetHeaderPort" binding="tns:RetHeaderBinding">
-      <soap:address location="round3_groupF_headers.inc"/>
+      <moap:address location="round3_groupF_headers.inc"/>
 		</port>
 	</service>
 </definitions>

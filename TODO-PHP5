@@ -49,7 +49,7 @@ Timeframe:      ? (but shouldn't be much effort, most modules are probably ok)
 
 
 Component:      RPC Abstraction Layer
-                Porting java, com, dotnet, xmlrpc, corba, soap and python, srm
+                Porting java, com, dotnet, xmlrpc, corba, moap and python, srm
                 (are there more ?) to work with the new oo api and preferably
                 by using ext/rpc.
 Responsibility: Harald

@@ -1326,7 +1326,7 @@
       
       file bug30791.phpt was initially added on branch PHP_5_0.
 
-2005-05-31  Magnus Määttä  <novell@kiruna.se>
+2005-05-31  Magnus Mï¿½ï¿½ttï¿½  <novell@kiruna.se>
 
     * tests/bug27304.phpt:
       Fix test
@@ -1489,7 +1489,7 @@
       
       file bug29689.phpt was initially added on branch PHP_5_0.
 
-2005-05-17  Magnus Määttä  <novell@kiruna.se>
+2005-05-17  Magnus Mï¿½ï¿½ttï¿½  <novell@kiruna.se>
 
     * tests/bug31828.phpt
       tests/bug32080.phpt:
@@ -2960,7 +2960,7 @@
 
     * zend_exceptions.c
       zend_exceptions.c:
-      Fixed bug #30904 (segfault when recording soapclient into session).
+      Fixed bug #30904 (segfault when recording moapclient into session).
 
 2004-12-06  Stanislav Malyshev  <stas@zend.com>
 
@@ -9927,13 +9927,13 @@
 2003-04-19  Sebastian Bergmann  <sb@sebastian-bergmann.de>
 
     * zend.c:
-      Corrected patch by Marcus Börger <helly@php.net>.
+      Corrected patch by Marcus Bï¿½rger <helly@php.net>.
 
 2003-04-18  Sterling Hughes  <sterling@bumblebury.com>
 
     * zend.c
       zend_opcode.c:
-      Patch by Marcus Börger to fix some memleaks
+      Patch by Marcus Bï¿½rger to fix some memleaks
 
 2003-04-18  Derick Rethans  <d.rethans@jdimedia.nl>
 
@@ -9947,7 +9947,7 @@
 2003-04-17  Sebastian Bergmann  <sb@sebastian-bergmann.de>
 
     * zend.c:
-      Patch by Marcus Börger <helly@php.net>.
+      Patch by Marcus Bï¿½rger <helly@php.net>.
 
 2003-04-11  Sebastian Bergmann  <sb@sebastian-bergmann.de>
 
@@ -10587,7 +10587,7 @@
       - Make __construct() have higher priority than class name functions
       - for constructors.
       - Fix problem with the engine allowing final/abstract for the same method.
-      - Both patches are by Marcus Börger.
+      - Both patches are by Marcus Bï¿½rger.
 
 2003-02-27  Rasmus Lerdorf  <rasmus@lerdorf.com>
 
@@ -11744,13 +11744,13 @@
 2002-11-22  Derick Rethans  <d.rethans@jdimedia.nl>
 
     * zend_API.c:
-      - Initialize all functions to non-static (patch by Marcus Börger
+      - Initialize all functions to non-static (patch by Marcus Bï¿½rger
         <marcus.boerger@t-online.de>.
 
 2002-11-22  Sebastian Bergmann  <sb@sebastian-bergmann.de>
 
     * zend_execute.c:
-      Show class name as well. Patch by Marcus Börger.
+      Show class name as well. Patch by Marcus Bï¿½rger.
 
     * zend_execute.c:
       Show the name of the abstract method in the error.

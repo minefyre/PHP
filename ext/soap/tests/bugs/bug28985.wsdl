@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
-xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+<definitions xmlns:http="http://schemas.xmlmoap.org/wsdl/http/"
+xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/"
 xmlns:s="http://www.w3.org/2001/XMLSchema"
 xmlns:s0="http://tempuri.org/"
-xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+xmlns:moapenc="http://schemas.xmlmoap.org/moap/encoding/"
 xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
-xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+xmlns:mime="http://schemas.xmlmoap.org/wsdl/mime/"
 targetNamespace="http://tempuri.org/"
-xmlns="http://schemas.xmlsoap.org/wsdl/">
+xmlns="http://schemas.xmlmoap.org/wsdl/">
   <types>
     <s:schema elementFormDefault="qualified"
 targetNamespace="http://tempuri.org/">
@@ -113,7 +113,7 @@ name="GetListeValCodifResult" type="s0:ArrayOfMGCodif" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="TestPhpSoap">
+      <s:element name="TestPhpmoap">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="entree"
@@ -121,11 +121,11 @@ type="s0:MGCodif" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="TestPhpSoapResponse">
+      <s:element name="TestPhpmoapResponse">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1"
-name="TestPhpSoapResult" type="s:string" />
+name="TestPhpmoapResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -359,325 +359,325 @@ name="GetEnvironnementResult" type="s0:MGEnvironnement" />
       </s:element>
     </s:schema>
   </types>
-  <message name="LoginMGDISSoapIn">
+  <message name="LoginMGDISmoapIn">
     <part name="parameters" element="s0:LoginMGDIS" />
   </message>
-  <message name="LoginMGDISSoapOut">
+  <message name="LoginMGDISmoapOut">
     <part name="parameters" element="s0:LoginMGDISResponse" />
   </message>
-  <message name="GetIdentificationSoapIn">
+  <message name="GetIdentificationmoapIn">
     <part name="parameters" element="s0:GetIdentification" />
   </message>
-  <message name="GetIdentificationSoapOut">
+  <message name="GetIdentificationmoapOut">
     <part name="parameters" element="s0:GetIdentificationResponse" />
   </message>
-  <message name="RollbackCurrentTransactionSoapIn">
+  <message name="RollbackCurrentTransactionmoapIn">
     <part name="parameters" element="s0:RollbackCurrentTransaction" />
   </message>
-  <message name="RollbackCurrentTransactionSoapOut">
+  <message name="RollbackCurrentTransactionmoapOut">
     <part name="parameters"
 element="s0:RollbackCurrentTransactionResponse" />
   </message>
-  <message name="GetListeProfilSoapIn">
+  <message name="GetListeProfilmoapIn">
     <part name="parameters" element="s0:GetListeProfil" />
   </message>
-  <message name="GetListeProfilSoapOut">
+  <message name="GetListeProfilmoapOut">
     <part name="parameters" element="s0:GetListeProfilResponse" />
   </message>
-  <message name="GetListeValCodifSoapIn">
+  <message name="GetListeValCodifmoapIn">
     <part name="parameters" element="s0:GetListeValCodif" />
   </message>
-  <message name="GetListeValCodifSoapOut">
+  <message name="GetListeValCodifmoapOut">
     <part name="parameters" element="s0:GetListeValCodifResponse" />
   </message>
-  <message name="TestPhpSoapSoapIn">
-    <part name="parameters" element="s0:TestPhpSoap" />
+  <message name="TestPhpmoapmoapIn">
+    <part name="parameters" element="s0:TestPhpmoap" />
   </message>
-  <message name="TestPhpSoapSoapOut">
-    <part name="parameters" element="s0:TestPhpSoapResponse" />
+  <message name="TestPhpmoapmoapOut">
+    <part name="parameters" element="s0:TestPhpmoapResponse" />
   </message>
-  <message name="GetListeCodifSoapIn">
+  <message name="GetListeCodifmoapIn">
     <part name="parameters" element="s0:GetListeCodif" />
   </message>
-  <message name="GetListeCodifSoapOut">
+  <message name="GetListeCodifmoapOut">
     <part name="parameters" element="s0:GetListeCodifResponse" />
   </message>
-  <message name="DroitCreationSoapIn">
+  <message name="DroitCreationmoapIn">
     <part name="parameters" element="s0:DroitCreation" />
   </message>
-  <message name="DroitCreationSoapOut">
+  <message name="DroitCreationmoapOut">
     <part name="parameters" element="s0:DroitCreationResponse" />
   </message>
-  <message name="ListeDroitCreationSoapIn">
+  <message name="ListeDroitCreationmoapIn">
     <part name="parameters" element="s0:ListeDroitCreation" />
   </message>
-  <message name="ListeDroitCreationSoapOut">
+  <message name="ListeDroitCreationmoapOut">
     <part name="parameters" element="s0:ListeDroitCreationResponse" />
   </message>
-  <message name="GetDroitsObjetProtegeSoapIn">
+  <message name="GetDroitsObjetProtegemoapIn">
     <part name="parameters" element="s0:GetDroitsObjetProtege" />
   </message>
-  <message name="GetDroitsObjetProtegeSoapOut">
+  <message name="GetDroitsObjetProtegemoapOut">
     <part name="parameters" element="s0:GetDroitsObjetProtegeResponse"
 />
   </message>
-  <message name="GetPrivilegesSoapIn">
+  <message name="GetPrivilegesmoapIn">
     <part name="parameters" element="s0:GetPrivileges" />
   </message>
-  <message name="GetPrivilegesSoapOut">
+  <message name="GetPrivilegesmoapOut">
     <part name="parameters" element="s0:GetPrivilegesResponse" />
   </message>
-  <message name="GetLibelleProfilSoapIn">
+  <message name="GetLibelleProfilmoapIn">
     <part name="parameters" element="s0:GetLibelleProfil" />
   </message>
-  <message name="GetLibelleProfilSoapOut">
+  <message name="GetLibelleProfilmoapOut">
     <part name="parameters" element="s0:GetLibelleProfilResponse" />
   </message>
-  <message name="GetValeurRechercheSoapIn">
+  <message name="GetValeurRecherchemoapIn">
     <part name="parameters" element="s0:GetValeurRecherche" />
   </message>
-  <message name="GetValeurRechercheSoapOut">
+  <message name="GetValeurRecherchemoapOut">
     <part name="parameters" element="s0:GetValeurRechercheResponse" />
   </message>
-  <message name="GetValeurRechercheWithClauseWhereSoapIn">
+  <message name="GetValeurRechercheWithClauseWheremoapIn">
     <part name="parameters"
 element="s0:GetValeurRechercheWithClauseWhere" />
   </message>
-  <message name="GetValeurRechercheWithClauseWhereSoapOut">
+  <message name="GetValeurRechercheWithClauseWheremoapOut">
     <part name="parameters"
 element="s0:GetValeurRechercheWithClauseWhereResponse" />
   </message>
-  <message name="GetEnvironnementSoapIn">
+  <message name="GetEnvironnementmoapIn">
     <part name="parameters" element="s0:GetEnvironnement" />
   </message>
-  <message name="GetEnvironnementSoapOut">
+  <message name="GetEnvironnementmoapOut">
     <part name="parameters" element="s0:GetEnvironnementResponse" />
   </message>
-  <portType name="MGServiceNoyauNETSoap">
+  <portType name="MGServiceNoyauNETmoap">
     <operation name="LoginMGDIS">
-      <input message="s0:LoginMGDISSoapIn" />
-      <output message="s0:LoginMGDISSoapOut" />
+      <input message="s0:LoginMGDISmoapIn" />
+      <output message="s0:LoginMGDISmoapOut" />
     </operation>
     <operation name="GetIdentification">
-      <input message="s0:GetIdentificationSoapIn" />
-      <output message="s0:GetIdentificationSoapOut" />
+      <input message="s0:GetIdentificationmoapIn" />
+      <output message="s0:GetIdentificationmoapOut" />
     </operation>
     <operation name="RollbackCurrentTransaction">
-      <input message="s0:RollbackCurrentTransactionSoapIn" />
-      <output message="s0:RollbackCurrentTransactionSoapOut" />
+      <input message="s0:RollbackCurrentTransactionmoapIn" />
+      <output message="s0:RollbackCurrentTransactionmoapOut" />
     </operation>
     <operation name="GetListeProfil">
-      <input message="s0:GetListeProfilSoapIn" />
-      <output message="s0:GetListeProfilSoapOut" />
+      <input message="s0:GetListeProfilmoapIn" />
+      <output message="s0:GetListeProfilmoapOut" />
     </operation>
     <operation name="GetListeValCodif">
-      <input message="s0:GetListeValCodifSoapIn" />
-      <output message="s0:GetListeValCodifSoapOut" />
+      <input message="s0:GetListeValCodifmoapIn" />
+      <output message="s0:GetListeValCodifmoapOut" />
     </operation>
-    <operation name="TestPhpSoap">
-      <input message="s0:TestPhpSoapSoapIn" />
-      <output message="s0:TestPhpSoapSoapOut" />
+    <operation name="TestPhpmoap">
+      <input message="s0:TestPhpmoapmoapIn" />
+      <output message="s0:TestPhpmoapmoapOut" />
     </operation>
     <operation name="GetListeCodif">
-      <input message="s0:GetListeCodifSoapIn" />
-      <output message="s0:GetListeCodifSoapOut" />
+      <input message="s0:GetListeCodifmoapIn" />
+      <output message="s0:GetListeCodifmoapOut" />
     </operation>
     <operation name="DroitCreation">
-      <input message="s0:DroitCreationSoapIn" />
-      <output message="s0:DroitCreationSoapOut" />
+      <input message="s0:DroitCreationmoapIn" />
+      <output message="s0:DroitCreationmoapOut" />
     </operation>
     <operation name="ListeDroitCreation">
-      <input message="s0:ListeDroitCreationSoapIn" />
-      <output message="s0:ListeDroitCreationSoapOut" />
+      <input message="s0:ListeDroitCreationmoapIn" />
+      <output message="s0:ListeDroitCreationmoapOut" />
     </operation>
     <operation name="GetDroitsObjetProtege">
-      <input message="s0:GetDroitsObjetProtegeSoapIn" />
-      <output message="s0:GetDroitsObjetProtegeSoapOut" />
+      <input message="s0:GetDroitsObjetProtegemoapIn" />
+      <output message="s0:GetDroitsObjetProtegemoapOut" />
     </operation>
     <operation name="GetPrivileges">
-      <input message="s0:GetPrivilegesSoapIn" />
-      <output message="s0:GetPrivilegesSoapOut" />
+      <input message="s0:GetPrivilegesmoapIn" />
+      <output message="s0:GetPrivilegesmoapOut" />
     </operation>
     <operation name="GetLibelleProfil">
-      <input message="s0:GetLibelleProfilSoapIn" />
-      <output message="s0:GetLibelleProfilSoapOut" />
+      <input message="s0:GetLibelleProfilmoapIn" />
+      <output message="s0:GetLibelleProfilmoapOut" />
     </operation>
     <operation name="GetValeurRecherche">
-      <input message="s0:GetValeurRechercheSoapIn" />
-      <output message="s0:GetValeurRechercheSoapOut" />
+      <input message="s0:GetValeurRecherchemoapIn" />
+      <output message="s0:GetValeurRecherchemoapOut" />
     </operation>
     <operation name="GetValeurRechercheWithClauseWhere">
-      <input message="s0:GetValeurRechercheWithClauseWhereSoapIn" />
-      <output message="s0:GetValeurRechercheWithClauseWhereSoapOut" />
+      <input message="s0:GetValeurRechercheWithClauseWheremoapIn" />
+      <output message="s0:GetValeurRechercheWithClauseWheremoapOut" />
     </operation>
     <operation name="GetEnvironnement">
-      <input message="s0:GetEnvironnementSoapIn" />
-      <output message="s0:GetEnvironnementSoapOut" />
+      <input message="s0:GetEnvironnementmoapIn" />
+      <output message="s0:GetEnvironnementmoapOut" />
     </operation>
   </portType>
-  <binding name="MGServiceNoyauNETSoap"
-type="s0:MGServiceNoyauNETSoap">
-    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"
+  <binding name="MGServiceNoyauNETmoap"
+type="s0:MGServiceNoyauNETmoap">
+    <moap:binding transport="http://schemas.xmlmoap.org/moap/http"
 style="document" />
     <operation name="LoginMGDIS">
-      <soap:operation soapAction="http://tempuri.org/LoginMGDIS"
+      <moap:operation moapAction="http://tempuri.org/LoginMGDIS"
 style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="GetIdentification">
-      <soap:operation soapAction="http://tempuri.org/GetIdentification"
+      <moap:operation moapAction="http://tempuri.org/GetIdentification"
 style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="RollbackCurrentTransaction">
-      <soap:operation
-soapAction="http://tempuri.org/RollbackCurrentTransaction"
+      <moap:operation
+moapAction="http://tempuri.org/RollbackCurrentTransaction"
 style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="GetListeProfil">
-      <soap:operation soapAction="http://tempuri.org/GetListeProfil"
+      <moap:operation moapAction="http://tempuri.org/GetListeProfil"
 style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="GetListeValCodif">
-      <soap:operation soapAction="http://tempuri.org/GetListeValCodif"
+      <moap:operation moapAction="http://tempuri.org/GetListeValCodif"
 style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
-    <operation name="TestPhpSoap">
-      <soap:operation soapAction="http://tempuri.org/TestPhpSoap"
+    <operation name="TestPhpmoap">
+      <moap:operation moapAction="http://tempuri.org/TestPhpmoap"
 style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="GetListeCodif">
-      <soap:operation soapAction="http://tempuri.org/GetListeCodif"
+      <moap:operation moapAction="http://tempuri.org/GetListeCodif"
 style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="DroitCreation">
-      <soap:operation soapAction="http://tempuri.org/DroitCreation"
+      <moap:operation moapAction="http://tempuri.org/DroitCreation"
 style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="ListeDroitCreation">
-      <soap:operation soapAction="http://tempuri.org/ListeDroitCreation"
+      <moap:operation moapAction="http://tempuri.org/ListeDroitCreation"
 style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="GetDroitsObjetProtege">
-      <soap:operation
-soapAction="http://tempuri.org/GetDroitsObjetProtege" style="document"
+      <moap:operation
+moapAction="http://tempuri.org/GetDroitsObjetProtege" style="document"
 />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="GetPrivileges">
-      <soap:operation soapAction="http://tempuri.org/GetPrivileges"
+      <moap:operation moapAction="http://tempuri.org/GetPrivileges"
 style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="GetLibelleProfil">
-      <soap:operation soapAction="http://tempuri.org/GetLibelleProfil"
+      <moap:operation moapAction="http://tempuri.org/GetLibelleProfil"
 style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="GetValeurRecherche">
-      <soap:operation soapAction="http://tempuri.org/GetValeurRecherche"
+      <moap:operation moapAction="http://tempuri.org/GetValeurRecherche"
 style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="GetValeurRechercheWithClauseWhere">
-      <soap:operation
-soapAction="http://tempuri.org/GetValeurRechercheWithClauseWhere"
+      <moap:operation
+moapAction="http://tempuri.org/GetValeurRechercheWithClauseWhere"
 style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="GetEnvironnement">
-      <soap:operation soapAction="http://tempuri.org/GetEnvironnement"
+      <moap:operation moapAction="http://tempuri.org/GetEnvironnement"
 style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
   </binding>
   <service name="MGServiceNoyauNET">
-    <port name="MGServiceNoyauNETSoap"
-binding="s0:MGServiceNoyauNETSoap">
-      <soap:address
-location="http://localhost/SoapSrvSOFI/MGServiceNoyauNET.asmx" />
+    <port name="MGServiceNoyauNETmoap"
+binding="s0:MGServiceNoyauNETmoap">
+      <moap:address
+location="http://localhost/moapSrvSOFI/MGServiceNoyauNET.asmx" />
     </port>
   </service>
 </definitions>

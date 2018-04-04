@@ -1,5 +1,5 @@
 <?php
-class SOAP_Interop_GroupI {
+class moap_Interop_GroupI {
 
     function echoString($inputString)
     {
@@ -76,8 +76,8 @@ class SOAP_Interop_GroupI {
 
     function echoComplexTypeMultiOccurs($input)
     {
-    	if (isset($input->inputComplexTypeMultiOccurs->SOAPComplexType)) {
-	      return array("return"=>$input->inputComplexTypeMultiOccurs->SOAPComplexType);
+    	if (isset($input->inputComplexTypeMultiOccurs->moapComplexType)) {
+	      return array("return"=>$input->inputComplexTypeMultiOccurs->moapComplexType);
 	    } else {
 	      return array();
 	    }
@@ -176,23 +176,23 @@ class SOAP_Interop_GroupI {
 	    }
     }
 
-    function echoVoidSoapHeader()
+    function echoVoidmoapHeader()
     {
     }
 
     function echoMeStringRequest($input)
     {
-      return new SoapHeader("http://soapinterop.org/","echoMeStringResponse",$input);
+      return new moapHeader("http://moapinterop.org/","echoMeStringResponse",$input);
     }
 
     function echoMeComplexTypeRequest($input)
     {
-      return new SoapHeader("http://soapinterop.org/","echoMeComplexTypeResponse",$input);
+      return new moapHeader("http://moapinterop.org/","echoMeComplexTypeResponse",$input);
     }
 
 }
 
-$server = new SoapServer(dirname(__FILE__)."/round4_groupI_xsd.wsdl");
-$server->setClass("SOAP_Interop_GroupI");
+$server = new moapServer(dirname(__FILE__)."/round4_groupI_xsd.wsdl");
+$server->setClass("moap_Interop_GroupI");
 $server->handle($HTTP_RAW_POST_DATA);
 ?>

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://212.24.157.117:8080/axis/services/echo" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://212.24.157.117:8080/axis/services/echo" xmlns:intf="http://212.24.157.117:8080/axis/services/echo" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="urn:service.EchoService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:definitions targetNamespace="http://212.24.157.117:8080/axis/services/echo" xmlns:apachemoap="http://xml.apache.org/xml-moap" xmlns:impl="http://212.24.157.117:8080/axis/services/echo" xmlns:intf="http://212.24.157.117:8080/axis/services/echo" xmlns:moapenc="http://schemas.xmlmoap.org/moap/encoding/" xmlns:tns1="urn:service.EchoService" xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/" xmlns:wsdlmoap="http://schemas.xmlmoap.org/wsdl/moap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <!--WSDL created by Apache Axis version: 1.2RC3
 Built on Feb 28, 2005 (10:15:14 EST)-->
  <wsdl:types>
   <schema targetNamespace="urn:service.EchoService" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <import namespace="http://schemas.xmlmoap.org/moap/encoding/"/>
    <complexType name="EchoServiceException">
     <sequence>
      <element name="intParameter" type="xsd:int"/>
-     <element name="parameter" nillable="true" type="soapenc:string"/>
+     <element name="parameter" nillable="true" type="moapenc:string"/>
     </sequence>
    </complexType>
    <complexType name="Person">
     <sequence>
-     <element name="name" nillable="true" type="soapenc:string"/>
-     <element name="surname" nillable="true" type="soapenc:string"/>
+     <element name="name" nillable="true" type="moapenc:string"/>
+     <element name="surname" nillable="true" type="moapenc:string"/>
     </sequence>
    </complexType>
   </schema>
@@ -22,7 +22,7 @@ Built on Feb 28, 2005 (10:15:14 EST)-->
 
    <wsdl:message name="echoStringResponse">
 
-      <wsdl:part name="echoStringReturn" type="soapenc:string"/>
+      <wsdl:part name="echoStringReturn" type="moapenc:string"/>
 
    </wsdl:message>
 
@@ -74,29 +74,29 @@ Built on Feb 28, 2005 (10:15:14 EST)-->
 
    </wsdl:portType>
 
-   <wsdl:binding name="echoSoapBinding" type="impl:EchoService">
+   <wsdl:binding name="echomoapBinding" type="impl:EchoService">
 
-      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdlmoap:binding style="rpc" transport="http://schemas.xmlmoap.org/moap/http"/>
 
       <wsdl:operation name="echoString">
 
-         <wsdlsoap:operation soapAction=""/>
+         <wsdlmoap:operation moapAction=""/>
 
          <wsdl:input name="echoStringRequest">
 
-            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:service.EchoService" use="encoded"/>
+            <wsdlmoap:body encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" namespace="urn:service.EchoService" use="encoded"/>
 
          </wsdl:input>
 
          <wsdl:output name="echoStringResponse">
 
-            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://212.24.157.117:8080/axis/services/echo" use="encoded"/>
+            <wsdlmoap:body encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" namespace="http://212.24.157.117:8080/axis/services/echo" use="encoded"/>
 
          </wsdl:output>
 
          <wsdl:fault name="EchoServiceException">
 
-            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EchoServiceException" namespace="urn:service.EchoService" use="encoded"/>
+            <wsdlmoap:fault encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" name="EchoServiceException" namespace="urn:service.EchoService" use="encoded"/>
 
          </wsdl:fault>
 
@@ -104,23 +104,23 @@ Built on Feb 28, 2005 (10:15:14 EST)-->
 
       <wsdl:operation name="echoPerson">
 
-         <wsdlsoap:operation soapAction=""/>
+         <wsdlmoap:operation moapAction=""/>
 
          <wsdl:input name="echoPersonRequest">
 
-            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service" use="encoded"/>
+            <wsdlmoap:body encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" namespace="http://service" use="encoded"/>
 
          </wsdl:input>
 
          <wsdl:output name="echoPersonResponse">
 
-            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://212.24.157.117:8080/axis/services/echo" use="encoded"/>
+            <wsdlmoap:body encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" namespace="http://212.24.157.117:8080/axis/services/echo" use="encoded"/>
 
          </wsdl:output>
 
          <wsdl:fault name="EchoServiceException">
 
-            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EchoServiceException" namespace="http://212.24.157.117:8080/axis/services/echo" use="encoded"/>
+            <wsdlmoap:fault encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" name="EchoServiceException" namespace="http://212.24.157.117:8080/axis/services/echo" use="encoded"/>
 
          </wsdl:fault>
 
@@ -130,9 +130,9 @@ Built on Feb 28, 2005 (10:15:14 EST)-->
 
    <wsdl:service name="EchoServiceService">
 
-      <wsdl:port binding="impl:echoSoapBinding" name="echo">
+      <wsdl:port binding="impl:echomoapBinding" name="echo">
 
-         <wsdlsoap:address location="http://212.24.157.117:8080/axis/services/echo"/>
+         <wsdlmoap:address location="http://212.24.157.117:8080/axis/services/echo"/>
 
       </wsdl:port>
 

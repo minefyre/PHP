@@ -6,18 +6,18 @@ Bug #48557 (Numeric string keys in Apache Hashmaps are not cast to integers)
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-ini_set("soap.wsdl_cache_enabled", 0);
+ini_set("moap.wsdl_cache_enabled", 0);
 
 function test($map) {
 	var_dump($map, $map[1], $map[2]);die;
 }
 
-$y = new SoapServer(dirname(__FILE__) . '/bug48557.wsdl');
+$y = new moapServer(dirname(__FILE__) . '/bug48557.wsdl');
 $y->addfunction("test");
 $request = <<<XML
 <?xml version="1.0"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://test-uri/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/xml-soap" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-	<SOAP-ENV:Body>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/" xmlns:ns1="http://test-uri/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/xml-moap" xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/" moap-ENV:encodingStyle="http://schemas.xmlmoap.org/moap/encoding/">
+	<moap-ENV:Body>
 		<ns1:test>
 			<testParam xsi:type="ns2:Map">
 				<item>
@@ -46,8 +46,8 @@ $request = <<<XML
 				</item>
 			</testParam>
 		</ns1:test>
-	</SOAP-ENV:Body>
-</SOAP-ENV:Envelope>
+	</moap-ENV:Body>
+</moap-ENV:Envelope>
 XML;
 
 $y->handle($request);

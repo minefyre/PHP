@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions name="WSDLInteropTestDocLitService" 
-    targetNamespace="http://soapinterop.org/" 
-    xmlns="http://schemas.xmlsoap.org/wsdl/" 
-    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
-    xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" 
-    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
-    xmlns:tns="http://soapinterop.org/" 
+    targetNamespace="http://moapinterop.org/" 
+    xmlns="http://schemas.xmlmoap.org/wsdl/" 
+    xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/" 
+    xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/" 
+    xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" 
+    xmlns:tns="http://moapinterop.org/" 
     xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-    xmlns:xsd1="http://soapinterop.org/xsd"
+    xmlns:xsd1="http://moapinterop.org/xsd"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ext="http://soapinterop.org/ext">
+    xmlns:ext="http://moapinterop.org/ext">
     	<ext:types/> 
 
 	<types>
-	<ext:schema targetNamespace="http://soapinterop.org/xsd"/>
-        <schema targetNamespace="http://soapinterop.org/xsd"
+	<ext:schema targetNamespace="http://moapinterop.org/xsd"/>
+        <schema targetNamespace="http://moapinterop.org/xsd"
             xmlns="http://www.w3.org/2001/XMLSchema" 
-            xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">           
+            xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/">           
   
             <element name="echoStringParam" type="xsd:string"/>
          
@@ -43,18 +43,18 @@
     <binding name="WSDLInteropTestDocLitPortBinding" 
         type="tns:WSDLInteropTestDocLitPortType">
 	<ext:binding style ="chunked" wsdl:required="true"/>
-        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <moap:binding style="document" transport="http://schemas.xmlmoap.org/moap/http"/>
         <operation name="echoString">
 	    <ext:operation style ="chunked"/>
-            <soap:operation soapAction="http://soapinterop.org/" style="document"/>
+            <moap:operation moapAction="http://moapinterop.org/" style="document"/>
             <input name="echoString">
 		<ext:body use ="direct"/>
-                <soap:body namespace="http://soapinterop.org/WSDLInteropTestDocLit" 
+                <moap:body namespace="http://moapinterop.org/WSDLInteropTestDocLit" 
                     use="literal"/>
             </input>
             <output name="echoStringResponse">
 		<ext:body use ="direct"/>
-                <soap:body namespace="http://soapinterop.org/WSDLInteropTestDocLit" 
+                <moap:body namespace="http://moapinterop.org/WSDLInteropTestDocLit" 
                     use="literal"/>
             </output>
         </operation>
@@ -66,7 +66,7 @@
 	<port binding="tns:WSDLInteropTestDocLitPortBinding" 
             name="WSDLInteropTestDocLitPort">
 	    <ext:address location=""/>
-            <soap:address 
+            <moap:address 
                 location="round3_groupF_extreq.inc"/>
 		</port>
 	</service>

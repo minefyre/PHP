@@ -1,12 +1,12 @@
 --TEST--
-Bug #36614 (Segfault when using Soap)
+Bug #36614 (Segfault when using moap)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --INI--
-soap.wsdl_cache_enabled=0
+moap.wsdl_cache_enabled=0
 --FILE--
 <?php
-$lo_soap = new SoapClient(dirname(__FILE__)."/bug36614.wsdl");
+$lo_moap = new moapClient(dirname(__FILE__)."/bug36614.wsdl");
 echo "ok\n";
 ?>
 --EXPECT--

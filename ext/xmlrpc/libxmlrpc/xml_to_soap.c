@@ -7,14 +7,14 @@
 
 /*-**********************************************************************
 * TODO:                                                                 *
-*  - [SOAP-ENC:position] read sparse arrays (and write?)                *
-*  - [SOAP-ENC:offset] read partially transmitted arrays  (and write?)  *
+*  - [moap-ENC:position] read sparse arrays (and write?)                *
+*  - [moap-ENC:offset] read partially transmitted arrays  (and write?)  *
 *  - read "flattened" multi-dimensional arrays. (don't bother writing)  *
 *                                                                       *
 * BUGS:                                                                 *
-*  - does not read schema. thus only knows soap pre-defined types.      *
+*  - does not read schema. thus only knows moap pre-defined types.      *
 *  - references (probably) do not work. untested.                       *
-*  - does not expose SOAP-ENV:Header to application at all.             *
+*  - does not expose moap-ENV:Header to application at all.             *
 *  - does not use namespaces correctly, thus:                           *
 *    - namespaces are hard-coded in comparison tokens                   *
 *    - if a sender uses another namespace identifer, it will break      *
@@ -28,14 +28,14 @@ static const char rcsid[] = "#(@) $Id:";
 #endif
 #include <string.h>
 #include <stdlib.h>
-#include "xml_to_soap.h"
+#include "xml_to_moap.h"
 #include "base64.h"
 
 /* list of tokens used in vocab */
 #define TOKEN_ANY				 "xsd:ur-type"
-#define TOKEN_ARRAY          "SOAP-ENC:Array"
-#define TOKEN_ARRAY_TYPE     "SOAP-ENC:arrayType"
-#define TOKEN_BASE64         "SOAP-ENC:base64"
+#define TOKEN_ARRAY          "moap-ENC:Array"
+#define TOKEN_ARRAY_TYPE     "moap-ENC:arrayType"
+#define TOKEN_BASE64         "moap-ENC:base64"
 #define TOKEN_BOOLEAN        "xsd:boolean"
 #define TOKEN_DATETIME       "xsd:timeInstant"
 #define TOKEN_DOUBLE         "xsd:double"
@@ -46,22 +46,22 @@ static const char rcsid[] = "#(@) $Id:";
 #define TOKEN_STRING         "xsd:string"
 #define TOKEN_STRUCT			 "xsd:struct"
 #define TOKEN_TYPE           "xsi:type"
-#define TOKEN_FAULT			 "SOAP-ENV:Fault"
-#define TOKEN_MUSTUNDERSTAND "SOAP-ENV:mustUnderstand"
-#define TOKEN_ACTOR			 "SOAP-ENV:actor"
-#define TOKEN_ACTOR_NEXT		 "http://schemas.xmlsoap.org/soap/actor/next"
+#define TOKEN_FAULT			 "moap-ENV:Fault"
+#define TOKEN_MUSTUNDERSTAND "moap-ENV:mustUnderstand"
+#define TOKEN_ACTOR			 "moap-ENV:actor"
+#define TOKEN_ACTOR_NEXT		 "http://schemas.xmlmoap.org/moap/actor/next"
 
 #define TOKEN_XMLRPC_FAULTCODE   "faultCode"
 #define TOKEN_XMLRPC_FAULTSTRING "faultString"
-#define TOKEN_SOAP_FAULTCODE     "faultcode"
-#define TOKEN_SOAP_FAULTSTRING   "faultstring"
-#define TOKEN_SOAP_FAULTDETAILS  "details"
-#define TOKEN_SOAP_FAULTACTOR    "actor"
+#define TOKEN_moap_FAULTCODE     "faultcode"
+#define TOKEN_moap_FAULTSTRING   "faultstring"
+#define TOKEN_moap_FAULTDETAILS  "details"
+#define TOKEN_moap_FAULTACTOR    "actor"
 
 
-/* determine if a string represents a soap type, as used in element names */
-static inline int is_soap_type(const char* soap_type) {
-	return(strstr(soap_type, "SOAP-ENC:") || strstr(soap_type, "xsd:")) ? 1 : 0;
+/* determine if a string represents a moap type, as used in element names */
+static inline int is_moap_type(const char* moap_type) {
+	return(strstr(moap_type, "moap-ENC:") || strstr(moap_type, "xsd:")) ? 1 : 0;
 }
 
 /* utility func to generate a new attribute. possibly should be in xml_element.c?? */
@@ -81,7 +81,7 @@ struct array_info {
 };
 
 
-/* parses soap arrayType attribute to generate an array_info structure.
+/* parses moap arrayType attribute to generate an array_info structure.
  * TODO: should deal with sparse, flattened, & multi-dimensional arrays
  */
 static struct array_info* parse_array_type_info(const char* array_type) {
@@ -102,14 +102,14 @@ static struct array_info* parse_array_type_info(const char* array_type) {
 }
 
 /* performs heuristics on an xmlrpc_vector_array to determine
- * appropriate soap arrayType string.
+ * appropriate moap arrayType string.
  */
-static const char* get_array_soap_type(XMLRPC_VALUE node) {
+static const char* get_array_moap_type(XMLRPC_VALUE node) {
 	XMLRPC_VALUE_TYPE_EASY type = xmlrpc_type_none;
 
 	XMLRPC_VALUE xIter = XMLRPC_VectorRewind(node);
 	int loopCount = 0;
-	const char* soapType = TOKEN_ANY;
+	const char* moapType = TOKEN_ANY;
 
 	type = XMLRPC_GetValueTypeEasy(xIter);
 	xIter = XMLRPC_VectorNext(node);
@@ -129,62 +129,62 @@ static const char* get_array_soap_type(XMLRPC_VALUE node) {
 	}
 	switch (type) {
 	case xmlrpc_type_none:
-		soapType = TOKEN_ANY;
+		moapType = TOKEN_ANY;
 		break;
 	case xmlrpc_type_empty:
-		soapType = TOKEN_NULL;
+		moapType = TOKEN_NULL;
 		break;
 	case xmlrpc_type_int:
-		soapType = TOKEN_INT;
+		moapType = TOKEN_INT;
 		break;
 	case xmlrpc_type_double:
-		soapType = TOKEN_DOUBLE;
+		moapType = TOKEN_DOUBLE;
 		break;
 	case xmlrpc_type_boolean:
-		soapType = TOKEN_BOOLEAN;
+		moapType = TOKEN_BOOLEAN;
 		break;
 	case xmlrpc_type_string:
-		soapType = TOKEN_STRING;
+		moapType = TOKEN_STRING;
 		break;
 	case xmlrpc_type_base64:
-		soapType = TOKEN_BASE64;
+		moapType = TOKEN_BASE64;
 		break;
 	case xmlrpc_type_datetime:
-		soapType = TOKEN_DATETIME;
+		moapType = TOKEN_DATETIME;
 		break;
 	case xmlrpc_type_struct:
-		soapType = TOKEN_STRUCT;
+		moapType = TOKEN_STRUCT;
 		break;
 	case xmlrpc_type_array:
-		soapType = TOKEN_ARRAY;
+		moapType = TOKEN_ARRAY;
 		break;
 	case xmlrpc_type_mixed:
-		soapType = TOKEN_STRUCT;
+		moapType = TOKEN_STRUCT;
 		break;
 	}
-	return soapType;
+	return moapType;
 }
 
 /* determines whether a node is a fault or not, and of which type:
  * 0 = not a fault,
  * 1 = xmlrpc style fault
- * 2 = soap style fault.
+ * 2 = moap style fault.
  */
 static inline int get_fault_type(XMLRPC_VALUE node) {
 	if (XMLRPC_VectorGetValueWithID(node, TOKEN_XMLRPC_FAULTCODE) &&
 		 XMLRPC_VectorGetValueWithID(node, TOKEN_XMLRPC_FAULTSTRING)) {
 		return 1;
 	}
-	else if (XMLRPC_VectorGetValueWithID(node, TOKEN_SOAP_FAULTCODE) &&
-				XMLRPC_VectorGetValueWithID(node, TOKEN_SOAP_FAULTSTRING)) {
+	else if (XMLRPC_VectorGetValueWithID(node, TOKEN_moap_FAULTCODE) &&
+				XMLRPC_VectorGetValueWithID(node, TOKEN_moap_FAULTSTRING)) {
 		return 2;
 	}
 	return 0;
 }
 
 /* input: an XMLRPC_VALUE representing a fault struct in xml-rpc style.
- * output: an XMLRPC_VALUE representing a fault struct in soap style,
- *  with xmlrpc codes mapped to soap codes, and all other values preserved.
+ * output: an XMLRPC_VALUE representing a fault struct in moap style,
+ *  with xmlrpc codes mapped to moap codes, and all other values preserved.
  *  note that the returned value is a completely new value, and must be freed.
  *  the input value is untouched.
  */
@@ -193,10 +193,10 @@ static XMLRPC_VALUE gen_fault_xmlrpc(XMLRPC_VALUE node, xml_element* el_target) 
 	XMLRPC_VALUE xCode = XMLRPC_VectorGetValueWithID(xDup, TOKEN_XMLRPC_FAULTCODE);
 	XMLRPC_VALUE xStr = XMLRPC_VectorGetValueWithID(xDup, TOKEN_XMLRPC_FAULTSTRING);
 
-	XMLRPC_SetValueID(xCode, TOKEN_SOAP_FAULTCODE, 0);
-	XMLRPC_SetValueID(xStr, TOKEN_SOAP_FAULTSTRING, 0);
+	XMLRPC_SetValueID(xCode, TOKEN_moap_FAULTCODE, 0);
+	XMLRPC_SetValueID(xStr, TOKEN_moap_FAULTSTRING, 0);
 
-	/* rough mapping of xmlrpc fault codes to soap codes */
+	/* rough mapping of xmlrpc fault codes to moap codes */
 	switch (XMLRPC_GetValueInt(xCode)) {
 	case -32700:		  /* "parse error. not well formed", */
 	case -32701:		  /* "parse error. unsupported encoding" */
@@ -204,33 +204,33 @@ static XMLRPC_VALUE gen_fault_xmlrpc(XMLRPC_VALUE node, xml_element* el_target) 
 	case -32600:		  /* "server error. invalid xml-rpc.  not conforming to spec." */
 	case -32601:		  /* "server error. requested method not found" */
 	case -32602:		  /* "server error. invalid method parameters" */
-		XMLRPC_SetValueString(xCode, "SOAP-ENV:Client", 0);
+		XMLRPC_SetValueString(xCode, "moap-ENV:Client", 0);
 		break;
 	case -32603:		  /* "server error. internal xml-rpc error" */
 	case -32500:		  /* "application error" */
 	case -32400:		  /* "system error" */
 	case -32300:		  /* "transport error */
-		XMLRPC_SetValueString(xCode, "SOAP-ENV:Server", 0);
+		XMLRPC_SetValueString(xCode, "moap-ENV:Server", 0);
 		break;
 	}
 	return xDup;
 }
 
-/* returns a new XMLRPC_VALUE representing a soap fault, comprised of a struct with four keys. */
-static XMLRPC_VALUE gen_soap_fault(const char* fault_code, const char* fault_string, 
+/* returns a new XMLRPC_VALUE representing a moap fault, comprised of a struct with four keys. */
+static XMLRPC_VALUE gen_moap_fault(const char* fault_code, const char* fault_string, 
 											  const char* actor, const char* details) {
 	XMLRPC_VALUE xReturn = XMLRPC_CreateVector(TOKEN_FAULT, xmlrpc_vector_struct);
 	XMLRPC_AddValuesToVector(xReturn,
-									 XMLRPC_CreateValueString(TOKEN_SOAP_FAULTCODE, fault_code, 0),
-									 XMLRPC_CreateValueString(TOKEN_SOAP_FAULTSTRING, fault_string, 0),
-									 XMLRPC_CreateValueString(TOKEN_SOAP_FAULTACTOR, actor, 0),
-									 XMLRPC_CreateValueString(TOKEN_SOAP_FAULTDETAILS, details, 0),
+									 XMLRPC_CreateValueString(TOKEN_moap_FAULTCODE, fault_code, 0),
+									 XMLRPC_CreateValueString(TOKEN_moap_FAULTSTRING, fault_string, 0),
+									 XMLRPC_CreateValueString(TOKEN_moap_FAULTACTOR, actor, 0),
+									 XMLRPC_CreateValueString(TOKEN_moap_FAULTDETAILS, details, 0),
 									 NULL);
 	return xReturn;
 }
 
-/* translates xml soap dom to native data structures. recursive. */
-XMLRPC_VALUE xml_element_to_SOAP_REQUEST_worker(XMLRPC_REQUEST request, 
+/* translates xml moap dom to native data structures. recursive. */
+XMLRPC_VALUE xml_element_to_moap_REQUEST_worker(XMLRPC_REQUEST request, 
 																XMLRPC_VALUE xParent,
 																struct array_info* parent_array,
 																XMLRPC_VALUE xCurrent, 
@@ -253,8 +253,8 @@ XMLRPC_VALUE xml_element_to_SOAP_REQUEST_worker(XMLRPC_REQUEST request,
 		xml_element_attr* attr_iter = Q_Head(&el->attrs);
 		int b_must_understand = 0;
 		
-		/* in soap, types may be specified in either element name -or- with xsi:type attribute. */
-		if (is_soap_type(el->name)) {
+		/* in moap, types may be specified in either element name -or- with xsi:type attribute. */
+		if (is_moap_type(el->name)) {
 			type = el->name;
 		}
 		/* if our parent node, by definition a vector, is not an array, then
@@ -296,8 +296,8 @@ XMLRPC_VALUE xml_element_to_SOAP_REQUEST_worker(XMLRPC_REQUEST request,
 				   to "understand" these headers. For now, we just bail if we
 				   get a mustUnderstand header intended for us. */
 				XMLRPC_RequestSetError(request, 
-											  gen_soap_fault("SOAP-ENV:MustUnderstand",
-																  "SOAP Must Understand Error",
+											  gen_moap_fault("moap-ENV:MustUnderstand",
+																  "moap Must Understand Error",
 																  "", ""));
 				return xCurrent;
 			}
@@ -308,7 +308,7 @@ XMLRPC_VALUE xml_element_to_SOAP_REQUEST_worker(XMLRPC_REQUEST request,
 			XMLRPC_SetValueID_Case(xCurrent, id, 0, xmlrpc_case_exact);
 		}
 
-		/* according to soap spec, 
+		/* according to moap spec, 
 		   depth 1 = Envelope, 2 = Header, Body & Fault, 3 = methodcall or response. */
 		if (depth == 3) {
 			const char* methodname = el->name;
@@ -368,7 +368,7 @@ XMLRPC_VALUE xml_element_to_SOAP_REQUEST_worker(XMLRPC_REQUEST request,
 				buffer_delete(&buf);
 			}
 		}
-		/* Element has children, thus a vector, or "compound type" in soap-speak. */
+		/* Element has children, thus a vector, or "compound type" in moap-speak. */
 		else {
 			struct array_info* ai = NULL;
 			xml_element* iter = (xml_element*)Q_Head(&el->children);
@@ -377,7 +377,7 @@ XMLRPC_VALUE xml_element_to_SOAP_REQUEST_worker(XMLRPC_REQUEST request,
 				XMLRPC_SetIsVector(xCurrent, xmlrpc_vector_struct);
 			}
 			else if (!strcmp(type, TOKEN_ARRAY) || arrayType != NULL) {
-				/* determine magic associated with soap array type.
+				/* determine magic associated with moap array type.
 				   this is passed down as we recurse, so our children have access to the info. */
 				ai = parse_array_type_info(arrayType);	/* alloc'ed ai free'd below. */
 				XMLRPC_SetIsVector(xCurrent, xmlrpc_vector_array);
@@ -394,13 +394,13 @@ XMLRPC_VALUE xml_element_to_SOAP_REQUEST_worker(XMLRPC_REQUEST request,
 				   current value along until we are deep enough. */
 				if ( depth <= 2 ||
 					  (rtype == xmlrpc_request_response && depth <= 3) ) {
-					xml_element_to_SOAP_REQUEST_worker(request, NULL, ai, xCurrent, iter, depth);
+					xml_element_to_moap_REQUEST_worker(request, NULL, ai, xCurrent, iter, depth);
 				}
 				/* ready to do some actual de-serialization. create a new empty value and
 				   pass that along to be init'd, then add it to our current vector. */
 				else {
 					xNext = XMLRPC_CreateValueEmpty();
-					xml_element_to_SOAP_REQUEST_worker(request, xCurrent, ai, xNext, iter, depth);
+					xml_element_to_moap_REQUEST_worker(request, xCurrent, ai, xNext, iter, depth);
 					XMLRPC_AddValueToVector(xCurrent, xNext);
 				}
 				iter = (xml_element*)Q_Next(&el->children);
@@ -414,24 +414,24 @@ XMLRPC_VALUE xml_element_to_SOAP_REQUEST_worker(XMLRPC_REQUEST request,
 	return xCurrent;
 }
 
-/* Convert soap xml dom to XMLRPC_VALUE, sans request info.  untested. */
-XMLRPC_VALUE xml_element_to_SOAP_VALUE(xml_element* el)
+/* Convert moap xml dom to XMLRPC_VALUE, sans request info.  untested. */
+XMLRPC_VALUE xml_element_to_moap_VALUE(xml_element* el)
 {
-	return xml_element_to_SOAP_REQUEST_worker(NULL, NULL, NULL, NULL, el, 0);
+	return xml_element_to_moap_REQUEST_worker(NULL, NULL, NULL, NULL, el, 0);
 }
 
-/* Convert soap xml dom to XMLRPC_REQUEST */
-XMLRPC_VALUE xml_element_to_SOAP_REQUEST(XMLRPC_REQUEST request, xml_element* el)
+/* Convert moap xml dom to XMLRPC_REQUEST */
+XMLRPC_VALUE xml_element_to_moap_REQUEST(XMLRPC_REQUEST request, xml_element* el)
 {
 	if (request) {
-		return XMLRPC_RequestSetData(request, xml_element_to_SOAP_REQUEST_worker(request, NULL, NULL, NULL, el, 0));
+		return XMLRPC_RequestSetData(request, xml_element_to_moap_REQUEST_worker(request, NULL, NULL, NULL, el, 0));
 	}
 	return NULL;
 }
 
 
-/* translates data structures to soap/xml. recursive */
-xml_element* SOAP_to_xml_element_worker(XMLRPC_REQUEST request, XMLRPC_VALUE node) {
+/* translates data structures to moap/xml. recursive */
+xml_element* moap_to_xml_element_worker(XMLRPC_REQUEST request, XMLRPC_VALUE node) {
 #define BUF_SIZE 128
 	xml_element* elem_val = NULL;
 	if (node) {
@@ -448,11 +448,11 @@ xml_element* SOAP_to_xml_element_worker(XMLRPC_REQUEST request, XMLRPC_VALUE nod
 		case xmlrpc_type_mixed:
 		case xmlrpc_type_array:
 			if (type == xmlrpc_type_array) {
-				/* array's are _very_ special in soap.
+				/* array's are _very_ special in moap.
 				   TODO: Should handle sparse/partial arrays here. */
 
-				/* determine soap array type. */
-				const char* type = get_array_soap_type(node);
+				/* determine moap array type. */
+				const char* type = get_array_moap_type(node);
 				xml_element_attr* attr_array_type = NULL;
 
 				/* specify array kids type and array size. */
@@ -482,7 +482,7 @@ xml_element* SOAP_to_xml_element_worker(XMLRPC_REQUEST request, XMLRPC_VALUE nod
 				/* recurse through sub-elements */
 				XMLRPC_VALUE xIter = XMLRPC_VectorRewind(node);
 				while ( xIter ) {
-					xml_element* next_el = SOAP_to_xml_element_worker(request, xIter);
+					xml_element* next_el = moap_to_xml_element_worker(request, xIter);
 					if (next_el) {
 						Q_PushTail(&elem_val->children, next_el);
 					}
@@ -539,7 +539,7 @@ xml_element* SOAP_to_xml_element_worker(XMLRPC_REQUEST request, XMLRPC_VALUE nod
 			break;
 		}
 
-		/* determining element's name is a bit tricky, due to soap semantics. */
+		/* determining element's name is a bit tricky, due to moap semantics. */
 		if (!pName) {
 			/* if the value's type is known... */
 			if (pAttrType) {
@@ -573,36 +573,36 @@ xml_element* SOAP_to_xml_element_worker(XMLRPC_REQUEST request, XMLRPC_VALUE nod
 	return elem_val;
 }
 
-/* convert XMLRPC_VALUE to soap xml dom.  untested. */
-xml_element* SOAP_VALUE_to_xml_element(XMLRPC_VALUE node) {
-	return SOAP_to_xml_element_worker(NULL, node);
+/* convert XMLRPC_VALUE to moap xml dom.  untested. */
+xml_element* moap_VALUE_to_xml_element(XMLRPC_VALUE node) {
+	return moap_to_xml_element_worker(NULL, node);
 }
 
-/* convert XMLRPC_REQUEST to soap xml dom. */
-xml_element* SOAP_REQUEST_to_xml_element(XMLRPC_REQUEST request) {
+/* convert XMLRPC_REQUEST to moap xml dom. */
+xml_element* moap_REQUEST_to_xml_element(XMLRPC_REQUEST request) {
 	xml_element* root = xml_elem_new();
 
 	/* safety first. */
 	if (root) {
 		xml_element* body = xml_elem_new();
-		root->name = strdup("SOAP-ENV:Envelope");
+		root->name = strdup("moap-ENV:Envelope");
 
 		/* silly namespace stuff */
-		Q_PushTail(&root->attrs, new_attr("xmlns:SOAP-ENV", "http://schemas.xmlsoap.org/soap/envelope/"));
+		Q_PushTail(&root->attrs, new_attr("xmlns:moap-ENV", "http://schemas.xmlmoap.org/moap/envelope/"));
 		Q_PushTail(&root->attrs, new_attr("xmlns:xsi", "http://www.w3.org/1999/XMLSchema-instance"));
 		Q_PushTail(&root->attrs, new_attr("xmlns:xsd", "http://www.w3.org/1999/XMLSchema"));
-		Q_PushTail(&root->attrs, new_attr("xmlns:SOAP-ENC", "http://schemas.xmlsoap.org/soap/encoding/"));
-		Q_PushTail(&root->attrs, new_attr("xmlns:si", "http://soapinterop.org/xsd"));
+		Q_PushTail(&root->attrs, new_attr("xmlns:moap-ENC", "http://schemas.xmlmoap.org/moap/encoding/"));
+		Q_PushTail(&root->attrs, new_attr("xmlns:si", "http://moapinterop.org/xsd"));
 		Q_PushTail(&root->attrs, new_attr("xmlns:ns6", "http://testuri.org"));
-		Q_PushTail(&root->attrs, new_attr("SOAP-ENV:encodingStyle", "http://schemas.xmlsoap.org/soap/encoding/"));
+		Q_PushTail(&root->attrs, new_attr("moap-ENV:encodingStyle", "http://schemas.xmlmoap.org/moap/encoding/"));
 
-		/* Q_PushHead(&root->attrs, new_attr("xmlns:ks", "http://kitchen.sink.org/soap/everything/under/sun"));
+		/* Q_PushHead(&root->attrs, new_attr("xmlns:ks", "http://kitchen.sink.org/moap/everything/under/sun"));
 		       JUST KIDDING!! :-)  ---->                ------------------------------------------------- */
 
 		if (body) {
 			/* go ahead and serialize first... */
 			xml_element* el_serialized =  
-			SOAP_to_xml_element_worker(request, 
+			moap_to_xml_element_worker(request, 
 												XMLRPC_RequestGetData(request));
 
 			/* check for fault, in which case, there is no intermediate element */
@@ -660,7 +660,7 @@ xml_element* SOAP_REQUEST_to_xml_element(XMLRPC_REQUEST request) {
 					}
 				}
 			}
-			body->name = strdup("SOAP-ENV:Body");
+			body->name = strdup("moap-ENV:Body");
 			Q_PushTail(&root->children, body);
 		}
 	}

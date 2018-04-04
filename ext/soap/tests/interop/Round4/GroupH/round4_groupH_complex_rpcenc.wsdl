@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions
-	xmlns="http://schemas.xmlsoap.org/wsdl/"
-	xmlns:tns="http://soapinterop.org/wsdl"
-	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns="http://schemas.xmlmoap.org/wsdl/"
+	xmlns:tns="http://moapinterop.org/wsdl"
+	xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xmlns:ns2="http://soapinterop.org/types"
-	targetNamespace="http://soapinterop.org/wsdl">
+	xmlns:ns2="http://moapinterop.org/types"
+	targetNamespace="http://moapinterop.org/wsdl">
 
 	<types>
 		<schema elementFormDefault="qualified"
 			xmlns="http://www.w3.org/2001/XMLSchema"
-			xmlns:tns="http://soapinterop.org/types"
+			xmlns:tns="http://moapinterop.org/types"
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-			xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/"
-			xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-			targetNamespace="http://soapinterop.org/types">
+			xmlns:moap-enc="http://schemas.xmlmoap.org/moap/encoding/"
+			xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/"
+			targetNamespace="http://moapinterop.org/types">
 
-			<import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+			<import namespace="http://schemas.xmlmoap.org/moap/encoding/"/>
 
-			<complexType name="SOAPStruct">
+			<complexType name="moapStruct">
 				<sequence>
 					<element name="varString" type="xsd:string"/>
 					<element name="varInt" type="xsd:int"/>
@@ -26,9 +26,9 @@
 				</sequence>
 			</complexType>
 
-			<complexType name="SOAPStructFault">
+			<complexType name="moapStructFault">
 				<sequence>
-					<element name="soapStruct" type="tns:SOAPStruct"/>
+					<element name="moapStruct" type="tns:moapStruct"/>
 				</sequence>
 			</complexType>
 
@@ -65,8 +65,8 @@
 	</types>
 
 	<message name="echoFaultResponse"/>
-	<message name="echoSOAPStructFaultRequest">
-		<part name="param" type="ns2:SOAPStructFault"/>
+	<message name="echomoapStructFaultRequest">
+		<part name="param" type="ns2:moapStructFault"/>
 	</message>
 	<message name="echoBaseStructFaultRequest">
 		<part name="param" type="ns2:BaseStruct"/>
@@ -76,7 +76,7 @@
 	</message>
 	<message name="echoMultipleFaults1Request">
 		<part name="whichFault" type="xsd:int"/>
-		<part name="param1" type="ns2:SOAPStruct"/>
+		<part name="param1" type="ns2:moapStruct"/>
 		<part name="param2" type="ns2:BaseStruct"/>
 	</message>
 	<message name="echoMultipleFaults2Request">
@@ -87,8 +87,8 @@
 	</message>
 
 	<!-- Fault messages -->
-	<message name="SOAPStructFault">
-		<part name="part1" type="ns2:SOAPStructFault"/>
+	<message name="moapStructFault">
+		<part name="part1" type="ns2:moapStructFault"/>
 	</message>
 	<message name="BaseStructFault">
 		<part name="part2" type="ns2:BaseStruct"/>
@@ -102,12 +102,12 @@
 
 	<portType name="ComplexRpcEncPortType">
 		<!--
-			Throws a fault with an embedded SOAPStruct
+			Throws a fault with an embedded moapStruct
 		-->
-		<operation name="echoSOAPStructFault" parameterOrder="param">
-			<input message="tns:echoSOAPStructFaultRequest"/>
+		<operation name="echomoapStructFault" parameterOrder="param">
+			<input message="tns:echomoapStructFaultRequest"/>
 			<output message="tns:echoFaultResponse"/>
-			<fault name="ComplexFault" message="tns:SOAPStructFault"/>
+			<fault name="ComplexFault" message="tns:moapStructFault"/>
 		</operation>
 
 		<!--
@@ -135,7 +135,7 @@
 		<operation name="echoMultipleFaults1" parameterOrder="whichFault param1 param2">
 			<input message="tns:echoMultipleFaults1Request"/>
 			<output message="tns:echoFaultResponse"/>
-			<fault name="ComplexFault1" message="tns:SOAPStructFault"/>
+			<fault name="ComplexFault1" message="tns:moapStructFault"/>
 			<fault name="ComplexFault2" message="tns:BaseStructFault"/>
 		</operation>
 
@@ -153,147 +153,147 @@
 	</portType>
 
 	<binding name="ComplexRpcEncBinding" type="tns:ComplexRpcEncPortType">
-		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
-		<operation name="echoSOAPStructFault">
+		<moap:binding transport="http://schemas.xmlmoap.org/moap/http" style="rpc"/>
+		<operation name="echomoapStructFault">
 			<input>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</input>
 			<output>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</output>
 			<fault name="ComplexFault">
-				<soap:fault
+				<moap:fault
 					name="ComplexFault"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</fault>
-			<soap:operation soapAction=""/>
+			<moap:operation moapAction=""/>
 		</operation>
 
 		<operation name="echoBaseStructFault">
 			<input>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</input>
 			<output>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</output>
 			<fault name="ComplexFault">
-				<soap:fault
+				<moap:fault
 					name="ComplexFault"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</fault>
-			<soap:operation soapAction=""/>
+			<moap:operation moapAction=""/>
 		</operation>
 
 		<operation name="echoExtendedStructFault">
 			<input>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</input>
 			<output>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</output>
 			<fault name="ComplexFault">
-				<soap:fault
+				<moap:fault
 					name="ComplexFault"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</fault>
-			<soap:operation soapAction=""/>
+			<moap:operation moapAction=""/>
 		</operation>
 
 		<operation name="echoMultipleFaults1">
 			<input>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</input>
 			<output>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</output>
 			<fault name="ComplexFault1">
-				<soap:fault
+				<moap:fault
 					name="ComplexFault1"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</fault>
 			<fault name="ComplexFault2">
-				<soap:fault
+				<moap:fault
 					name="ComplexFault2"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</fault>
-			<soap:operation soapAction=""/>
+			<moap:operation moapAction=""/>
 		</operation>
 
 		<operation name="echoMultipleFaults2">
 			<input>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</input>
 			<output>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</output>
 			<fault name="ComplexFault1">
-				<soap:fault
+				<moap:fault
 					name="ComplexFault1"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</fault>
 			<fault name="ComplexFault2">
-				<soap:fault
+				<moap:fault
 					name="ComplexFault2"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</fault>
 			<fault name="ComplexFault3">
-				<soap:fault
+				<moap:fault
 					name="ComplexFault3"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</fault>
-			<soap:operation soapAction=""/>
+			<moap:operation moapAction=""/>
 		</operation>
 	</binding>
 
 	<service name="ComplexRpcEncService">
 		<port name="ComplexRpcEncPort" binding="tns:ComplexRpcEncBinding">
-			<soap:address
+			<moap:address
 				location="test://"/>
 		</port>
 	</service>

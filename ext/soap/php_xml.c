@@ -19,7 +19,7 @@
 */
 /* $Id: php_xml.c 306939 2011-01-01 02:19:59Z felipe $ */
 
-#include "php_soap.h"
+#include "php_moap.h"
 #include "libxml/parser.h"
 #include "libxml/parserInternals.h"
 
@@ -68,15 +68,15 @@ static void cleanup_xml_node(xmlNodePtr node)
 	}
 }
 
-static void soap_ignorableWhitespace(void *ctx, const xmlChar *ch, int len)
+static void moap_ignorableWhitespace(void *ctx, const xmlChar *ch, int len)
 {
 }
 
-static void soap_Comment(void *ctx, const xmlChar *value)
+static void moap_Comment(void *ctx, const xmlChar *value)
 {
 }
 
-xmlDocPtr soap_xmlParseFile(const char *filename TSRMLS_DC)
+xmlDocPtr moap_xmlParseFile(const char *filename TSRMLS_DC)
 {
 	xmlParserCtxtPtr ctxt = NULL;
 	xmlDocPtr ret;
@@ -92,8 +92,8 @@ xmlDocPtr soap_xmlParseFile(const char *filename TSRMLS_DC)
 	PG(allow_url_fopen) = old_allow_url_fopen;
 	if (ctxt) {
 		ctxt->keepBlanks = 0;
-		ctxt->sax->ignorableWhitespace = soap_ignorableWhitespace;
-		ctxt->sax->comment = soap_Comment;
+		ctxt->sax->ignorableWhitespace = moap_ignorableWhitespace;
+		ctxt->sax->comment = moap_Comment;
 		ctxt->sax->warning = NULL;
 		ctxt->sax->error = NULL;
 		/*ctxt->sax->fatalError = NULL;*/
@@ -123,7 +123,7 @@ xmlDocPtr soap_xmlParseFile(const char *filename TSRMLS_DC)
 	return ret;
 }
 
-xmlDocPtr soap_xmlParseMemory(const void *buf, size_t buf_size)
+xmlDocPtr moap_xmlParseMemory(const void *buf, size_t buf_size)
 {
 	xmlParserCtxtPtr ctxt = NULL;
 	xmlDocPtr ret;
@@ -133,8 +133,9 @@ xmlDocPtr soap_xmlParseMemory(const void *buf, size_t buf_size)
 */
 	ctxt = xmlCreateMemoryParserCtxt(buf, buf_size);
 	if (ctxt) {
-		ctxt->sax->ignorableWhitespace = soap_ignorableWhitespace;
-		ctxt->sax->comment = soap_Comment;
+		ctxt->options -= XML_PARSE_DTDLOAD;
+		ctxt->sax->ignorableWhitespace = moap_ignorableWhitespace;
+		ctxt->sax->comment = moap_Comment;
 		ctxt->sax->warning = NULL;
 		ctxt->sax->error = NULL;
 		/*ctxt->sax->fatalError = NULL;*/

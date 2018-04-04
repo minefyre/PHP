@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <definitions name="shoppingcart"
- xmlns="http://schemas.xmlsoap.org/wsdl/"
- xmlns:tns="urn:test.soapserver#"
-targetNamespace="urn:test.soapserver#"
- xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
- xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
- xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+ xmlns="http://schemas.xmlmoap.org/wsdl/"
+ xmlns:tns="urn:test.moapserver#"
+targetNamespace="urn:test.moapserver#"
+ xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/"
+ xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/"
+ xmlns:moapenc="http://schemas.xmlmoap.org/moap/encoding/"
  xmlns:xs="http://www.w3.org/2001/XMLSchema"
- xmlns:types="urn:test.soapserver.types#">
+ xmlns:types="urn:test.moapserver.types#">
 
  <!-- all datatypes will be imported to namespace types: -->
  <types>
-         <xs:schema targetNamespace="urn:test.soapserver.types#">
+         <xs:schema targetNamespace="urn:test.moapserver.types#">
                  <xs:complexType name="ThingWithParent">
         <xs:all>
          <xs:element name="id" type="xs:string"/>
@@ -21,8 +21,8 @@ targetNamespace="urn:test.soapserver#"
        </xs:complexType>
  <xs:complexType name="ArrayOfThingWithParent">
   <xs:complexContent>
-   <xs:restriction base="soapenc:Array">
-      <xs:attribute ref="soapenc:arrayType"
+   <xs:restriction base="moapenc:Array">
+      <xs:attribute ref="moapenc:arrayType"
         wsdl:arrayType="tns:ThingWithParent[]"/>
    </xs:restriction>
   </xs:complexContent>
@@ -33,34 +33,34 @@ targetNamespace="urn:test.soapserver#"
          <message name="getThingWithParent-response">
                  <part name="result" element="types:ThingWithParent"/>
          </message>
- <portType name="soapserver-porttype">
+ <portType name="moapserver-porttype">
   <operation name="getThingWithParent">
    <input name="getThingWithParent-request" message="tns:getThingWithParent-request"/>
    <output name="getThingWithParent-response" message="tns:getThingWithParent-response"/>
   </operation>
  </portType>
- <binding name="soapserver-binding" type="tns:soapserver-porttype">
-  <soap:binding style="rpc"
-   transport="http://schemas.xmlsoap.org/soap/http"/>
+ <binding name="moapserver-binding" type="tns:moapserver-porttype">
+  <moap:binding style="rpc"
+   transport="http://schemas.xmlmoap.org/moap/http"/>
   <operation name="getThingWithParent">
-   <soap:operation soapAction="urn:test.soapserver.SoapServer#getThingWithParent"/>
+   <moap:operation moapAction="urn:test.moapserver.moapServer#getThingWithParent"/>
    <input>
-      <soap:body use="encoded"
-namespace="urn:test.soapserver#"
-encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <moap:body use="encoded"
+namespace="urn:test.moapserver#"
+encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
    </input>
    <output>
-      <soap:body use="encoded"
-namespace="urn:test.soapserver#"
-encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <moap:body use="encoded"
+namespace="urn:test.moapserver#"
+encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
    </output>
   </operation>
  </binding>
 
- <service name="soapserver">
+ <service name="moapserver">
   <!-- @binding doesn't like to be tns: -->
-  <port name="soapserver-port" binding="tns:soapserver-binding">
-   <soap:address location="xxxxxxxxxxxx"/>
+  <port name="moapserver-port" binding="tns:moapserver-binding">
+   <moap:address location="xxxxxxxxxxxx"/>
   </port>
  </service>
 

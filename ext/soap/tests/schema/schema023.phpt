@@ -1,5 +1,5 @@
 --TEST--
-SOAP XML Schema 23: SOAP 1.1 Array
+moap XML Schema 23: moap 1.1 Array
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --FILE--
@@ -8,8 +8,8 @@ include "test_schema.inc";
 $schema = <<<EOF
 	<complexType name="testType">
 		<complexContent>
-			<restriction base="SOAP-ENC:Array">
-  	    <attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="int[]"/>
+			<restriction base="moap-ENC:Array">
+  	    <attribute ref="moap-ENC:arrayType" wsdl:arrayType="int[]"/>
     	</restriction>
     </complexContent>
 	</complexType>
@@ -19,7 +19,7 @@ echo "ok";
 ?>
 --EXPECT--
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://test-uri/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><SOAP-ENV:Body><ns1:test><testParam SOAP-ENC:arrayType="xsd:int[2]" xsi:type="ns1:testType"><item xsi:type="xsd:int">123</item><item xsi:type="xsd:int">123</item></testParam></ns1:test></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/" xmlns:ns1="http://test-uri/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" moap-ENV:encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"><moap-ENV:Body><ns1:test><testParam moap-ENC:arrayType="xsd:int[2]" xsi:type="ns1:testType"><item xsi:type="xsd:int">123</item><item xsi:type="xsd:int">123</item></testParam></ns1:test></moap-ENV:Body></moap-ENV:Envelope>
 array(2) {
   [0]=>
   int(123)

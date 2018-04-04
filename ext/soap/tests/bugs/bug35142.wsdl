@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<definitions xmlns:s1="http://testurl/Events" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://testurl/Message" xmlns:s3="http://testurl/Smoker" xmlns:soap12enc="http://www.w3.org/2002/06/soap-envelope" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s4="http://testurl/AudienceMember" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s2="http://testurl/Actions" xmlns:tns="http://testurl/Service" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://testurl/Service" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<definitions xmlns:s1="http://testurl/Events" xmlns:moap12="http://schemas.xmlmoap.org/wsdl/moap12/" xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://testurl/Message" xmlns:s3="http://testurl/Smoker" xmlns:moap12enc="http://www.w3.org/2002/06/moap-envelope" xmlns:http="http://schemas.xmlmoap.org/wsdl/http/" xmlns:s4="http://testurl/AudienceMember" xmlns:moapenc="http://schemas.xmlmoap.org/moap/encoding/" xmlns:s2="http://testurl/Actions" xmlns:tns="http://testurl/Service" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlmoap.org/wsdl/mime/" targetNamespace="http://testurl/Service" xmlns="http://schemas.xmlmoap.org/wsdl/">
   <types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://testurl/Message">
       <s:import namespace="http://testurl/Events" />
@@ -468,76 +468,76 @@
       </s:complexType>
     </s:schema>
   </types>
-  <message name="PostActionsSoapIn">
+  <message name="PostActionsmoapIn">
     <part name="ivrActions" element="s0:ivrActions" />
   </message>
-  <message name="PostActionsSoapOut">
+  <message name="PostActionsmoapOut">
     <part name="PostActionsResult" element="s0:ivrActionResults" />
   </message>
-  <message name="PostEventsSoapIn">
+  <message name="PostEventsmoapIn">
     <part name="ivrEvents" element="s0:ivrEvents" />
   </message>
-  <message name="PostEventsSoapOut">
+  <message name="PostEventsmoapOut">
     <part name="PostEventsResult" element="s0:ivrEventResults" />
   </message>
-  <portType name="IVRServicePortSoap">
+  <portType name="IVRServicePortmoap">
     <operation name="PostActions">
-      <input message="tns:PostActionsSoapIn" />
-      <output message="tns:PostActionsSoapOut" />
+      <input message="tns:PostActionsmoapIn" />
+      <output message="tns:PostActionsmoapOut" />
     </operation>
     <operation name="PostEvents">
-      <input message="tns:PostEventsSoapIn" />
-      <output message="tns:PostEventsSoapOut" />
+      <input message="tns:PostEventsmoapIn" />
+      <output message="tns:PostEventsmoapOut" />
     </operation>
   </portType>
-  <binding name="IVRServicePortSoap" type="tns:IVRServicePortSoap">
-    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+  <binding name="IVRServicePortmoap" type="tns:IVRServicePortmoap">
+    <moap:binding transport="http://schemas.xmlmoap.org/moap/http" style="document" />
     <operation name="PostActions">
-      <soap:operation soapAction="http://testurl/Service:postActionsIn" style="document" />
+      <moap:operation moapAction="http://testurl/Service:postActionsIn" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="PostEvents">
-      <soap:operation soapAction="http://testurl/Service:postEventsIn" style="document" />
+      <moap:operation moapAction="http://testurl/Service:postEventsIn" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
   </binding>
-  <binding name="IVRServicePortSoap12" type="tns:IVRServicePortSoap">
-    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+  <binding name="IVRServicePortmoap12" type="tns:IVRServicePortmoap">
+    <moap12:binding transport="http://schemas.xmlmoap.org/moap/http" style="document" />
     <operation name="PostActions">
-      <soap12:operation soapAction="http://testurl/Service:postActionsIn" style="document" />
+      <moap12:operation moapAction="http://testurl/Service:postActionsIn" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="PostEvents">
-      <soap12:operation soapAction="http://testurl/Service:postEventsIn" style="document" />
+      <moap12:operation moapAction="http://testurl/Service:postEventsIn" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
   </binding>
   <service name="IVRServicePort">
-    <port name="IVRServicePortSoap" binding="tns:IVRServicePortSoap">
-      <soap:address location="test://" />
+    <port name="IVRServicePortmoap" binding="tns:IVRServicePortmoap">
+      <moap:address location="test://" />
     </port>
-    <port name="IVRServicePortSoap12" binding="tns:IVRServicePortSoap12">
-      <soap12:address location="test://" />
+    <port name="IVRServicePortmoap12" binding="tns:IVRServicePortmoap12">
+      <moap12:address location="test://" />
     </port>
   </service>
 </definitions>

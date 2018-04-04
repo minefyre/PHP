@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<definitions xmlns:s1="http://soapinterop.org/xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://soapinterop.org/" xmlns:s3="http://soapinterop.org/echoheader/" xmlns:soap12enc="http://www.w3.org/2002/06/soap-envelope" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s2="http://soapinterop.org" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://soapinterop.org/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<definitions xmlns:s1="http://moapinterop.org/xsd" xmlns:moap12="http://schemas.xmlmoap.org/wsdl/moap12/" xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://moapinterop.org/" xmlns:s3="http://moapinterop.org/echoheader/" xmlns:moap12enc="http://www.w3.org/2002/06/moap-envelope" xmlns:http="http://schemas.xmlmoap.org/wsdl/http/" xmlns:moapenc="http://schemas.xmlmoap.org/moap/encoding/" xmlns:s2="http://moapinterop.org" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlmoap.org/wsdl/mime/" targetNamespace="http://moapinterop.org/" xmlns="http://schemas.xmlmoap.org/wsdl/">
   <types>
-    <s:schema elementFormDefault="qualified" targetNamespace="http://soapinterop.org/">
-      <s:import namespace="http://soapinterop.org/xsd" />
-      <s:import namespace="http://soapinterop.org/echoheader/" />
+    <s:schema elementFormDefault="qualified" targetNamespace="http://moapinterop.org/">
+      <s:import namespace="http://moapinterop.org/xsd" />
+      <s:import namespace="http://moapinterop.org/echoheader/" />
       <s:element name="echoVoid">
         <s:complexType />
       </s:element>
@@ -83,14 +83,14 @@
       <s:element name="echoComplexType">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="inputComplexType" type="s1:SOAPComplexType" />
+            <s:element minOccurs="0" maxOccurs="1" name="inputComplexType" type="s1:moapComplexType" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="echoComplexTypeResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="return" type="s1:SOAPComplexType" />
+            <s:element minOccurs="0" maxOccurs="1" name="return" type="s1:moapComplexType" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -154,15 +154,15 @@
       <s:element name="echoComplexTypeMultiOccurs">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="inputComplexTypeMultiOccurs" type="s1:ArrayOfSOAPComplexType" />
+            <s:element minOccurs="0" maxOccurs="1" name="inputComplexTypeMultiOccurs" type="s1:ArrayOfmoapComplexType" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="SOAPComplexType" nillable="true" type="s1:SOAPComplexType" />
+      <s:element name="moapComplexType" nillable="true" type="s1:moapComplexType" />
       <s:element name="echoComplexTypeMultiOccursResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="unbounded" name="return" type="s1:SOAPComplexType" />
+            <s:element minOccurs="0" maxOccurs="unbounded" name="return" type="s1:moapComplexType" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -211,7 +211,7 @@
       <s:element name="echoComplexTypeAsSimpleTypes">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="inputComplexType" type="s1:SOAPComplexType" />
+            <s:element minOccurs="0" maxOccurs="1" name="inputComplexType" type="s1:moapComplexType" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -236,35 +236,35 @@
       <s:element name="echoSimpleTypesAsComplexTypeResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="return" type="s1:SOAPComplexType" />
+            <s:element minOccurs="0" maxOccurs="1" name="return" type="s1:moapComplexType" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="echoNestedComplexType">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="inputComplexType" type="s1:SOAPComplexTypeComplexType" />
+            <s:element minOccurs="0" maxOccurs="1" name="inputComplexType" type="s1:moapComplexTypeComplexType" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="echoNestedComplexTypeResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="return" type="s1:SOAPComplexTypeComplexType" />
+            <s:element minOccurs="0" maxOccurs="1" name="return" type="s1:moapComplexTypeComplexType" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="echoNestedMultiOccurs">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="inputComplexType" type="s1:SOAPMultiOccursComplexType" />
+            <s:element minOccurs="0" maxOccurs="1" name="inputComplexType" type="s1:moapMultiOccursComplexType" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="echoNestedMultiOccursResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="return" type="s1:SOAPMultiOccursComplexType" />
+            <s:element minOccurs="0" maxOccurs="1" name="return" type="s1:moapMultiOccursComplexType" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -336,7 +336,7 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="echoVoidSoapHeaderResponse">
+      <s:element name="echoVoidmoapHeaderResponse">
         <s:complexType />
       </s:element>
       <s:element name="echoMeComplexTypeRequest" type="s3:echoMeComplexTypeRequest" />
@@ -344,29 +344,29 @@
       <s:element name="echoMeComplexTypeResponse" type="s3:echoMeComplexTypeResponse" />
       <s:element name="echoMeStringResponse" type="s3:echoMeStringResponse" />
     </s:schema>
-    <s:schema elementFormDefault="qualified" targetNamespace="http://soapinterop.org/xsd">
-      <s:import namespace="http://soapinterop.org/" />
-      <s:complexType name="SOAPComplexType">
+    <s:schema elementFormDefault="qualified" targetNamespace="http://moapinterop.org/xsd">
+      <s:import namespace="http://moapinterop.org/" />
+      <s:complexType name="moapComplexType">
         <s:sequence>
           <s:element minOccurs="1" maxOccurs="1" name="varInt" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="varString" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="varFloat" type="s:float" />
         </s:sequence>
       </s:complexType>
-      <s:complexType name="ArrayOfSOAPComplexType">
+      <s:complexType name="ArrayOfmoapComplexType">
         <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" ref="s0:SOAPComplexType" />
+          <s:element minOccurs="0" maxOccurs="unbounded" ref="s0:moapComplexType" />
         </s:sequence>
       </s:complexType>
-      <s:complexType name="SOAPComplexTypeComplexType">
+      <s:complexType name="moapComplexTypeComplexType">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="varString" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="varInt" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="varFloat" type="s:float" />
-          <s:element minOccurs="0" maxOccurs="1" name="varComplexType" type="s1:SOAPComplexType" />
+          <s:element minOccurs="0" maxOccurs="1" name="varComplexType" type="s1:moapComplexType" />
         </s:sequence>
       </s:complexType>
-      <s:complexType name="SOAPMultiOccursComplexType">
+      <s:complexType name="moapMultiOccursComplexType">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="varString" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="varInt" type="s:int" />
@@ -397,12 +397,12 @@
         </s:restriction>
       </s:simpleType>
     </s:schema>
-    <s:schema elementFormDefault="qualified" targetNamespace="http://soapinterop.org">
-      <s:element name="echoVoidSoapHeader">
+    <s:schema elementFormDefault="qualified" targetNamespace="http://moapinterop.org">
+      <s:element name="echoVoidmoapHeader">
         <s:complexType />
       </s:element>
     </s:schema>
-    <s:schema elementFormDefault="qualified" targetNamespace="http://soapinterop.org/echoheader/">
+    <s:schema elementFormDefault="qualified" targetNamespace="http://moapinterop.org/echoheader/">
       <s:complexType name="echoMeComplexTypeRequest">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="varString" type="s:string" />
@@ -429,685 +429,685 @@
       </s:complexType>
     </s:schema>
   </types>
-  <message name="echoVoidSoapIn">
+  <message name="echoVoidmoapIn">
     <part name="parameters" element="s0:echoVoid" />
   </message>
-  <message name="echoVoidSoapOut">
+  <message name="echoVoidmoapOut">
     <part name="parameters" element="s0:echoVoidResponse" />
   </message>
-  <message name="echoIntegerSoapIn">
+  <message name="echoIntegermoapIn">
     <part name="parameters" element="s0:echoInteger" />
   </message>
-  <message name="echoIntegerSoapOut">
+  <message name="echoIntegermoapOut">
     <part name="parameters" element="s0:echoIntegerResponse" />
   </message>
-  <message name="echoFloatSoapIn">
+  <message name="echoFloatmoapIn">
     <part name="parameters" element="s0:echoFloat" />
   </message>
-  <message name="echoFloatSoapOut">
+  <message name="echoFloatmoapOut">
     <part name="parameters" element="s0:echoFloatResponse" />
   </message>
-  <message name="echoStringSoapIn">
+  <message name="echoStringmoapIn">
     <part name="parameters" element="s0:echoString" />
   </message>
-  <message name="echoStringSoapOut">
+  <message name="echoStringmoapOut">
     <part name="parameters" element="s0:echoStringResponse" />
   </message>
-  <message name="echoBase64SoapIn">
+  <message name="echoBase64moapIn">
     <part name="parameters" element="s0:echoBase64" />
   </message>
-  <message name="echoBase64SoapOut">
+  <message name="echoBase64moapOut">
     <part name="parameters" element="s0:echoBase64Response" />
   </message>
-  <message name="echoDateSoapIn">
+  <message name="echoDatemoapIn">
     <part name="parameters" element="s0:echoDate" />
   </message>
-  <message name="echoDateSoapOut">
+  <message name="echoDatemoapOut">
     <part name="parameters" element="s0:echoDateResponse" />
   </message>
-  <message name="echoComplexTypeSoapIn">
+  <message name="echoComplexTypemoapIn">
     <part name="parameters" element="s0:echoComplexType" />
   </message>
-  <message name="echoComplexTypeSoapOut">
+  <message name="echoComplexTypemoapOut">
     <part name="parameters" element="s0:echoComplexTypeResponse" />
   </message>
-  <message name="echoIntegerMultiOccursSoapIn">
+  <message name="echoIntegerMultiOccursmoapIn">
     <part name="parameters" element="s0:echoIntegerMultiOccurs" />
   </message>
-  <message name="echoIntegerMultiOccursSoapOut">
+  <message name="echoIntegerMultiOccursmoapOut">
     <part name="parameters" element="s0:echoIntegerMultiOccursResponse" />
   </message>
-  <message name="echoFloatMultiOccursSoapIn">
+  <message name="echoFloatMultiOccursmoapIn">
     <part name="parameters" element="s0:echoFloatMultiOccurs" />
   </message>
-  <message name="echoFloatMultiOccursSoapOut">
+  <message name="echoFloatMultiOccursmoapOut">
     <part name="parameters" element="s0:echoFloatMultiOccursResponse" />
   </message>
-  <message name="echoStringMultiOccursSoapIn">
+  <message name="echoStringMultiOccursmoapIn">
     <part name="parameters" element="s0:echoStringMultiOccurs" />
   </message>
-  <message name="echoStringMultiOccursSoapOut">
+  <message name="echoStringMultiOccursmoapOut">
     <part name="parameters" element="s0:echoStringMultiOccursResponse" />
   </message>
-  <message name="echoComplexTypeMultiOccursSoapIn">
+  <message name="echoComplexTypeMultiOccursmoapIn">
     <part name="parameters" element="s0:echoComplexTypeMultiOccurs" />
   </message>
-  <message name="echoComplexTypeMultiOccursSoapOut">
+  <message name="echoComplexTypeMultiOccursmoapOut">
     <part name="parameters" element="s0:echoComplexTypeMultiOccursResponse" />
   </message>
-  <message name="echoDecimalSoapIn">
+  <message name="echoDecimalmoapIn">
     <part name="parameters" element="s0:echoDecimal" />
   </message>
-  <message name="echoDecimalSoapOut">
+  <message name="echoDecimalmoapOut">
     <part name="parameters" element="s0:echoDecimalResponse" />
   </message>
-  <message name="echoBooleanSoapIn">
+  <message name="echoBooleanmoapIn">
     <part name="parameters" element="s0:echoBoolean" />
   </message>
-  <message name="echoBooleanSoapOut">
+  <message name="echoBooleanmoapOut">
     <part name="parameters" element="s0:echoBooleanResponse" />
   </message>
-  <message name="echoHexBinarySoapIn">
+  <message name="echoHexBinarymoapIn">
     <part name="parameters" element="s0:echoHexBinary" />
   </message>
-  <message name="echoHexBinarySoapOut">
+  <message name="echoHexBinarymoapOut">
     <part name="parameters" element="s0:echoHexBinaryResponse" />
   </message>
-  <message name="echoComplexTypeAsSimpleTypesSoapIn">
+  <message name="echoComplexTypeAsSimpleTypesmoapIn">
     <part name="parameters" element="s0:echoComplexTypeAsSimpleTypes" />
   </message>
-  <message name="echoComplexTypeAsSimpleTypesSoapOut">
+  <message name="echoComplexTypeAsSimpleTypesmoapOut">
     <part name="parameters" element="s0:echoComplexTypeAsSimpleTypesResponse" />
   </message>
-  <message name="echoSimpleTypesAsComplexTypeSoapIn">
+  <message name="echoSimpleTypesAsComplexTypemoapIn">
     <part name="parameters" element="s0:echoSimpleTypesAsComplexType" />
   </message>
-  <message name="echoSimpleTypesAsComplexTypeSoapOut">
+  <message name="echoSimpleTypesAsComplexTypemoapOut">
     <part name="parameters" element="s0:echoSimpleTypesAsComplexTypeResponse" />
   </message>
-  <message name="echoNestedComplexTypeSoapIn">
+  <message name="echoNestedComplexTypemoapIn">
     <part name="parameters" element="s0:echoNestedComplexType" />
   </message>
-  <message name="echoNestedComplexTypeSoapOut">
+  <message name="echoNestedComplexTypemoapOut">
     <part name="parameters" element="s0:echoNestedComplexTypeResponse" />
   </message>
-  <message name="echoNestedMultiOccursSoapIn">
+  <message name="echoNestedMultiOccursmoapIn">
     <part name="parameters" element="s0:echoNestedMultiOccurs" />
   </message>
-  <message name="echoNestedMultiOccursSoapOut">
+  <message name="echoNestedMultiOccursmoapOut">
     <part name="parameters" element="s0:echoNestedMultiOccursResponse" />
   </message>
-  <message name="echoChoiceSoapIn">
+  <message name="echoChoicemoapIn">
     <part name="parameters" element="s0:echoChoice" />
   </message>
-  <message name="echoChoiceSoapOut">
+  <message name="echoChoicemoapOut">
     <part name="parameters" element="s0:echoChoiceResponse" />
   </message>
-  <message name="echoEnumSoapIn">
+  <message name="echoEnummoapIn">
     <part name="parameters" element="s0:echoEnum" />
   </message>
-  <message name="echoEnumSoapOut">
+  <message name="echoEnummoapOut">
     <part name="parameters" element="s0:echoEnumResponse" />
   </message>
-  <message name="echoAnyTypeSoapIn">
+  <message name="echoAnyTypemoapIn">
     <part name="parameters" element="s0:echoAnyType" />
   </message>
-  <message name="echoAnyTypeSoapOut">
+  <message name="echoAnyTypemoapOut">
     <part name="parameters" element="s0:echoAnyTypeResponse" />
   </message>
-  <message name="echoAnyElementSoapIn">
+  <message name="echoAnyElementmoapIn">
     <part name="parameters" element="s0:echoAnyElement" />
   </message>
-  <message name="echoAnyElementSoapOut">
+  <message name="echoAnyElementmoapOut">
     <part name="parameters" element="s0:echoAnyElementResponse" />
   </message>
-  <message name="echoVoidSoapHeaderSoapIn">
-    <part name="parameters" element="s2:echoVoidSoapHeader" />
+  <message name="echoVoidmoapHeadermoapIn">
+    <part name="parameters" element="s2:echoVoidmoapHeader" />
   </message>
-  <message name="echoVoidSoapHeaderSoapOut">
-    <part name="parameters" element="s0:echoVoidSoapHeaderResponse" />
+  <message name="echoVoidmoapHeadermoapOut">
+    <part name="parameters" element="s0:echoVoidmoapHeaderResponse" />
   </message>
-  <message name="echoVoidSoapHeaderechoMeComplexTypeRequest">
+  <message name="echoVoidmoapHeaderechoMeComplexTypeRequest">
     <part name="echoMeComplexTypeRequest" element="s0:echoMeComplexTypeRequest" />
   </message>
-  <message name="echoVoidSoapHeaderechoMeComplexTypeResponse">
+  <message name="echoVoidmoapHeaderechoMeComplexTypeResponse">
     <part name="echoMeComplexTypeResponse" element="s0:echoMeComplexTypeResponse" />
   </message>
-  <message name="echoVoidSoapHeaderechoMeStringRequest">
+  <message name="echoVoidmoapHeaderechoMeStringRequest">
     <part name="echoMeStringRequest" element="s0:echoMeStringRequest" />
   </message>
-  <message name="echoVoidSoapHeaderechoMeStringResponse">
+  <message name="echoVoidmoapHeaderechoMeStringResponse">
     <part name="echoMeStringResponse" element="s0:echoMeStringResponse" />
   </message>
-  <portType name="Round4XSDTestSoap">
+  <portType name="Round4XSDTestmoap">
     <operation name="echoVoid">
-      <input message="s0:echoVoidSoapIn" />
-      <output message="s0:echoVoidSoapOut" />
+      <input message="s0:echoVoidmoapIn" />
+      <output message="s0:echoVoidmoapOut" />
     </operation>
     <operation name="echoInteger">
-      <input message="s0:echoIntegerSoapIn" />
-      <output message="s0:echoIntegerSoapOut" />
+      <input message="s0:echoIntegermoapIn" />
+      <output message="s0:echoIntegermoapOut" />
     </operation>
     <operation name="echoFloat">
-      <input message="s0:echoFloatSoapIn" />
-      <output message="s0:echoFloatSoapOut" />
+      <input message="s0:echoFloatmoapIn" />
+      <output message="s0:echoFloatmoapOut" />
     </operation>
     <operation name="echoString">
-      <input message="s0:echoStringSoapIn" />
-      <output message="s0:echoStringSoapOut" />
+      <input message="s0:echoStringmoapIn" />
+      <output message="s0:echoStringmoapOut" />
     </operation>
     <operation name="echoBase64">
-      <input message="s0:echoBase64SoapIn" />
-      <output message="s0:echoBase64SoapOut" />
+      <input message="s0:echoBase64moapIn" />
+      <output message="s0:echoBase64moapOut" />
     </operation>
     <operation name="echoDate">
-      <input message="s0:echoDateSoapIn" />
-      <output message="s0:echoDateSoapOut" />
+      <input message="s0:echoDatemoapIn" />
+      <output message="s0:echoDatemoapOut" />
     </operation>
     <operation name="echoComplexType">
-      <input message="s0:echoComplexTypeSoapIn" />
-      <output message="s0:echoComplexTypeSoapOut" />
+      <input message="s0:echoComplexTypemoapIn" />
+      <output message="s0:echoComplexTypemoapOut" />
     </operation>
     <operation name="echoIntegerMultiOccurs">
-      <input message="s0:echoIntegerMultiOccursSoapIn" />
-      <output message="s0:echoIntegerMultiOccursSoapOut" />
+      <input message="s0:echoIntegerMultiOccursmoapIn" />
+      <output message="s0:echoIntegerMultiOccursmoapOut" />
     </operation>
     <operation name="echoFloatMultiOccurs">
-      <input message="s0:echoFloatMultiOccursSoapIn" />
-      <output message="s0:echoFloatMultiOccursSoapOut" />
+      <input message="s0:echoFloatMultiOccursmoapIn" />
+      <output message="s0:echoFloatMultiOccursmoapOut" />
     </operation>
     <operation name="echoStringMultiOccurs">
-      <input message="s0:echoStringMultiOccursSoapIn" />
-      <output message="s0:echoStringMultiOccursSoapOut" />
+      <input message="s0:echoStringMultiOccursmoapIn" />
+      <output message="s0:echoStringMultiOccursmoapOut" />
     </operation>
     <operation name="echoComplexTypeMultiOccurs">
-      <input message="s0:echoComplexTypeMultiOccursSoapIn" />
-      <output message="s0:echoComplexTypeMultiOccursSoapOut" />
+      <input message="s0:echoComplexTypeMultiOccursmoapIn" />
+      <output message="s0:echoComplexTypeMultiOccursmoapOut" />
     </operation>
     <operation name="echoDecimal">
-      <input message="s0:echoDecimalSoapIn" />
-      <output message="s0:echoDecimalSoapOut" />
+      <input message="s0:echoDecimalmoapIn" />
+      <output message="s0:echoDecimalmoapOut" />
     </operation>
     <operation name="echoBoolean">
-      <input message="s0:echoBooleanSoapIn" />
-      <output message="s0:echoBooleanSoapOut" />
+      <input message="s0:echoBooleanmoapIn" />
+      <output message="s0:echoBooleanmoapOut" />
     </operation>
     <operation name="echoHexBinary">
-      <input message="s0:echoHexBinarySoapIn" />
-      <output message="s0:echoHexBinarySoapOut" />
+      <input message="s0:echoHexBinarymoapIn" />
+      <output message="s0:echoHexBinarymoapOut" />
     </operation>
     <operation name="echoComplexTypeAsSimpleTypes">
-      <input message="s0:echoComplexTypeAsSimpleTypesSoapIn" />
-      <output message="s0:echoComplexTypeAsSimpleTypesSoapOut" />
+      <input message="s0:echoComplexTypeAsSimpleTypesmoapIn" />
+      <output message="s0:echoComplexTypeAsSimpleTypesmoapOut" />
     </operation>
     <operation name="echoSimpleTypesAsComplexType">
-      <input message="s0:echoSimpleTypesAsComplexTypeSoapIn" />
-      <output message="s0:echoSimpleTypesAsComplexTypeSoapOut" />
+      <input message="s0:echoSimpleTypesAsComplexTypemoapIn" />
+      <output message="s0:echoSimpleTypesAsComplexTypemoapOut" />
     </operation>
     <operation name="echoNestedComplexType">
-      <input message="s0:echoNestedComplexTypeSoapIn" />
-      <output message="s0:echoNestedComplexTypeSoapOut" />
+      <input message="s0:echoNestedComplexTypemoapIn" />
+      <output message="s0:echoNestedComplexTypemoapOut" />
     </operation>
     <operation name="echoNestedMultiOccurs">
-      <input message="s0:echoNestedMultiOccursSoapIn" />
-      <output message="s0:echoNestedMultiOccursSoapOut" />
+      <input message="s0:echoNestedMultiOccursmoapIn" />
+      <output message="s0:echoNestedMultiOccursmoapOut" />
     </operation>
     <operation name="echoChoice">
-      <input message="s0:echoChoiceSoapIn" />
-      <output message="s0:echoChoiceSoapOut" />
+      <input message="s0:echoChoicemoapIn" />
+      <output message="s0:echoChoicemoapOut" />
     </operation>
     <operation name="echoEnum">
-      <input message="s0:echoEnumSoapIn" />
-      <output message="s0:echoEnumSoapOut" />
+      <input message="s0:echoEnummoapIn" />
+      <output message="s0:echoEnummoapOut" />
     </operation>
     <operation name="echoAnyType">
-      <input message="s0:echoAnyTypeSoapIn" />
-      <output message="s0:echoAnyTypeSoapOut" />
+      <input message="s0:echoAnyTypemoapIn" />
+      <output message="s0:echoAnyTypemoapOut" />
     </operation>
     <operation name="echoAnyElement">
-      <input message="s0:echoAnyElementSoapIn" />
-      <output message="s0:echoAnyElementSoapOut" />
+      <input message="s0:echoAnyElementmoapIn" />
+      <output message="s0:echoAnyElementmoapOut" />
     </operation>
-    <operation name="echoVoidSoapHeader">
-      <input message="s0:echoVoidSoapHeaderSoapIn" />
-      <output message="s0:echoVoidSoapHeaderSoapOut" />
+    <operation name="echoVoidmoapHeader">
+      <input message="s0:echoVoidmoapHeadermoapIn" />
+      <output message="s0:echoVoidmoapHeadermoapOut" />
     </operation>
   </portType>
-  <binding name="Round4XSDTestSoap" type="s0:Round4XSDTestSoap">
-    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+  <binding name="Round4XSDTestmoap" type="s0:Round4XSDTestmoap">
+    <moap:binding transport="http://schemas.xmlmoap.org/moap/http" style="document" />
     <operation name="echoVoid">
-      <soap:operation soapAction="http://soapinterop.org/echoVoid" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoVoid" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoInteger">
-      <soap:operation soapAction="http://soapinterop.org/echoInteger" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoInteger" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoFloat">
-      <soap:operation soapAction="http://soapinterop.org/echoFloat" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoFloat" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoString">
-      <soap:operation soapAction="http://soapinterop.org/echoString" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoString" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoBase64">
-      <soap:operation soapAction="http://soapinterop.org/echoBase64" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoBase64" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoDate">
-      <soap:operation soapAction="http://soapinterop.org/echoDate" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoDate" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoComplexType">
-      <soap:operation soapAction="http://soapinterop.org/echoComplexType" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoComplexType" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoIntegerMultiOccurs">
-      <soap:operation soapAction="http://soapinterop.org/echoIntegerMultiOccurs" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoIntegerMultiOccurs" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoFloatMultiOccurs">
-      <soap:operation soapAction="http://soapinterop.org/echoFloatMultiOccurs" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoFloatMultiOccurs" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoStringMultiOccurs">
-      <soap:operation soapAction="http://soapinterop.org/echoStringMultiOccurs" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoStringMultiOccurs" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoComplexTypeMultiOccurs">
-      <soap:operation soapAction="http://soapinterop.org/echoComplexTypeMultiOccurs" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoComplexTypeMultiOccurs" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoDecimal">
-      <soap:operation soapAction="http://soapinterop.org/echoDecimal" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoDecimal" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoBoolean">
-      <soap:operation soapAction="http://soapinterop.org/echoBoolean" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoBoolean" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoHexBinary">
-      <soap:operation soapAction="http://soapinterop.org/echoHexBinary" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoHexBinary" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoComplexTypeAsSimpleTypes">
-      <soap:operation soapAction="http://soapinterop.org/echoComplexTypeAsSimpleTypes" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoComplexTypeAsSimpleTypes" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoSimpleTypesAsComplexType">
-      <soap:operation soapAction="http://soapinterop.org/echoSimpleTypesAsComplexType" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoSimpleTypesAsComplexType" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoNestedComplexType">
-      <soap:operation soapAction="http://soapinterop.org/echoNestedComplexType" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoNestedComplexType" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoNestedMultiOccurs">
-      <soap:operation soapAction="http://soapinterop.org/echoNestedMultiOccurs" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoNestedMultiOccurs" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoChoice">
-      <soap:operation soapAction="http://soapinterop.org/echoChoice" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoChoice" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoEnum">
-      <soap:operation soapAction="http://soapinterop.org/echoEnum" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoEnum" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoAnyType">
-      <soap:operation soapAction="http://soapinterop.org/echoAnyType" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoAnyType" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="echoAnyElement">
-      <soap:operation soapAction="http://soapinterop.org/echoAnyElement" style="document" />
+      <moap:operation moapAction="http://moapinterop.org/echoAnyElement" style="document" />
       <input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
-    <operation name="echoVoidSoapHeader">
-      <soap:operation soapAction="http://soapinterop.org" style="document" />
+    <operation name="echoVoidmoapHeader">
+      <moap:operation moapAction="http://moapinterop.org" style="document" />
       <input>
-        <soap:body use="literal" />
-        <soap:header message="s0:echoVoidSoapHeaderechoMeComplexTypeRequest" part="echoMeComplexTypeRequest" use="literal" />
-        <soap:header message="s0:echoVoidSoapHeaderechoMeStringRequest" part="echoMeStringRequest" use="literal" />
+        <moap:body use="literal" />
+        <moap:header message="s0:echoVoidmoapHeaderechoMeComplexTypeRequest" part="echoMeComplexTypeRequest" use="literal" />
+        <moap:header message="s0:echoVoidmoapHeaderechoMeStringRequest" part="echoMeStringRequest" use="literal" />
       </input>
       <output>
-        <soap:body use="literal" />
-        <soap:header message="s0:echoVoidSoapHeaderechoMeComplexTypeResponse" part="echoMeComplexTypeResponse" use="literal" />
-        <soap:header message="s0:echoVoidSoapHeaderechoMeStringResponse" part="echoMeStringResponse" use="literal" />
+        <moap:body use="literal" />
+        <moap:header message="s0:echoVoidmoapHeaderechoMeComplexTypeResponse" part="echoMeComplexTypeResponse" use="literal" />
+        <moap:header message="s0:echoVoidmoapHeaderechoMeStringResponse" part="echoMeStringResponse" use="literal" />
       </output>
     </operation>
   </binding>
-  <binding name="Round4XSDTestSoap12" type="s0:Round4XSDTestSoap">
-    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+  <binding name="Round4XSDTestmoap12" type="s0:Round4XSDTestmoap">
+    <moap12:binding transport="http://schemas.xmlmoap.org/moap/http" style="document" />
     <operation name="echoVoid">
-      <soap12:operation soapAction="http://soapinterop.org/echoVoid" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoVoid" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoInteger">
-      <soap12:operation soapAction="http://soapinterop.org/echoInteger" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoInteger" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoFloat">
-      <soap12:operation soapAction="http://soapinterop.org/echoFloat" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoFloat" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoString">
-      <soap12:operation soapAction="http://soapinterop.org/echoString" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoString" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoBase64">
-      <soap12:operation soapAction="http://soapinterop.org/echoBase64" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoBase64" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoDate">
-      <soap12:operation soapAction="http://soapinterop.org/echoDate" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoDate" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoComplexType">
-      <soap12:operation soapAction="http://soapinterop.org/echoComplexType" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoComplexType" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoIntegerMultiOccurs">
-      <soap12:operation soapAction="http://soapinterop.org/echoIntegerMultiOccurs" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoIntegerMultiOccurs" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoFloatMultiOccurs">
-      <soap12:operation soapAction="http://soapinterop.org/echoFloatMultiOccurs" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoFloatMultiOccurs" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoStringMultiOccurs">
-      <soap12:operation soapAction="http://soapinterop.org/echoStringMultiOccurs" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoStringMultiOccurs" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoComplexTypeMultiOccurs">
-      <soap12:operation soapAction="http://soapinterop.org/echoComplexTypeMultiOccurs" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoComplexTypeMultiOccurs" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoDecimal">
-      <soap12:operation soapAction="http://soapinterop.org/echoDecimal" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoDecimal" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoBoolean">
-      <soap12:operation soapAction="http://soapinterop.org/echoBoolean" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoBoolean" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoHexBinary">
-      <soap12:operation soapAction="http://soapinterop.org/echoHexBinary" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoHexBinary" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoComplexTypeAsSimpleTypes">
-      <soap12:operation soapAction="http://soapinterop.org/echoComplexTypeAsSimpleTypes" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoComplexTypeAsSimpleTypes" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoSimpleTypesAsComplexType">
-      <soap12:operation soapAction="http://soapinterop.org/echoSimpleTypesAsComplexType" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoSimpleTypesAsComplexType" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoNestedComplexType">
-      <soap12:operation soapAction="http://soapinterop.org/echoNestedComplexType" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoNestedComplexType" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoNestedMultiOccurs">
-      <soap12:operation soapAction="http://soapinterop.org/echoNestedMultiOccurs" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoNestedMultiOccurs" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoChoice">
-      <soap12:operation soapAction="http://soapinterop.org/echoChoice" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoChoice" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoEnum">
-      <soap12:operation soapAction="http://soapinterop.org/echoEnum" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoEnum" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoAnyType">
-      <soap12:operation soapAction="http://soapinterop.org/echoAnyType" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoAnyType" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
     <operation name="echoAnyElement">
-      <soap12:operation soapAction="http://soapinterop.org/echoAnyElement" style="document" />
+      <moap12:operation moapAction="http://moapinterop.org/echoAnyElement" style="document" />
       <input>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
+        <moap12:body use="literal" />
       </output>
     </operation>
-    <operation name="echoVoidSoapHeader">
-      <soap12:operation soapAction="http://soapinterop.org" style="document" />
+    <operation name="echoVoidmoapHeader">
+      <moap12:operation moapAction="http://moapinterop.org" style="document" />
       <input>
-        <soap12:body use="literal" />
-        <soap12:header message="s0:echoVoidSoapHeaderechoMeComplexTypeRequest" part="echoMeComplexTypeRequest" use="literal" />
-        <soap12:header message="s0:echoVoidSoapHeaderechoMeStringRequest" part="echoMeStringRequest" use="literal" />
+        <moap12:body use="literal" />
+        <moap12:header message="s0:echoVoidmoapHeaderechoMeComplexTypeRequest" part="echoMeComplexTypeRequest" use="literal" />
+        <moap12:header message="s0:echoVoidmoapHeaderechoMeStringRequest" part="echoMeStringRequest" use="literal" />
       </input>
       <output>
-        <soap12:body use="literal" />
-        <soap12:header message="s0:echoVoidSoapHeaderechoMeComplexTypeResponse" part="echoMeComplexTypeResponse" use="literal" />
-        <soap12:header message="s0:echoVoidSoapHeaderechoMeStringResponse" part="echoMeStringResponse" use="literal" />
+        <moap12:body use="literal" />
+        <moap12:header message="s0:echoVoidmoapHeaderechoMeComplexTypeResponse" part="echoMeComplexTypeResponse" use="literal" />
+        <moap12:header message="s0:echoVoidmoapHeaderechoMeStringResponse" part="echoMeStringResponse" use="literal" />
       </output>
     </operation>
   </binding>
   <service name="Round4XSDTest">
-    <documentation>These operations implement DOC/LIT SOAP operations, for interop testing. Please email johnko@microsoft.com with any questions/coments.</documentation>
-    <port name="Round4XSDTestSoap" binding="s0:Round4XSDTestSoap">
-      <soap:address location="test://" />
+    <documentation>These operations implement DOC/LIT moap operations, for interop testing. Please email johnko@microsoft.com with any questions/coments.</documentation>
+    <port name="Round4XSDTestmoap" binding="s0:Round4XSDTestmoap">
+      <moap:address location="test://" />
     </port>
-    <port name="Round4XSDTestSoap12" binding="s0:Round4XSDTestSoap12">
-      <soap12:address location="http://mssoapinterop.org/asmx/xsd/round4xsd.asmx" />
+    <port name="Round4XSDTestmoap12" binding="s0:Round4XSDTestmoap12">
+      <moap12:address location="http://msmoapinterop.org/asmx/xsd/round4xsd.asmx" />
     </port>
   </service>
 </definitions>

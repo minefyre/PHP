@@ -8,11 +8,11 @@ function bar() {
   return array('a' => 1, 'b' => NULL, 'c' => 2, 'd'=>'');
 }
 
-class LocalSoapClient extends SoapClient {
+class LocalmoapClient extends moapClient {
 
   function __construct($wsdl, $options) {
     parent::__construct($wsdl, $options);
-    $this->server = new SoapServer($wsdl, $options);
+    $this->server = new moapServer($wsdl, $options);
     $this->server->addFunction('bar');
   }
 
@@ -26,7 +26,7 @@ class LocalSoapClient extends SoapClient {
 
 }
 
-$x = new LocalSoapClient(NULL,array('location'=>'test://', 
+$x = new LocalmoapClient(NULL,array('location'=>'test://', 
                                    'uri'=>'http://testuri.org')); 
 var_dump($x->bar());
 ?>

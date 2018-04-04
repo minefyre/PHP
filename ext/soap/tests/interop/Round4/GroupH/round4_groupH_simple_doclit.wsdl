@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions
-	xmlns="http://schemas.xmlsoap.org/wsdl/"
-	xmlns:tns="http://soapinterop.org/wsdl"
-	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns="http://schemas.xmlmoap.org/wsdl/"
+	xmlns:tns="http://moapinterop.org/wsdl"
+	xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xmlns:ns2="http://soapinterop.org/types"
-	xmlns:ns3="http://soapinterop.org/types/part"
-	xmlns:ns4="http://soapinterop.org/types/requestresponse"
-	targetNamespace="http://soapinterop.org/wsdl">
+	xmlns:ns2="http://moapinterop.org/types"
+	xmlns:ns3="http://moapinterop.org/types/part"
+	xmlns:ns4="http://moapinterop.org/types/requestresponse"
+	targetNamespace="http://moapinterop.org/wsdl">
 	<types>
 		<schema elementFormDefault="qualified"
 			xmlns="http://www.w3.org/2001/XMLSchema"
-			xmlns:tns="http://soapinterop.org/types"
-			targetNamespace="http://soapinterop.org/types">
+			xmlns:tns="http://moapinterop.org/types"
+			targetNamespace="http://moapinterop.org/types">
 
 			<complexType name="ArrayOfString">
 				<sequence>
@@ -43,8 +43,8 @@
 
 		<schema elementFormDefault="qualified"
 			xmlns="http://www.w3.org/2001/XMLSchema"
-			xmlns:tns="http://soapinterop.org/types/part"
-			targetNamespace="http://soapinterop.org/types/part">
+			xmlns:tns="http://moapinterop.org/types/part"
+			targetNamespace="http://moapinterop.org/types/part">
 
 			<element name="EmptyPart">
 				<complexType/>
@@ -63,8 +63,8 @@
 
 		<schema elementFormDefault="qualified"
 			xmlns="http://www.w3.org/2001/XMLSchema"
-			xmlns:tns="http://soapinterop.org/types/requestresponse"
-			targetNamespace="http://soapinterop.org/types/requestresponse">
+			xmlns:tns="http://moapinterop.org/types/requestresponse"
+			targetNamespace="http://moapinterop.org/types/requestresponse">
 
 			<element name="echoEmptyFaultRequest">
 				<complexType/>
@@ -297,120 +297,120 @@
 	</portType>
 
 	<binding name="SimpleDocLitBinding" type="tns:SimpleDocLitPortType">
-		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+		<moap:binding transport="http://schemas.xmlmoap.org/moap/http" style="document"/>
 
 		<operation name="echoEmptyFault">
 			<input>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</input>
 			<output>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</output>
-			<soap:fault use="literal"/>
-			<soap:operation soapAction="http://soapinterop.org/r4/groupg/"/>
+			<moap:fault use="literal"/>
+			<moap:operation moapAction="http://moapinterop.org/r4/groupg/"/>
 		</operation>
 
 		<operation name="echoStringFault">
 			<input>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</input>
 			<output>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</output>
 			<fault name="SimpleFault">
-				<soap:fault use="literal"/>
+				<moap:fault use="literal"/>
 			</fault>
-			<soap:operation soapAction="http://soapinterop.org/r4/groupg/"/>
+			<moap:operation moapAction="http://moapinterop.org/r4/groupg/"/>
 		</operation>
 
 		<operation name="echoIntArrayFault">
 			<input>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</input>
 			<output>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</output>
 			<fault name="SimpleFault">
-				<soap:fault use="literal"/>
+				<moap:fault use="literal"/>
 			</fault>
-			<soap:operation soapAction="http://soapinterop.org/r4/groupg/"/>
+			<moap:operation moapAction="http://moapinterop.org/r4/groupg/"/>
 		</operation>
 
 		<operation name="echoMultipleFaults1">
 			<input>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</input>
 			<output>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</output>
 			<fault name="SimpleFault1">
-				<soap:fault use="literal"/>
+				<moap:fault use="literal"/>
 			</fault>
 			<fault name="SimpleFault2">
-				<soap:fault use="literal"/>
+				<moap:fault use="literal"/>
 			</fault>
 			<fault name="SimpleFault3">
-				<soap:fault use="literal"/>
+				<moap:fault use="literal"/>
 			</fault>
-			<soap:operation soapAction="http://soapinterop.org/r4/groupg/"/>
+			<moap:operation moapAction="http://moapinterop.org/r4/groupg/"/>
 		</operation>
 
 		<operation name="echoMultipleFaults2">
 			<input>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</input>
 			<output>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</output>
 			<fault name="SimpleFault1">
-				<soap:fault use="literal"/>
+				<moap:fault use="literal"/>
 			</fault>
 			<fault name="SimpleFault2">
-				<soap:fault use="literal"/>
+				<moap:fault use="literal"/>
 			</fault>
 			<fault name="SimpleFault3">
-				<soap:fault use="literal"/>
+				<moap:fault use="literal"/>
 			</fault>
-			<soap:operation soapAction="http://soapinterop.org/r4/groupg/"/>
+			<moap:operation moapAction="http://moapinterop.org/r4/groupg/"/>
 		</operation>
 
 		<operation name="echoMultipleFaults3">
 			<input>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</input>
 			<output>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</output>
 			<fault name="SimpleFault1">
-				<soap:fault use="literal"/>
+				<moap:fault use="literal"/>
 			</fault>
 			<fault name="SimpleFault2">
-				<soap:fault use="literal"/>
+				<moap:fault use="literal"/>
 			</fault>
-			<soap:operation soapAction="http://soapinterop.org/r4/groupg/"/>
+			<moap:operation moapAction="http://moapinterop.org/r4/groupg/"/>
 		</operation>
 
 		<operation name="echoMultipleFaults4">
 			<input>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</input>
 			<output>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</output>
 			<fault name="SimpleFault1">
-				<soap:fault use="literal"/>
+				<moap:fault use="literal"/>
 			</fault>
 			<fault name="SimpleFault2">
-				<soap:fault use="literal"/>
+				<moap:fault use="literal"/>
 			</fault>
-			<soap:operation soapAction="http://soapinterop.org/r4/groupg/"/>
+			<moap:operation moapAction="http://moapinterop.org/r4/groupg/"/>
 		</operation>
 
 	</binding>
 
 	<service name="SimpleDocLitService">
 		<port name="SimpleDocLitPort" binding="tns:SimpleDocLitBinding">
-			<soap:address
+			<moap:address
 				location="http://"/>
 		</port>
 	</service>

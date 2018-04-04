@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="urn:java:de.pangaea.metadataportal.search.SearchService" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="urn:java:de.pangaea.metadataportal.search.SearchService" xmlns:intf="urn:java:de.pangaea.metadataportal.search.SearchService" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:definitions targetNamespace="urn:java:de.pangaea.metadataportal.search.SearchService" xmlns:apachemoap="http://xml.apache.org/xml-moap" xmlns:impl="urn:java:de.pangaea.metadataportal.search.SearchService" xmlns:intf="urn:java:de.pangaea.metadataportal.search.SearchService" xmlns:moapenc="http://schemas.xmlmoap.org/moap/encoding/" xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/" xmlns:wsdlmoap="http://schemas.xmlmoap.org/wsdl/moap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
  <wsdl:types>
   <schema targetNamespace="urn:java:de.pangaea.metadataportal.search.SearchService" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://xml.apache.org/xml-soap"/>
-   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <import namespace="http://xml.apache.org/xml-moap"/>
+   <import namespace="http://schemas.xmlmoap.org/moap/encoding/"/>
    <complexType name="SearchRequestRange">
     <sequence>
      <element name="field" nillable="true" type="xsd:string"/>
@@ -13,8 +13,8 @@
    </complexType>
    <complexType name="ArrayOfSearchRequestRange">
     <complexContent>
-     <restriction base="soapenc:Array">
-      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:SearchRequestRange[]"/>
+     <restriction base="moapenc:Array">
+      <attribute ref="moapenc:arrayType" wsdl:arrayType="impl:SearchRequestRange[]"/>
      </restriction>
     </complexContent>
    </complexType>
@@ -27,7 +27,7 @@
    </complexType>
    <complexType name="SearchResponseItem">
     <sequence>
-     <element name="fields" nillable="true" type="apachesoap:Map"/>
+     <element name="fields" nillable="true" type="apachemoap:Map"/>
      <element name="identifier" nillable="true" type="xsd:string"/>
      <element name="score" type="xsd:float"/>
      <element name="xml" nillable="true" type="xsd:string"/>
@@ -35,8 +35,8 @@
    </complexType>
    <complexType name="ArrayOfSearchResponseItem">
     <complexContent>
-     <restriction base="soapenc:Array">
-      <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:SearchResponseItem[]"/>
+     <restriction base="moapenc:Array">
+      <attribute ref="moapenc:arrayType" wsdl:arrayType="impl:SearchResponseItem[]"/>
      </restriction>
     </complexContent>
    </complexType>
@@ -49,9 +49,9 @@
     </sequence>
    </complexType>
   </schema>
-  <schema targetNamespace="http://xml.apache.org/xml-soap" xmlns="http://www.w3.org/2001/XMLSchema">
+  <schema targetNamespace="http://xml.apache.org/xml-moap" xmlns="http://www.w3.org/2001/XMLSchema">
    <import namespace="urn:java:de.pangaea.metadataportal.search.SearchService"/>
-   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <import namespace="http://schemas.xmlmoap.org/moap/encoding/"/>
    <complexType name="mapItem">
     <sequence>
      <element name="key" nillable="true" type="xsd:anyType"/>
@@ -60,7 +60,7 @@
    </complexType>
    <complexType name="Map">
     <sequence>
-     <element maxOccurs="unbounded" minOccurs="0" name="item" type="apachesoap:mapItem"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="apachemoap:mapItem"/>
     </sequence>
    </complexType>
   </schema>
@@ -79,21 +79,21 @@
          <wsdl:output message="impl:searchResponse" name="searchResponse"/>
       </wsdl:operation>
    </wsdl:portType>
-   <wsdl:binding name="SearchSoapBinding" type="impl:SearchServiceAxisImpl">
-      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+   <wsdl:binding name="SearchmoapBinding" type="impl:SearchServiceAxisImpl">
+      <wsdlmoap:binding style="rpc" transport="http://schemas.xmlmoap.org/moap/http"/>
       <wsdl:operation name="search">
-         <wsdlsoap:operation soapAction=""/>
+         <wsdlmoap:operation moapAction=""/>
          <wsdl:input name="searchRequest">
-            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:java:de.pangaea.metadataportal.search.SearchService" use="encoded"/>
+            <wsdlmoap:body encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" namespace="urn:java:de.pangaea.metadataportal.search.SearchService" use="encoded"/>
          </wsdl:input>
          <wsdl:output name="searchResponse">
-            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:java:de.pangaea.metadataportal.search.SearchService" use="encoded"/>
+            <wsdlmoap:body encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" namespace="urn:java:de.pangaea.metadataportal.search.SearchService" use="encoded"/>
          </wsdl:output>
       </wsdl:operation>
    </wsdl:binding>
    <wsdl:service name="SearchServiceAxisImplService">
-      <wsdl:port binding="impl:SearchSoapBinding" name="Search">
-         <wsdlsoap:address location="test://"/>
+      <wsdl:port binding="impl:SearchmoapBinding" name="Search">
+         <wsdlmoap:address location="test://"/>
       </wsdl:port>
    </wsdl:service>
 </wsdl:definitions>

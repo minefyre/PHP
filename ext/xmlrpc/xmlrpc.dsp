@@ -168,11 +168,11 @@ SOURCE=.\libxmlrpc\xml_to_dandarpc.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\libxmlrpc\xml_to_soap.c
+SOURCE=.\libxmlrpc\xml_to_moap.c
 # End Source File
 # Begin Source File
 
-SOURCE=.\libxmlrpc\xml_to_soap.h
+SOURCE=.\libxmlrpc\xml_to_moap.h
 # End Source File
 # Begin Source File
 

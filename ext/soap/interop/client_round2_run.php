@@ -29,14 +29,14 @@ $iop->fetchEndpoints();
 
 // set some options
 $iop->currentTest = 'GroupC'; // see $tests above
-$iop->paramType = 'php';      // 'php' or 'soapval'
+$iop->paramType = 'php';      // 'php' or 'moapval'
 $iop->useWSDL = 1;            // 1= do wsdl tests
 $iop->numServers = 0;         // 0 = all
-//$iop->specificEndpoint = 'PHP ext/soap'; // test only this endpoint
+//$iop->specificEndpoint = 'PHP ext/moap'; // test only this endpoint
 //$iop->testMethod = 'echoString';         // test only this method
 
 // endpoints to skip
-//$iop->skipEndpointList = array('Apache Axis','IONA XMLBus','IONA XMLBus (CORBA)','MS SOAP ToolKit 2.0','MS SOAP ToolKit 3.0','Spheon JSOAP','SQLData SOAP Server','WASP Advanced 3.0');
+//$iop->skipEndpointList = array('Apache Axis','IONA XMLBus','IONA XMLBus (CORBA)','MS moap ToolKit 2.0','MS moap ToolKit 3.0','Spheon Jmoap','SQLData moap Server','WASP Advanced 3.0');
 $iop->startAt='';
 $iop->nosave = 0; // 1= disable saving results to database
 // debug output

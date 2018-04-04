@@ -1,10 +1,10 @@
 --TEST--
-Bug #30106 (SOAP cannot not parse 'ref' element. Causes Uncaught SoapFault exception)
+Bug #30106 (moap cannot not parse 'ref' element. Causes Uncaught moapFault exception)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --FILE--
 <?php
-ini_set("soap.wsdl_cache_enabled", 0);
+ini_set("moap.wsdl_cache_enabled", 0);
 
 function getContinentList() {
 	return array("getContinentListResult"=>array(
@@ -12,10 +12,10 @@ function getContinentList() {
 	  "any"=>"<test>Hello World!</test><test>Bye World!</test>"));
 }
 
-class LocalSoapClient extends SoapClient {
+class LocalmoapClient extends moapClient {
   function __construct($wsdl, $options=array()) {
     parent::__construct($wsdl, $options);
-    $this->server = new SoapServer($wsdl, $options);
+    $this->server = new moapServer($wsdl, $options);
 		$this->server->addFunction("getContinentList"); 
   }
 
@@ -30,7 +30,7 @@ class LocalSoapClient extends SoapClient {
   }
 }
 
-$client = new LocalSoapClient(dirname(__FILE__)."/bug30106.wsdl");
+$client = new LocalmoapClient(dirname(__FILE__)."/bug30106.wsdl");
 var_dump($client->__getFunctions());
 var_dump($client->__getTypes());
 $x = $client->getContinentList(array("AFFILIATE_ID"=>1,"PASSWORD"=>"x"));
@@ -58,9 +58,9 @@ array(3) {
 }"
 }
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://tempuri.org/PRWebServ/getOtherInformation"><SOAP-ENV:Body><ns1:getContinentList><ns1:AFFILIATE_ID>1</ns1:AFFILIATE_ID><ns1:PASSWORD>x</ns1:PASSWORD></ns1:getContinentList></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/" xmlns:ns1="http://tempuri.org/PRWebServ/getOtherInformation"><moap-ENV:Body><ns1:getContinentList><ns1:AFFILIATE_ID>1</ns1:AFFILIATE_ID><ns1:PASSWORD>x</ns1:PASSWORD></ns1:getContinentList></moap-ENV:Body></moap-ENV:Envelope>
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://tempuri.org/PRWebServ/getOtherInformation"><SOAP-ENV:Body><ns1:getContinentListResponse><ns1:getContinentListResult><xsd:schema><element name="test" type="xsd:string"/></xsd:schema><test>Hello World!</test><test>Bye World!</test></ns1:getContinentListResult></ns1:getContinentListResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://tempuri.org/PRWebServ/getOtherInformation"><moap-ENV:Body><ns1:getContinentListResponse><ns1:getContinentListResult><xsd:schema><element name="test" type="xsd:string"/></xsd:schema><test>Hello World!</test><test>Bye World!</test></ns1:getContinentListResult></ns1:getContinentListResponse></moap-ENV:Body></moap-ENV:Envelope>
 object(stdClass)#%d (1) {
   ["getContinentListResult"]=>
   object(stdClass)#%d (2) {

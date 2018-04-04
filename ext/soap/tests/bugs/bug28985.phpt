@@ -3,10 +3,10 @@ Bug #28985 (__getTypes() returning nothing on complex WSDL)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --INI--
-soap.wsdl_cache_enabled=0
+moap.wsdl_cache_enabled=0
 --FILE--
 <?php
-$client = new SOAPClient(dirname(__FILE__).'/bug28985.wsdl', array('trace'=>1));
+$client = new moapClient(dirname(__FILE__).'/bug28985.wsdl', array('trace'=>1));
 var_dump($client->__getTypes());
 ?>
 --EXPECT--
@@ -74,12 +74,12 @@ array(42) {
  ArrayOfMGCodif GetListeValCodifResult;
 }"
   [15]=>
-  string(39) "struct TestPhpSoap {
+  string(39) "struct TestPhpmoap {
  MGCodif entree;
 }"
   [16]=>
-  string(57) "struct TestPhpSoapResponse {
- string TestPhpSoapResult;
+  string(57) "struct TestPhpmoapResponse {
+ string TestPhpmoapResult;
 }"
   [17]=>
   string(50) "struct GetListeCodif {

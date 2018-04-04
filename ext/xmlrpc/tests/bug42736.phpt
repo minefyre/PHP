@@ -5,7 +5,7 @@ Bug #42736 (xmlrpc_server_call_method() crashes)
 --FILE--
 <?php
 
-class SOAP_Array {
+class moap_Array {
 	public function get($id){
 		return $this->add($id);
 	}

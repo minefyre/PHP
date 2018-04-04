@@ -1,5 +1,5 @@
 --TEST--
-Bug #35705 (strtotime() fails to parse soap date format without TZ)
+Bug #35705 (strtotime() fails to parse moap date format without TZ)
 --FILE--
 <?php
 date_default_timezone_set("UTC");

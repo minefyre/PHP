@@ -1,20 +1,20 @@
 --TEST--
-Bug #42692 (Procedure 'int1' not present with doc/lit SoapServer)
+Bug #42692 (Procedure 'int1' not present with doc/lit moapServer)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --FILE--
 <?php
-ini_set('soap.wsdl_cache_enabled','0');
+ini_set('moap.wsdl_cache_enabled','0');
 
 function checkAuth($peid,$auth) {
 	return $peid;
 }
 
-class TestSoap extends SoapClient {
+class Testmoap extends moapClient {
 
 	function __construct($wsdl, $options) {
 		parent::__construct($wsdl, $options);
-		$this->server = new SoapServer($wsdl, $options);
+		$this->server = new moapServer($wsdl, $options);
 		$this->server->addFunction("checkAuth");
 	}
 
@@ -27,7 +27,7 @@ class TestSoap extends SoapClient {
 	}
 }
 
-$client = new TestSoap(dirname(__FILE__) . "/bug42692.wsdl", array("trace"=>1));
+$client = new Testmoap(dirname(__FILE__) . "/bug42692.wsdl", array("trace"=>1));
 try {
 	$result = $client->checkAuth(1,"two");
 	echo "Auth for 1 is $result\n";

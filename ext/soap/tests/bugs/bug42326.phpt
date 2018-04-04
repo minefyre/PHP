@@ -1,47 +1,47 @@
 --TEST--
-Bug #42326 (SoapServer crash)
+Bug #42326 (moapServer crash)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --INI--
-soap.wsdl_cache_enabled=0
+moap.wsdl_cache_enabled=0
 --FILE--
 <?php
 $request = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://www.example.com/"><SOAP-ENV:Body><ns1:GetProductsRequest><time></time></ns1:GetProductsRequest></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/" xmlns:ns1="http://www.example.com/"><moap-ENV:Body><ns1:GetProductsRequest><time></time></ns1:GetProductsRequest></moap-ENV:Body></moap-ENV:Envelope>
 EOF;
 
 
-$soap_admin_classmap = array('productDetailsType' => 'SOAP_productDetailsType',
-                             'GetProductsRequest' => 'SOAP_GetProductsRequest',
-                             'GetProductsResponse' => 'SOAP_GetProductsResponse');
+$moap_admin_classmap = array('productDetailsType' => 'moap_productDetailsType',
+                             'GetProductsRequest' => 'moap_GetProductsRequest',
+                             'GetProductsResponse' => 'moap_GetProductsResponse');
 
-class SOAP_productDetailsType {
+class moap_productDetailsType {
     public $id = 0;
 }
 
-class SOAP_GetProductsRequest {
+class moap_GetProductsRequest {
     public $time = '';
 }
 
-class SOAP_GetProductsResponse {
+class moap_GetProductsResponse {
     public $products;
     function __construct(){
-        $this->products = new SOAP_productDetailsType();
+        $this->products = new moap_productDetailsType();
         
     }
 }
 
-class SOAP_Admin {
+class moap_Admin {
     public function GetProducts($time){
-        return new SOAP_GetProductsResponse();
+        return new moap_GetProductsResponse();
     }
 }
 
-$soap = new SoapServer(dirname(__FILE__).'/bug42326.wsdl', array('classmap' => $soap_admin_classmap));
-$soap->setClass('SOAP_Admin');
+$moap = new moapServer(dirname(__FILE__).'/bug42326.wsdl', array('classmap' => $moap_admin_classmap));
+$moap->setClass('moap_Admin');
 ob_start();
-$soap->handle($request);
+$moap->handle($request);
 ob_end_clean();
 echo "ok\n";
 ?>

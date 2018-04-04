@@ -2,27 +2,27 @@
 <definitions name="qweb"
  targetNamespace="http://www.newsblob.com/qweb.wsdl"
  xmlns:tns="http://www.newsblob.com/qweb.wsdl"
- xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
- xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+ xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/"
+ xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
  xmlns:ns1="urn:qweb"
- xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/"
- xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/"
- xmlns="http://schemas.xmlsoap.org/wsdl/">
+ xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/"
+ xmlns:WSDL="http://schemas.xmlmoap.org/wsdl/"
+ xmlns="http://schemas.xmlmoap.org/wsdl/">
 
 <types>
 
  <schema targetNamespace="urn:qweb"
-  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
-  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/"
+  xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
   xmlns:ns1="urn:qweb"
   xmlns="http://www.w3.org/2001/XMLSchema"
   elementFormDefault="unqualified"
   attributeFormDefault="unqualified">
-  <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+  <import namespace="http://schemas.xmlmoap.org/moap/encoding/"/>
   <complexType name="qwebGetHostInfoResponse">
    <sequence>
     <element name="return" type="ns1:HostInfo" minOccurs="1" maxOccurs="1"/>
@@ -30,11 +30,11 @@
   </complexType>
   <complexType name="ArrayOfHostInfo">
    <complexContent>
-    <restriction base="SOAP-ENC:Array">
+    <restriction base="moap-ENC:Array">
      <sequence>
       <element name="item" type="ns1:HostInfo" minOccurs="0" maxOccurs="unbounded"/>
      </sequence>
-     <attribute ref="SOAP-ENC:arrayType" WSDL:arrayType="ns1:HostInfo[]"/>
+     <attribute ref="moap-ENC:arrayType" WSDL:arrayType="ns1:HostInfo[]"/>
     </restriction>
    </complexContent>
   </complexType>
@@ -86,40 +86,40 @@
 </portType>
 
 <binding name="qweb" type="tns:qwebPortType">
- <SOAP:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+ <moap:binding style="rpc" transport="http://schemas.xmlmoap.org/moap/http"/>
  <operation name="qwebSquare">
-  <SOAP:operation style="rpc" soapAction=""/>
+  <moap:operation style="rpc" moapAction=""/>
   <input>
-   <SOAP:body use="encoded" namespace="urn:qweb" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <moap:body use="encoded" namespace="urn:qweb" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
   </input>
   <output>
-   <SOAP:body use="encoded" namespace="urn:qweb" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <moap:body use="encoded" namespace="urn:qweb" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
   </output>
  </operation>
  <operation name="qwebStrlen">
-  <SOAP:operation style="rpc" soapAction=""/>
+  <moap:operation style="rpc" moapAction=""/>
   <input>
-   <SOAP:body use="encoded" namespace="urn:qweb" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <moap:body use="encoded" namespace="urn:qweb" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
   </input>
   <output>
-   <SOAP:body use="encoded" namespace="urn:qweb" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <moap:body use="encoded" namespace="urn:qweb" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
   </output>
  </operation>
  <operation name="qwebGetHostInfo">
-  <SOAP:operation style="rpc" soapAction=""/>
+  <moap:operation style="rpc" moapAction=""/>
   <input>
-   <SOAP:body use="encoded" namespace="urn:qweb" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <moap:body use="encoded" namespace="urn:qweb" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
   </input>
   <output>
-   <SOAP:body use="encoded" namespace="urn:qweb" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <moap:body use="encoded" namespace="urn:qweb" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
   </output>
  </operation>
 </binding>
 
 <service name="qweb">
- <documentation>Demo Qweb SOAP interface</documentation>
+ <documentation>Demo Qweb moap interface</documentation>
  <port name="qweb" binding="tns:qweb">
-  <SOAP:address location="http://www.newsblob.com:6969"/>
+  <moap:address location="http://www.newsblob.com:6969"/>
  </port>
 </service>
 

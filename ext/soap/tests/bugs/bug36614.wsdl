@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <definitions name="SonicMobile Web-Services" 
-   targetNamespace="http://soap.sonicmobile.com/sonicmobile.wsdl"
-   xmlns="http://schemas.xmlsoap.org/wsdl/" 
-   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
-   xmlns:sonic="http://soap.sonicmobile.com/sonicmobile.wsdl"
+   targetNamespace="http://moap.sonicmobile.com/sonicmobile.wsdl"
+   xmlns="http://schemas.xmlmoap.org/wsdl/" 
+   xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" 
+   xmlns:sonic="http://moap.sonicmobile.com/sonicmobile.wsdl"
    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
     <types>
         <xsd:schema xmlns="http://www.w3.org/2000/10/XMLSchema">
-            <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+            <import namespace="http://schemas.xmlmoap.org/moap/encoding/"/>
             <complexType name="TransportCount">
                 <all>
                     <element name="transport" type="string" />
@@ -19,8 +19,8 @@
             </complexType>                    
             <complexType name="ArrayOfTransportCount">
                 <complexContent>
-                    <restriction base="soapenc:Array">
-                        <attribute ref="soapenc:arrayType" arrayType="TransportCount[]" />
+                    <restriction base="moapenc:Array">
+                        <attribute ref="moapenc:arrayType" arrayType="TransportCount[]" />
                     </restriction>
                 </complexContent>
             </complexType>
@@ -102,93 +102,93 @@
    </portType>
 
    <binding name="SonicMobileBinding" type="sonic:SonicMobilePortType">
-     <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+     <moap:binding style="rpc" transport="http://schemas.xmlmoap.org/moap/http" />
 
      <operation name="userSendMessage">
-       <soap:operation soapAction="http://soap.sonicmobile.com/SonicMobile/SOAP#userSendMessage"/>
+       <moap:operation moapAction="http://moap.sonicmobile.com/SonicMobile/moap#userSendMessage"/>
 
        <input>
-         <soap:body 
-           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
-           namespace="http://soap.sonicmobile.com/SonicMobile/SOAP" 
+         <moap:body 
+           encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" 
+           namespace="http://moap.sonicmobile.com/SonicMobile/moap" 
            use="encoded" />
        </input>
        
        <output>
-         <soap:body 
-           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
-           namespace="http://soap.sonicmobile.com/SonicMobile/SOAP"
+         <moap:body 
+           encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" 
+           namespace="http://moap.sonicmobile.com/SonicMobile/moap"
            use="encoded" />
        </output>
      </operation>
 
      <operation name="sendMessage">
-       <soap:operation soapAction="http://soap.sonicmobile.com/SonicMobile/SOAP#sendMessage"/>
+       <moap:operation moapAction="http://moap.sonicmobile.com/SonicMobile/moap#sendMessage"/>
 
        <input>
-         <soap:body 
-           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
-           namespace="http://soap.sonicmobile.com/SonicMobile/SOAP" 
+         <moap:body 
+           encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" 
+           namespace="http://moap.sonicmobile.com/SonicMobile/moap" 
            use="encoded" />
        </input>
        
        <output>
-         <soap:body 
-           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
-           namespace="http://soap.sonicmobile.com/SonicMobile/SOAP"
+         <moap:body 
+           encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" 
+           namespace="http://moap.sonicmobile.com/SonicMobile/moap"
            use="encoded" />
        </output>
      </operation>
  
      <operation name="messageCount">
-       <soap:operation soapAction="http://soap.sonicmobile.com/SonicMobile/SOAP#messageCount"/>
+       <moap:operation moapAction="http://moap.sonicmobile.com/SonicMobile/moap#messageCount"/>
 
        <input>
-         <soap:body 
-           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
-           namespace="http://soap.sonicmobile.com/SonicMobile/SOAP" 
+         <moap:body 
+           encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" 
+           namespace="http://moap.sonicmobile.com/SonicMobile/moap" 
            use="encoded" />
        </input>
        
        <output>
-         <soap:body 
-           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
-           namespace="http://soap.sonicmobile.com/SonicMobile/SOAP"
+         <moap:body 
+           encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" 
+           namespace="http://moap.sonicmobile.com/SonicMobile/moap"
            use="encoded" />
        </output>
      </operation>
      
      <operation name="serverStatus">
-         <soap:operation soapAction="http://soap.sonicmobile.com/SonicMobile/SOAP#serverStatus"/>
+         <moap:operation moapAction="http://moap.sonicmobile.com/SonicMobile/moap#serverStatus"/>
          
          <input>
-             <soap:body 
-                        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
-                        namespace="http://soap.sonicmobile.com/SonicMobile/SOAP" 
+             <moap:body 
+                        encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" 
+                        namespace="http://moap.sonicmobile.com/SonicMobile/moap" 
                         use="encoded" />
          </input>
          
          <output>
-             <soap:body 
-                        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
-                        namespace="http://soap.sonicmobile.com/SonicMobile/SOAP"
+             <moap:body 
+                        encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" 
+                        namespace="http://moap.sonicmobile.com/SonicMobile/moap"
                         use="encoded" />
          </output>
      </operation>
      
      <operation name="flushGateway">
-         <soap:operation soapAction="http://soap.sonicmobile.com/SonicMobile/SOAP#flushGateway"/>
+         <moap:operation moapAction="http://moap.sonicmobile.com/SonicMobile/moap#flushGateway"/>
          
          <input>
-             <soap:body 
-                        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
-                        namespace="http://soap.sonicmobile.com/SonicMobile/SOAP" 
+             <moap:body 
+                        encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" 
+                        namespace="http://moap.sonicmobile.com/SonicMobile/moap" 
                         use="encoded" />
          </input>
         <output>
-             <soap:body 
-                        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" 
-                        namespace="http://soap.sonicmobile.com/SonicMobile/SOAP"
+             <moap:body 
+                        encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" 
+                        namespace="http://moap.sonicmobile.com/SonicMobile/moap"
                         use="encoded" />
          </output>
      </operation>
@@ -197,7 +197,7 @@
 
    <service name="SonicMobile">
      <port name="SonicMobilePort" binding="sonic:SonicMobileBinding">
-       <soap:address location="http://soap.sonicmobile.com/"/>
+       <moap:address location="http://moap.sonicmobile.com/"/>
      </port>
    </service>
 

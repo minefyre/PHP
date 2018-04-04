@@ -29,12 +29,12 @@ function endpointList($test,$sel_endpoint)
 function methodList($test,$sel_method)
 {
     global $iop;
-    global $soap_tests;
+    global $moap_tests;
 
     echo "<select name='method'>\n";
     echo "<option value='ALL'>-- Run All Methods --</option>\n";
 		$prev_method = "";
-    foreach ($soap_tests[$test] as $x) {
+    foreach ($moap_tests[$test] as $x) {
         $method = $x->test_name;
         if ($method != $prev_method) {
         	$prev_method = $method;
@@ -58,7 +58,7 @@ function endpointTestForm($test, $endpoint, $method, $paramType, $useWSDL)
     methodList($test, $method);
     echo "<select name='paramType'>";
 //    echo "<option value='all'>-- All --</option>";
-    echo "<option value='soapval'".($paramType=='soapval'?' selected':'').">soap value</option>";
+    echo "<option value='moapval'".($paramType=='moapval'?' selected':'').">moap value</option>";
     echo "<option value='php'".($paramType=='php'?' selected':'').">php internal type</option></select>\n";
     echo "<select name='useWSDL'>";
 //    echo "<option value='all'>-- All --</option>";
@@ -93,7 +93,7 @@ if ($_POST['test'] && array_key_exists('endpoint', $_POST) && array_key_exists('
     echo "NOTE: wire's are slightly modified to display better in web browsers.<br>\n";
 
     $iop->currentTest = $_POST['test'];      // see $tests above
-    $iop->paramType = $_POST['paramType'];     // 'php' or 'soapval'
+    $iop->paramType = $_POST['paramType'];     // 'php' or 'moapval'
     $iop->useWSDL = $_POST['useWSDL'];           // 1= do wsdl tests
     $iop->numServers = 0;        // 0 = all
     $iop->specificEndpoint = $_POST['endpoint']; // test only this endpoint

@@ -85,7 +85,7 @@ if test "$PHP_XMLRPC" = "yes"; then
           libxmlrpc/xmlrpc_introspection.c libxmlrpc/encodings.c \
           libxmlrpc/system_methods.c libxmlrpc/xml_to_xmlrpc.c \
           libxmlrpc/queue.c libxmlrpc/xml_element.c libxmlrpc/xmlrpc.c \
-          libxmlrpc/xml_to_soap.c,$ext_shared,,
+          libxmlrpc/xml_to_moap.c,$ext_shared,,
           -I@ext_srcdir@/libxmlrpc -DVERSION="0.50")
   PHP_ADD_BUILD_DIR($ext_builddir/libxmlrpc)
   XMLRPC_MODULE_TYPE=builtin

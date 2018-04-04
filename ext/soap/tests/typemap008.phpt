@@ -1,12 +1,12 @@
 --TEST--
-SOAP Typemap 8: SoapClient support for typemap's to_xml() (without WSDL, using SoapVar)
+moap Typemap 8: moapClient support for typemap's to_xml() (without WSDL, using moapVar)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --INI--
-soap.wsdl_cache_enabled=0
+moap.wsdl_cache_enabled=0
 --FILE--
 <?php
-class TestSoapClient extends SoapClient{
+class TestmoapClient extends moapClient{
   function __doRequest($request, $location, $action, $version, $one_way = 0) {
   		echo $request;
   		exit;
@@ -32,14 +32,14 @@ $options=Array(
 		                          "to_xml"  => "book_to_xml"))
 		);
 
-$client = new TestSoapClient(NULL, $options);
+$client = new TestmoapClient(NULL, $options);
 $book = new book();
 $book->a = "foo";
 $book->b = "bar";
-$ret = $client->dotest(new SoapVar($book, null, "book", "http://schemas.nothing.com"));
+$ret = $client->dotest(new moapVar($book, null, "book", "http://schemas.nothing.com"));
 var_dump($ret);
 echo "ok\n";
 ?>
 --EXPECT--
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://schemas.nothing.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><SOAP-ENV:Body><ns1:dotest><book xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:book"><a xsi:type="xsd:string">foo!</a><b xsi:type="xsd:string">bar!</b></book></ns1:dotest></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/" xmlns:ns1="http://schemas.nothing.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/" moap-ENV:encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"><moap-ENV:Body><ns1:dotest><book xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns1:book"><a xsi:type="xsd:string">foo!</a><b xsi:type="xsd:string">bar!</b></book></ns1:dotest></moap-ENV:Body></moap-ENV:Envelope>

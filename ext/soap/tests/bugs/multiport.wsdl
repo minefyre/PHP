@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://www.reuters.com/" xmlns:tns="http://www.reuters.com/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:s="http://www.w3.org/2001/XMLSchema">
+<wsdl:definitions targetNamespace="http://www.reuters.com/" xmlns:tns="http://www.reuters.com/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlmoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlmoap.org/wsdl/http/" xmlns:moapenc="http://schemas.xmlmoap.org/moap/encoding/" xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/" xmlns:s="http://www.w3.org/2001/XMLSchema">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://www.reuters.com/">
       <s:element name="GetSessionId">
@@ -29,11 +29,11 @@
     <wsdl:part name="Body" element="tns:string">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="GetSessionIdSoapOut">
+  <wsdl:message name="GetSessionIdmoapOut">
     <wsdl:part name="parameters" element="tns:GetSessionIdResponse">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="GetSessionIdSoapIn">
+  <wsdl:message name="GetSessionIdmoapIn">
     <wsdl:part name="parameters" element="tns:GetSessionId">
     </wsdl:part>
   </wsdl:message>
@@ -45,11 +45,11 @@
     </wsdl:output>
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:portType name="StocksDataSecureSoap">
+  <wsdl:portType name="StocksDataSecuremoap">
     <wsdl:operation name="GetSessionId">
-      <wsdl:input message="tns:GetSessionIdSoapIn">
+      <wsdl:input message="tns:GetSessionIdmoapIn">
     </wsdl:input>
-      <wsdl:output message="tns:GetSessionIdSoapOut">
+      <wsdl:output message="tns:GetSessionIdmoapOut">
     </wsdl:output>
     </wsdl:operation>
   </wsdl:portType>
@@ -65,15 +65,15 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="StocksDataSecureSoap" type="tns:StocksDataSecureSoap">
-    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <wsdl:binding name="StocksDataSecuremoap" type="tns:StocksDataSecuremoap">
+    <moap:binding style="document" transport="http://schemas.xmlmoap.org/moap/http"/>
     <wsdl:operation name="GetSessionId">
-      <soap:operation soapAction="http://www.reuters.com/GetSessionId" style="document"/>
+      <moap:operation moapAction="http://www.reuters.com/GetSessionId" style="document"/>
       <wsdl:input>
-        <soap:body use="literal"/>
+        <moap:body use="literal"/>
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="literal"/>
+        <moap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
@@ -81,8 +81,8 @@
     <wsdl:port name="StocksDataSecureHttpGet" binding="tns:StocksDataSecureHttpGet">
       <http:address location="test://"/>
     </wsdl:port>
-    <wsdl:port name="StocksDataSecureSoap" binding="tns:StocksDataSecureSoap">
-      <soap:address location="test://"/>
+    <wsdl:port name="StocksDataSecuremoap" binding="tns:StocksDataSecuremoap">
+      <moap:address location="test://"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

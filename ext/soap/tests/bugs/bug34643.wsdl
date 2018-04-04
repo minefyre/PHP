@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <definitions name="wsdl" targetNamespace="urn:wsdl"
 xmlns:typens="urn:wsdl" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
-xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-xmlns="http://schemas.xmlsoap.org/wsdl/">
+xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/"
+xmlns:moapenc="http://schemas.xmlmoap.org/moap/encoding/"
+xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/"
+xmlns="http://schemas.xmlmoap.org/wsdl/">
 	<types>
 		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:wsdl">
 			<xsd:element name="opt" type="xsd:string" default="zzz" />
@@ -23,20 +23,20 @@ xmlns="http://schemas.xmlsoap.org/wsdl/">
 		</operation>
 	</portType>
 	<binding name="fpBinding" type="typens:fpPortType">
-		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<moap:binding style="rpc" transport="http://schemas.xmlmoap.org/moap/http"/>
 		<operation name="get_it">
-			<soap:operation soapAction="urn:fpAction"/>
+			<moap:operation moapAction="urn:fpAction"/>
 			<input>
-				<soap:body namespace="urn:wsdl" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body namespace="urn:wsdl" use="encoded" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body namespace="urn:wsdl" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body namespace="urn:wsdl" use="encoded" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 	</binding>
 	<service name="wsdlService">
 		<port name="fpPort" binding="typens:fpBinding">
-			<soap:address location="**********"/>
+			<moap:address location="**********"/>
 		</port>
 	</service>
 </definitions>

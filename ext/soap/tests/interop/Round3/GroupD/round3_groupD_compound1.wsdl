@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions name="SoapInteropCompound" 
-		targetNamespace="http://soapinterop.org/" 
-		xmlns:wsdlns="http://soapinterop.org/" 
-		xmlns:typens="http://soapinterop.org/xsd"
-		xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+<definitions name="moapInteropCompound" 
+		targetNamespace="http://moapinterop.org/" 
+		xmlns:wsdlns="http://moapinterop.org/" 
+		xmlns:typens="http://moapinterop.org/xsd"
+		xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" 
 		xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-		xmlns="http://schemas.xmlsoap.org/wsdl/">
+		xmlns="http://schemas.xmlmoap.org/wsdl/">
 	<types>
-		<schema targetNamespace="http://soapinterop.org/xsd" 
+		<schema targetNamespace="http://moapinterop.org/xsd" 
 		xmlns="http://www.w3.org/2001/XMLSchema" 
 		elementFormDefault="qualified"
 		>	
@@ -45,7 +45,7 @@
 	<message name="echoDocumentResponse">
 		<part name="Result" element="typens:result_Document"/>
 	</message>
-	<portType name="SoapInteropCompound1PortType">
+	<portType name="moapInteropCompound1PortType">
 		<operation name="echoPerson" parameterOrder="x">
 			<input message="wsdlns:echoPerson"/>
 			<output message="wsdlns:echoPersonResponse"/>
@@ -55,31 +55,31 @@
 			<output message="wsdlns:echoDocumentResponse"/>
 		</operation>
 	</portType>
-	<binding name="SoapInteropCompound1Binding" type="wsdlns:SoapInteropCompound1PortType">
-		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+	<binding name="moapInteropCompound1Binding" type="wsdlns:moapInteropCompound1PortType">
+		<moap:binding style="document" transport="http://schemas.xmlmoap.org/moap/http"/>
 		<operation name="echoPerson">
-			<soap:operation soapAction="http://soapinterop/echoPerson"/>
+			<moap:operation moapAction="http://moapinterop/echoPerson"/>
 			<input>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</input>
 			<output>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</output>
 		</operation>
 		<operation name="echoDocument">
-			<soap:operation soapAction="http://soapinterop/echoDocument"/>
+			<moap:operation moapAction="http://moapinterop/echoDocument"/>
 			<input>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</input>
 			<output>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</output>
 		</operation>
 
 	</binding>
 	<service name="Compound1">
-		<port name="SoapInteropCompound1Port" binding="wsdlns:SoapInteropCompound1Binding">
-			<soap:address location="round3_groupD_compound1.inc"/>
+		<port name="moapInteropCompound1Port" binding="wsdlns:moapInteropCompound1Binding">
+			<moap:address location="round3_groupD_compound1.inc"/>
 		</port>
 	</service>
 </definitions>

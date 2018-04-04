@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<definitions name="listTest" targetNamespace="urn:listTest" xmlns:typens="urn:listTest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<definitions name="listTest" targetNamespace="urn:listTest" xmlns:typens="urn:listTest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" xmlns:moapenc="http://schemas.xmlmoap.org/moap/encoding/" xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/" xmlns="http://schemas.xmlmoap.org/wsdl/">
   <types>
     <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:listTest">
       <xsd:simpleType name="listItem">
@@ -39,20 +39,20 @@
     </operation>
   </portType>
   <binding name="listTestBinding" type="typens:listTestPortType">
-    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <moap:binding style="rpc" transport="http://schemas.xmlmoap.org/moap/http"/>
     <operation name="testRequest">
-      <soap:operation soapAction="urn:listTestAction"/>
+      <moap:operation moapAction="urn:listTestAction"/>
       <input>
-        <soap:body namespace="urn:listTest" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+        <moap:body namespace="urn:listTest" use="encoded" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
       </input>
       <output>
-        <soap:body namespace="urn:listTest" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+        <moap:body namespace="urn:listTest" use="encoded" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
       </output>
     </operation>
   </binding>
   <service name="listTestService">
     <port name="listTestPort" binding="typens:listTestBinding">
-      <soap:address location="http://test/service"/>
+      <moap:address location="http://test/service"/>
     </port>
   </service>
 </definitions>

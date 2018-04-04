@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://isis.ais.ucla.edu/ws/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://isis.ais.ucla.edu/ws/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<definitions xmlns:http="http://schemas.xmlmoap.org/wsdl/http/" xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://isis.ais.ucla.edu/ws/" xmlns:moapenc="http://schemas.xmlmoap.org/moap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlmoap.org/wsdl/mime/" targetNamespace="http://isis.ais.ucla.edu/ws/" xmlns="http://schemas.xmlmoap.org/wsdl/">
   <types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://isis.ais.ucla.edu/ws/">
       <s:element name="StartSession">
@@ -168,102 +168,102 @@
       </s:complexType>
     </s:schema>
   </types>
-  <message name="StartSessionSoapIn">
+  <message name="StartSessionmoapIn">
     <part name="parameters" element="s0:StartSession" />
   </message>
-  <message name="StartSessionSoapOut">
+  <message name="StartSessionmoapOut">
     <part name="parameters" element="s0:StartSessionResponse" />
   </message>
   <message name="StartSessionwsConsumerCredential">
     <part name="wsConsumerCredential" element="s0:wsConsumerCredential" />
   </message>
-  <message name="VerifySessionSoapIn">
+  <message name="VerifySessionmoapIn">
     <part name="parameters" element="s0:VerifySession" />
   </message>
-  <message name="VerifySessionSoapOut">
+  <message name="VerifySessionmoapOut">
     <part name="parameters" element="s0:VerifySessionResponse" />
   </message>
   <message name="VerifySessionwsConsumerCredential">
     <part name="wsConsumerCredential" element="s0:wsConsumerCredential" />
   </message>
-  <message name="LogoutSoapIn">
+  <message name="LogoutmoapIn">
     <part name="parameters" element="s0:Logout" />
   </message>
-  <message name="LogoutSoapOut">
+  <message name="LogoutmoapOut">
     <part name="parameters" element="s0:LogoutResponse" />
   </message>
   <message name="LogoutwsConsumerCredential">
     <part name="wsConsumerCredential" element="s0:wsConsumerCredential" />
   </message>
-  <message name="GetSystemInfoSoapIn">
+  <message name="GetSystemInfomoapIn">
     <part name="parameters" element="s0:GetSystemInfo" />
   </message>
-  <message name="GetSystemInfoSoapOut">
+  <message name="GetSystemInfomoapOut">
     <part name="parameters" element="s0:GetSystemInfoResponse" />
   </message>
   <message name="GetSystemInfowsConsumerCredential">
     <part name="wsConsumerCredential" element="s0:wsConsumerCredential" />
   </message>
-  <portType name="IsisSoap">
+  <portType name="Isismoap">
     <operation name="StartSession">
-      <input message="s0:StartSessionSoapIn" />
-      <output message="s0:StartSessionSoapOut" />
+      <input message="s0:StartSessionmoapIn" />
+      <output message="s0:StartSessionmoapOut" />
     </operation>
     <operation name="VerifySession">
-      <input message="s0:VerifySessionSoapIn" />
-      <output message="s0:VerifySessionSoapOut" />
+      <input message="s0:VerifySessionmoapIn" />
+      <output message="s0:VerifySessionmoapOut" />
     </operation>
     <operation name="Logout">
-      <input message="s0:LogoutSoapIn" />
-      <output message="s0:LogoutSoapOut" />
+      <input message="s0:LogoutmoapIn" />
+      <output message="s0:LogoutmoapOut" />
     </operation>
     <operation name="GetSystemInfo">
-      <input message="s0:GetSystemInfoSoapIn" />
-      <output message="s0:GetSystemInfoSoapOut" />
+      <input message="s0:GetSystemInfomoapIn" />
+      <output message="s0:GetSystemInfomoapOut" />
     </operation>
   </portType>
   <portType name="IsisHttpGet" />
   <portType name="IsisHttpPost" />
-  <binding name="IsisSoap" type="s0:IsisSoap">
-    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+  <binding name="Isismoap" type="s0:Isismoap">
+    <moap:binding transport="http://schemas.xmlmoap.org/moap/http" style="document" />
     <operation name="StartSession">
-      <soap:operation soapAction="http://isis.ais.ucla.edu/ws/StartSession" style="document" />
+      <moap:operation moapAction="http://isis.ais.ucla.edu/ws/StartSession" style="document" />
       <input>
-        <soap:body use="literal" />
-        <soap:header d5p1:required="true" message="s0:StartSessionwsConsumerCredential" part="wsConsumerCredential" use="literal" xmlns:d5p1="http://schemas.xmlsoap.org/wsdl/" />
+        <moap:body use="literal" />
+        <moap:header d5p1:required="true" message="s0:StartSessionwsConsumerCredential" part="wsConsumerCredential" use="literal" xmlns:d5p1="http://schemas.xmlmoap.org/wsdl/" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="VerifySession">
-      <soap:operation soapAction="http://isis.ais.ucla.edu/ws/VerifySession" style="document" />
+      <moap:operation moapAction="http://isis.ais.ucla.edu/ws/VerifySession" style="document" />
       <input>
-        <soap:body use="literal" />
-        <soap:header d5p1:required="true" message="s0:VerifySessionwsConsumerCredential" part="wsConsumerCredential" use="literal" xmlns:d5p1="http://schemas.xmlsoap.org/wsdl/" />
+        <moap:body use="literal" />
+        <moap:header d5p1:required="true" message="s0:VerifySessionwsConsumerCredential" part="wsConsumerCredential" use="literal" xmlns:d5p1="http://schemas.xmlmoap.org/wsdl/" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="Logout">
-      <soap:operation soapAction="http://isis.ais.ucla.edu/ws/Logout" style="document" />
+      <moap:operation moapAction="http://isis.ais.ucla.edu/ws/Logout" style="document" />
       <input>
-        <soap:body use="literal" />
-        <soap:header d5p1:required="true" message="s0:LogoutwsConsumerCredential" part="wsConsumerCredential" use="literal" xmlns:d5p1="http://schemas.xmlsoap.org/wsdl/" />
+        <moap:body use="literal" />
+        <moap:header d5p1:required="true" message="s0:LogoutwsConsumerCredential" part="wsConsumerCredential" use="literal" xmlns:d5p1="http://schemas.xmlmoap.org/wsdl/" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
     <operation name="GetSystemInfo">
-      <soap:operation soapAction="http://isis.ais.ucla.edu/ws/GetSystemInfo" style="document" />
+      <moap:operation moapAction="http://isis.ais.ucla.edu/ws/GetSystemInfo" style="document" />
       <input>
-        <soap:body use="literal" />
-        <soap:header d5p1:required="true" message="s0:GetSystemInfowsConsumerCredential" part="wsConsumerCredential" use="literal" xmlns:d5p1="http://schemas.xmlsoap.org/wsdl/" />
+        <moap:body use="literal" />
+        <moap:header d5p1:required="true" message="s0:GetSystemInfowsConsumerCredential" part="wsConsumerCredential" use="literal" xmlns:d5p1="http://schemas.xmlmoap.org/wsdl/" />
       </input>
       <output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </output>
     </operation>
   </binding>
@@ -274,8 +274,8 @@
     <http:binding verb="POST" />
   </binding>
   <service name="Isis">
-    <port name="IsisSoap" binding="s0:IsisSoap">
-      <soap:address location="http://isisdev1.tig.ucla.edu/iws/v4.asmx" />
+    <port name="Isismoap" binding="s0:Isismoap">
+      <moap:address location="http://isisdev1.tig.ucla.edu/iws/v4.asmx" />
     </port>
     <port name="IsisHttpGet" binding="s0:IsisHttpGet">
       <http:address location="http://isisdev1.tig.ucla.edu/iws/v4.asmx" />

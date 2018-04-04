@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/PRWebServ/getOtherInformation" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://tempuri.org/PRWebServ/getOtherInformation" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:http="http://schemas.xmlmoap.org/wsdl/http/" xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:moapenc="http://schemas.xmlmoap.org/moap/encoding/" xmlns:tns="http://tempuri.org/PRWebServ/getOtherInformation" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlmoap.org/wsdl/mime/" targetNamespace="http://tempuri.org/PRWebServ/getOtherInformation" xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/PRWebServ/getOtherInformation">
       <s:import namespace="http://www.w3.org/2001/XMLSchema" />
@@ -27,33 +27,33 @@
       </s:element>
     </s:schema>
   </wsdl:types>
-  <wsdl:message name="getContinentListSoapIn">
+  <wsdl:message name="getContinentListmoapIn">
     <wsdl:part name="parameters" element="tns:getContinentList" />
   </wsdl:message>
-  <wsdl:message name="getContinentListSoapOut">
+  <wsdl:message name="getContinentListmoapOut">
     <wsdl:part name="parameters" element="tns:getContinentListResponse" />
   </wsdl:message>
-  <wsdl:portType name="getOtherInformationSoap">
+  <wsdl:portType name="getOtherInformationmoap">
     <wsdl:operation name="getContinentList">
-      <wsdl:input message="tns:getContinentListSoapIn" />
-      <wsdl:output message="tns:getContinentListSoapOut" />
+      <wsdl:input message="tns:getContinentListmoapIn" />
+      <wsdl:output message="tns:getContinentListmoapOut" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="getOtherInformationSoap" type="tns:getOtherInformationSoap">
-    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+  <wsdl:binding name="getOtherInformationmoap" type="tns:getOtherInformationmoap">
+    <moap:binding transport="http://schemas.xmlmoap.org/moap/http" style="document" />
     <wsdl:operation name="getContinentList">
-      <soap:operation soapAction="http://tempuri.org/PRWebServ/getOtherInformation/getContinentList" style="document" />
+      <moap:operation moapAction="http://tempuri.org/PRWebServ/getOtherInformation/getContinentList" style="document" />
       <wsdl:input>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="literal" />
+        <moap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="getOtherInformation">
-    <wsdl:port name="getOtherInformationSoap" binding="tns:getOtherInformationSoap">
-      <soap:address location="http://www.precisionreservations.com/PRWebServ/getOtherInformation.asmx" />
+    <wsdl:port name="getOtherInformationmoap" binding="tns:getOtherInformationmoap">
+      <moap:address location="http://www.precisionreservations.com/PRWebServ/getOtherInformation.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

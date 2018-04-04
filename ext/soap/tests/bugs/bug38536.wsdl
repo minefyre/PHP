@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" 
+<definitions xmlns="http://schemas.xmlmoap.org/wsdl/" 
 					xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-					xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 					
+					xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" 					
 					xmlns:enturma="http://www.grupos.com.br/ws/enturmaServices" 
 					xmlns:clientTypes="http://www.grupos.com.br/ws/enturma/client"
 					targetNamespace="http://www.grupos.com.br/ws/enturmaServices"
@@ -9,8 +9,8 @@
 					attributeFormDefault="qualified">
 	<types>
 		<schema  xmlns="http://www.w3.org/2001/XMLSchema" 
-				xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
-				xmlns:enc="http://schemas.xmlsoap.org/soap/encoding/" 
+				xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/" 
+				xmlns:enc="http://schemas.xmlmoap.org/moap/encoding/" 
 				targetNamespace="http://www.grupos.com.br/ws/enturma/client">				
 			<complexType name="ClientType">
 				<sequence>
@@ -38,20 +38,20 @@
 		</operation>
 	</portType>
 	<binding name="SessionBind" type="enturma:SessionImpl">
-		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<moap:binding style="rpc" transport="http://schemas.xmlmoap.org/moap/http"/>
 		<operation name="test">
-			<soap:operation soapAction="test://"/>
+			<moap:operation moapAction="test://"/>
 			<input>
-				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="test://"/>
+				<moap:body use="encoded" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" namespace="test://"/>
 			</input>
 			<output>
-				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="test://"/>
+				<moap:body use="encoded" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" namespace="test://"/>
 			</output>
 		</operation>
 	</binding>
 	<service name="Session">
 		<port name="SessionImpl" binding="enturma:SessionBind">
-			<soap:address location="test://"/>
+			<moap:address location="test://"/>
 		</port>
 	</service>
 </definitions>

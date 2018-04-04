@@ -1,43 +1,43 @@
 --TEST--
-Bug #38536 (SOAP returns an array of values instead of an object)
+Bug #38536 (moap returns an array of values instead of an object)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --INI--
-soap.wsdl_cache_enabled=0
+moap.wsdl_cache_enabled=0
 --FILE--
 <?php
-class LocalSoapClient extends SoapClient {
+class LocalmoapClient extends moapClient {
   function __doRequest($request, $location, $action, $version, $one_way = 0) {
     return <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope
-  SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
-  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+<moap-ENV:Envelope
+  moap-ENV:encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
+  xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/"
+  xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:ns1="http://www.grupos.com.br/ws/enturma/client">
-<SOAP-ENV:Body>
-<getClientInfoFromDomainResponse SOAP-ENC:root="1">
+<moap-ENV:Body>
+<getClientInfoFromDomainResponse moap-ENC:root="1">
   <xsd:Result xsi:type="ns1:ClientType">
     <id xsi:type="xsd:int">2</id>
     <address href="#i2"/>
   </xsd:Result>
 </getClientInfoFromDomainResponse>
-<xsd:address id="i2" xsi:type="ns1:ClientAddressType" SOAP-ENC:root="0">
+<xsd:address id="i2" xsi:type="ns1:ClientAddressType" moap-ENC:root="0">
   <idClient xsi:type="xsd:long">2</idClient>
   <address href="#i3"/>
 </xsd:address>
-<address xsi:type="xsd:string" id="i3" SOAP-ENC:root="0">Test</address>
-</SOAP-ENV:Body>
-</SOAP-ENV:Envelope>
+<address xsi:type="xsd:string" id="i3" moap-ENC:root="0">Test</address>
+</moap-ENV:Body>
+</moap-ENV:Envelope>
 EOF;
   }
 }
 
-ini_set("soap.wsdl_cache_enabled", 0);
-$SOAPObject = new LocalSoapClient(dirname(__FILE__).'/bug38536.wsdl');
-print_r($SOAPObject->test());
+ini_set("moap.wsdl_cache_enabled", 0);
+$moapObject = new LocalmoapClient(dirname(__FILE__).'/bug38536.wsdl');
+print_r($moapObject->test());
 ?>
 --EXPECT--
 stdClass Object

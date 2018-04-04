@@ -1,10 +1,10 @@
 <?php
 
-function timestamp_to_soap_datetime($t) {
+function timestamp_to_moap_datetime($t) {
   return date('Y-m-d\TH:i:sO',$t);
 }
 
-function soap_datetime_to_timestamp($t) {
+function moap_datetime_to_timestamp($t) {
 	/* Ignore Microsecconds */
   $iso8601 = '(-?[0-9]{4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})(\.[0-9]*)?(Z|[+\-][0-9]{4}|[+\-][0-9]{2}:[0-9]{2})?';
   if (!is_int($t)) {
@@ -28,7 +28,7 @@ function soap_datetime_to_timestamp($t) {
 
 function date_compare($f1,$f2)
 {
-	return soap_datetime_to_timestamp($f1) == soap_datetime_to_timestamp($f2);
+	return moap_datetime_to_timestamp($f1) == moap_datetime_to_timestamp($f2);
 }
 
 function hex_compare($f1, $f2)
@@ -69,7 +69,7 @@ function string_compare($e1, $e2)
     $e2_type = gettype($e2);
     $ok = FALSE;
     if ($e1_type == "string") {
-//        $dt = new SOAP_Type_dateTime();
+//        $dt = new moap_Type_dateTime();
 //        $ok = $dt->compare($e1, $e2) == 0;
         $oj = false;
     }
@@ -120,7 +120,7 @@ function parseMessage($msg)
 {
     # strip line endings
     #$msg = preg_replace('/\r|\n/', ' ', $msg);
-    $response = new SOAP_Parser($msg);
+    $response = new moap_Parser($msg);
     if ($response->fault) {
         return $response->fault->getFault();
     }

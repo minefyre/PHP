@@ -1,5 +1,5 @@
 --TEST--
-SOAP XML Schema 71: SOAP 1.1 Array (document style)
+moap XML Schema 71: moap 1.1 Array (document style)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --FILE--
@@ -8,8 +8,8 @@ include "test_schema.inc";
 $schema = <<<EOF
 	<complexType name="testType">
 		<complexContent>
-			<restriction base="SOAP-ENC:Array">
-  	    <attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="int[]"/>
+			<restriction base="moap-ENC:Array">
+  	    <attribute ref="moap-ENC:arrayType" wsdl:arrayType="int[]"/>
     	</restriction>
     </complexContent>
 	</complexType>
@@ -19,5 +19,5 @@ echo "ok";
 ?>
 --EXPECT--
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><SOAP-ENV:Body><testParam><xsd:int>123</xsd:int><xsd:int>123</xsd:int></testParam></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><moap-ENV:Body><testParam><xsd:int>123</xsd:int><xsd:int>123</xsd:int></testParam></moap-ENV:Body></moap-ENV:Envelope>
 ok

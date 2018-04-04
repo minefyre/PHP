@@ -19,7 +19,7 @@
 		"sendmail_path", \
 		"session.cookie_path", \
 		"session_pgsql.sem_file_name", \
-		"soap.wsdl_cache_dir", \
+		"moap.wsdl_cache_dir", \
 		"uploadprogress.file.filename_template", \
 		"xdebug.output_dir", \
 		"xdebug.profiler_output_dir", \

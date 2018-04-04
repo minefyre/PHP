@@ -20,7 +20,7 @@
 // $Id: server_round2_groupB.php 242949 2007-09-26 15:44:16Z cvs2svn $
 //
 
-class SOAP_Interop_GroupB {
+class moap_Interop_GroupB {
 
     function echoStructAsSimpleTypes ($struct)
     {
@@ -52,7 +52,7 @@ class SOAP_Interop_GroupB {
     }
 }
 
-$server = new SoapServer((isset($_SERVER['HTTPS'])?"https://":"http://").$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/interopB.wsdl.php");
-$server->setClass("SOAP_Interop_GroupB");
+$server = new moapServer((isset($_SERVER['HTTPS'])?"https://":"http://").$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/interopB.wsdl.php");
+$server->setClass("moap_Interop_GroupB");
 $server->handle();
 ?>

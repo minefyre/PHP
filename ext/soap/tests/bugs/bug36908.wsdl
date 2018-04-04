@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
-xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-xmlns:api="http://soap.dev/soap/PublisherService"
-xmlns:types="http://soap.dev/soap/types"
-targetNamespace="http://soap.dev/soap/PublisherService">
+xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/"
+xmlns:moapenc="http://schemas.xmlmoap.org/moap/encoding/"
+xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/"
+xmlns:api="http://moap.dev/moap/PublisherService"
+xmlns:types="http://moap.dev/moap/types"
+targetNamespace="http://moap.dev/moap/PublisherService">
   <wsdl:types>
     <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
-xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-xmlns:types="http://soap.dev/soap/types"
-targetNamespace="http://soap.dev/soap/types">
+xmlns:moapenc="http://schemas.xmlmoap.org/moap/encoding/"
+xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/"
+xmlns:types="http://moap.dev/moap/types"
+targetNamespace="http://moap.dev/moap/types">
       <xsd:complexType name="publisher">
         <xsd:all>
           <xsd:element name="region_id" type="xsd:long" default="52"/>
@@ -32,20 +32,20 @@ targetNamespace="http://soap.dev/soap/types">
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="PublisherServiceBinding" type="api:PublisherServicePortType">
-    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <moap:binding style="rpc" transport="http://schemas.xmlmoap.org/moap/http"/>
     <wsdl:operation name="add">
-      <soap:operation soapAction="urn:PublisherService#add" style="rpc"/>
+      <moap:operation moapAction="urn:PublisherService#add" style="rpc"/>
       <wsdl:input>
-        <soap:body use="encoded" namespace="urn:PublisherService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+        <moap:body use="encoded" namespace="urn:PublisherService" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="urn:PublisherService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+        <moap:body use="encoded" namespace="urn:PublisherService" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="PublisherService">
     <wsdl:port name="PublisherServicePort" binding="api:PublisherServiceBinding">
-      <soap:address location="http://soap.dev/soap//publisher_test.php"/>
+      <moap:address location="http://moap.dev/moap//publisher_test.php"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

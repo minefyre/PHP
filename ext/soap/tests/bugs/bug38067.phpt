@@ -3,7 +3,7 @@ Bug #38067 (Parameters are not decoded from utf-8 when using encoding option)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --INI--
-soap.wsdl_cache_enabled=0
+moap.wsdl_cache_enabled=0
 --FILE--
 <?php
 function Test($param) {
@@ -12,10 +12,10 @@ function Test($param) {
 	return $g;
 }
 
-class TestSoapClient extends SoapClient {
+class TestmoapClient extends moapClient {
   function __construct($wsdl, $opt) {
     parent::__construct($wsdl, $opt);
-    $this->server = new SoapServer($wsdl, $opt);
+    $this->server = new moapServer($wsdl, $opt);
     $this->server->addFunction('Test');
   }
 
@@ -28,15 +28,15 @@ class TestSoapClient extends SoapClient {
   }
 }
 
-$client = new TestSoapClient(dirname(__FILE__).'/bug38067.wsdl',
+$client = new TestmoapClient(dirname(__FILE__).'/bug38067.wsdl',
 	array('encoding' => 'ISO-8859-1'));
-$str = 'test: Ä';
+$str = 'test: ï¿½';
 $res = $client->Test(array('str'=>$str));
 echo $str."\n";
 echo $res."\n";
 echo $g."\n";
 ?>
 --EXPECT--
-test: Ä
-test: Ä
-test: Ä
+test: ï¿½
+test: ï¿½
+test: ï¿½

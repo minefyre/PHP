@@ -1,11 +1,11 @@
 --TEST--
-Bug #41477 (no arginfo about SoapClient::__soapCall())
+Bug #41477 (no arginfo about moapClient::__moapCall())
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --FILE--
 <?php
-$objRfClass = new ReflectionClass('SoapClient');
-$objRfMethod = $objRfClass->getMethod('__soapCall');
+$objRfClass = new ReflectionClass('moapClient');
+$objRfMethod = $objRfClass->getMethod('__moapCall');
 $arrParams = $objRfMethod->getParameters();
 foreach($arrParams as $objRfParam)
 {

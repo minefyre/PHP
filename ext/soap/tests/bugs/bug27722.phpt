@@ -5,10 +5,10 @@ Bug #27722 (Segfault on schema without targetNamespace)
 --GET--
 wsdl
 --INI--
-soap.wsdl_cache_enabled=0
+moap.wsdl_cache_enabled=0
 --FILE--
 <?php
-$x = new SoapClient(dirname(__FILE__)."/bug27722.wsdl");
+$x = new moapClient(dirname(__FILE__)."/bug27722.wsdl");
 echo "ok\n";
 ?>
 --EXPECT--

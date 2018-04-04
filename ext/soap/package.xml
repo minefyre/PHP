@@ -2,8 +2,8 @@
 <!-- do not use the "Type" attribute here, that one is only for
      generated package.xml files -->
 <package>
-  <name>ext_soap</name>
-  <summary>Provides SOAP Services</summary>
+  <name>ext_moap</name>
+  <summary>Provides moap Services</summary>
   <description>
     Description of package....
   </description>
@@ -47,18 +47,18 @@
       <file role="src">php_encoding.h</file>
       <file role="src">php_http.c</file>
       <file role="src">php_http.h</file>
-      <file role="src">php_packet_soap.c</file>
-      <file role="src">php_packet_soap.h</file>
+      <file role="src">php_packet_moap.c</file>
+      <file role="src">php_packet_moap.h</file>
       <file role="src">php_schema.c</file>
       <file role="src">php_schema.h</file>
       <file role="src">php_sdl.c</file>
       <file role="src">php_sdl.h</file>
-      <file role="src">php_soap.h</file>
-      <file role="src">php_soap.h</file>
+      <file role="src">php_moap.h</file>
+      <file role="src">php_moap.h</file>
       <file role="src">php_xml.c</file>
       <file role="src">php_xml.h</file>
-      <file role="src">soap.c</file>
-      <file role="src">php_soap.dsp</file>
+      <file role="src">moap.c</file>
+      <file role="src">php_moap.dsp</file>
     </dir>
   </filelist>
 </package>

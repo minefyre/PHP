@@ -1,5 +1,5 @@
 <?php
-class SOAP_Interop_GroupH {
+class moap_Interop_GroupH {
 
     function echoVersionMismatchFault()
     {
@@ -16,7 +16,7 @@ class SOAP_Interop_GroupH {
 
 }
 
-$server = new SoapServer(dirname(__FILE__)."/round4_groupH_soapfault.wsdl");
-$server->setClass("SOAP_Interop_GroupH");
+$server = new moapServer(dirname(__FILE__)."/round4_groupH_moapfault.wsdl");
+$server->setClass("moap_Interop_GroupH");
 $server->handle($HTTP_RAW_POST_DATA);
 ?>

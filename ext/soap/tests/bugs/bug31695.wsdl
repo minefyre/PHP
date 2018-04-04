@@ -1,15 +1,15 @@
 <?xml version="1.0" ?>
 <definitions
-    xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
-    xmlns:si="http://soapinterop.org/xsd"
-    xmlns:tns="http://linuxsrv.home/~dmitry/soap/test.wsdl"
-    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-    xmlns="http://schemas.xmlsoap.org/wsdl/"
-    targetNamespace="http://linuxsrv.home/~dmitry/soap/test.wsdl">
+    xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/"
+    xmlns:si="http://moapinterop.org/xsd"
+    xmlns:tns="http://linuxsrv.home/~dmitry/moap/test.wsdl"
+    xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/"
+    xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/"
+    xmlns="http://schemas.xmlmoap.org/wsdl/"
+    targetNamespace="http://linuxsrv.home/~dmitry/moap/test.wsdl">
 
   <message name="TestRequest">
     <part name="x" type="xsd:string" />
@@ -26,21 +26,21 @@
   </portType>
 
   <binding name="TestServiceBinding" type="tns:TestServicePortType">
-    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+    <moap:binding style="rpc" transport="http://schemas.xmlmoap.org/moap/http" />
     <operation name="Test">
-      <soap:operation soapAction="Test" style="rpc" />
+      <moap:operation moapAction="Test" style="rpc" />
       <input>
-        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <moap:body use="encoded" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" />
       </input>
       <output>
-        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <moap:body use="encoded" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/" />
       </output>
     </operation>
   </binding>
 
   <service name="TestService">
     <port name="TestServicePort" binding="tns:TestServiceBinding">
-      <soap:address location="test://0" />
+      <moap:address location="test://0" />
     </port>
   </service>
 

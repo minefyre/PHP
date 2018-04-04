@@ -7,24 +7,24 @@ SimpleXML [profile]: Accessing namespaced root and non namespaced children
 
 $xml =<<<EOF
 <?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope
-xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
+<moap:Envelope
+xmlns:moap="http://schemas.xmlmoap.org/moap/envelope/" 
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 >
-<soap:Body>
+<moap:Body>
 <businessList foo="bar">
 <businessInfo businessKey="bla"/>
 </businessList>
-</soap:Body> 
-</soap:Envelope>
+</moap:Body> 
+</moap:Envelope>
 EOF;
 
 $sxe = simplexml_load_string($xml);
 $nsl = $sxe->getNamespaces();
 var_dump($nsl);
 
-$sxe = simplexml_load_string($xml, NULL, 0, $nsl['soap']);
+$sxe = simplexml_load_string($xml, NULL, 0, $nsl['moap']);
 var_dump($sxe->Body);
 var_dump($sxe->Body->children(''));
 var_dump($sxe->Body->children('')->businessList);
@@ -33,8 +33,8 @@ var_dump($sxe->Body->children('')->businessList);
 ===DONE===
 --EXPECTF--
 array(1) {
-  ["soap"]=>
-  string(41) "http://schemas.xmlsoap.org/soap/envelope/"
+  ["moap"]=>
+  string(41) "http://schemas.xmlmoap.org/moap/envelope/"
 }
 object(SimpleXMLElement)#%s (0) {
 }

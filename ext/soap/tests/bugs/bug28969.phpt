@@ -5,15 +5,15 @@ Bug #28969 (Wrong data encoding of special characters)
 --FILE--
 <?php
 function test() {
-  return "¦è¥";
-//  return utf8_encode("¦è¥");
+  return "ï¿½ï¿½";
+//  return utf8_encode("ï¿½ï¿½");
 }
 
-class LocalSoapClient extends SoapClient {
+class LocalmoapClient extends moapClient {
 
   function __construct($wsdl, $options) {
     parent::__construct($wsdl, $options);
-    $this->server = new SoapServer($wsdl, $options);
+    $this->server = new moapServer($wsdl, $options);
     $this->server->addFunction('test');
   }
 
@@ -27,12 +27,12 @@ class LocalSoapClient extends SoapClient {
 
 }
 
-$x = new LocalSoapClient(NULL,array('location'=>'test://', 
+$x = new LocalmoapClient(NULL,array('location'=>'test://', 
                                     'uri'=>'http://testuri.org',
                                     'encoding'=>'ISO-8859-1')); 
 var_dump($x->test());
 echo "ok\n";
 ?>
 --EXPECT--
-string(3) "¦è¥"
+string(3) "ï¿½ï¿½"
 ok

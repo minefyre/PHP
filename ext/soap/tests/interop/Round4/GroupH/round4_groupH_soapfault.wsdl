@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions
-	xmlns="http://schemas.xmlsoap.org/wsdl/"
-	xmlns:tns="http://soapinterop.org/wsdl"
-	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns="http://schemas.xmlmoap.org/wsdl/"
+	xmlns:tns="http://moapinterop.org/wsdl"
+	xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xmlns:ns2="http://soapinterop.org/types"
-	targetNamespace="http://soapinterop.org/wsdl">
+	xmlns:ns2="http://moapinterop.org/types"
+	targetNamespace="http://moapinterop.org/wsdl">
 
 	<message name="echoVoidRequest"/>
 	<message name="echoVoidResponse"/>
@@ -13,7 +13,7 @@
 		<part name="param" type="xsd:string"/>
 	</message>
 
-	<portType name="SOAPFaultPortType">
+	<portType name="moapFaultPortType">
 		<operation name="echoVersionMismatchFault" parameterOrder="">
 			<input message="tns:echoVoidRequest"/>
 			<output message="tns:echoVoidResponse"/>
@@ -25,55 +25,55 @@
 		</operation>
 	</portType>
 
-	<binding name="SOAPFaultBinding" type="tns:SOAPFaultPortType">
-		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+	<binding name="moapFaultBinding" type="tns:moapFaultPortType">
+		<moap:binding transport="http://schemas.xmlmoap.org/moap/http" style="rpc"/>
 		<!--
 			If the server receives an envelope with an incorrect
 			namespace, then a fault with VersionMismatch fault code
-			is populated in the SOAP response
+			is populated in the moap response
 		-->
 		<operation name="echoVersionMismatchFault">
 			<input>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</input>
 			<output>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</output>
-			<soap:operation soapAction=""/>
+			<moap:operation moapAction=""/>
 		</operation>
 
 		<operation name="echoMustUnderstandFault">
 			<input>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
-				<soap:header
+					namespace="http://moapinterop.org/wsdl"/>
+				<moap:header
 					message="tns:HeaderRequest"
 					part="param"
 					use="encoded"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</output>
-			<soap:operation soapAction=""/>
+			<moap:operation moapAction=""/>
 		</operation>
 
 	</binding>
 
-	<service name="SOAPFaultService">
-		<port name="SOAPFaultPort" binding="tns:SOAPFaultBinding">
-			<soap:address location="test://"/>
+	<service name="moapFaultService">
+		<port name="moapFaultPort" binding="tns:moapFaultBinding">
+			<moap:address location="test://"/>
 		</port>
 	</service>
 </definitions>

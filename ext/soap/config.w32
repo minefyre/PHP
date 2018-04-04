@@ -1,18 +1,18 @@
 // $Id: config.w32 279159 2009-04-22 19:06:47Z pajoye $
 // vim:ft=javascript
 
-ARG_ENABLE("soap", "SOAP support", "no");
+ARG_ENABLE("moap", "moap support", "no");
 
-if (PHP_SOAP != "no") {
-	if (PHP_LIBXML == "yes" && ADD_EXTENSION_DEP('soap', 'libxml')) {
-		EXTENSION('soap', 'soap.c php_encoding.c php_http.c php_packet_soap.c php_schema.c php_sdl.c php_xml.c');
-		AC_DEFINE('HAVE_PHP_SOAP', 1, "SOAP support");
+if (PHP_moap != "no") {
+	if (PHP_LIBXML == "yes" && ADD_EXTENSION_DEP('moap', 'libxml')) {
+		EXTENSION('moap', 'moap.c php_encoding.c php_http.c php_packet_moap.c php_schema.c php_sdl.c php_xml.c');
+		AC_DEFINE('HAVE_PHP_moap', 1, "moap support");
 
-		if (!PHP_SOAP_SHARED) {
-			ADD_FLAG('CFLAGS_SOAP', "/D LIBXML_STATIC ");
+		if (!PHP_moap_SHARED) {
+			ADD_FLAG('CFLAGS_moap', "/D LIBXML_STATIC ");
 		}
 	} else {
-			WARNING("soap not enabled, libxml not found");
-			PHP_SOAP = "no"
+			WARNING("moap not enabled, libxml not found");
+			PHP_moap = "no"
 	}
 }

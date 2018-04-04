@@ -1,5 +1,5 @@
 --TEST--
-SOAP Server 28: SoapServer::setObject and __call()
+moap Server 28: moapServer::setObject and __call()
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --FILE--
@@ -9,27 +9,27 @@ class Foo {
     if ($name == "test") {
       return "Hello World";
     } else {
-      return SoapFault("Server","Function $name doesn't exist");
+      return moapFault("Server","Function $name doesn't exist");
     }
   }
 }
 
 $foo = new Foo();
-$server = new SoapServer(null,array('uri'=>"http://testuri.org"));
+$server = new moapServer(null,array('uri'=>"http://testuri.org"));
 $server->setObject($foo);
 
 $HTTP_RAW_POST_DATA = <<<EOF
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<SOAP-ENV:Envelope
-  SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+<moap-ENV:Envelope
+  moap-ENV:encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
+  xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:si="http://soapinterop.org/xsd">
-  <SOAP-ENV:Body>
+  xmlns:si="http://moapinterop.org/xsd">
+  <moap-ENV:Body>
     <ns1:test xmlns:ns1="http://testuri.org" />
-  </SOAP-ENV:Body>
-</SOAP-ENV:Envelope>
+  </moap-ENV:Body>
+</moap-ENV:Envelope>
 EOF;
 
 $server->handle($HTTP_RAW_POST_DATA);
@@ -37,5 +37,5 @@ echo "ok\n";
 ?>
 --EXPECT--
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://testuri.org" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><SOAP-ENV:Body><ns1:testResponse><return xsi:type="xsd:string">Hello World</return></ns1:testResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/" xmlns:ns1="http://testuri.org" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/" moap-ENV:encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"><moap-ENV:Body><ns1:testResponse><return xsi:type="xsd:string">Hello World</return></ns1:testResponse></moap-ENV:Body></moap-ENV:Envelope>
 ok

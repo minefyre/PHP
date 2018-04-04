@@ -1,10 +1,10 @@
 --TEST--
-SOAP Classmap 3: encoding of inherited objects
+moap Classmap 3: encoding of inherited objects
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --FILE--
 <?php
-ini_set("soap.wsdl_cache_enabled",0);
+ini_set("moap.wsdl_cache_enabled",0);
 
 class A {
   public $x;
@@ -25,11 +25,11 @@ function f(){
   return new B(5);
 }
 
-class LocalSoapClient extends SoapClient {
+class LocalmoapClient extends moapClient {
 
   function __construct($wsdl, $options) {
     parent::__construct($wsdl, $options);
-    $this->server = new SoapServer($wsdl, $options);
+    $this->server = new moapServer($wsdl, $options);
     $this->server->addFunction("f");
   }
 
@@ -42,7 +42,7 @@ class LocalSoapClient extends SoapClient {
   }
 }
 
-$client = new LocalSoapClient(dirname(__FILE__)."/classmap003.wsdl",
+$client = new LocalmoapClient(dirname(__FILE__)."/classmap003.wsdl",
     array('classmap'=>array('A'=>'A','B'=>'B')));
 print_r($client->f());
 ?>

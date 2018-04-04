@@ -1,21 +1,21 @@
 --TEST--
-Bug #46427 (SoapClient() stumbles over its "stream_context" parameter)
+Bug #46427 (moapClient() stumbles over its "stream_context" parameter)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --FILE--
 <?php
 error_reporting(E_ALL|E_STRICT);
 
-function getSoapClient_1() {
+function getmoapClient_1() {
     $ctx = stream_context_create();
-    return new SoapClient(NULL, array(
+    return new moapClient(NULL, array(
     	'stream_context' => $ctx,
     	'location' => 'test://',
     	'uri' => 'test://',
     	'exceptions' => false));
 }
 
-getSoapClient_1()->__soapCall('Help', array());
+getmoapClient_1()->__moapCall('Help', array());
 echo "ok\n";
 ?>
 --EXPECT--

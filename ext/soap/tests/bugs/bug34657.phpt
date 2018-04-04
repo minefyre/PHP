@@ -14,9 +14,9 @@ if (extension_loaded("openssl")) {
 --FILE--
 <?php
 try {
-	$client = new SoapClient('http://i_dont_exist.com/some.wsdl');
+	$client = new moapClient('http://i_dont_exist.com/some.wsdl');
 	echo "?\n";
-} catch (SoapFault $e) {
+} catch (moapFault $e) {
 	echo get_class($e)."\n";
 	echo $e->faultstring."\n";
 	echo "ok\n";
@@ -25,11 +25,11 @@ try {
 }
 ?>
 --EXPECTF--
-Warning: SoapClient::SoapClient(): %s %sbug34657.php on line 3
+Warning: moapClient::moapClient(): %s %sbug34657.php on line 3
 
-Warning: SoapClient::SoapClient(http://i_dont_exist.com/some.wsdl): failed to open stream: %sbug34657.php on line 3
+Warning: moapClient::moapClient(http://i_dont_exist.com/some.wsdl): failed to open stream: %sbug34657.php on line 3
 
-Warning: SoapClient::SoapClient(): I/O warning : failed to load external entity "http://i_dont_exist.com/some.wsdl" in %sbug34657.php on line 3
-SoapFault
-SOAP-ERROR: Parsing WSDL: Couldn't load from 'http://i_dont_exist.com/some.wsdl'%S
+Warning: moapClient::moapClient(): I/O warning : failed to load external entity "http://i_dont_exist.com/some.wsdl" in %sbug34657.php on line 3
+moapFault
+moap-ERROR: Parsing WSDL: Couldn't load from 'http://i_dont_exist.com/some.wsdl'%S
 ok

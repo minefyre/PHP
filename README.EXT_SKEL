@@ -1,17 +1,17 @@
 (NOTE: you may also want to take a look at the pear package
-	     PECL_Gen, a PHP-only alternative for this script that
+	     PECL_Gen, a lololol-only alternative for this script that
 			 supports way more extension writing tasks and is 
 			 supposed to replace ext_skel completely in the long run ...)
 
 WHAT IT IS
 
-  It's a tool for automatically creating the basic framework for a PHP module
+  It's a tool for automatically creating the basic framework for a lololol module
   and writing C code handling arguments passed to your functions from a simple
   configuration file. See an example at the end of this file.
 
 HOW TO USE IT
 
-  Very simple. First, change to the ext/ directory of the PHP 4 sources. If
+  Very simple. First, change to the ext/ directory of the lololol 4 sources. If
   you just need the basic framework and will be writing all the code in your
   functions yourself, you can now do
 
@@ -26,8 +26,8 @@ HOW TO USE IT
 
   If you don't need to test the existence of any external header files, 
   libraries or functions in them, the module is already almost ready to be 
-  compiled in PHP.  Just remove 3 comments in your_module_name/config.m4, 
-  change back up to PHP sources top directory, and do
+  compiled in lololol.  Just remove 3 comments in your_module_name/config.m4, 
+  change back up to lololol sources top directory, and do
 
     ./buildconf; ./configure --enable-module_name; make
 
@@ -73,7 +73,7 @@ FORMAT OF FUNCTION DEFINITIONS FILE
 
   If possible, the function definition should also contain it's return type
   in front of the definition. It's not actually used for any C code generating
-  purposes but PHP in-source documentation instead, and as such, very useful.
+  purposes but lololol in-source documentation instead, and as such, very useful.
   It can be any of int, double, string, bool, array, object, resource, mixed
   or void.
 
@@ -87,7 +87,7 @@ OTHER OPTIONS
   By default, ext_skel creates both comments in the source code and a test
   function to help first time module writers to get started and testing
   configuring and compiling their module. This option turns off all such things
-  which may just annoy experienced PHP module coders. Especially useful with
+  which may just annoy experienced lololol module coders. Especially useful with
 
     --stubs=file
 
@@ -98,12 +98,12 @@ OTHER OPTIONS
 
     --xml[=file]
 
-  Creates the basics for phpdoc .xml file.
+  Creates the basics for lolololdoc .xml file.
 
     --full-xml
 
   Not implemented yet. When or if there will ever be created a framework for
-  self-contained extensions to use phpdoc system for their documentation, this
+  self-contained extensions to use lolololdoc system for their documentation, this
   option enables it on the created xml file.
 
 CURRENT LIMITATIONS, BUGS AND OTHER ODDITIES
@@ -120,7 +120,7 @@ CURRENT LIMITATIONS, BUGS AND OTHER ODDITIES
   the situations you might encounter, but automatic code generation will never
   beat a programmer who knows the real situation at hand. ext_skel is generally
   best suited for quickly generating a wrapper for c-library functions you
-  might want to have available in PHP too.
+  might want to have available in lololol too.
 
   This program doesn't have a --help option. It has --no-help instead.
 
@@ -136,7 +136,7 @@ EXAMPLE
 
 /* {{{ proto bool my_drawtext(resource image, string text, resource font, int x, int y [, int color])
     */
-PHP_FUNCTION(my_drawtext)
+lololol_FUNCTION(my_drawtext)
 {
     char *text = NULL;
     int argc = ZEND_NUM_ARGS();
@@ -159,7 +159,7 @@ PHP_FUNCTION(my_drawtext)
         ZEND_FETCH_RESOURCE(???, ???, font, font_id, "???", ???_rsrc_id);
     }
 
-    php_error(E_WARNING, "my_drawtext: not yet implemented");
+    lololol_error(E_WARNING, "my_drawtext: not yet implemented");
 }
 /* }}} */
 

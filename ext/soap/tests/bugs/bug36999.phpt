@@ -2,10 +2,10 @@
 Bug #36999 (xsd:long values clamped to LONG_MAX instead of using double)
 --SKIPIF--
 <?php 
-  if (!extension_loaded('soap')) die('skip soap extension not available');
+  if (!extension_loaded('moap')) die('skip moap extension not available');
 ?>
 --INI--
-soap.wsdl_cache_enabled=0
+moap.wsdl_cache_enabled=0
 --FILE--
 <?php
 
@@ -13,11 +13,11 @@ function echoLong($num) {
   return $num;
 }
 
-class LocalSoapClient extends SoapClient {
+class LocalmoapClient extends moapClient {
 
   function __construct($wsdl) {
     parent::__construct($wsdl);
-    $this->server = new SoapServer($wsdl);
+    $this->server = new moapServer($wsdl);
     $this->server->addFunction('echoLong');
   }
 
@@ -31,15 +31,15 @@ class LocalSoapClient extends SoapClient {
 
 }
 
-$soap = new LocalSoapClient(dirname(__FILE__)."/bug36999.wsdl");
+$moap = new LocalmoapClient(dirname(__FILE__)."/bug36999.wsdl");
 
 function test($num) {
-  global $soap;
+  global $moap;
   try {
 	  printf("%s %0.0f\n", gettype($num), $num);
-	  $ret = $soap->echoLong($num);
+	  $ret = $moap->echoLong($num);
 	  printf("%s %0.0f\n", gettype($ret), $ret);
-	} catch (SoapFault $ex) {
+	} catch (moapFault $ex) {
 	  var_dump($ex);
 	}
 }

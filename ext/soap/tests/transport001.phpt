@@ -1,5 +1,5 @@
 --TEST--
-SOAP Transport 1: Local transport using SoapClient::__doRequest
+moap Transport 1: Local transport using moapClient::__doRequest
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --FILE--
@@ -8,11 +8,11 @@ function Add($x,$y) {
   return $x+$y;
 }
 
-class LocalSoapClient extends SoapClient {
+class LocalmoapClient extends moapClient {
 
   function __construct($wsdl, $options) {
     parent::__construct($wsdl, $options);
-    $this->server = new SoapServer($wsdl, $options);
+    $this->server = new moapServer($wsdl, $options);
     $this->server->addFunction('Add');
   }
 
@@ -26,7 +26,7 @@ class LocalSoapClient extends SoapClient {
 
 }
 
-$x = new LocalSoapClient(NULL,array('location'=>'test://', 
+$x = new LocalmoapClient(NULL,array('location'=>'test://', 
                                    'uri'=>'http://testuri.org')); 
 var_dump($x->Add(3,4));
 echo "ok\n";

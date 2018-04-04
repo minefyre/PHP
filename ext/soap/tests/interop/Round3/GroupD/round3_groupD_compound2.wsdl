@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions name="SoapInteropCompound" targetNamespace="http://soapinterop.org/" 
-		xmlns:wsdlns="http://soapinterop.org/" 
-		xmlns:emp="http://soapinterop.org/employee" 
-		xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+<definitions name="moapInteropCompound" targetNamespace="http://moapinterop.org/" 
+		xmlns:wsdlns="http://moapinterop.org/" 
+		xmlns:emp="http://moapinterop.org/employee" 
+		xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" 
 		xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-		xmlns="http://schemas.xmlsoap.org/wsdl/">
+		xmlns="http://schemas.xmlmoap.org/wsdl/">
 	<types>
-		<schema targetNamespace="http://soapinterop.org/person" 
+		<schema targetNamespace="http://moapinterop.org/person" 
 			xmlns="http://www.w3.org/2001/XMLSchema" 
 			elementFormDefault="qualified">
 					
@@ -17,11 +17,11 @@
 				</sequence>
 			</complexType>
 		</schema>
-		<schema targetNamespace = "http://soapinterop.org/employee" 
-			xmlns:prs = "http://soapinterop.org/person"			 
+		<schema targetNamespace = "http://moapinterop.org/employee" 
+			xmlns:prs = "http://moapinterop.org/person"			 
 			xmlns="http://www.w3.org/2001/XMLSchema" 
 			elementFormDefault="qualified">
-                        <import namespace="http://soapinterop.org/person" /> 
+                        <import namespace="http://moapinterop.org/person" /> 
 			<complexType name="Employee">
 				<sequence>
 					<element minOccurs="1" maxOccurs="1" name="person" type="prs:Person"/>
@@ -39,27 +39,27 @@
 	<message name="echoEmployeeResponse">
 		<part name="result" element="emp:result_Employee"/>
 	</message>
-	<portType name="SoapInteropCompound2PortType">
+	<portType name="moapInteropCompound2PortType">
 		<operation name="echoEmployee" parameterOrder="x">
 			<input message="wsdlns:echoEmployee"/>
 			<output message="wsdlns:echoEmployeeResponse"/>
 		</operation>
 	</portType>
-	<binding name="SoapInteropCompound2Binding" type="wsdlns:SoapInteropCompound2PortType">
-		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+	<binding name="moapInteropCompound2Binding" type="wsdlns:moapInteropCompound2PortType">
+		<moap:binding style="document" transport="http://schemas.xmlmoap.org/moap/http"/>
 		<operation name="echoEmployee">
-			<soap:operation soapAction="#echoEmployee"/>
+			<moap:operation moapAction="#echoEmployee"/>
 			<input>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</input>
 			<output>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</output>
 		</operation>		
 	</binding>
 	<service name="Compound2">
-		<port name="SoapInteropCompound2Port" binding="wsdlns:SoapInteropCompound2Binding">
-			<soap:address location="round3_groupD_compound2.inc"/>
+		<port name="moapInteropCompound2Port" binding="wsdlns:moapInteropCompound2Binding">
+			<moap:address location="round3_groupD_compound2.inc"/>
 		</port>
 	</service>
 </definitions>

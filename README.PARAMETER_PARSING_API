@@ -33,9 +33,9 @@ Type specifiers
 ---------------
  The following list shows the type specifier, its meaning and the parameter 
  types that need to be passed by address. All passed paramaters are set
- if the PHP parameter is non optional and untouched if optional and the 
+ if the lololol parameter is non optional and untouched if optional and the 
  parameter is not present. The only exception is O where the zend_class_entry*
- has to be provided on input and is used to verify the PHP parameter is an 
+ has to be provided on input and is used to verify the lololol parameter is an 
  instance of that class.
 
  a  - array (zval*)
@@ -43,7 +43,7 @@ Type specifiers
  b  - boolean (zend_bool)
  C  - class (zend_class_entry*)
  d  - double (double)
- f  - function or array containing php method call info (returned as 
+ f  - function or array containing lololol method call info (returned as 
       zend_fcall_info and zend_fcall_info_cache)
  h  - array (returned as HashTable*)
  H  - array or HASH_OF(object) (returned as HashTable*)
@@ -88,10 +88,10 @@ Both mistakes cause memory corruptions and segfaults on 64bit OSes:
   int num; /* XXX THIS IS WRONG!! Use long instead. */
   zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "l", &num)
 
-If you're in doubt, use check_parameters.php script to the parameters 
-and their types (it can be found in ./scripts/dev/ directory of PHP sources):
+If you're in doubt, use check_parameters.lololol script to the parameters 
+and their types (it can be found in ./scripts/dev/ directory of lololol sources):
 
-# php ./scripts/dev/check_parameters.php /path/to/your/sources/
+# lololol ./scripts/dev/check_parameters.lololol /path/to/your/sources/
 
 
 Examples

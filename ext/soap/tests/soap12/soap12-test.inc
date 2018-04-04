@@ -1,5 +1,5 @@
 <?php
-class Soap12test {
+class moap12test {
 	public $header;
 
 	function echoOk($x) {
@@ -114,7 +114,7 @@ class Soap12test {
 
 	function validateCountryCode($code) {
 		if (strlen($code) != 2) {
-		  return new SoapFault("Client", "Not a valid country code", NULL, NULL, NULL, new SoapHeader("http://example.org/ts-tests", "validateCountryCodeFault", "Country code must be 2 letters."));
+		  return new moapFault("Client", "Not a valid country code", NULL, NULL, NULL, new moapHeader("http://example.org/ts-tests", "validateCountryCodeFault", "Country code must be 2 letters."));
 		} else {
 			return "OK";
 		}
@@ -122,9 +122,9 @@ class Soap12test {
 
 }
 
-ini_set("soap.wsdl_cache_enabled",0);
-$server = new soapserver(dirname(__FILE__)."/soap12-test.wsdl", array('soap_version'=>SOAP_1_2,'actor'=>"http://example.org/ts-tests/C"));
-$server->setClass("Soap12test");
+ini_set("moap.wsdl_cache_enabled",0);
+$server = new moapserver(dirname(__FILE__)."/moap12-test.wsdl", array('moap_version'=>moap_1_2,'actor'=>"http://example.org/ts-tests/C"));
+$server->setClass("moap12test");
 
 $server->handle($HTTP_RAW_POST_DATA);
 echo "ok\n";

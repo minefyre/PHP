@@ -26,17 +26,17 @@
 #define XSD_1999_TIMEINSTANT 401
 #define XSD_1999_TIMEINSTANT_STRING "timeInstant"
 
-#define SOAP_1_1_ENV_NAMESPACE "http://schemas.xmlsoap.org/soap/envelope/"
-#define SOAP_1_1_ENV_NS_PREFIX "SOAP-ENV"
+#define moap_1_1_ENV_NAMESPACE "http://schemas.xmlmoap.org/moap/envelope/"
+#define moap_1_1_ENV_NS_PREFIX "moap-ENV"
 
-#define SOAP_1_2_ENV_NAMESPACE "http://www.w3.org/2003/05/soap-envelope"
-#define SOAP_1_2_ENV_NS_PREFIX "env"
+#define moap_1_2_ENV_NAMESPACE "http://www.w3.org/2003/05/moap-envelope"
+#define moap_1_2_ENV_NS_PREFIX "env"
 
-#define SOAP_1_1_ENC_NAMESPACE "http://schemas.xmlsoap.org/soap/encoding/"
-#define SOAP_1_1_ENC_NS_PREFIX "SOAP-ENC"
+#define moap_1_1_ENC_NAMESPACE "http://schemas.xmlmoap.org/moap/encoding/"
+#define moap_1_1_ENC_NS_PREFIX "moap-ENC"
 
-#define SOAP_1_2_ENC_NAMESPACE "http://www.w3.org/2003/05/soap-encoding"
-#define SOAP_1_2_ENC_NS_PREFIX "enc"
+#define moap_1_2_ENC_NAMESPACE "http://www.w3.org/2003/05/moap-encoding"
+#define moap_1_2_ENC_NS_PREFIX "enc"
 
 #define SCHEMA_NAMESPACE "http://www.w3.org/2001/XMLSchema"
 #define XSD_NAMESPACE "http://www.w3.org/2001/XMLSchema"
@@ -141,34 +141,34 @@
 
 #define XSD_ANYXML 147
 
-#define APACHE_NAMESPACE "http://xml.apache.org/xml-soap"
+#define APACHE_NAMESPACE "http://xml.apache.org/xml-moap"
 #define APACHE_MAP 200
 #define APACHE_MAP_STRING "Map"
 
-#define SOAP_ENC_ARRAY 300
-#define SOAP_ENC_ARRAY_STRING "Array"
-#define SOAP_ENC_OBJECT 301
-#define SOAP_ENC_OBJECT_STRING "Struct"
+#define moap_ENC_ARRAY 300
+#define moap_ENC_ARRAY_STRING "Array"
+#define moap_ENC_OBJECT 301
+#define moap_ENC_OBJECT_STRING "Struct"
 
-#define WSDL_NAMESPACE "http://schemas.xmlsoap.org/wsdl/"
+#define WSDL_NAMESPACE "http://schemas.xmlmoap.org/wsdl/"
 #define WSDL_NS_PREFIX "wsdl"
 
-#define WSDL_SOAP11_NAMESPACE "http://schemas.xmlsoap.org/wsdl/soap/"
-#define WSDL_SOAP12_NAMESPACE "http://schemas.xmlsoap.org/wsdl/soap12/"
-#define RPC_SOAP12_NAMESPACE  "http://www.w3.org/2003/05/soap-rpc"
-#define RPC_SOAP12_NS_PREFIX  "rpc"
+#define WSDL_moap11_NAMESPACE "http://schemas.xmlmoap.org/wsdl/moap/"
+#define WSDL_moap12_NAMESPACE "http://schemas.xmlmoap.org/wsdl/moap12/"
+#define RPC_moap12_NAMESPACE  "http://www.w3.org/2003/05/moap-rpc"
+#define RPC_moap12_NS_PREFIX  "rpc"
 
-#define WSDL_HTTP11_NAMESPACE "http://schemas.xmlsoap.org/wsdl/http/"
-#define WSDL_HTTP12_NAMESPACE	"http://www.w3.org/2003/05/soap/bindings/HTTP/"
+#define WSDL_HTTP11_NAMESPACE "http://schemas.xmlmoap.org/wsdl/http/"
+#define WSDL_HTTP12_NAMESPACE	"http://www.w3.org/2003/05/moap/bindings/HTTP/"
 #define WSDL_HTTP_NS_PREFIX "http"
 
-#define WSDL_HTTP_TRANSPORT "http://schemas.xmlsoap.org/soap/http"
+#define WSDL_HTTP_TRANSPORT "http://schemas.xmlmoap.org/moap/http"
 
-#define WSDL_MIME_NAMESPACE "http://schemas.xmlsoap.org/wsdl/mime/"
+#define WSDL_MIME_NAMESPACE "http://schemas.xmlmoap.org/wsdl/mime/"
 
-#define WSDL_DIME_NAMESPACE "http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/"
-#define WSDL_DIME_OPEN      "http://schemas.xmlsoap.org/ws/2002/04/dime/open-layout"
-#define WSDL_DIME_CLOSED    "http://schemas.xmlsoap.org/ws/2002/04/dime/closed-layout"
+#define WSDL_DIME_NAMESPACE "http://schemas.xmlmoap.org/ws/2002/04/dime/wsdl/"
+#define WSDL_DIME_OPEN      "http://schemas.xmlmoap.org/ws/2002/04/dime/open-layout"
+#define WSDL_DIME_CLOSED    "http://schemas.xmlmoap.org/ws/2002/04/dime/closed-layout"
 
 #define UNKNOWN_TYPE 999998
 #define END_KNOWN_TYPES 999999
@@ -178,7 +178,7 @@ struct _encodeType {
 	char *type_str;
 	char *ns;
 	sdlTypePtr sdl_type;
-	soapMappingPtr map;
+	moapMappingPtr map;
 };
 
 struct _encode {

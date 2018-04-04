@@ -1,17 +1,17 @@
 --TEST--
-SOAP typemap 5: SoapServer support for typemap's from_xml() (without WSDL)
+moap typemap 5: moapServer support for typemap's from_xml() (without WSDL)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 <?php if (!extension_loaded('simplexml')) die("skip simplexml extension not available"); ?>
 --INI--
-soap.wsdl_cache_enabled=0
+moap.wsdl_cache_enabled=0
 --FILE--
 <?php
 $GLOBALS['HTTP_RAW_POST_DATA']="
-<env:Envelope xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\" 
+<env:Envelope xmlns:env=\"http://schemas.xmlmoap.org/moap/envelope/\" 
 	xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" 
 	xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" 
-	xmlns:enc=\"http://schemas.xmlsoap.org/soap/encoding/\"
+	xmlns:enc=\"http://schemas.xmlmoap.org/moap/encoding/\"
 	xmlns:ns1=\"http://schemas.nothing.com\"
 >
   <env:Body>
@@ -53,12 +53,12 @@ $options=Array(
 		                         "from_xml"  => "book_from_xml"))
 		);
 
-$server = new SoapServer(NULL,$options);
+$server = new moapServer(NULL,$options);
 $server->setClass("test");
 $server->handle($HTTP_RAW_POST_DATA);
 echo "ok\n";
 ?>
 --EXPECT--
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://schemas.nothing.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><SOAP-ENV:Body><ns1:dotestResponse><return xsi:type="xsd:string">Object: book(foo,bar)</return></ns1:dotestResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/" xmlns:ns1="http://schemas.nothing.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/" moap-ENV:encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"><moap-ENV:Body><ns1:dotestResponse><return xsi:type="xsd:string">Object: book(foo,bar)</return></ns1:dotestResponse></moap-ENV:Body></moap-ENV:Envelope>
 ok

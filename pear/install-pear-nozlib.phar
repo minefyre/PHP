@@ -1234,12 +1234,12 @@ if (extension_loaded('phar')) {if (isset($_SERVER) && isset($_SERVER['REQUEST_UR
 
 
 require_once 'phar://install-pear-nozlib.phar/index.php';
-__HALT_COMPILER();-  G          install-pear-nozlib.phar       Archive/Tar.php¸  ‡kM¸  ) Qm         Archive_Tar-1.3.7.tar p ‡kM p ∫ï¿m         Console/Getopt.php¬4  ‡kM¬4  ËÃl1m         Console_Getopt-1.3.0.tar R  ‡kM R  t‰Öﬁm      	   index.phpO&  ‡kMO&  ©˘RÂm         OS/Guess.php«)  ‡kM«)  L≥m         PEAR-1.9.2.tar Ä ‡kM Ä π∫˝m         PEAR.phpøÑ  ‡kMøÑ  Ûô±Dm         PEAR/ChannelFile.phpÙ«  ‡kMÙ«  =^Òπm         PEAR/ChannelFile/Parser.phpB  ‡kMB  æK,m         PEAR/Command.php2  ‡kM2  Ü9¨¶m         PEAR/Command/Common.phpè   ‡kMè   º8>m         PEAR/Command/Install.php0«  ‡kM0«  ¥4°⁄m         PEAR/Command/Install.xml~!  ‡kM~!  2°Vm         PEAR/Common.php%f  ‡kM%f  Õ,ë
+__HALT_COMPILER();-  G          install-pear-nozlib.phar       Archive/Tar.phpÔøΩ  ÔøΩkMÔøΩ  ) Qm         Archive_Tar-1.3.7.tar p ÔøΩkM p ÔøΩÔøΩÔøΩm         Console/Getopt.phpÔøΩ4  ÔøΩkMÔøΩ4  ÔøΩÔøΩl1m         Console_Getopt-1.3.0.tar R  ÔøΩkM R  tÔøΩÔøΩm      	   index.phpO&  ÔøΩkMO&  ÔøΩÔøΩRÔøΩm         OS/Guess.phpÔøΩ)  ÔøΩkMÔøΩ)  LÔøΩm         PEAR-1.9.2.tar ÔøΩ ÔøΩkM ÔøΩ ÔøΩÔøΩÔøΩÔøΩm         PEAR.phpÔøΩÔøΩ  ÔøΩkMÔøΩÔøΩ  ÔøΩDm         PEAR/ChannelFile.phpÔøΩÔøΩ  ÔøΩkMÔøΩÔøΩ  =^ÔøΩm         PEAR/ChannelFile/Parser.phpB  ÔøΩkMB  ÔøΩK,m         PEAR/Command.php2  ÔøΩkM2  ÔøΩ9ÔøΩÔøΩm         PEAR/Command/Common.phpÔøΩ   ÔøΩkMÔøΩ   ÔøΩ8>m         PEAR/Command/Install.php0ÔøΩ  ÔøΩkM0ÔøΩ  ÔøΩ4ÔøΩÔøΩm         PEAR/Command/Install.xml~!  ÔøΩkM~!  2ÔøΩVm         PEAR/Common.php%f  ÔøΩkM%f  ÔøΩ,ÔøΩ
 m         PEAR/Config.php3
- ‡kM3
- #“M?m         PEAR/Dependency2.php∆  ‡kM∆  Îßãm         PEAR/DependencyDB.php˛^  ‡kM˛^  ›ÌÂBm         PEAR/Downloader.php! ‡kM! wWêm         PEAR/Downloader/Package.phpØ* ‡kMØ* ›—m         PEAR/ErrorStack.php‘Ñ  ‡kM‘Ñ  q)çm         PEAR/Exception.php–6  ‡kM–6  ‹¥' m         PEAR/Frontend.phpj  ‡kMj  ∫ıµ‹m         PEAR/Frontend/CLI.phpπd  ‡kMπd  lF
-æm         PEAR/Installer.php( ‡kM( $~¶Ÿm         PEAR/Installer/Role.php©  ‡kM©  com         PEAR/Installer/Role/Common.php°  ‡kM°  p≤‹m         PEAR/Installer/Role/Data.phpY  ‡kMY  Â\ö6m         PEAR/Installer/Role/Data.xmlí  ‡kMí  fçszm         PEAR/Installer/Role/Doc.phpV  ‡kMV  Ox≤‹m         PEAR/Installer/Role/Doc.xmlë  ‡kMë  h&P*m         PEAR/Installer/Role/Php.phpV  ‡kMV  r∫£m         PEAR/Installer/Role/Php.xml≠  ‡kM≠  zùqçm         PEAR/Installer/Role/Script.php_  ‡kM_  V¡m         PEAR/Installer/Role/Script.xml∞  ‡kM∞  @vß–m         PEAR/Installer/Role/Test.phpY  ‡kMY  	õÃ)m         PEAR/Installer/Role/Test.xmlí  ‡kMí  B] m         PEAR/PackageFile.phpŸ>  ‡kMŸ>  ïˆ≠Ôm      !   PEAR/PackageFile/Generator/v1.phpà≈  ‡kMà≈  ‚Ô©m      !   PEAR/PackageFile/Generator/v2.phpqÉ  ‡kMqÉ  ≠ä4®m         PEAR/PackageFile/Parser/v1.phpÚ@  ‡kMÚ@  ]¶}m         PEAR/PackageFile/Parser/v2.phpÿ  ‡kMÿ  Æc∆m         PEAR/PackageFile/v1.phpe»  ‡kMe»  yk3(m         PEAR/PackageFile/v2.php® ‡kM® Q˘Å¶m      !   PEAR/PackageFile/v2/Validator.phpP ‡kMP ñŒÑm         PEAR/Registry.php>+ ‡kM>+ '≤ﬂ*m         PEAR/REST.php@  ‡kM@  ª™m         PEAR/REST/10.php˙  ‡kM˙  uÌAm         PEAR/Start.phpÕ7  ‡kMÕ7   ¯}#m         PEAR/Start/CLI.phpnR  ‡kMnR  Ë:≥m         PEAR/Task/Common.php	  ‡kM	  3Âñ”m         PEAR/Task/Postinstallscript.php¢8  ‡kM¢8  Ö,ïÜm      "   PEAR/Task/Postinstallscript/rw.phpÙ  ‡kMÙ  …±Fm         PEAR/Task/Replace.php≈  ‡kM≈  , ÷Ém         PEAR/Task/Replace/rw.phpx  ‡kMx  Ëóom         PEAR/Task/Unixeol.php	  ‡kM	  ì:∫îm         PEAR/Task/Unixeol/rw.phpà  ‡kMà  π®3¯m         PEAR/Task/Windowseol.php	  ‡kM	  €ÄπHm         PEAR/Task/Windowseol/rw.phpù  ‡kMù  M¬"æm         PEAR/Validate.php}V  ‡kM}V  ûDm         PEAR/Validator/PECL.php®  ‡kM®  éìSÑm         PEAR/XMLParser.phpQ  ‡kMQ  ≈ ±m      	   PEAR5.php?  ‡kM?  ﬂx m         Structures/Graph.phpΩ  ‡kMΩ  r¿*m      ,   Structures/Graph/Manipulator/AcyclicTest.phpﬂ  ‡kMﬂ  1sœm      2   Structures/Graph/Manipulator/TopologicalSorter.php∫  ‡kM∫  ç•E˚m         Structures/Graph/Node.phpr+  ‡kMr+  ˚D_m         Structures_Graph-1.0.4.tar , ‡kM , âîfëm      
-   System.phpON  ‡kMON  Õ•∫m         XML/Util.phpƒv  ‡kMƒv  ≤s3m         XML_Util-1.2.1.tar ‚ ‡kM ‚ 7l†\m      <?php
+ ÔøΩkM3
+ #ÔøΩM?m         PEAR/Dependency2.phpÔøΩ  ÔøΩkMÔøΩ  Îßãm         PEAR/DependencyDB.phpÔøΩ^  ÔøΩkMÔøΩ^  ÔøΩÔøΩÔøΩBm         PEAR/Downloader.php! ÔøΩkM! wWÔøΩm         PEAR/Downloader/Package.phpÔøΩ* ÔøΩkMÔøΩ* ÔøΩÔøΩm         PEAR/ErrorStack.php‘Ñ  ÔøΩkM‘Ñ  q)ÔøΩm         PEAR/Exception.phpÔøΩ6  ÔøΩkMÔøΩ6  ‹¥' m         PEAR/Frontend.phpj  ÔøΩkMj  ÔøΩÔøΩÔøΩÔøΩm         PEAR/Frontend/CLI.phpÔøΩd  ÔøΩkMÔøΩd  lF
+ÔøΩm         PEAR/Installer.php( ÔøΩkM( $~ÔøΩÔøΩm         PEAR/Installer/Role.phpÔøΩ  ÔøΩkMÔøΩ  com         PEAR/Installer/Role/Common.phpÔøΩ  ÔøΩkMÔøΩ  pÔøΩÔøΩm         PEAR/Installer/Role/Data.phpY  ÔøΩkMY  ÔøΩ\ÔøΩ6m         PEAR/Installer/Role/Data.xmlÔøΩ  ÔøΩkMÔøΩ  fÔøΩszm         PEAR/Installer/Role/Doc.phpV  ÔøΩkMV  OxÔøΩÔøΩm         PEAR/Installer/Role/Doc.xmlÔøΩ  ÔøΩkMÔøΩ  h&P*m         PEAR/Installer/Role/Php.phpV  ÔøΩkMV  rÔøΩÔøΩm         PEAR/Installer/Role/Php.xmlÔøΩ  ÔøΩkMÔøΩ  zÔøΩqÔøΩm         PEAR/Installer/Role/Script.php_  ÔøΩkM_  VÔøΩm         PEAR/Installer/Role/Script.xmlÔøΩ  ÔøΩkMÔøΩ  @vÔøΩÔøΩm         PEAR/Installer/Role/Test.phpY  ÔøΩkMY  	ÔøΩÔøΩ)m         PEAR/Installer/Role/Test.xmlÔøΩ  ÔøΩkMÔøΩ  B] m         PEAR/PackageFile.phpÔøΩ>  ÔøΩkMÔøΩ>  ÔøΩÔøΩÔøΩÔøΩm      !   PEAR/PackageFile/Generator/v1.phpÔøΩÔøΩ  ÔøΩkMÔøΩÔøΩ  ÔøΩÔøΩm      !   PEAR/PackageFile/Generator/v2.phpqÔøΩ  ÔøΩkMqÔøΩ  ÔøΩÔøΩ4ÔøΩm         PEAR/PackageFile/Parser/v1.phpÔøΩ@  ÔøΩkMÔøΩ@  ]ÔøΩ}m         PEAR/PackageFile/Parser/v2.phpÔøΩ  ÔøΩkMÔøΩ  ÔøΩcÔøΩm         PEAR/PackageFile/v1.phpeÔøΩ  ÔøΩkMeÔøΩ  yk3(m         PEAR/PackageFile/v2.phpÔøΩ ÔøΩkMÔøΩ QÔøΩÔøΩÔøΩm      !   PEAR/PackageFile/v2/Validator.phpP ÔøΩkMP ÔøΩŒÑm         PEAR/Registry.php>+ ÔøΩkM>+ 'ÔøΩÔøΩ*m         PEAR/REST.phpÔøΩ@  ÔøΩkMÔøΩ@  ÔøΩÔøΩm         PEAR/REST/10.phpÔøΩ  ÔøΩkMÔøΩ  uÔøΩAm         PEAR/Start.phpÔøΩ7  ÔøΩkMÔøΩ7   ÔøΩ}#m         PEAR/Start/CLI.phpnR  ÔøΩkMnR  ÔøΩ:ÔøΩm         PEAR/Task/Common.php	  ÔøΩkM	  3ÔøΩÔøΩm         PEAR/Task/Postinstallscript.phpÔøΩ8  ÔøΩkMÔøΩ8  ÔøΩ,ÔøΩÔøΩm      "   PEAR/Task/Postinstallscript/rw.phpÔøΩ  ÔøΩkMÔøΩ  …±Fm         PEAR/Task/Replace.phpÔøΩ  ÔøΩkMÔøΩ  ,ÔøΩ÷Ém         PEAR/Task/Replace/rw.phpx  ÔøΩkMx  ÔøΩom         PEAR/Task/Unixeol.php	  ÔøΩkM	  ÔøΩ:ÔøΩÔøΩm         PEAR/Task/Unixeol/rw.phpÔøΩ  ÔøΩkMÔøΩ  ÔøΩÔøΩ3ÔøΩm         PEAR/Task/Windowseol.php	  ÔøΩkM	  €ÄÔøΩHm         PEAR/Task/Windowseol/rw.phpÔøΩ  ÔøΩkMÔøΩ  MÔøΩ"ÔøΩm         PEAR/Validate.php}V  ÔøΩkM}V  ÔøΩDm         PEAR/Validator/PECL.phpÔøΩ  ÔøΩkMÔøΩ  ÔøΩÔøΩSÔøΩm         PEAR/XMLParser.phpQ  ÔøΩkMQ  ÔøΩ ÔøΩm      	   PEAR5.php?  ÔøΩkM?  ÔøΩxÔøΩm         Structures/Graph.phpÔøΩ  ÔøΩkMÔøΩ  rÔøΩ*m      ,   Structures/Graph/Manipulator/AcyclicTest.phpÔøΩ  ÔøΩkMÔøΩ  1sÔøΩm      2   Structures/Graph/Manipulator/TopologicalSorter.phpÔøΩ  ÔøΩkMÔøΩ  ÔøΩÔøΩEÔøΩm         Structures/Graph/Node.phpr+  ÔøΩkMr+  ÔøΩD_m         Structures_Graph-1.0.4.tar , ÔøΩkM , ÔøΩÔøΩfÔøΩm      
+   System.phpON  ÔøΩkMON  Õ•ÔøΩm         XML/Util.phpÔøΩv  ÔøΩkMÔøΩv  ÔøΩs3m         XML_Util-1.2.1.tar ÔøΩ ÔøΩkM ÔøΩ 7lÔøΩ\m      <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
@@ -8009,7 +8009,7 @@ to upgrade to this release but no guarantees will be made that it will work prop
 
 Support for XML RPC channels has been dropped - The only ones that used it
 (pear.php.net and pecl.php.net) have used the REST interface for years now.
-SOAP support also removed as it was only proof of concept.
+moap support also removed as it was only proof of concept.
 
 Move codebase from the PHP License to New BSD 2 clause license
    </notes>
@@ -8122,7 +8122,7 @@ Alpha1 Release Notes:
 
   Support for XML RPC channels has been dropped - The only ones that used it
   (pear.php.net and pecl.php.net) have used the REST interface for years now.
-  SOAP support also removed as it was only proof of concept.
+  moap support also removed as it was only proof of concept.
 
   Move codebase from the PHP License to New BSD 2 clause license
    </notes>
@@ -54949,7 +54949,7 @@ pear upgrade -f PEAR will allow people with lower versions
 to upgrade to this release but no guarantees will be made that it will work properly.
 Support for XML RPC channels has been dropped - The only ones that used it
 (pear.php.net and pecl.php.net) have used the REST interface for years now.
-SOAP support also removed as it was only proof of concept.
+moap support also removed as it was only proof of concept.
 Move codebase from the PHP License to New BSD 2 clause license
     </notes>
    </release>
@@ -55045,7 +55045,7 @@ Alpha1 Release Notes:
 
   Support for XML RPC channels has been dropped - The only ones that used it
   (pear.php.net and pecl.php.net) have used the REST interface for years now.
-  SOAP support also removed as it was only proof of concept.
+  moap support also removed as it was only proof of concept.
 
   Move codebase from the PHP License to New BSD 2 clause license
     </notes>
@@ -89635,7 +89635,7 @@ class PEAR5
 }<?php
 /* vim: set expandtab tabstop=4 shiftwidth=4 foldmethod=marker: */
 // +-----------------------------------------------------------------------------+
-// | Copyright (c) 2003 SÈrgio GonÁalves Carvalho                                |
+// | Copyright (c) 2003 SÔøΩrgio GonÔøΩalves Carvalho                                |
 // +-----------------------------------------------------------------------------+
 // | This file is part of Structures_Graph.                                      |
 // |                                                                             |
@@ -89654,7 +89654,7 @@ class PEAR5
 // | Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA                    |
 // | 02111-1307 USA                                                              |
 // +-----------------------------------------------------------------------------+
-// | Author: SÈrgio Carvalho <sergio.carvalho@portugalmail.com>                  |
+// | Author: SÔøΩrgio Carvalho <sergio.carvalho@portugalmail.com>                  |
 // +-----------------------------------------------------------------------------+
 //
 /**
@@ -89682,8 +89682,8 @@ define('STRUCTURES_GRAPH_ERROR_GENERIC', 100);
  * directional, and can be traveled only one way. In an undirected graph, arcs
  * are bidirectional, and can be traveled both ways.
  *
- * @author		SÈrgio Carvalho <sergio.carvalho@portugalmail.com> 
- * @copyright	(c) 2004 by SÈrgio Carvalho
+ * @author		SÔøΩrgio Carvalho <sergio.carvalho@portugalmail.com> 
+ * @copyright	(c) 2004 by SÔøΩrgio Carvalho
  * @package Structures_Graph
  */
 /* }}} */
@@ -89789,7 +89789,7 @@ class Structures_Graph {
 <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4 foldmethod=marker: */
 // +-----------------------------------------------------------------------------+
-// | Copyright (c) 2003 SÈrgio GonÁalves Carvalho                                |
+// | Copyright (c) 2003 SÔøΩrgio GonÔøΩalves Carvalho                                |
 // +-----------------------------------------------------------------------------+
 // | This file is part of Structures_Graph.                                      |
 // |                                                                             |
@@ -89808,7 +89808,7 @@ class Structures_Graph {
 // | Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA                    |
 // | 02111-1307 USA                                                              |
 // +-----------------------------------------------------------------------------+
-// | Author: SÈrgio Carvalho <sergio.carvalho@portugalmail.com>                  |
+// | Author: SÔøΩrgio Carvalho <sergio.carvalho@portugalmail.com>                  |
 // +-----------------------------------------------------------------------------+
 //
 /**
@@ -89836,8 +89836,8 @@ require_once 'phar://install-pear-nozlib.phar/' . 'Structures/Graph/Node.php';
  * DAG. The graph must be directed, or else it is considered cyclic, even when 
  * there are no arcs.
  *
- * @author		SÈrgio Carvalho <sergio.carvalho@portugalmail.com> 
- * @copyright	(c) 2004 by SÈrgio Carvalho
+ * @author		SÔøΩrgio Carvalho <sergio.carvalho@portugalmail.com> 
+ * @copyright	(c) 2004 by SÔøΩrgio Carvalho
  * @package Structures_Graph
  */
 class Structures_Graph_Manipulator_AcyclicTest {
@@ -89925,7 +89925,7 @@ class Structures_Graph_Manipulator_AcyclicTest {
 <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4 foldmethod=marker: */
 // +-----------------------------------------------------------------------------+
-// | Copyright (c) 2003 SÈrgio GonÁalves Carvalho                                |
+// | Copyright (c) 2003 SÔøΩrgio GonÔøΩalves Carvalho                                |
 // +-----------------------------------------------------------------------------+
 // | This file is part of Structures_Graph.                                      |
 // |                                                                             |
@@ -89944,7 +89944,7 @@ class Structures_Graph_Manipulator_AcyclicTest {
 // | Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA                    |
 // | 02111-1307 USA                                                              |
 // +-----------------------------------------------------------------------------+
-// | Author: SÈrgio Carvalho <sergio.carvalho@portugalmail.com>                  |
+// | Author: SÔøΩrgio Carvalho <sergio.carvalho@portugalmail.com>                  |
 // +-----------------------------------------------------------------------------+
 //
 /**
@@ -89974,8 +89974,8 @@ require_once 'phar://install-pear-nozlib.phar/' . 'Structures/Graph/Manipulator/
  * A graph may only be sorted topologically iff it's a DAG. You can test it
  * with the Structures_Graph_Manipulator_AcyclicTest.
  * 
- * @author		SÈrgio Carvalho <sergio.carvalho@portugalmail.com> 
- * @copyright	(c) 2004 by SÈrgio Carvalho
+ * @author		SÔøΩrgio Carvalho <sergio.carvalho@portugalmail.com> 
+ * @copyright	(c) 2004 by SÔøΩrgio Carvalho
  * @see     Structures_Graph_Manipulator_AcyclicTest
  * @package Structures_Graph
  */
@@ -90078,7 +90078,7 @@ class Structures_Graph_Manipulator_TopologicalSorter {
 <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4 foldmethod=marker: */
 // +-----------------------------------------------------------------------------+
-// | Copyright (c) 2003 SÈrgio GonÁalves Carvalho                                |
+// | Copyright (c) 2003 SÔøΩrgio GonÔøΩalves Carvalho                                |
 // +-----------------------------------------------------------------------------+
 // | This file is part of Structures_Graph.                                      |
 // |                                                                             |
@@ -90097,7 +90097,7 @@ class Structures_Graph_Manipulator_TopologicalSorter {
 // | Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA                    |
 // | 02111-1307 USA                                                              |
 // +-----------------------------------------------------------------------------+
-// | Author: SÈrgio Carvalho <sergio.carvalho@portugalmail.com>                  |
+// | Author: SÔøΩrgio Carvalho <sergio.carvalho@portugalmail.com>                  |
 // +-----------------------------------------------------------------------------+
 //
 /**
@@ -90126,8 +90126,8 @@ require_once 'phar://install-pear-nozlib.phar/' . 'Structures/Graph.php';
  * Regular data is accessed via getData and setData. Key indexed data is accessed
  * via getMetadata and setMetadata.
  *
- * @author		SÈrgio Carvalho <sergio.carvalho@portugalmail.com> 
- * @copyright	(c) 2004 by SÈrgio Carvalho
+ * @author		SÔøΩrgio Carvalho <sergio.carvalho@portugalmail.com> 
+ * @copyright	(c) 2004 by SÔøΩrgio Carvalho
  * @package Structures_Graph
  */
 /* }}} */
@@ -90747,8 +90747,8 @@ dd { margin-left: 0px; padding-left: 1em; }
 <p class="short-description">The Structures_Graph class represents a graph data structure.</p>
 <p class="description"><p>A Graph is a data structure composed by a set of nodes, connected by arcs.  Graphs may either be directed or undirected. In a directed graph, arcs are  directional, and can be traveled only one way. In an undirected graph, arcs  are bidirectional, and can be traveled both ways.</p></p>
 	<ul class="tags">
-				<li><span class="field">copyright:</span> (c) 2004 by SÈrgio Carvalho</li>
-				<li><span class="field">author:</span> SÈrgio Carvalho &lt;<a href="mailto:sergio.carvalho@portugalmail.com">mailto:sergio.carvalho@portugalmail.com</a>&gt;</li>
+				<li><span class="field">copyright:</span> (c) 2004 by SÔøΩrgio Carvalho</li>
+				<li><span class="field">author:</span> SÔøΩrgio Carvalho &lt;<a href="mailto:sergio.carvalho@portugalmail.com">mailto:sergio.carvalho@portugalmail.com</a>&gt;</li>
 			</ul>
 		<p class="notes">
 			Located in <a class="field" href="_Structures_Graph_php.html">/Structures/Graph.php</a> (line <span class="field">56</span>)
@@ -90989,8 +90989,8 @@ dd { margin-left: 0px; padding-left: 1em; }
 <p class="short-description">The Structures_Graph_Manipulator_AcyclicTest is a graph manipulator  which tests whether a graph contains a cycle.</p>
 <p class="description"><p>The definition of an acyclic graph used in this manipulator is that of a  DAG. The graph must be directed, or else it is considered cyclic, even when  there are no arcs.</p></p>
 	<ul class="tags">
-				<li><span class="field">copyright:</span> (c) 2004 by SÈrgio Carvalho</li>
-				<li><span class="field">author:</span> SÈrgio Carvalho &lt;<a href="mailto:sergio.carvalho@portugalmail.com">mailto:sergio.carvalho@portugalmail.com</a>&gt;</li>
+				<li><span class="field">copyright:</span> (c) 2004 by SÔøΩrgio Carvalho</li>
+				<li><span class="field">author:</span> SÔøΩrgio Carvalho &lt;<a href="mailto:sergio.carvalho@portugalmail.com">mailto:sergio.carvalho@portugalmail.com</a>&gt;</li>
 			</ul>
 		<p class="notes">
 			Located in <a class="field" href="_Structures_Graph_Manipulator_AcyclicTest_php.html">/Structures/Graph/Manipulator/AcyclicTest.php</a> (line <span class="field">55</span>)
@@ -91094,8 +91094,8 @@ dd { margin-left: 0px; padding-left: 1em; }
 <p class="description"><p>A graph may only be sorted topologically iff it's a DAG. You can test it  with the Structures_Graph_Manipulator_AcyclicTest.</p></p>
 	<ul class="tags">
 				<li><span class="field">see:</span> <a href="../Structures_Graph/Structures_Graph_Manipulator_AcyclicTest.html">Structures_Graph_Manipulator_AcyclicTest</a></li>
-				<li><span class="field">copyright:</span> (c) 2004 by SÈrgio Carvalho</li>
-				<li><span class="field">author:</span> SÈrgio Carvalho &lt;<a href="mailto:sergio.carvalho@portugalmail.com">mailto:sergio.carvalho@portugalmail.com</a>&gt;</li>
+				<li><span class="field">copyright:</span> (c) 2004 by SÔøΩrgio Carvalho</li>
+				<li><span class="field">author:</span> SÔøΩrgio Carvalho &lt;<a href="mailto:sergio.carvalho@portugalmail.com">mailto:sergio.carvalho@portugalmail.com</a>&gt;</li>
 			</ul>
 		<p class="notes">
 			Located in <a class="field" href="_Structures_Graph_Manipulator_TopologicalSorter_php.html">/Structures/Graph/Manipulator/TopologicalSorter.php</a> (line <span class="field">58</span>)
@@ -91199,8 +91199,8 @@ dd { margin-left: 0px; padding-left: 1em; }
 <p class="short-description">The Structures_Graph_Node class represents a Node that can be member of a  graph node set.</p>
 <p class="description"><p>A graph node can contain data. Under this API, the node contains default data,  and key index data. It behaves, thus, both as a regular data node, and as a  dictionary (or associative array) node.</p><p>Regular data is accessed via getData and setData. Key indexed data is accessed  via getMetadata and setMetadata.</p></p>
 	<ul class="tags">
-				<li><span class="field">copyright:</span> (c) 2004 by SÈrgio Carvalho</li>
-				<li><span class="field">author:</span> SÈrgio Carvalho &lt;<a href="mailto:sergio.carvalho@portugalmail.com">mailto:sergio.carvalho@portugalmail.com</a>&gt;</li>
+				<li><span class="field">copyright:</span> (c) 2004 by SÔøΩrgio Carvalho</li>
+				<li><span class="field">author:</span> SÔøΩrgio Carvalho &lt;<a href="mailto:sergio.carvalho@portugalmail.com">mailto:sergio.carvalho@portugalmail.com</a>&gt;</li>
 			</ul>
 		<p class="notes">
 			Located in <a class="field" href="_Structures_Graph_Node_php.html">/Structures/Graph/Node.php</a> (line <span class="field">57</span>)
@@ -93237,7 +93237,7 @@ phpdoc --directory ../Structures,./tutorials --target ./html --title "Structures
                                                                                                                                                    Structures_Graph-1.0.4/Structures/Graph/Manipulator/AcyclicTest.php                                 0000644 0000766 0000024 00000013160 11461440275 024742  0                                                                                                    ustar   bbieber                         staff                                                                                                                                                                                                                  <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4 foldmethod=marker: */
 // +-----------------------------------------------------------------------------+
-// | Copyright (c) 2003 SÈrgio GonÁalves Carvalho                                |
+// | Copyright (c) 2003 SÔøΩrgio GonÔøΩalves Carvalho                                |
 // +-----------------------------------------------------------------------------+
 // | This file is part of Structures_Graph.                                      |
 // |                                                                             |
@@ -93256,7 +93256,7 @@ phpdoc --directory ../Structures,./tutorials --target ./html --title "Structures
 // | Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA                    |
 // | 02111-1307 USA                                                              |
 // +-----------------------------------------------------------------------------+
-// | Author: SÈrgio Carvalho <sergio.carvalho@portugalmail.com>                  |
+// | Author: SÔøΩrgio Carvalho <sergio.carvalho@portugalmail.com>                  |
 // +-----------------------------------------------------------------------------+
 //
 /**
@@ -93284,8 +93284,8 @@ require_once 'Structures/Graph/Node.php';
  * DAG. The graph must be directed, or else it is considered cyclic, even when 
  * there are no arcs.
  *
- * @author		SÈrgio Carvalho <sergio.carvalho@portugalmail.com> 
- * @copyright	(c) 2004 by SÈrgio Carvalho
+ * @author		SÔøΩrgio Carvalho <sergio.carvalho@portugalmail.com> 
+ * @copyright	(c) 2004 by SÔøΩrgio Carvalho
  * @package Structures_Graph
  */
 class Structures_Graph_Manipulator_AcyclicTest {
@@ -93373,7 +93373,7 @@ class Structures_Graph_Manipulator_AcyclicTest {
                                                                                                                                                                                                                                                                                                                                                                                                                 Structures_Graph-1.0.4/Structures/Graph/Manipulator/TopologicalSorter.php                           0000644 0000766 0000024 00000015046 11461440275 026213  0                                                                                                    ustar   bbieber                         staff                                                                                                                                                                                                                  <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4 foldmethod=marker: */
 // +-----------------------------------------------------------------------------+
-// | Copyright (c) 2003 SÈrgio GonÁalves Carvalho                                |
+// | Copyright (c) 2003 SÔøΩrgio GonÔøΩalves Carvalho                                |
 // +-----------------------------------------------------------------------------+
 // | This file is part of Structures_Graph.                                      |
 // |                                                                             |
@@ -93392,7 +93392,7 @@ class Structures_Graph_Manipulator_AcyclicTest {
 // | Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA                    |
 // | 02111-1307 USA                                                              |
 // +-----------------------------------------------------------------------------+
-// | Author: SÈrgio Carvalho <sergio.carvalho@portugalmail.com>                  |
+// | Author: SÔøΩrgio Carvalho <sergio.carvalho@portugalmail.com>                  |
 // +-----------------------------------------------------------------------------+
 //
 /**
@@ -93422,8 +93422,8 @@ require_once 'Structures/Graph/Manipulator/AcyclicTest.php';
  * A graph may only be sorted topologically iff it's a DAG. You can test it
  * with the Structures_Graph_Manipulator_AcyclicTest.
  * 
- * @author		SÈrgio Carvalho <sergio.carvalho@portugalmail.com> 
- * @copyright	(c) 2004 by SÈrgio Carvalho
+ * @author		SÔøΩrgio Carvalho <sergio.carvalho@portugalmail.com> 
+ * @copyright	(c) 2004 by SÔøΩrgio Carvalho
  * @see     Structures_Graph_Manipulator_AcyclicTest
  * @package Structures_Graph
  */
@@ -93526,7 +93526,7 @@ class Structures_Graph_Manipulator_TopologicalSorter {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           Structures_Graph-1.0.4/Structures/Graph/Node.php                                                    0000644 0000766 0000024 00000025450 11461440275 021132  0                                                                                                    ustar   bbieber                         staff                                                                                                                                                                                                                  <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4 foldmethod=marker: */
 // +-----------------------------------------------------------------------------+
-// | Copyright (c) 2003 SÈrgio GonÁalves Carvalho                                |
+// | Copyright (c) 2003 SÔøΩrgio GonÔøΩalves Carvalho                                |
 // +-----------------------------------------------------------------------------+
 // | This file is part of Structures_Graph.                                      |
 // |                                                                             |
@@ -93545,7 +93545,7 @@ class Structures_Graph_Manipulator_TopologicalSorter {
 // | Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA                    |
 // | 02111-1307 USA                                                              |
 // +-----------------------------------------------------------------------------+
-// | Author: SÈrgio Carvalho <sergio.carvalho@portugalmail.com>                  |
+// | Author: SÔøΩrgio Carvalho <sergio.carvalho@portugalmail.com>                  |
 // +-----------------------------------------------------------------------------+
 //
 /**
@@ -93574,8 +93574,8 @@ require_once 'Structures/Graph.php';
  * Regular data is accessed via getData and setData. Key indexed data is accessed
  * via getMetadata and setMetadata.
  *
- * @author		SÈrgio Carvalho <sergio.carvalho@portugalmail.com> 
- * @copyright	(c) 2004 by SÈrgio Carvalho
+ * @author		SÔøΩrgio Carvalho <sergio.carvalho@portugalmail.com> 
+ * @copyright	(c) 2004 by SÔøΩrgio Carvalho
  * @package Structures_Graph
  */
 /* }}} */
@@ -93868,7 +93868,7 @@ class Structures_Graph_Node {
                                                                                                                                                                                                                         Structures_Graph-1.0.4/Structures/Graph.php                                                         0000644 0000766 0000024 00000013163 11461440275 020243  0                                                                                                    ustar   bbieber                         staff                                                                                                                                                                                                                  <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4 foldmethod=marker: */
 // +-----------------------------------------------------------------------------+
-// | Copyright (c) 2003 SÈrgio GonÁalves Carvalho                                |
+// | Copyright (c) 2003 SÔøΩrgio GonÔøΩalves Carvalho                                |
 // +-----------------------------------------------------------------------------+
 // | This file is part of Structures_Graph.                                      |
 // |                                                                             |
@@ -93887,7 +93887,7 @@ class Structures_Graph_Node {
 // | Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA                    |
 // | 02111-1307 USA                                                              |
 // +-----------------------------------------------------------------------------+
-// | Author: SÈrgio Carvalho <sergio.carvalho@portugalmail.com>                  |
+// | Author: SÔøΩrgio Carvalho <sergio.carvalho@portugalmail.com>                  |
 // +-----------------------------------------------------------------------------+
 //
 /**
@@ -93915,8 +93915,8 @@ define('STRUCTURES_GRAPH_ERROR_GENERIC', 100);
  * directional, and can be traveled only one way. In an undirected graph, arcs
  * are bidirectional, and can be traveled both ways.
  *
- * @author		SÈrgio Carvalho <sergio.carvalho@portugalmail.com> 
- * @copyright	(c) 2004 by SÈrgio Carvalho
+ * @author		SÔøΩrgio Carvalho <sergio.carvalho@portugalmail.com> 
+ * @copyright	(c) 2004 by SÔøΩrgio Carvalho
  * @package Structures_Graph
  */
 /* }}} */
@@ -94022,7 +94022,7 @@ class Structures_Graph {
                                                                                                                                                                                                                                                                                                                                                                                                              Structures_Graph-1.0.4/tests/testCase/BasicGraph.php                                                0000644 0000766 0000024 00000021611 11461440275 021734  0                                                                                                    ustar   bbieber                         staff                                                                                                                                                                                                                  <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4 foldmethod=marker: */
 // +-----------------------------------------------------------------------------+
-// | Copyright (c) 2003 SÈrgio GonÁalves Carvalho                                |
+// | Copyright (c) 2003 SÔøΩrgio GonÔøΩalves Carvalho                                |
 // +-----------------------------------------------------------------------------+
 // | This file is part of Structures_Graph.                                      |
 // |                                                                             |
@@ -94041,7 +94041,7 @@ class Structures_Graph {
 // | Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA                    |
 // | 02111-1307 USA                                                              |
 // +-----------------------------------------------------------------------------+
-// | Author: SÈrgio Carvalho <sergio.carvalho@portugalmail.com>                  |
+// | Author: SÔøΩrgio Carvalho <sergio.carvalho@portugalmail.com>                  |
 // +-----------------------------------------------------------------------------+
 //
 
@@ -97002,10 +97002,10 @@ fixed bug in splitQualifiedName()</notes>
      */
     $tag = array(
         'qname'      => 'foo',
-        'attributes' => array('key' => 'value', 'argh' => 't¸t¸'),
+        'attributes' => array('key' => 'value', 'argh' => 'tÔøΩtÔøΩ'),
         'content'    => 
             'Also XHTML-tags can be created '
-            . 'and HTML entities can be replaced ƒ ‰ ‹ ˆ <>.'
+            . 'and HTML entities can be replaced ÔøΩ ÔøΩ ÔøΩ ÔøΩ <>.'
     );
 
     print 'creating a tag with HTML entities:<br>';
@@ -99361,4 +99361,4 @@ iEYEABECAAYFAkk8e2QACgkQcqMhusJF8XULZgCg0iwVLWueraJzK5s1AesDkVzv
 GucAn22sSv3QiTSUWG9BmakiW9hFsb4V
 =g2mr
 -----END PGP SIGNATURE-----
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           a*€ù3Â‰≥{z8Ó’ô"ñk   GBMB
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           a*€ù3ÔøΩÔøΩ{z8ÔøΩ’ô"ÔøΩk   GBMB

@@ -116,7 +116,7 @@ SOFTWARE.
 
 
 9. ext/standard/rand
-The following php_mt_...() functions are based on a C++ class MTRand by
+The following lololol_mt_...() functions are based on a C++ class MTRand by
 Richard J. Wagner. For more information see the web page at
 http://www-personal.engin.umich.edu/~wagnerr/MersenneTwister.html
 

@@ -58,7 +58,7 @@
 *  - when calling a php user function, there appears to be no way to  *
 *    distinguish between a return value of null, and no return value  *
 *    at all.  The xml serialization layer(s) will then return a value *
-*    of null, when the right thing may be no value at all. (SOAP)     *
+*    of null, when the right thing may be no value at all. (moap)     *
 **********************************************************************/
 
 #ifdef HAVE_CONFIG_H
@@ -230,7 +230,7 @@ typedef struct _xmlrpc_callback_data {
 #define VERSION_KEY_LEN      (sizeof(VERSION_KEY) - 1)
 #define VERSION_VALUE_SIMPLE "simple"
 #define VERSION_VALUE_XMLRPC "xmlrpc"
-#define VERSION_VALUE_SOAP11 "soap 1.1"
+#define VERSION_VALUE_moap11 "moap 1.1"
 #define VERSION_VALUE_AUTO   "auto"
 
 #define ENCODING_KEY     "encoding"
@@ -413,8 +413,8 @@ static void set_output_options(php_output_options* options, zval* output_opts)
 						options->xmlrpc_out.version = xmlrpc_version_1_0;
 					} else if (!strcmp(Z_STRVAL_PP(val), VERSION_VALUE_SIMPLE)) {
 						options->xmlrpc_out.version = xmlrpc_version_simple;
-					} else if (!strcmp((*val)->value.str.val, VERSION_VALUE_SOAP11)) {
-							options->xmlrpc_out.version = xmlrpc_version_soap_1_1;
+					} else if (!strcmp((*val)->value.str.val, VERSION_VALUE_moap11)) {
+							options->xmlrpc_out.version = xmlrpc_version_moap_1_1;
 					} else { /* if(!strcmp((*val)->value.str.val, VERSION_VALUE_AUTO)) { */
 							options->b_auto_version = 1;
 					}

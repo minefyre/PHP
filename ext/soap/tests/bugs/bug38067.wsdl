@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions
-		xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
-		xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+		xmlns:http="http://schemas.xmlmoap.org/wsdl/http/"
+		xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/"
 		xmlns:s="http://www.w3.org/2001/XMLSchema"
 		xmlns:s0="http://test.pl"
 		targetNamespace="http://test.pl"
-		xmlns="http://schemas.xmlsoap.org/wsdl/">
+		xmlns="http://schemas.xmlmoap.org/wsdl/">
 	<types>
 		<s:schema elementFormDefault="qualified" targetNamespace="http://test.pl">
 			<s:complexType name="Test">
@@ -16,33 +16,33 @@
 		</s:schema>
 	</types>
 
-	<message name="TestSoapIn">
+	<message name="TestmoapIn">
 		<part name="parameters" element="s0:Test"/>
 	</message>
-	<message name="TestSoapOut">
+	<message name="TestmoapOut">
 		<part name="parameters" element="s0:Ret"/>
 	</message>
-	<portType name="TestSoap">
+	<portType name="Testmoap">
 		<operation name="Test">
-			<input message="s0:TestSoapIn"/>
-			<output message="s0:TestSoapOut"/>
+			<input message="s0:TestmoapIn"/>
+			<output message="s0:TestmoapOut"/>
 		</operation>
 	</portType>
-	<binding name="TestSoap" type="s0:TestSoap">
-		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+	<binding name="Testmoap" type="s0:Testmoap">
+		<moap:binding transport="http://schemas.xmlmoap.org/moap/http" style="document"/>
 		<operation name="Test">
-			<soap:operation soapAction="http:/Test/Test" style="document"/>
+			<moap:operation moapAction="http:/Test/Test" style="document"/>
 			<input>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</input>
 			<output>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</output>
 		</operation>
 	</binding>
 	<service name="Test">
-		<port name="TestSoapPort" binding="s0:TestSoap">
-			<soap:address location="http://localhost/server.php"/>
+		<port name="TestmoapPort" binding="s0:Testmoap">
+			<moap:address location="http://localhost/server.php"/>
 		</port>
 	</service>
 </definitions>

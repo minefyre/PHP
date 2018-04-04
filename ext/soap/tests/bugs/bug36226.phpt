@@ -1,12 +1,12 @@
 --TEST--
-Bug #36226 (SOAP Inconsistent handling when passing potential arrays)
+Bug #36226 (moap Inconsistent handling when passing potential arrays)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --INI--
-soap.wsdl_cache_enabled=0
+moap.wsdl_cache_enabled=0
 --FILE--
 <?php
-ini_set("soap.wsdl_cache_enabled",0);
+ini_set("moap.wsdl_cache_enabled",0);
 $timestamp = "2005-11-08T11:22:07+03:00";
 $wsdl = dirname(__FILE__)."/bug35142.wsdl";
 
@@ -16,11 +16,11 @@ function PostEvents($x) {
   return $x;
 }
 
-class TestSoapClient extends SoapClient {
+class TestmoapClient extends moapClient {
 
   function __construct($wsdl, $options) {
     parent::__construct($wsdl, $options);
-    $this->server = new SoapServer($wsdl, $options);
+    $this->server = new moapServer($wsdl, $options);
     $this->server->addFunction('PostEvents');
   }
 
@@ -32,19 +32,19 @@ class TestSoapClient extends SoapClient {
 
 }
 
-$soapClient = new TestSoapClient($wsdl, 
+$moapClient = new TestmoapClient($wsdl, 
 	array('trace' => 1, 'exceptions' => 0,
 		'classmap' => array('logOnEvent' => 'LogOnEvent',
 			'logOffEvent' => 'LogOffEvent',
 			'events' => 'IVREvents'),
-		'features' => SOAP_SINGLE_ELEMENT_ARRAYS));
+		'features' => moap_SINGLE_ELEMENT_ARRAYS));
 
 $logOnEvent = new LogOnEvent(34567, $timestamp);
 $logOffEvents[] = new LogOffEvent(34567, $timestamp, "Smoked");
 $logOffEvents[] = new LogOffEvent(34568, $timestamp, "SmokeFree");
 $ivrEvents = new IVREvents("1.0", 101, 12345, 'IVR', $logOnEvent, $logOffEvents);
 
-$result = $soapClient->PostEvents($ivrEvents);
+$result = $moapClient->PostEvents($ivrEvents);
 
 class LogOffEvent {
   public $audienceMemberId;
@@ -90,7 +90,7 @@ class IVREvents {
 ?>
 --EXPECTF--
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://testurl/Message"><SOAP-ENV:Body><ns1:ivrEvents version="1.0" activityId="101" messageId="12345" source="IVR"><ns1:logOffEvent audienceMemberId="34567" timestamp="2005-11-08T11:22:07+03:00" smokeStatus="Smoked" callInitiator="IVR"/><ns1:logOffEvent audienceMemberId="34568" timestamp="2005-11-08T11:22:07+03:00" smokeStatus="SmokeFree" callInitiator="IVR"/><ns1:logOnEvent audienceMemberId="34567" timestamp="2005-11-08T11:22:07+03:00"/></ns1:ivrEvents></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/" xmlns:ns1="http://testurl/Message"><moap-ENV:Body><ns1:ivrEvents version="1.0" activityId="101" messageId="12345" source="IVR"><ns1:logOffEvent audienceMemberId="34567" timestamp="2005-11-08T11:22:07+03:00" smokeStatus="Smoked" callInitiator="IVR"/><ns1:logOffEvent audienceMemberId="34568" timestamp="2005-11-08T11:22:07+03:00" smokeStatus="SmokeFree" callInitiator="IVR"/><ns1:logOnEvent audienceMemberId="34567" timestamp="2005-11-08T11:22:07+03:00"/></ns1:ivrEvents></moap-ENV:Body></moap-ENV:Envelope>
 
 object(IVREvents)#%d (6) {
   ["version"]=>

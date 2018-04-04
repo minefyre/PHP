@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 
-<definitions name="SOAP-12-TestDefinitions"
-	targetNamespace="http://whitemesa.net/wsdl/soap12-test"
-	xmlns="http://schemas.xmlsoap.org/wsdl/"
-	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+<definitions name="moap-12-TestDefinitions"
+	targetNamespace="http://whitemesa.net/wsdl/moap12-test"
+	xmlns="http://schemas.xmlmoap.org/wsdl/"
+	xmlns:moap12="http://schemas.xmlmoap.org/wsdl/moap12/"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xmlns:enc="http://www.w3.org/2003/05/soap-encoding"
-	xmlns:tns="http://whitemesa.net/wsdl/soap12-test"
+	xmlns:enc="http://www.w3.org/2003/05/moap-encoding"
+	xmlns:tns="http://whitemesa.net/wsdl/moap12-test"
 	xmlns:types="http://example.org/ts-tests/xsd"
 	xmlns:test="http://example.org/ts-tests"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
-	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-	xmlns:enc11="http://schemas.xmlsoap.org/soap/encoding/">
+	xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/"
+	xmlns:enc11="http://schemas.xmlmoap.org/moap/encoding/">
 	<types>
 		<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://example.org/ts-tests/xsd">
 
-			<import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+			<import namespace="http://schemas.xmlmoap.org/moap/encoding/" />
 
 			<complexType name="ArrayOfstring">
 				<complexContent>
@@ -41,31 +41,31 @@
 				</complexContent>
 			</complexType>
 
-			<complexType name="ArrayOfSOAPStruct">
+			<complexType name="ArrayOfmoapStruct">
 				<complexContent>
 					<restriction base="enc11:Array">
-						<attribute ref="enc11:arrayType" wsdl:arrayType="types:SOAPStruct[]"/>
+						<attribute ref="enc11:arrayType" wsdl:arrayType="types:moapStruct[]"/>
 					</restriction>
 				</complexContent>
 			</complexType>
 
-			<complexType name="SOAPStruct">
+			<complexType name="moapStruct">
 				<all>
 					<element name="varString" type="xsd:string"/>
 					<element name="varInt" type="xsd:int"/>
 					<element name="varFloat" type="xsd:float"/>
 				</all>
 			</complexType>
-			<complexType name="SOAPStructStruct">
+			<complexType name="moapStructStruct">
 				<all>
 					<element name="varString" type="xsd:string"/>
 					<element name="varInt" type="xsd:int"/>
 					<element name="varFloat" type="xsd:float"/>
-					<element name="varStruct" type="types:SOAPStruct"/>
+					<element name="varStruct" type="types:moapStruct"/>
 				</all>
 			</complexType>
 
-			<complexType name="SOAPArrayStruct">
+			<complexType name="moapArrayStruct">
 				<all>
 					<element name="varString" type="xsd:string"/>
 					<element name="varInt" type="xsd:int"/>
@@ -165,23 +165,23 @@
 
 	<!-- 3.4.2 echoStruct rpc operation -->
 	<message name="echoStructRequest">
-		<part name="inputStruct" type="types:SOAPStruct"/>
+		<part name="inputStruct" type="types:moapStruct"/>
 	</message>
 	<message name="echoStructResponse">
-		<part name="return" type="types:SOAPStruct"/>
+		<part name="return" type="types:moapStruct"/>
 	</message>
 
 	<!-- 3.4.3 echoStructArray rpc operation -->
 	<message name="echoStructArrayRequest">
-		<part name="inputStructArray" type="types:ArrayOfSOAPStruct"/>
+		<part name="inputStructArray" type="types:ArrayOfmoapStruct"/>
 	</message>
 	<message name="echoStructArrayResponse">
-		<part name="return" type="types:ArrayOfSOAPStruct"/>
+		<part name="return" type="types:ArrayOfmoapStruct"/>
 	</message>
 
 	<!-- 3.4.4 echoStructAsSimpleTypes rpc operation -->
 	<message name="echoStructAsSimpleTypesRequest">
-		<part name="inputStruct" type="types:SOAPStruct"/>
+		<part name="inputStruct" type="types:moapStruct"/>
 	</message>
 	<message name="echoStructAsSimpleTypesResponse">
 		<part name="outputString" type="xsd:string"/>
@@ -196,23 +196,23 @@
 		<part name="inputFloat" type="xsd:float"/>
 	</message>
 	<message name="echoSimpleTypesAsStructResponse">
-		<part name="return" type="types:SOAPStruct"/>
+		<part name="return" type="types:moapStruct"/>
 	</message>
 
 	<!-- 3.4.6 echoNestedStruct rpc operation -->
 	<message name="echoNestedStructRequest">
-		<part name="inputStruct" type="types:SOAPStructStruct"/>
+		<part name="inputStruct" type="types:moapStructStruct"/>
 	</message>
 	<message name="echoNestedStructResponse">
-		<part name="return" type="types:SOAPStructStruct"/>
+		<part name="return" type="types:moapStructStruct"/>
 	</message>
 
 	<!-- 3.4.7 echoNestedArray rpc operation -->
 	<message name="echoNestedArrayRequest">
-		<part name="inputStruct" type="types:SOAPArrayStruct"/>
+		<part name="inputStruct" type="types:moapArrayStruct"/>
 	</message>
 	<message name="echoNestedArrayResponse">
-		<part name="return" type="types:SOAPArrayStruct"/>
+		<part name="return" type="types:moapArrayStruct"/>
 	</message>
 
 	<!-- 3.4.8 echoFloatArray rpc operation -->
@@ -359,7 +359,7 @@
 	</message>
 
 
-  	<portType name="Soap12TestPortTypeDoc">
+  	<portType name="moap12TestPortTypeDoc">
     		<operation name="emptyBody">
       			<input message="tns:emptyBodyRequest" />
       			<output message="tns:emptyBodyResponse" />
@@ -381,7 +381,7 @@
     		</operation>
 	</portType>
 
-	<portType name="Soap12TestPortTypeRpc">
+	<portType name="moap12TestPortTypeRpc">
 
 		<!-- 3.4.1 returnVoid rpc operation -->
 		<operation name="returnVoid">
@@ -493,277 +493,277 @@
 
 	</portType>
 
-  	<binding name="Soap12TestDocBinding" type="tns:Soap12TestPortTypeDoc">
-    		<soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+  	<binding name="moap12TestDocBinding" type="tns:moap12TestPortTypeDoc">
+    		<moap12:binding style="document" transport="http://schemas.xmlmoap.org/moap/http" />
     		<operation name="emptyBody">
-      			<soap12:operation/>
+      			<moap12:operation/>
       			<input>
-        			<soap12:body use="literal" />
-        			<soap12:header message="tns:echoOkRequest" part="echoOk" use="literal" />
-        			<soap12:header message="tns:UnknownHdrBlockLit" part="Unknown" use="literal" />
-        			<soap12:header message="tns:validateCountryCodeRequest" part="validateCountryCode" use="literal">
-        			  <soap12:headerfault message="tns:validateCountryCodeFault" part="validateCountryCodeFault" use="literal"/>
-        			</soap12:header>
+        			<moap12:body use="literal" />
+        			<moap12:header message="tns:echoOkRequest" part="echoOk" use="literal" />
+        			<moap12:header message="tns:UnknownHdrBlockLit" part="Unknown" use="literal" />
+        			<moap12:header message="tns:validateCountryCodeRequest" part="validateCountryCode" use="literal">
+        			  <moap12:headerfault message="tns:validateCountryCodeFault" part="validateCountryCodeFault" use="literal"/>
+        			</moap12:header>
       			</input>
       			<output>
-        			<soap12:body use="literal" />
-        			<soap12:header message="tns:echoOkResponse" part="responseOk" use="literal" />
-        			<soap12:header message="tns:validateCountryCodeResponse" part="validateCountryCodeResponse" use="literal"/>
+        			<moap12:body use="literal" />
+        			<moap12:header message="tns:echoOkResponse" part="responseOk" use="literal" />
+        			<moap12:header message="tns:validateCountryCodeResponse" part="validateCountryCodeResponse" use="literal"/>
       			</output>
     		</operation>
     		<operation name="echoOk">
-      			<soap12:operation/>
+      			<moap12:operation/>
       			<input>
-        			<soap12:body use="literal" />
-        			<soap12:header message="tns:echoOkRequest" part="echoOk" use="literal" />
-				<soap12:header message="tns:UnknownHdrBlockLit" part="Unknown" use="literal" />
+        			<moap12:body use="literal" />
+        			<moap12:header message="tns:echoOkRequest" part="echoOk" use="literal" />
+				<moap12:header message="tns:UnknownHdrBlockLit" part="Unknown" use="literal" />
       			</input>
       			<output>
-        			<soap12:body use="literal" />
-        			<soap12:header message="tns:echoOkResponse" part="responseOk" use="literal" />
+        			<moap12:body use="literal" />
+        			<moap12:header message="tns:echoOkResponse" part="responseOk" use="literal" />
       			</output>
     		</operation>
     		<operation name="requiredHeader">
-      			<soap12:operation/>
+      			<moap12:operation/>
       			<input>
-        			<soap12:body use="literal" />
+        			<moap12:body use="literal" />
       			</input>
     		</operation>
     		<operation name="echoHeader">
-      			<soap12:operation/>
+      			<moap12:operation/>
       			<input>
-        			<soap12:body use="literal" />
-        			<soap12:header message="tns:echoOkRequest" part="echoOk" use="literal" />
-				<soap12:header message="tns:UnknownHdrBlockLit" part="Unknown" use="literal" />
+        			<moap12:body use="literal" />
+        			<moap12:header message="tns:echoOkRequest" part="echoOk" use="literal" />
+				<moap12:header message="tns:UnknownHdrBlockLit" part="Unknown" use="literal" />
       			</input>
       			<output>
-        			<soap12:body use="literal" />
-        			<soap12:header message="tns:echoOkResponse" part="responseOk" use="literal" />
+        			<moap12:body use="literal" />
+        			<moap12:header message="tns:echoOkResponse" part="responseOk" use="literal" />
       			</output>
     		</operation>
     		<operation name="echoResolvedRef">
-      			<soap12:operation/>
+      			<moap12:operation/>
       			<input>
-        			<soap12:body use="literal" />
+        			<moap12:body use="literal" />
       			</input>
       			<output>
-        			<soap12:body use="literal" />
+        			<moap12:body use="literal" />
       			</output>
     		</operation>
 	</binding>
 
-	<binding name="Soap12TestRpcBinding" type="tns:Soap12TestPortTypeRpc">
-		<soap12:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+	<binding name="moap12TestRpcBinding" type="tns:moap12TestPortTypeRpc">
+		<moap12:binding style="rpc" transport="http://schemas.xmlmoap.org/moap/http"/>
 
 		<!-- 3.4.1 returnVoid rpc operation -->
 		<operation name="returnVoid">
-			<soap12:operation/>
+			<moap12:operation/>
 			<input>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</input>
 			<output>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</output>
 		</operation>
 
 		<!-- 3.4.2 echoStruct rpc operation -->
 		<operation name="echoStruct">
-			<soap12:operation/>
+			<moap12:operation/>
 			<input>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</input>
 			<output>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</output>
 		</operation>
 
 		<!-- 3.4.3 echoStructArray rpc operation -->
 		<operation name="echoStructArray">
-			<soap12:operation/>
+			<moap12:operation/>
 			<input>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</input>
 			<output>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</output>
 		</operation>
 
 		<!-- 3.4.4 echoStructAsSimpleTypes rpc operation -->
 		<operation name="echoStructAsSimpleTypes">
-			<soap12:operation/>
+			<moap12:operation/>
 			<input>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</input>
 			<output>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</output>
 		</operation>
 
 		<!-- 3.4.5 echoSimpleTypesAsStruct rpc operation -->
 		<operation name="echoSimpleTypesAsStruct">
-			<soap12:operation/>
+			<moap12:operation/>
 			<input>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</input>
 			<output>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</output>
 		</operation>
 
 		<!-- 3.4.6 echoNestedStruct rpc operation -->
 		<operation name="echoNestedStruct">
-			<soap12:operation/>
+			<moap12:operation/>
 			<input>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</input>
 			<output>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</output>
 		</operation>
 
 		<!-- 3.4.7 echoNestedArray rpc operation -->
 		<operation name="echoNestedArray">
-			<soap12:operation/>
+			<moap12:operation/>
 			<input>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</input>
 			<output>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</output>
 		</operation>
 
 		<!-- 3.4.8 echoFloatArray rpc operation -->
 		<operation name="echoFloatArray">
-			<soap12:operation/>
+			<moap12:operation/>
 			<input>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</input>
 			<output>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</output>
 		</operation>
 
 		<!-- 3.4.9 echoStringArray rpc operation -->
 		<operation name="echoStringArray">
-			<soap12:operation/>
+			<moap12:operation/>
 			<input>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</input>
 			<output>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</output>
 		</operation>
 
 		<!-- 3.4.10 echoIntegerArray rpc operation -->
 		<operation name="echoIntegerArray">
-			<soap12:operation/>
+			<moap12:operation/>
 			<input>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</input>
 			<output>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</output>
 		</operation>
 
 		<!-- 3.4.11 echoBase64 rpc operation -->
 		<operation name="echoBase64">
-			<soap12:operation/>
+			<moap12:operation/>
 			<input>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</input>
 			<output>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</output>
 		</operation>
 
 		<!-- 3.4.12 echoBoolean rpc operation -->
 		<operation name="echoBoolean">
-			<soap12:operation/>
+			<moap12:operation/>
 			<input>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</input>
 			<output>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</output>
 		</operation>
 
 		<!-- 3.4.13 echoDate rpc operation -->
 		<operation name="echoDate">
-			<soap12:operation/>
+			<moap12:operation/>
 			<input>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</input>
 			<output>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</output>
 		</operation>
 
 		<!-- 3.4.14 echoDecimal rpc operation -->
 		<operation name="echoDecimal">
-			<soap12:operation/>
+			<moap12:operation/>
 			<input>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</input>
 			<output>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</output>
 		</operation>
 
 		<!-- 3.4.15 echoFloat rpc operation -->
 		<operation name="echoFloat">
-			<soap12:operation/>
+			<moap12:operation/>
 			<input>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</input>
 			<output>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</output>
 		</operation>
 
 		<!-- 3.4.16 echoString rpc operation -->
 		<operation name="echoString">
-			<soap12:operation/>
+			<moap12:operation/>
 			<input>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
-				<soap12:header use="encoded" message="tns:DataHolderRequest" part="DataHolder" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
+				<moap12:header use="encoded" message="tns:DataHolderRequest" part="DataHolder" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</input>
 			<output>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
-				<soap12:header use="encoded" message="tns:DataHolderResponse" part="DataHolder" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
+				<moap12:header use="encoded" message="tns:DataHolderResponse" part="DataHolder" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</output>
 		</operation>
 
 		<!-- 3.4.17 countItems rpc operation -->
 		<operation name="countItems">
-			<soap12:operation/>
+			<moap12:operation/>
 			<input>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</input>
 			<output>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</output>
 		</operation>
 
 		<!-- 3.4.18 isNil rpc operation -->
 		<operation name="isNil">
-			<soap12:operation/>
+			<moap12:operation/>
 			<input>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</input>
 			<output>
-				<soap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/soap-encoding"/>
+				<moap12:body use="encoded" namespace="http://example.org/ts-tests" encodingStyle="http://www.w3.org/2003/05/moap-encoding"/>
 			</output>
 		</operation>
 
 	</binding>
 
 
-	<service name="WhiteMesaSoap12TestSvc">
-  		<port name="Soap12TestDocPort" binding="tns:Soap12TestDocBinding">
-    			<soap12:address location="http://localhost/soap12/test-doc"/>
+	<service name="WhiteMesamoap12TestSvc">
+  		<port name="moap12TestDocPort" binding="tns:moap12TestDocBinding">
+    			<moap12:address location="http://localhost/moap12/test-doc"/>
   		</port>
-  		<port name="Soap12TestRpcPort" binding="tns:Soap12TestRpcBinding">
-    			<soap12:address location="http://localhost/soap12/test-rpc"/>
+  		<port name="moap12TestRpcPort" binding="tns:moap12TestRpcBinding">
+    			<moap12:address location="http://localhost/moap12/test-rpc"/>
   		</port>
 
 	</service>

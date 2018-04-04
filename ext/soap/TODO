@@ -1,15 +1,15 @@
 General
 -------
-- make sure soapserver.map(), soap_encode_to_xml() and soap_encode_to_zval() are really need
-- reimplement SoapObject::__getfunctions() and SoapObject::__gettypes()
+- make sure moapserver.map(), moap_encode_to_xml() and moap_encode_to_zval() are really need
+- reimplement moapObject::__getfunctions() and moapObject::__gettypes()
   to return structures instead of strings
 - error handling???
 
-SOAP
+moap
 ----
-- SOAP routing
-- root attribute (it is defined by SOAP 1.1, but not SOAP 1.2)
-- make sure soap 1.1 and 1.2 are supported fully
+- moap routing
+- root attribute (it is defined by moap 1.1, but not moap 1.2)
+- make sure moap 1.1 and 1.2 are supported fully
 
 Encoding
 --------
@@ -35,21 +35,21 @@ Encoding
   ? gDay,
   ? gMonth)
 ? full support for arrays
-  - SOAP 1.1 encoding of arrays with holes (partially transmitted and sparse arrays)
-	  SOAP 1.2 doesn't support partially transmitted and sparse arrays
+  - moap 1.1 encoding of arrays with holes (partially transmitted and sparse arrays)
+	  moap 1.2 doesn't support partially transmitted and sparse arrays
 - references to external resources
 ? support for "nillable" and "nil"
 ? default values of <element>
 ? provide schema 1999/2001 support???
-? make internal refrences for soap encoding (use seralization logic)???
+? make internal refrences for moap encoding (use seralization logic)???
 ? provide user space overriding of serialization certin objects and types???
 
 WSDL
 ----
 ? server part support for "document" style encoding
-? support for <fault>, <soap:fault>
-? <soap:headerfault>
-- <soap:body> parts attribute (with MIME/DIME binding)
+? support for <fault>, <moap:fault>
+? <moap:headerfault>
+- <moap:body> parts attribute (with MIME/DIME binding)
 - MIME binding
 - DIME binding
 - support for portType/operation parameterOrder attribute
@@ -57,7 +57,7 @@ WSDL
 - function/method overloading/redeclaration (test(int); test(string))
 - wsdl auto generation
 - HTTP GET/POST binding
-- SOAP security extension
+- moap security extension
 
 Schema
 ------

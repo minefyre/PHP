@@ -1,5 +1,5 @@
 --TEST--
-SOAP Server 27: setObject and getFunctions
+moap Server 27: setObject and getFunctions
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --FILE--
@@ -15,7 +15,7 @@ class Foo {
 }
 
 $foo = new Foo();
-$server = new SoapServer(null,array('uri'=>"http://testuri.org"));
+$server = new moapServer(null,array('uri'=>"http://testuri.org"));
 $server->setObject($foo);
 var_dump($server->getfunctions());
 echo "ok\n";

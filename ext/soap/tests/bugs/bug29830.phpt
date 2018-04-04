@@ -1,5 +1,5 @@
 --TEST--
-Bug #29844 (SoapServer::setClass() should not export non-public methods)
+Bug #29844 (moapServer::setClass() should not export non-public methods)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --FILE--
@@ -14,7 +14,7 @@ class hello_world {
   }    
 }
 
-$server = new SoapServer(NULL, array("uri"=>"test://"));
+$server = new moapServer(NULL, array("uri"=>"test://"));
 $server->setClass('hello_world');
 $functions = $server->getFunctions();
 foreach($functions as $func) {

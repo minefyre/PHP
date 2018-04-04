@@ -4,16 +4,16 @@ Bug #31695 (Cannot redefine endpoint when using WSDL)
 <?php require_once('skipif.inc'); ?>
 --FILE--
 <?php
-ini_set("soap.wsdl_cache_enabled", 0);
+ini_set("moap.wsdl_cache_enabled", 0);
 
 function Test($x) {
 	return $x;
 }
 
-class LocalSoapClient extends SoapClient {
+class LocalmoapClient extends moapClient {
   function __construct($wsdl, $options=array()) {
     parent::__construct($wsdl, $options);
-    $this->server = new SoapServer($wsdl, $options);
+    $this->server = new moapServer($wsdl, $options);
 		$this->server->addFunction("Test"); 
   }
 
@@ -27,11 +27,11 @@ class LocalSoapClient extends SoapClient {
   }
 }
 
-$client = new LocalSoapClient(dirname(__FILE__)."/bug31695.wsdl");
+$client = new LocalmoapClient(dirname(__FILE__)."/bug31695.wsdl");
 $client->Test("str");
-$client = new LocalSoapClient(dirname(__FILE__)."/bug31695.wsdl", array("location"=>"test://1"));
+$client = new LocalmoapClient(dirname(__FILE__)."/bug31695.wsdl", array("location"=>"test://1"));
 $client->Test("str");
-$client->__soapCall("Test", 
+$client->__moapCall("Test", 
                     array("arg1"),
                      array("location"=>"test://2"));
 $old = $client->__setLocation("test://3");

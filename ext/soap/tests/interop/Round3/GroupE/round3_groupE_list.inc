@@ -1,5 +1,5 @@
 <?php
-class SOAP_Interop_GroupE {
+class moap_Interop_GroupE {
 
     function echoLinkedList($inputList)
     {
@@ -10,8 +10,8 @@ class SOAP_Interop_GroupE {
 
 }
 
-$server = new SoapServer(dirname(__FILE__)."/round3_groupE_list.wsdl");
-$server->setClass("SOAP_Interop_GroupE");
+$server = new moapServer(dirname(__FILE__)."/round3_groupE_list.wsdl");
+$server->setClass("moap_Interop_GroupE");
 $server->handle($HTTP_RAW_POST_DATA);
 var_dump($d);
 ?>

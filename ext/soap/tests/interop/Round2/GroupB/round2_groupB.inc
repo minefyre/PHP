@@ -1,5 +1,5 @@
 <?php
-class SOAP_Interop_GroupB {
+class moap_Interop_GroupB {
 
     function echoStructAsSimpleTypes ($struct)
     {
@@ -31,8 +31,8 @@ class SOAP_Interop_GroupB {
     }
 }
 
-ini_set("soap.wsdl_cache_enabled",0);
-$server = new SoapServer(dirname(__FILE__)."/round2_groupB.wsdl");
-$server->setClass("SOAP_Interop_GroupB");
+ini_set("moap.wsdl_cache_enabled",0);
+$server = new moapServer(dirname(__FILE__)."/round2_groupB.wsdl");
+$server->setClass("moap_Interop_GroupB");
 $server->handle($HTTP_RAW_POST_DATA);
 ?>

@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions name="SOAPBuilders" xmlns="http://soapinterop.org/attachments/wsdl" xmlns:types="http://soapinterop.org/attachments/xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:dime="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/" xmlns:content="http://schemas.xmlsoap.org/ws/2002/04/content-type/" targetNamespace="http://soapinterop.org/attachments/wsdl">
+<wsdl:definitions name="moapBuilders" xmlns="http://moapinterop.org/attachments/wsdl" xmlns:types="http://moapinterop.org/attachments/xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/" xmlns:moap-enc="http://schemas.xmlmoap.org/moap/encoding/" xmlns:dime="http://schemas.xmlmoap.org/ws/2002/04/dime/wsdl/" xmlns:content="http://schemas.xmlmoap.org/ws/2002/04/content-type/" targetNamespace="http://moapinterop.org/attachments/wsdl">
 	<wsdl:types>
-		<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://soapinterop.org/attachments/xsd">
-			<import namespace="http://schemas.xmlsoap.org/soap/encoding/" location="http://schemas.xmlsoap.org/soap/encoding/" />
-			<import namespace="http://schemas.xmlsoap.org/ws/2002/04/content-type/"/>
-			<import namespace="http://schemas.xmlsoap.org/ws/2002/04/reference/"/>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://moapinterop.org/attachments/xsd">
+			<import namespace="http://schemas.xmlmoap.org/moap/encoding/" location="http://schemas.xmlmoap.org/moap/encoding/" />
+			<import namespace="http://schemas.xmlmoap.org/ws/2002/04/content-type/"/>
+			<import namespace="http://schemas.xmlmoap.org/ws/2002/04/reference/"/>
 			<complexType name="ReferencedBinary">
 				<simpleContent>
-					<restriction base="soap-enc:base64Binary">
+					<restriction base="moap-enc:base64Binary">
 						<annotation>
 							<appinfo>
 								<content:mediaType value="application/octetstream"/>
 							</appinfo>
 						</annotation>
-						<attributeGroup ref="soap-enc:commonAttributes"/>
+						<attributeGroup ref="moap-enc:commonAttributes"/>
 					</restriction>
 				</simpleContent>
 			</complexType>
 			<complexType name="ArrayOfBinary">
 				<complexContent>
-					<restriction base="soap-enc:Array">
-						<attribute ref="soap-enc:arrayType" wsdl:arrayType="types:ReferencedBinary[]"/>
+					<restriction base="moap-enc:Array">
+						<attribute ref="moap-enc:arrayType" wsdl:arrayType="types:ReferencedBinary[]"/>
 					</restriction>
 				</complexContent>
 			</complexType>
 			<complexType name="ReferencedText">
 				<simpleContent>
-					<restriction base="soap-enc:base64Binary">
+					<restriction base="moap-enc:base64Binary">
 						<annotation>
 							<appinfo>
 								<content:mediaType value="text/plain"/>
 							</appinfo>
 						</annotation>
-						<attributeGroup ref="soap-enc:commonAttributes"/>
+						<attributeGroup ref="moap-enc:commonAttributes"/>
 					</restriction>
 				</simpleContent>
 			</complexType>
@@ -98,74 +98,74 @@
 		</wsdl:operation>
 	</wsdl:portType>
 	<wsdl:binding name="AttachmentsBinding" type="AttachmentsPortType">
-		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<moap:binding style="rpc" transport="http://schemas.xmlmoap.org/moap/http"/>
 		<wsdl:operation name="EchoAttachment">
-			<soap:operation style="rpc" soapAction="http://soapinterop.org/attachments/"/>
+			<moap:operation style="rpc" moapAction="http://moapinterop.org/attachments/"/>
 			<wsdl:input name="EchoAttachmentInput">
-				<dime:message layout="http://schemas.xmlsoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
-				<soap:body use="encoded" namespace="http://soapinterop.org/attachments/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<dime:message layout="http://schemas.xmlmoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/attachments/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</wsdl:input>
 			<wsdl:output name="EchoAttachmentOutput">
-				<dime:message layout="http://schemas.xmlsoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
-				<soap:body use="encoded" namespace="http://soapinterop.org/attachments/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<dime:message layout="http://schemas.xmlmoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/attachments/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</wsdl:output>
 		</wsdl:operation>
 		<wsdl:operation name="EchoAttachments">
-			<soap:operation style="rpc" soapAction="http://soapinterop.org/attachments/"/>
+			<moap:operation style="rpc" moapAction="http://moapinterop.org/attachments/"/>
 			<wsdl:input name="EchoAttachmentsInput">
-				<dime:message layout="http://schemas.xmlsoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
-				<soap:body use="encoded" namespace="http://soapinterop.org/attachments/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<dime:message layout="http://schemas.xmlmoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/attachments/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</wsdl:input>
 			<wsdl:output name="EchoAttachmentsOutput">
-				<dime:message layout="http://schemas.xmlsoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
-				<soap:body use="encoded" namespace="http://soapinterop.org/attachments/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<dime:message layout="http://schemas.xmlmoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/attachments/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</wsdl:output>
 		</wsdl:operation>
 		<wsdl:operation name="EchoAttachmentAsBase64">
-			<soap:operation style="rpc" soapAction="http://soapinterop.org/attachments/"/>
+			<moap:operation style="rpc" moapAction="http://moapinterop.org/attachments/"/>
 			<wsdl:input name="EchoAttachmentAsBase64Input">
-				<dime:message layout="http://schemas.xmlsoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
-				<soap:body use="encoded" namespace="http://soapinterop.org/attachments/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<dime:message layout="http://schemas.xmlmoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/attachments/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</wsdl:input>
 			<wsdl:output name="EchoAttachmentAsBase64Output">
-				<soap:body use="encoded" namespace="http://soapinterop.org/attachments/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/attachments/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</wsdl:output>
 		</wsdl:operation>
 		<wsdl:operation name="EchoBase64AsAttachment">
-			<soap:operation style="rpc" soapAction="http://soapinterop.org/attachments/"/>
+			<moap:operation style="rpc" moapAction="http://moapinterop.org/attachments/"/>
 			<wsdl:input name="EchoBase64AsAttachmentInput">
-				<soap:body use="encoded" namespace="http://soapinterop.org/attachments/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/attachments/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</wsdl:input>
 			<wsdl:output name="EchoBase64AsAttachmentOutput">
-				<dime:message layout="http://schemas.xmlsoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
-				<soap:body use="encoded" namespace="http://soapinterop.org/attachments/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<dime:message layout="http://schemas.xmlmoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/attachments/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</wsdl:output>
 		</wsdl:operation>
 		<wsdl:operation name="EchoUnrefAttachments">
-			<soap:operation style="rpc" soapAction="http://soapinterop.org/attachments/"/>
+			<moap:operation style="rpc" moapAction="http://moapinterop.org/attachments/"/>
 			<wsdl:input name="EchoUnrefAttachmentsInput">
-				<dime:message layout="http://schemas.xmlsoap.org/ws/2002/04/dime/open-layout" wsdl:required="true"/>
-				<soap:body use="encoded" namespace="http://soapinterop.org/attachments/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<dime:message layout="http://schemas.xmlmoap.org/ws/2002/04/dime/open-layout" wsdl:required="true"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/attachments/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</wsdl:input>
 			<wsdl:output name="EchoUnrefAttachmentsOutput">
-				<dime:message layout="http://schemas.xmlsoap.org/ws/2002/04/dime/open-layout" wsdl:required="true"/>
-				<soap:body use="encoded" namespace="http://soapinterop.org/attachments/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<dime:message layout="http://schemas.xmlmoap.org/ws/2002/04/dime/open-layout" wsdl:required="true"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/attachments/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</wsdl:output>
 		</wsdl:operation>
 		<wsdl:operation name="EchoAttachmentAsString">
-			<soap:operation style="rpc" soapAction="http://soapinterop.org/attachments/"/>
+			<moap:operation style="rpc" moapAction="http://moapinterop.org/attachments/"/>
 			<wsdl:input name="EchoAttachmentAsStringInput">
-				<dime:message layout="http://schemas.xmlsoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
-				<soap:body use="encoded" namespace="http://soapinterop.org/attachments/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<dime:message layout="http://schemas.xmlmoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/attachments/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</wsdl:input>
 			<wsdl:output name="EchoAttachmentAsStringOutput">
-				<soap:body use="encoded" namespace="http://soapinterop.org/attachments/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/attachments/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</wsdl:output>
 		</wsdl:operation>
 	</wsdl:binding>
   <wsdl:service name="Round4DIMERPC">
-    <wsdl:port name="Round4DIMERPCTestSoap" binding="AttachmentsBinding">
-      <soap:address location="test://" />
+    <wsdl:port name="Round4DIMERPCTestmoap" binding="AttachmentsBinding">
+      <moap:address location="test://" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

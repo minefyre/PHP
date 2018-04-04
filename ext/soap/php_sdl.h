@@ -27,28 +27,28 @@
 #define XSD_WHITESPACE_REPLACE  1
 
 typedef enum _sdlBindingType {
-	BINDING_SOAP = 1,
+	BINDING_moap = 1,
 	BINDING_HTTP = 2
 } sdlBindingType;
 
 typedef enum _sdlEncodingStyle {
-	SOAP_RPC      = 1,
-	SOAP_DOCUMENT = 2
+	moap_RPC      = 1,
+	moap_DOCUMENT = 2
 } sdlEncodingStyle;
 
 typedef enum _sdlRpcEncodingStyle {
-	SOAP_ENCODING_DEFAULT = 0,
-	SOAP_ENCODING_1_1     = 1,
-	SOAP_ENCODING_1_2     = 2
+	moap_ENCODING_DEFAULT = 0,
+	moap_ENCODING_1_1     = 1,
+	moap_ENCODING_1_2     = 2
 } sdlRpcEncodingStyle;
 
 typedef enum _sdlEncodingUse {
-	SOAP_ENCODED = 1,
-	SOAP_LITERAL = 2
+	moap_ENCODED = 1,
+	moap_LITERAL = 2
 } sdlEncodingUse;
 
 typedef enum _sdlTransport {
-	SOAP_TRANSPORT_HTTP = 1
+	moap_TRANSPORT_HTTP = 1
 } sdlTransport;
 
 struct _sdl {
@@ -84,44 +84,44 @@ struct _sdlBinding {
 	char           *name;
 	char           *location;
 	sdlBindingType  bindingType;
-	void           *bindingAttributes; /* sdlSoapBindingPtr */
+	void           *bindingAttributes; /* sdlmoapBindingPtr */
 };
 
-/* Soap Binding Specfic stuff */
-struct _sdlSoapBinding {
+/* moap Binding Specfic stuff */
+struct _sdlmoapBinding {
 	sdlEncodingStyle  style;
 	sdlTransport      transport; /* not implemented yet */
 };
 
-typedef struct _sdlSoapBindingFunctionHeader {
+typedef struct _sdlmoapBindingFunctionHeader {
 	char                *name;
 	char                *ns;
 	sdlEncodingUse       use;
 	sdlTypePtr           element;
 	encodePtr            encode;
 	sdlRpcEncodingStyle  encodingStyle; /* not implemented yet */
-	HashTable           *headerfaults;  /* array of sdlSoapBindingFunctionHeaderPtr */
-} sdlSoapBindingFunctionHeader, *sdlSoapBindingFunctionHeaderPtr;
+	HashTable           *headerfaults;  /* array of sdlmoapBindingFunctionHeaderPtr */
+} sdlmoapBindingFunctionHeader, *sdlmoapBindingFunctionHeaderPtr;
 
-typedef struct _sdlSoapBindingFunctionFault {
+typedef struct _sdlmoapBindingFunctionFault {
 	char                *ns;
 	sdlEncodingUse       use;
 	sdlRpcEncodingStyle  encodingStyle; /* not implemented yet */
-} sdlSoapBindingFunctionFault, *sdlSoapBindingFunctionFaultPtr;
+} sdlmoapBindingFunctionFault, *sdlmoapBindingFunctionFaultPtr;
 
-struct _sdlSoapBindingFunctionBody {
+struct _sdlmoapBindingFunctionBody {
 	char                *ns;
 	sdlEncodingUse       use;
 	sdlRpcEncodingStyle  encodingStyle;  /* not implemented yet */
-	HashTable           *headers;        /* array of sdlSoapBindingFunctionHeaderPtr */
+	HashTable           *headers;        /* array of sdlmoapBindingFunctionHeaderPtr */
 };
 
-struct _sdlSoapBindingFunction {
-	char                       *soapAction;
+struct _sdlmoapBindingFunction {
+	char                       *moapAction;
 	sdlEncodingStyle            style;
 
-	sdlSoapBindingFunctionBody  input;
-	sdlSoapBindingFunctionBody  output;
+	sdlmoapBindingFunctionBody  input;
+	sdlmoapBindingFunctionBody  output;
 };
 
 struct _sdlRestrictionInt {
@@ -222,7 +222,7 @@ struct _sdlParam {
 typedef struct _sdlFault {
 	char      *name;
 	HashTable *details;            /* array of sdlParamPtr */
-	void      *bindingAttributes;  /* sdlSoapBindingFunctionFaultPtr */
+	void      *bindingAttributes;  /* sdlmoapBindingFunctionFaultPtr */
 } sdlFault, *sdlFaultPtr;
 
 struct _sdlFunction {
@@ -232,7 +232,7 @@ struct _sdlFunction {
 	HashTable          *requestParameters;  /* array of sdlParamPtr */
 	HashTable          *responseParameters; /* array of sdlParamPtr (this should only be one) */
 	struct _sdlBinding *binding;
-	void               *bindingAttributes;  /* sdlSoapBindingFunctionPtr */
+	void               *bindingAttributes;  /* sdlmoapBindingFunctionPtr */
 	HashTable          *faults;             /* array of sdlFaultPtr */
 };
 

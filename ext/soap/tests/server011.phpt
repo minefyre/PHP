@@ -1,18 +1,18 @@
 --TEST--
-SOAP Server 11: bind
+moap Server 11: bind
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --GET--
 wsdl
 --INI--
-soap.wsdl_cache_enabled=0
+moap.wsdl_cache_enabled=0
 --FILE--
 <?php
 function Add($x,$y) {
   return $x+$y;
 }
 
-$server = new soapserver(dirname(__FILE__)."/test.wsdl");
+$server = new moapserver(dirname(__FILE__)."/test.wsdl");
 ob_start();
 $server->handle();
 $wsdl = ob_get_contents();

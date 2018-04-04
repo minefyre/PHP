@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions name="SOAPBuilders" xmlns="http://soapinterop.org/attachments/wsdl" xmlns:types="http://soapinterop.org/attachments/xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:dime="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/" xmlns:content="http://schemas.xmlsoap.org/ws/2002/04/content-type/" xmlns:ref="http://schemas.xmlsoap.org/ws/2002/04/reference/" targetNamespace="http://soapinterop.org/attachments/wsdl">
+<wsdl:definitions name="moapBuilders" xmlns="http://moapinterop.org/attachments/wsdl" xmlns:types="http://moapinterop.org/attachments/xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/" xmlns:dime="http://schemas.xmlmoap.org/ws/2002/04/dime/wsdl/" xmlns:content="http://schemas.xmlmoap.org/ws/2002/04/content-type/" xmlns:ref="http://schemas.xmlmoap.org/ws/2002/04/reference/" targetNamespace="http://moapinterop.org/attachments/wsdl">
 	<wsdl:types>
-		<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://soapinterop.org/attachments/xsd" elementFormDefault="qualified" attributeFormDefault="qualified">
-			<import namespace="http://schemas.xmlsoap.org/ws/2002/04/reference/"/>
-			<import namespace="http://schemas.xmlsoap.org/ws/2002/04/content-type/"/>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://moapinterop.org/attachments/xsd" elementFormDefault="qualified" attributeFormDefault="qualified">
+			<import namespace="http://schemas.xmlmoap.org/ws/2002/04/reference/"/>
+			<import namespace="http://schemas.xmlmoap.org/ws/2002/04/content-type/"/>
 			<complexType name="ReferencedBinary">
 				<simpleContent>
 					<restriction base="xsd:base64Binary">
@@ -143,74 +143,74 @@
 		</wsdl:operation>
 	</wsdl:portType>
 	<wsdl:binding name="AttachmentsBinding" type="AttachmentsPortType">
-		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<moap:binding style="document" transport="http://schemas.xmlmoap.org/moap/http"/>
 		<wsdl:operation name="EchoAttachment">
-			<soap:operation soapAction="http://soapinterop.org/attachments/"/>
+			<moap:operation moapAction="http://moapinterop.org/attachments/"/>
 			<wsdl:input name="EchoAttachmentInput">
-				<dime:message layout="http://schemas.xmlsoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
-				<soap:body use="literal"/>
+				<dime:message layout="http://schemas.xmlmoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
+				<moap:body use="literal"/>
 			</wsdl:input>
 			<wsdl:output name="EchoAttachmentOutput">
-				<dime:message layout="http://schemas.xmlsoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
-				<soap:body use="literal"/>
+				<dime:message layout="http://schemas.xmlmoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
+				<moap:body use="literal"/>
 			</wsdl:output>
 		</wsdl:operation>
 		<wsdl:operation name="EchoAttachments">
-			<soap:operation soapAction="http://soapinterop.org/attachments/"/>
+			<moap:operation moapAction="http://moapinterop.org/attachments/"/>
 			<wsdl:input name="EchoAttachmentsInput">
-				<dime:message layout="http://schemas.xmlsoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
-				<soap:body use="literal"/>
+				<dime:message layout="http://schemas.xmlmoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
+				<moap:body use="literal"/>
 			</wsdl:input>
 			<wsdl:output name="EchoAttachmentsOutput">
-				<dime:message layout="http://schemas.xmlsoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
-				<soap:body use="literal"/>
+				<dime:message layout="http://schemas.xmlmoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
+				<moap:body use="literal"/>
 			</wsdl:output>
 		</wsdl:operation>
 		<wsdl:operation name="EchoAttachmentAsBase64">
-			<soap:operation soapAction="http://soapinterop.org/attachments/"/>
+			<moap:operation moapAction="http://moapinterop.org/attachments/"/>
 			<wsdl:input name="EchoAttachmentAsBase64Input">
-				<dime:message layout="http://schemas.xmlsoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
-				<soap:body use="literal"/>
+				<dime:message layout="http://schemas.xmlmoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
+				<moap:body use="literal"/>
 			</wsdl:input>
 			<wsdl:output name="EchoAttachmentAsBase64Output">
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</wsdl:output>
 		</wsdl:operation>
 		<wsdl:operation name="EchoBase64AsAttachment">
-			<soap:operation soapAction="http://soapinterop.org/attachments/"/>
+			<moap:operation moapAction="http://moapinterop.org/attachments/"/>
 			<wsdl:input name="EchoBase64AsAttachmentInput">
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</wsdl:input>
 			<wsdl:output name="EchoBase64AsAttachmentOutput">
-				<dime:message layout="http://schemas.xmlsoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
-				<soap:body use="literal"/>
+				<dime:message layout="http://schemas.xmlmoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
+				<moap:body use="literal"/>
 			</wsdl:output>
 		</wsdl:operation>
 		<wsdl:operation name="EchoUnrefAttachments">
-			<soap:operation soapAction="http://soapinterop.org/attachments/"/>
+			<moap:operation moapAction="http://moapinterop.org/attachments/"/>
 			<wsdl:input name="EchoUnrefAttachmentsInput">
-				<dime:message layout="http://schemas.xmlsoap.org/ws/2002/04/dime/open-layout" wsdl:required="true"/>
-				<soap:body use="literal"/>
+				<dime:message layout="http://schemas.xmlmoap.org/ws/2002/04/dime/open-layout" wsdl:required="true"/>
+				<moap:body use="literal"/>
 			</wsdl:input>
 			<wsdl:output name="EchoUnrefAttachmentsOutput">
-				<dime:message layout="http://schemas.xmlsoap.org/ws/2002/04/dime/open-layout" wsdl:required="true"/>
-				<soap:body use="literal"/>
+				<dime:message layout="http://schemas.xmlmoap.org/ws/2002/04/dime/open-layout" wsdl:required="true"/>
+				<moap:body use="literal"/>
 			</wsdl:output>
 		</wsdl:operation>
 		<wsdl:operation name="EchoAttachmentAsString">
-			<soap:operation soapAction="http://soapinterop.org/attachments/"/>
+			<moap:operation moapAction="http://moapinterop.org/attachments/"/>
 			<wsdl:input name="EchoAttachmentAsStringInput">
-				<dime:message layout="http://schemas.xmlsoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
-				<soap:body use="literal"/>
+				<dime:message layout="http://schemas.xmlmoap.org/ws/2002/04/dime/closed-layout" wsdl:required="true"/>
+				<moap:body use="literal"/>
 			</wsdl:input>
 			<wsdl:output name="EchoAttachmentAsStringOutput">
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</wsdl:output>
 		</wsdl:operation>
 	</wsdl:binding>
   <wsdl:service name="Round4DIMEDOC">
-    <wsdl:port name="Round4DIMEDOCTestSoap" binding="AttachmentsBinding">
-      <soap:address location="test://" />
+    <wsdl:port name="Round4DIMEDOCTestmoap" binding="AttachmentsBinding">
+      <moap:address location="test://" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

@@ -1,22 +1,22 @@
 --TEST--
-Bug #44882 (SOAP extension object decoding bug)
+Bug #44882 (moap extension object decoding bug)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --INI--
-soap.wsdl_cache_enabled=0
+moap.wsdl_cache_enabled=0
 --FILE--
 <?php
-class TestSoapClient extends SoapClient
+class TestmoapClient extends moapClient
 {
     public function __doRequest($req, $loc, $act, $ver, $one_way = 0)
 	{
 		return <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope 
-  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+<moap-ENV:Envelope 
+  xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:ns="urn:ebay:api:PayPalAPI">
-  <SOAP-ENV:Body id="_0">
+  <moap-ENV:Body id="_0">
     <GetExpressCheckoutDetailsResponse xmlns="urn:ebay:api:PayPalAPI">
       <Timestamp>2008-06-23T14:51:08Z</Timestamp>
       <Ack>Success</Ack>
@@ -32,13 +32,13 @@ class TestSoapClient extends SoapClient
         </PayerInfo>
       </GetExpressCheckoutDetailsResponseDetails>
     </GetExpressCheckoutDetailsResponse>
-  </SOAP-ENV:Body>
-</SOAP-ENV:Envelope>
+  </moap-ENV:Body>
+</moap-ENV:Envelope>
 XML;
 	}
 }
 
-$client = new TestSoapClient(dirname(__FILE__).'/bug44882.wsdl');
+$client = new TestmoapClient(dirname(__FILE__).'/bug44882.wsdl');
 print_r($client->GetExpressCheckoutDetails());
 ?>
 --EXPECT--

@@ -1,18 +1,18 @@
 --TEST--
-SOAP 1.2: T61 countItems
+moap 1.2: T61 countItems
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --FILE--
 <?php
 $HTTP_RAW_POST_DATA = <<<EOF
 <?xml version='1.0' ?>
-<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/moap-envelope"
               xmlns:xsd="http://www.w3.org/2001/XMLSchema"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <env:Body>
     <test:countItems xmlns:test="http://example.org/ts-tests"
-          xmlns:enc="http://www.w3.org/2003/05/soap-encoding"
-          env:encodingStyle="http://www.w3.org/2003/05/soap-encoding">
+          xmlns:enc="http://www.w3.org/2003/05/moap-encoding"
+          env:encodingStyle="http://www.w3.org/2003/05/moap-encoding">
       <inputStringArray enc:itemType="xsd:string" enc:arraySize="2 *">
         <item xsi:type="xsd:string">hello</item>
         <item xsi:type="xsd:string">world</item>
@@ -21,8 +21,8 @@ $HTTP_RAW_POST_DATA = <<<EOF
   </env:Body>
 </env:Envelope>
 EOF;
-include "soap12-test.inc";
+include "moap12-test.inc";
 ?>
 --EXPECT--
 <?xml version="1.0" encoding="UTF-8"?>
-<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope"><env:Body><env:Fault><env:Code><env:Value>env:Receiver</env:Value></env:Code><env:Reason><env:Text>SOAP-ERROR: Encoding: '*' may only be first arraySize value in list</env:Text></env:Reason></env:Fault></env:Body></env:Envelope>
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/moap-envelope"><env:Body><env:Fault><env:Code><env:Value>env:Receiver</env:Value></env:Code><env:Reason><env:Text>moap-ERROR: Encoding: '*' may only be first arraySize value in list</env:Text></env:Reason></env:Fault></env:Body></env:Envelope>

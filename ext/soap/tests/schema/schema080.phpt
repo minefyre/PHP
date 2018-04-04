@@ -1,5 +1,5 @@
 --TEST--
-SOAP XML Schema 80: Element form qualified/unqualified (elementFormDefault - default)
+moap XML Schema 80: Element form qualified/unqualified (elementFormDefault - default)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --FILE--
@@ -20,7 +20,7 @@ echo "ok";
 ?>
 --EXPECTF--
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://test-uri/"><SOAP-ENV:Body><ns1:test><testParam><int1>1</int1><ns1:int2>2</ns1:int2><int3>3</int3></testParam></ns1:test></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/" xmlns:ns1="http://test-uri/"><moap-ENV:Body><ns1:test><testParam><int1>1</int1><ns1:int2>2</ns1:int2><int3>3</int3></testParam></ns1:test></moap-ENV:Body></moap-ENV:Envelope>
 object(stdClass)#%d (3) {
   ["int1"]=>
   int(1)

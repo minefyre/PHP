@@ -1,5 +1,5 @@
 <?php
-class SOAP_Interop_GroupF {
+class moap_Interop_GroupF {
 
     function Header1($input)
     {
@@ -16,7 +16,7 @@ class SOAP_Interop_GroupF {
 
 }
 
-$server = new SoapServer(dirname(__FILE__)."/round3_groupF_ext.wsdl");
-$server->setClass("SOAP_Interop_GroupF");
+$server = new moapServer(dirname(__FILE__)."/round3_groupF_ext.wsdl");
+$server->setClass("moap_Interop_GroupF");
 $server->handle($HTTP_RAW_POST_DATA);
 ?>

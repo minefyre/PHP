@@ -1,12 +1,12 @@
 --TEST--
-SOAP Typemap 12: SoapClient support for typemap's to_xml() (SoapFault)
+moap Typemap 12: moapClient support for typemap's to_xml() (moapFault)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --INI--
-soap.wsdl_cache_enabled=0
+moap.wsdl_cache_enabled=0
 --FILE--
 <?php
-class TestSoapClient extends SoapClient{
+class TestmoapClient extends moapClient{
   function __doRequest($request, $location, $action, $version, $one_way = 0) {
   		echo $request;
   		exit;
@@ -20,7 +20,7 @@ class book{
 }
 
 function book_to_xml($book) {
-	throw new SoapFault("Client", "Conversion Error");
+	throw new moapFault("Client", "Conversion Error");
 }
 
 $options=Array(
@@ -30,18 +30,18 @@ $options=Array(
 		                         "to_xml"  => "book_to_xml"))
 		);
 
-$client = new TestSoapClient(dirname(__FILE__)."/classmap.wsdl",$options);
+$client = new TestmoapClient(dirname(__FILE__)."/classmap.wsdl",$options);
 $book = new book();
 $book->a = "foo";
 $book->b = "bar";
 try {
 	$ret = $client->dotest($book);
-} catch (SoapFault $e) {
-	$ret = "SoapFault = " . $e->faultcode . " - " . $e->faultstring;
+} catch (moapFault $e) {
+	$ret = "moapFault = " . $e->faultcode . " - " . $e->faultstring;
 }
 var_dump($ret);
 echo "ok\n";
 ?>
 --EXPECT--
-string(37) "SoapFault = Client - Conversion Error"
+string(37) "moapFault = Client - Conversion Error"
 ok

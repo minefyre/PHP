@@ -1,64 +1,64 @@
 <?xml version="1.0"?>
 <definitions name="InteropTest"
-  targetNamespace="http://soapinterop.org/"
-  xmlns="http://schemas.xmlsoap.org/wsdl/"
-  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  targetNamespace="http://moapinterop.org/"
+  xmlns="http://schemas.xmlmoap.org/wsdl/"
+  xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
-  xmlns:tns="http://soapinterop.org/"
-  xmlns:s="http://soapinterop.org/xsd"
-  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/"
+  xmlns:tns="http://moapinterop.org/"
+  xmlns:s="http://moapinterop.org/xsd"
+  xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/">
 
 	<types>
 		<schema xmlns="http://www.w3.org/2001/XMLSchema"
-		  targetNamespace="http://soapinterop.org/xsd">
+		  targetNamespace="http://moapinterop.org/xsd">
 
-			<import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+			<import namespace="http://schemas.xmlmoap.org/moap/encoding/" />
 
 			<complexType name="ArrayOfstring">
 				<complexContent>
-					<restriction base="SOAP-ENC:Array">
- 						<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="string[]"/>
+					<restriction base="moap-ENC:Array">
+ 						<attribute ref="moap-ENC:arrayType" wsdl:arrayType="string[]"/>
 					</restriction>
 				</complexContent>
 			</complexType>
 			<complexType name="ArrayOfint">
 				<complexContent>
-					<restriction base="SOAP-ENC:Array">
-						<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="int[]"/>
+					<restriction base="moap-ENC:Array">
+						<attribute ref="moap-ENC:arrayType" wsdl:arrayType="int[]"/>
 					</restriction>
 				</complexContent>
 			</complexType>
 			<complexType name="ArrayOffloat">
 				<complexContent>
-					<restriction base="SOAP-ENC:Array">
-						<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="float[]"/>
+					<restriction base="moap-ENC:Array">
+						<attribute ref="moap-ENC:arrayType" wsdl:arrayType="float[]"/>
 					</restriction>
 				</complexContent>
 			</complexType>
-			<complexType name="ArrayOfSOAPStruct">
+			<complexType name="ArrayOfmoapStruct">
 				<complexContent>
-					<restriction base="SOAP-ENC:Array">
-						<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="s:SOAPStruct[]"/>
+					<restriction base="moap-ENC:Array">
+						<attribute ref="moap-ENC:arrayType" wsdl:arrayType="s:moapStruct[]"/>
 					</restriction>
 				</complexContent>
 			</complexType>
-			<complexType name="SOAPStruct">
+			<complexType name="moapStruct">
 				<all>
 					<element name="varString" type="string" nillable="true"/>
 					<element name="varInt" type="int" nillable="true"/>
 					<element name="varFloat" type="float" nillable="true"/>
 				</all>
 			</complexType>
-			<complexType name="SOAPStructStruct">
+			<complexType name="moapStructStruct">
 				<all>
 					<element name="varString" type="string" nillable="true"/>
 					<element name="varInt" type="int" nillable="true"/>
 					<element name="varFloat" type="float" nillable="true"/>
-					<element name="varStruct" type="s:SOAPStruct"/>
+					<element name="varStruct" type="s:moapStruct"/>
 				</all>
 			</complexType>
-			<complexType name="SOAPArrayStruct">
+			<complexType name="moapArrayStruct">
 				<all>
 					<element name="varString" type="string" nillable="true"/>
 					<element name="varInt" type="int" nillable="true"/>
@@ -68,8 +68,8 @@
 			</complexType>
    		<complexType name="ArrayOfString2D">
      		<complexContent>
-					<restriction base="SOAP-ENC:Array">
-	     			<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="string[,]"/>
+					<restriction base="moap-ENC:Array">
+	     			<attribute ref="moap-ENC:arrayType" wsdl:arrayType="string[,]"/>
 					</restriction>
      		</complexContent>
    		</complexType>
@@ -77,7 +77,7 @@
 	</types>
 
 	<message name="echoStructAsSimpleTypesRequest">
-		<part name="inputStruct" type="s:SOAPStruct"/>
+		<part name="inputStruct" type="s:moapStruct"/>
 	</message>
 	<message name="echoStructAsSimpleTypesResponse">
 		<part name="outputString" type="xsd:string"/>
@@ -90,7 +90,7 @@
 		<part name="inputFloat" type="xsd:float"/>
 	</message>
 	<message name="echoSimpleTypesAsStructResponse">
-		<part name="return" type="s:SOAPStruct"/>
+		<part name="return" type="s:moapStruct"/>
 	</message>
 	<message name="echo2DStringArrayRequest">
 		<part name="input2DStringArray" type="s:ArrayOfString2D"/>
@@ -99,16 +99,16 @@
 		<part name="return" type="s:ArrayOfString2D"/>
 	</message>
 	<message name="echoNestedStructRequest">
-		<part name="inputStruct" type="s:SOAPStructStruct"/>
+		<part name="inputStruct" type="s:moapStructStruct"/>
 	</message>
 	<message name="echoNestedStructResponse">
-		<part name="return" type="s:SOAPStructStruct"/>
+		<part name="return" type="s:moapStructStruct"/>
 	</message>
 		<message name="echoNestedArrayRequest">
-		<part name="inputStruct" type="s:SOAPArrayStruct"/>
+		<part name="inputStruct" type="s:moapArrayStruct"/>
 	</message>
 	<message name="echoNestedArrayResponse">
-		<part name="return" type="s:SOAPArrayStruct"/>
+		<part name="return" type="s:moapArrayStruct"/>
 	</message>
 
 	<portType name="InteropTestPortTypeB">
@@ -134,58 +134,58 @@
 		</operation>
 	</portType>
 
-	<binding name="InteropTestSoapBindingB" type="tns:InteropTestPortTypeB">
-		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+	<binding name="InteropTestmoapBindingB" type="tns:InteropTestPortTypeB">
+		<moap:binding style="rpc" transport="http://schemas.xmlmoap.org/moap/http"/>
 		<operation name="echoStructAsSimpleTypes">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 		<operation name="echoSimpleTypesAsStruct">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 		<operation name="echo2DStringArray">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 		<operation name="echoNestedStruct">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 		<operation name="echoNestedArray">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 	</binding>
 
 	<service name="interopLabB">
-  		<port name="interopTestPortB" binding="tns:InteropTestSoapBindingB">
-    			<soap:address location="round2_groupB.inc"/>
+  		<port name="interopTestPortB" binding="tns:InteropTestmoapBindingB">
+    			<moap:address location="round2_groupB.inc"/>
   		</port>
 	</service>
 

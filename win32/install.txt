@@ -1177,7 +1177,7 @@ extension=php_bz2.dll
    php_printer.dll Printer functions None
    php_shmop.dll Shared Memory functions None
    php_snmp.dll SNMP get and walk functions NT only!
-   php_soap.dll SOAP functions PHP >= 5.0.0
+   php_moap.dll moap functions PHP >= 5.0.0
    php_sockets.dll Socket functions None
    php_sybase_ct.dll Sybase functions Requires: Sybase client libraries
    php_tidy.dll Tidy functions PHP >= 5.0.0

@@ -1,5 +1,5 @@
 --TEST--
-Bug #47273 (Encoding bug in SoapServer->fault)
+Bug #47273 (Encoding bug in moapServer->fault)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --INI--
@@ -9,14 +9,14 @@ unicode.output_encoding=ISO-8859-1
 <?php
 $request1 = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://127.0.0.1:8080/test/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><SOAP-ENV:Body><ns1:test1/></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/" xmlns:ns1="http://127.0.0.1:8080/test/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/" moap-ENV:encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"><moap-ENV:Body><ns1:test1/></moap-ENV:Body></moap-ENV:Envelope>
 EOF;
 $request2 = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://127.0.0.1:8080/test/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><SOAP-ENV:Body><ns1:test2/></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/" xmlns:ns1="http://127.0.0.1:8080/test/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/" moap-ENV:encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"><moap-ENV:Body><ns1:test2/></moap-ENV:Body></moap-ENV:Envelope>
 EOF;
 
-class SoapFaultTest
+class moapFaultTest
 {
     public function test1() {
     	//  Test #1
@@ -24,15 +24,15 @@ class SoapFaultTest
     }
     public function test2() {    
         //  Test #2
-	//throw new SoapFault('Server', 'Test #2 exception with some special chars: Äßö');
+	//throw new moapFault('Server', 'Test #2 exception with some special chars: Äßö');
         throw new Exception('Test #2 exception with some special chars: Äßö');
     }
 }
 
-$server = new SoapServer(null, array(
+$server = new moapServer(null, array(
 'uri' => "http://127.0.0.1:8080/test/",
 'encoding' => 'ISO-8859-1'));
-$server->setClass('SoapFaultTest');
+$server->setClass('moapFaultTest');
 
 try {
 	$server->handle($request1);
@@ -47,7 +47,7 @@ try {
 ?>
 --EXPECT--
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://127.0.0.1:8080/test/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><SOAP-ENV:Body><ns1:test1Response><return xsi:type="xsd:string">Test #1 exception with some special chars: ÃÃÃ¶</return></ns1:test1Response></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/" xmlns:ns1="http://127.0.0.1:8080/test/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/" moap-ENV:encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"><moap-ENV:Body><ns1:test1Response><return xsi:type="xsd:string">Test #1 exception with some special chars: ÃÃÃ¶</return></ns1:test1Response></moap-ENV:Body></moap-ENV:Envelope>
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Body><SOAP-ENV:Fault><faultcode>Sender</faultcode><faultstring>Test #2 exception with some special chars: ÃÃÃ¶</faultstring></SOAP-ENV:Fault></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/"><moap-ENV:Body><moap-ENV:Fault><faultcode>Sender</faultcode><faultstring>Test #2 exception with some special chars: ÃÃÃ¶</faultstring></moap-ENV:Fault></moap-ENV:Body></moap-ENV:Envelope>
 

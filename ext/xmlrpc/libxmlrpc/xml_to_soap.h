@@ -31,14 +31,14 @@
 */
 
 
-#ifndef XML_TO_SOAP_H
- #define XML_TO_SOAP_H
+#ifndef XML_TO_moap_H
+ #define XML_TO_moap_H
 
 #include "xmlrpc.h"
 
-XMLRPC_VALUE xml_element_to_SOAP_VALUE(xml_element* el);
-XMLRPC_VALUE xml_element_to_SOAP_REQUEST(XMLRPC_REQUEST request, xml_element* el);
-xml_element* SOAP_VALUE_to_xml_element(XMLRPC_VALUE node);
-xml_element* SOAP_REQUEST_to_xml_element(XMLRPC_REQUEST request);
+XMLRPC_VALUE xml_element_to_moap_VALUE(xml_element* el);
+XMLRPC_VALUE xml_element_to_moap_REQUEST(XMLRPC_REQUEST request, xml_element* el);
+xml_element* moap_VALUE_to_xml_element(XMLRPC_VALUE node);
+xml_element* moap_REQUEST_to_xml_element(XMLRPC_REQUEST request);
 
 #endif /* XML_TO_XMLRPC_H */

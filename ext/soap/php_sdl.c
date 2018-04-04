@@ -19,7 +19,7 @@
 */
 /* $Id: php_sdl.c 306939 2011-01-01 02:19:59Z felipe $ */
 
-#include "php_soap.h"
+#include "php_moap.h"
 #include "ext/libxml/php_libxml.h"
 #include "libxml/uri.h"
 
@@ -124,10 +124,10 @@ encodePtr get_encoder(sdlPtr sdl, const char *ns, const char *type)
 	enc = get_encoder_ex(sdl, nscat, len);
 
 	if (enc == NULL &&
-	    ((ns_len == sizeof(SOAP_1_1_ENC_NAMESPACE)-1 &&
-	      memcmp(ns, SOAP_1_1_ENC_NAMESPACE, sizeof(SOAP_1_1_ENC_NAMESPACE)-1) == 0) ||
-	     (ns_len == sizeof(SOAP_1_2_ENC_NAMESPACE)-1 &&
-	      memcmp(ns, SOAP_1_2_ENC_NAMESPACE, sizeof(SOAP_1_2_ENC_NAMESPACE)-1) == 0))) {
+	    ((ns_len == sizeof(moap_1_1_ENC_NAMESPACE)-1 &&
+	      memcmp(ns, moap_1_1_ENC_NAMESPACE, sizeof(moap_1_1_ENC_NAMESPACE)-1) == 0) ||
+	     (ns_len == sizeof(moap_1_2_ENC_NAMESPACE)-1 &&
+	      memcmp(ns, moap_1_2_ENC_NAMESPACE, sizeof(moap_1_2_ENC_NAMESPACE)-1) == 0))) {
 		char *enc_nscat;
 		int enc_ns_len;
 		int enc_len;
@@ -169,7 +169,7 @@ encodePtr get_encoder_ex(sdlPtr sdl, const char *nscat, int len)
 	encodePtr *enc;
 	TSRMLS_FETCH();
 
-	if (zend_hash_find(&SOAP_GLOBAL(defEnc), (char*)nscat, len + 1, (void **)&enc) == SUCCESS) {
+	if (zend_hash_find(&moap_GLOBAL(defEnc), (char*)nscat, len + 1, (void **)&enc) == SUCCESS) {
 		return (*enc);
 	} else if (sdl && sdl->encoders && zend_hash_find(sdl->encoders, (char*)nscat, len + 1, (void **)&enc) == SUCCESS) {
 		return (*enc);
@@ -219,7 +219,7 @@ static int is_wsdl_element(xmlNodePtr node)
 		     attr->children && attr->children->content &&
 		     (strcmp((char*)attr->children->content, "1") == 0 ||
 		      strcmp((char*)attr->children->content, "true") == 0)) {
-			soap_error1(E_ERROR, "Parsing WSDL: Unknown required WSDL extension '%s'", node->ns->href);
+			moap_error1(E_ERROR, "Parsing WSDL: Unknown required WSDL extension '%s'", node->ns->href);
 		}
 		return 0;
 	}
@@ -296,16 +296,16 @@ static void load_wsdl_ex(zval *this_ptr, char *struri, sdlCtx *ctx, int include 
 	}
 	
 	sdl_set_uri_credentials(ctx, struri TSRMLS_CC);
-	wsdl = soap_xmlParseFile(struri TSRMLS_CC);
+	wsdl = moap_xmlParseFile(struri TSRMLS_CC);
 	sdl_restore_uri_credentials(ctx TSRMLS_CC);
 	
 	if (!wsdl) {
 		xmlErrorPtr xmlErrorPtr = xmlGetLastError();
 
 		if (xmlErrorPtr) {
-			soap_error2(E_ERROR, "Parsing WSDL: Couldn't load from '%s' : %s", struri, xmlErrorPtr->message);
+			moap_error2(E_ERROR, "Parsing WSDL: Couldn't load from '%s' : %s", struri, xmlErrorPtr->message);
 		} else {
-			soap_error1(E_ERROR, "Parsing WSDL: Couldn't load from '%s'", struri);
+			moap_error1(E_ERROR, "Parsing WSDL: Couldn't load from '%s'", struri);
 		}
 	}
 
@@ -321,7 +321,7 @@ static void load_wsdl_ex(zval *this_ptr, char *struri, sdlCtx *ctx, int include 
 				return;
 			}
 		}
-		soap_error1(E_ERROR, "Parsing WSDL: Couldn't find <definitions> in '%s'", struri);
+		moap_error1(E_ERROR, "Parsing WSDL: Couldn't find <definitions> in '%s'", struri);
 	}
 
 	if (!include) {
@@ -345,7 +345,7 @@ static void load_wsdl_ex(zval *this_ptr, char *struri, sdlCtx *ctx, int include 
 				if (node_is_equal_ex(trav2, "schema", XSD_NAMESPACE)) {
 					load_schema(ctx, trav2 TSRMLS_CC);
 				} else if (is_wsdl_element(trav2) && !node_is_equal(trav2,"documentation")) {
-					soap_error1(E_ERROR, "Parsing WSDL: Unexpected WSDL element <%s>", trav2->name);
+					moap_error1(E_ERROR, "Parsing WSDL: Unexpected WSDL element <%s>", trav2->name);
 				}
 				trav2 = trav2->next;
 			}
@@ -370,58 +370,58 @@ static void load_wsdl_ex(zval *this_ptr, char *struri, sdlCtx *ctx, int include 
 			xmlAttrPtr name = get_attribute(trav->properties, "name");
 			if (name && name->children && name->children->content) {
 				if (zend_hash_add(&ctx->messages, (char*)name->children->content, xmlStrlen(name->children->content)+1,&trav, sizeof(xmlNodePtr), NULL) != SUCCESS) {
-					soap_error1(E_ERROR, "Parsing WSDL: <message> '%s' already defined", name->children->content);
+					moap_error1(E_ERROR, "Parsing WSDL: <message> '%s' already defined", name->children->content);
 				}
 			} else {
-				soap_error0(E_ERROR, "Parsing WSDL: <message> has no name attribute");
+				moap_error0(E_ERROR, "Parsing WSDL: <message> has no name attribute");
 			}
 
 		} else if (node_is_equal(trav,"portType")) {
 			xmlAttrPtr name = get_attribute(trav->properties, "name");
 			if (name && name->children && name->children->content) {
 				if (zend_hash_add(&ctx->portTypes, (char*)name->children->content, xmlStrlen(name->children->content)+1,&trav, sizeof(xmlNodePtr), NULL) != SUCCESS) {
-					soap_error1(E_ERROR, "Parsing WSDL: <portType> '%s' already defined", name->children->content);
+					moap_error1(E_ERROR, "Parsing WSDL: <portType> '%s' already defined", name->children->content);
 				}
 			} else {
-				soap_error0(E_ERROR, "Parsing WSDL: <portType> has no name attribute");
+				moap_error0(E_ERROR, "Parsing WSDL: <portType> has no name attribute");
 			}
 
 		} else if (node_is_equal(trav,"binding")) {
 			xmlAttrPtr name = get_attribute(trav->properties, "name");
 			if (name && name->children && name->children->content) {
 				if (zend_hash_add(&ctx->bindings, (char*)name->children->content, xmlStrlen(name->children->content)+1,&trav, sizeof(xmlNodePtr), NULL) != SUCCESS) {
-					soap_error1(E_ERROR, "Parsing WSDL: <binding> '%s' already defined", name->children->content);
+					moap_error1(E_ERROR, "Parsing WSDL: <binding> '%s' already defined", name->children->content);
 				}
 			} else {
-				soap_error0(E_ERROR, "Parsing WSDL: <binding> has no name attribute");
+				moap_error0(E_ERROR, "Parsing WSDL: <binding> has no name attribute");
 			}
 
 		} else if (node_is_equal(trav,"service")) {
 			xmlAttrPtr name = get_attribute(trav->properties, "name");
 			if (name && name->children && name->children->content) {
 				if (zend_hash_add(&ctx->services, (char*)name->children->content, xmlStrlen(name->children->content)+1,&trav, sizeof(xmlNodePtr), NULL) != SUCCESS) {
-					soap_error1(E_ERROR, "Parsing WSDL: <service> '%s' already defined", name->children->content);
+					moap_error1(E_ERROR, "Parsing WSDL: <service> '%s' already defined", name->children->content);
 				}
 			} else {
-				soap_error0(E_ERROR, "Parsing WSDL: <service> has no name attribute");
+				moap_error0(E_ERROR, "Parsing WSDL: <service> has no name attribute");
 			}
 		} else if (!node_is_equal(trav,"documentation")) {
-			soap_error1(E_ERROR, "Parsing WSDL: Unexpected WSDL element <%s>", trav->name);
+			moap_error1(E_ERROR, "Parsing WSDL: Unexpected WSDL element <%s>", trav->name);
 		}
 		trav = trav->next;
 	}
 }
 
-static sdlSoapBindingFunctionHeaderPtr wsdl_soap_binding_header(sdlCtx* ctx, xmlNodePtr header, char* wsdl_soap_namespace, int fault)
+static sdlmoapBindingFunctionHeaderPtr wsdl_moap_binding_header(sdlCtx* ctx, xmlNodePtr header, char* wsdl_moap_namespace, int fault)
 {
 	xmlAttrPtr tmp;
 	xmlNodePtr *message, part;
 	char *ctype;
-	sdlSoapBindingFunctionHeaderPtr h;
+	sdlmoapBindingFunctionHeaderPtr h;
 
 	tmp = get_attribute(header->properties, "message");
 	if (!tmp) {
-		soap_error0(E_ERROR, "Parsing WSDL: Missing message attribute for <header>");
+		moap_error0(E_ERROR, "Parsing WSDL: Missing message attribute for <header>");
 	}
 
 	ctype = strrchr((char*)tmp->children->content,':');
@@ -431,27 +431,27 @@ static sdlSoapBindingFunctionHeaderPtr wsdl_soap_binding_header(sdlCtx* ctx, xml
 		++ctype;
 	}
 	if (zend_hash_find(&ctx->messages, ctype, strlen(ctype)+1, (void**)&message) != SUCCESS) {
-		soap_error1(E_ERROR, "Parsing WSDL: Missing <message> with name '%s'", tmp->children->content);
+		moap_error1(E_ERROR, "Parsing WSDL: Missing <message> with name '%s'", tmp->children->content);
 	}
 
 	tmp = get_attribute(header->properties, "part");
 	if (!tmp) {
-		soap_error0(E_ERROR, "Parsing WSDL: Missing part attribute for <header>");
+		moap_error0(E_ERROR, "Parsing WSDL: Missing part attribute for <header>");
 	}
 	part = get_node_with_attribute_ex((*message)->children, "part", WSDL_NAMESPACE, "name", (char*)tmp->children->content, NULL);
 	if (!part) {
-		soap_error1(E_ERROR, "Parsing WSDL: Missing part '%s' in <message>", tmp->children->content);
+		moap_error1(E_ERROR, "Parsing WSDL: Missing part '%s' in <message>", tmp->children->content);
 	}
 
-	h = emalloc(sizeof(sdlSoapBindingFunctionHeader));
-	memset(h, 0, sizeof(sdlSoapBindingFunctionHeader));
+	h = emalloc(sizeof(sdlmoapBindingFunctionHeader));
+	memset(h, 0, sizeof(sdlmoapBindingFunctionHeader));
 	h->name = estrdup((char*)tmp->children->content);
 
 	tmp = get_attribute(header->properties, "use");
 	if (tmp && !strncmp((char*)tmp->children->content, "encoded", sizeof("encoded"))) {
-		h->use = SOAP_ENCODED;
+		h->use = moap_ENCODED;
 	} else {
-		h->use = SOAP_LITERAL;
+		h->use = moap_LITERAL;
 	}
 
 	tmp = get_attribute(header->properties, "namespace");
@@ -459,18 +459,18 @@ static sdlSoapBindingFunctionHeaderPtr wsdl_soap_binding_header(sdlCtx* ctx, xml
 		h->ns = estrdup((char*)tmp->children->content);
 	}
 
-	if (h->use == SOAP_ENCODED) {
+	if (h->use == moap_ENCODED) {
 		tmp = get_attribute(header->properties, "encodingStyle");
 		if (tmp) {
-			if (strncmp((char*)tmp->children->content, SOAP_1_1_ENC_NAMESPACE, sizeof(SOAP_1_1_ENC_NAMESPACE)) == 0) {
-				h->encodingStyle = SOAP_ENCODING_1_1;
-			} else if (strncmp((char*)tmp->children->content, SOAP_1_2_ENC_NAMESPACE, sizeof(SOAP_1_2_ENC_NAMESPACE)) == 0) {
-				h->encodingStyle = SOAP_ENCODING_1_2;
+			if (strncmp((char*)tmp->children->content, moap_1_1_ENC_NAMESPACE, sizeof(moap_1_1_ENC_NAMESPACE)) == 0) {
+				h->encodingStyle = moap_ENCODING_1_1;
+			} else if (strncmp((char*)tmp->children->content, moap_1_2_ENC_NAMESPACE, sizeof(moap_1_2_ENC_NAMESPACE)) == 0) {
+				h->encodingStyle = moap_ENCODING_1_2;
 			} else {
-				soap_error1(E_ERROR, "Parsing WSDL: Unknown encodingStyle '%s'", tmp->children->content);
+				moap_error1(E_ERROR, "Parsing WSDL: Unknown encodingStyle '%s'", tmp->children->content);
 			}
 		} else {
-			soap_error0(E_ERROR, "Parsing WSDL: Unspecified encodingStyle");
+			moap_error0(E_ERROR, "Parsing WSDL: Unspecified encodingStyle");
 		}
 	}
 
@@ -496,8 +496,8 @@ static sdlSoapBindingFunctionHeaderPtr wsdl_soap_binding_header(sdlCtx* ctx, xml
 	if (!fault) {
 		xmlNodePtr trav = header->children;
 		while (trav != NULL) {
-			if (node_is_equal_ex(trav, "headerfault", wsdl_soap_namespace)) {
-				sdlSoapBindingFunctionHeaderPtr hf = wsdl_soap_binding_header(ctx, trav, wsdl_soap_namespace, 1);
+			if (node_is_equal_ex(trav, "headerfault", wsdl_moap_namespace)) {
+				sdlmoapBindingFunctionHeaderPtr hf = wsdl_moap_binding_header(ctx, trav, wsdl_moap_namespace, 1);
 				smart_str key = {0};
 
 				if (h->headerfaults == NULL) {
@@ -511,12 +511,12 @@ static sdlSoapBindingFunctionHeaderPtr wsdl_soap_binding_header(sdlCtx* ctx, xml
 				}
 				smart_str_appends(&key,hf->name);
 				smart_str_0(&key);
-				if (zend_hash_add(h->headerfaults, key.c, key.len+1, (void**)&hf, sizeof(sdlSoapBindingFunctionHeaderPtr), NULL) != SUCCESS) {
+				if (zend_hash_add(h->headerfaults, key.c, key.len+1, (void**)&hf, sizeof(sdlmoapBindingFunctionHeaderPtr), NULL) != SUCCESS) {
 					delete_header((void**)&hf);
 				}
 				smart_str_free(&key);
 			} else if (is_wsdl_element(trav) && !node_is_equal(trav,"documentation")) {
-				soap_error1(E_ERROR, "Parsing WSDL: Unexpected WSDL element <%s>", trav->name);
+				moap_error1(E_ERROR, "Parsing WSDL: Unexpected WSDL element <%s>", trav->name);
 			}
 			trav = trav->next;
 		}
@@ -524,21 +524,21 @@ static sdlSoapBindingFunctionHeaderPtr wsdl_soap_binding_header(sdlCtx* ctx, xml
 	return h;
 }
 
-static void wsdl_soap_binding_body(sdlCtx* ctx, xmlNodePtr node, char* wsdl_soap_namespace, sdlSoapBindingFunctionBody *binding, HashTable* params)
+static void wsdl_moap_binding_body(sdlCtx* ctx, xmlNodePtr node, char* wsdl_moap_namespace, sdlmoapBindingFunctionBody *binding, HashTable* params)
 {
 	xmlNodePtr body, trav;
 	xmlAttrPtr tmp;
 
 	trav = node->children;
 	while (trav != NULL) {
-		if (node_is_equal_ex(trav, "body", wsdl_soap_namespace)) {
+		if (node_is_equal_ex(trav, "body", wsdl_moap_namespace)) {
 			body = trav;
 
 			tmp = get_attribute(body->properties, "use");
 			if (tmp && !strncmp((char*)tmp->children->content, "literal", sizeof("literal"))) {
-				binding->use = SOAP_LITERAL;
+				binding->use = moap_LITERAL;
 			} else {
-				binding->use = SOAP_ENCODED;
+				binding->use = moap_ENCODED;
 			}
 
 			tmp = get_attribute(body->properties, "namespace");
@@ -578,7 +578,7 @@ static void wsdl_soap_binding_body(sdlCtx* ctx, xmlNodePtr node, char* wsdl_soap
 						zend_hash_move_forward_ex(params, &pos);
 					}
 					if (!found) {
-						soap_error1(E_ERROR, "Parsing WSDL: Missing part '%s' in <message>", parts);
+						moap_error1(E_ERROR, "Parsing WSDL: Missing part '%s' in <message>", parts);
 					}
 					parts += strlen(parts);
 					if (end) *end = ' ';
@@ -587,22 +587,22 @@ static void wsdl_soap_binding_body(sdlCtx* ctx, xmlNodePtr node, char* wsdl_soap
 				*params = ht;
 			}
 
-			if (binding->use == SOAP_ENCODED) {
+			if (binding->use == moap_ENCODED) {
 				tmp = get_attribute(body->properties, "encodingStyle");
 				if (tmp) {
-					if (strncmp((char*)tmp->children->content, SOAP_1_1_ENC_NAMESPACE, sizeof(SOAP_1_1_ENC_NAMESPACE)) == 0) {
-						binding->encodingStyle = SOAP_ENCODING_1_1;
-					} else if (strncmp((char*)tmp->children->content, SOAP_1_2_ENC_NAMESPACE, sizeof(SOAP_1_2_ENC_NAMESPACE)) == 0) {
-						binding->encodingStyle = SOAP_ENCODING_1_2;
+					if (strncmp((char*)tmp->children->content, moap_1_1_ENC_NAMESPACE, sizeof(moap_1_1_ENC_NAMESPACE)) == 0) {
+						binding->encodingStyle = moap_ENCODING_1_1;
+					} else if (strncmp((char*)tmp->children->content, moap_1_2_ENC_NAMESPACE, sizeof(moap_1_2_ENC_NAMESPACE)) == 0) {
+						binding->encodingStyle = moap_ENCODING_1_2;
 					} else {
-						soap_error1(E_ERROR, "Parsing WSDL: Unknown encodingStyle '%s'", tmp->children->content);
+						moap_error1(E_ERROR, "Parsing WSDL: Unknown encodingStyle '%s'", tmp->children->content);
 					}
 				} else {
-					soap_error0(E_ERROR, "Parsing WSDL: Unspecified encodingStyle");
+					moap_error0(E_ERROR, "Parsing WSDL: Unspecified encodingStyle");
 				}
 			}
-		} else if (node_is_equal_ex(trav, "header", wsdl_soap_namespace)) {
-			sdlSoapBindingFunctionHeaderPtr h = wsdl_soap_binding_header(ctx, trav, wsdl_soap_namespace, 0);
+		} else if (node_is_equal_ex(trav, "header", wsdl_moap_namespace)) {
+			sdlmoapBindingFunctionHeaderPtr h = wsdl_moap_binding_header(ctx, trav, wsdl_moap_namespace, 0);
 			smart_str key = {0};
 
 			if (binding->headers == NULL) {
@@ -616,12 +616,12 @@ static void wsdl_soap_binding_body(sdlCtx* ctx, xmlNodePtr node, char* wsdl_soap
 			}
 			smart_str_appends(&key,h->name);
 			smart_str_0(&key);
-			if (zend_hash_add(binding->headers, key.c, key.len+1, (void**)&h, sizeof(sdlSoapBindingFunctionHeaderPtr), NULL) != SUCCESS) {
+			if (zend_hash_add(binding->headers, key.c, key.len+1, (void**)&h, sizeof(sdlmoapBindingFunctionHeaderPtr), NULL) != SUCCESS) {
 				delete_header((void**)&h);
 			}
 			smart_str_free(&key);
 		} else if (is_wsdl_element(trav) && !node_is_equal(trav,"documentation")) {
-			soap_error1(E_ERROR, "Parsing WSDL: Unexpected WSDL element <%s>", trav->name);
+			moap_error1(E_ERROR, "Parsing WSDL: Unexpected WSDL element <%s>", trav->name);
 		}
 		trav = trav->next;
 	}
@@ -640,7 +640,7 @@ static HashTable* wsdl_message(sdlCtx *ctx, xmlChar* message_name)
 		++ctype;
 	}
 	if (zend_hash_find(&ctx->messages, ctype, strlen(ctype)+1, (void**)&tmp) != SUCCESS) {
-		soap_error1(E_ERROR, "Parsing WSDL: Missing <message> with name '%s'", message_name);
+		moap_error1(E_ERROR, "Parsing WSDL: Missing <message> with name '%s'", message_name);
 	}
 	message = *tmp;
 
@@ -653,14 +653,14 @@ static HashTable* wsdl_message(sdlCtx *ctx, xmlChar* message_name)
 		sdlParamPtr param;
 
 		if (trav->ns != NULL && strcmp((char*)trav->ns->href, WSDL_NAMESPACE) != 0) {
-			soap_error1(E_ERROR, "Parsing WSDL: Unexpected extensibility element <%s>", trav->name);
+			moap_error1(E_ERROR, "Parsing WSDL: Unexpected extensibility element <%s>", trav->name);
 		}
 		if (node_is_equal(trav,"documentation")) {
 			trav = trav->next;
 			continue;
 		}
 		if (!node_is_equal(trav,"part")) {
-			soap_error1(E_ERROR, "Parsing WSDL: Unexpected WSDL element <%s>", trav->name);
+			moap_error1(E_ERROR, "Parsing WSDL: Unexpected WSDL element <%s>", trav->name);
 		}
 		part = trav;
 		param = emalloc(sizeof(sdlParam));
@@ -669,7 +669,7 @@ static HashTable* wsdl_message(sdlCtx *ctx, xmlChar* message_name)
 
 		name = get_attribute(part->properties, "name");
 		if (name == NULL) {
-			soap_error1(E_ERROR, "Parsing WSDL: No name associated with <part> '%s'", message->name);
+			moap_error1(E_ERROR, "Parsing WSDL: No name associated with <part> '%s'", message->name);
 		}
 
 		param->paramName = estrdup((char*)name->children->content);
@@ -720,7 +720,7 @@ static sdlPtr load_wsdl(zval *this_ptr, char *struri TSRMLS_DC)
 		for (i = 0; i < n; i++) {
 			xmlNodePtr *tmp, service;
 			xmlNodePtr trav, port;
-			int has_soap_port = 0;
+			int has_moap_port = 0;
 
 			zend_hash_get_current_data(&ctx.services, (void **)&tmp);
 			service = *tmp;
@@ -732,14 +732,14 @@ static sdlPtr load_wsdl(zval *this_ptr, char *struri TSRMLS_DC)
 				xmlNodePtr address, binding, trav2;
 				char *ctype;
 				sdlBindingPtr tmpbinding;
-				char *wsdl_soap_namespace = NULL;
+				char *wsdl_moap_namespace = NULL;
 
 				if (!is_wsdl_element(trav) || node_is_equal(trav,"documentation")) {
 					trav = trav->next;
 					continue;
 				}
 				if (!node_is_equal(trav,"port")) {
-					soap_error1(E_ERROR, "Parsing WSDL: Unexpected WSDL element <%s>", trav->name);
+					moap_error1(E_ERROR, "Parsing WSDL: Unexpected WSDL element <%s>", trav->name);
 				}
 
 				port = trav;
@@ -749,7 +749,7 @@ static sdlPtr load_wsdl(zval *this_ptr, char *struri TSRMLS_DC)
 
 				bindingAttr = get_attribute(port->properties, "binding");
 				if (bindingAttr == NULL) {
-					soap_error0(E_ERROR, "Parsing WSDL: No binding associated with <port>");
+					moap_error0(E_ERROR, "Parsing WSDL: No binding associated with <port>");
 				}
 
 				/* find address and figure out binding type */
@@ -757,18 +757,18 @@ static sdlPtr load_wsdl(zval *this_ptr, char *struri TSRMLS_DC)
 				trav2 = port->children;
 				while (trav2 != NULL) {
 					if (node_is_equal(trav2,"address") && trav2->ns) {
-						if (!strncmp((char*)trav2->ns->href, WSDL_SOAP11_NAMESPACE, sizeof(WSDL_SOAP11_NAMESPACE))) {
+						if (!strncmp((char*)trav2->ns->href, WSDL_moap11_NAMESPACE, sizeof(WSDL_moap11_NAMESPACE))) {
 							address = trav2;
-							wsdl_soap_namespace = WSDL_SOAP11_NAMESPACE;
-							tmpbinding->bindingType = BINDING_SOAP;
-						} else if (!strncmp((char*)trav2->ns->href, WSDL_SOAP12_NAMESPACE, sizeof(WSDL_SOAP12_NAMESPACE))) {
+							wsdl_moap_namespace = WSDL_moap11_NAMESPACE;
+							tmpbinding->bindingType = BINDING_moap;
+						} else if (!strncmp((char*)trav2->ns->href, WSDL_moap12_NAMESPACE, sizeof(WSDL_moap12_NAMESPACE))) {
 							address = trav2;
-							wsdl_soap_namespace = WSDL_SOAP12_NAMESPACE;
-							tmpbinding->bindingType = BINDING_SOAP;
-						} else if (!strncmp((char*)trav2->ns->href, RPC_SOAP12_NAMESPACE, sizeof(RPC_SOAP12_NAMESPACE))) {
+							wsdl_moap_namespace = WSDL_moap12_NAMESPACE;
+							tmpbinding->bindingType = BINDING_moap;
+						} else if (!strncmp((char*)trav2->ns->href, RPC_moap12_NAMESPACE, sizeof(RPC_moap12_NAMESPACE))) {
 							address = trav2;
-							wsdl_soap_namespace = RPC_SOAP12_NAMESPACE;
-							tmpbinding->bindingType = BINDING_SOAP;
+							wsdl_moap_namespace = RPC_moap12_NAMESPACE;
+							tmpbinding->bindingType = BINDING_moap;
 						} else if (!strncmp((char*)trav2->ns->href, WSDL_HTTP11_NAMESPACE, sizeof(WSDL_HTTP11_NAMESPACE))) {
 							address = trav2;
 							tmpbinding->bindingType = BINDING_HTTP;
@@ -778,24 +778,24 @@ static sdlPtr load_wsdl(zval *this_ptr, char *struri TSRMLS_DC)
 						}
 					}
 					if (trav2 != address && is_wsdl_element(trav2) && !node_is_equal(trav2,"documentation")) {
-						soap_error1(E_ERROR, "Parsing WSDL: Unexpected WSDL element <%s>", trav2->name);
+						moap_error1(E_ERROR, "Parsing WSDL: Unexpected WSDL element <%s>", trav2->name);
 					}
 				  trav2 = trav2->next;
 				}
 				if (!address || tmpbinding->bindingType == BINDING_HTTP) {
-					if (has_soap_port || trav->next || i < n-1) {
+					if (has_moap_port || trav->next || i < n-1) {
 						efree(tmpbinding);
 						trav = trav->next;
 						continue;
 					} else if (!address) {
-						soap_error0(E_ERROR, "Parsing WSDL: No address associated with <port>");
+						moap_error0(E_ERROR, "Parsing WSDL: No address associated with <port>");
 					}
 				}
-				has_soap_port = 1;
+				has_moap_port = 1;
 
 				location = get_attribute(address->properties, "location");
 				if (!location) {
-					soap_error0(E_ERROR, "Parsing WSDL: No location associated with <port>");
+					moap_error0(E_ERROR, "Parsing WSDL: No location associated with <port>");
 				}
 
 				tmpbinding->location = estrdup((char*)location->children->content);
@@ -807,33 +807,33 @@ static sdlPtr load_wsdl(zval *this_ptr, char *struri TSRMLS_DC)
 					++ctype;
 				}
 				if (zend_hash_find(&ctx.bindings, ctype, strlen(ctype)+1, (void*)&tmp) != SUCCESS) {
-					soap_error1(E_ERROR, "Parsing WSDL: No <binding> element with name '%s'", ctype);
+					moap_error1(E_ERROR, "Parsing WSDL: No <binding> element with name '%s'", ctype);
 				}
 				binding = *tmp;
 
-				if (tmpbinding->bindingType == BINDING_SOAP) {
-					sdlSoapBindingPtr soapBinding;
-					xmlNodePtr soapBindingNode;
+				if (tmpbinding->bindingType == BINDING_moap) {
+					sdlmoapBindingPtr moapBinding;
+					xmlNodePtr moapBindingNode;
 					xmlAttrPtr tmp;
 
-					soapBinding = emalloc(sizeof(sdlSoapBinding));
-					memset(soapBinding, 0, sizeof(sdlSoapBinding));
-					soapBinding->style = SOAP_DOCUMENT;
+					moapBinding = emalloc(sizeof(sdlmoapBinding));
+					memset(moapBinding, 0, sizeof(sdlmoapBinding));
+					moapBinding->style = moap_DOCUMENT;
 
-					soapBindingNode = get_node_ex(binding->children, "binding", wsdl_soap_namespace);
-					if (soapBindingNode) {
-						tmp = get_attribute(soapBindingNode->properties, "style");
+					moapBindingNode = get_node_ex(binding->children, "binding", wsdl_moap_namespace);
+					if (moapBindingNode) {
+						tmp = get_attribute(moapBindingNode->properties, "style");
 						if (tmp && !strncmp((char*)tmp->children->content, "rpc", sizeof("rpc"))) {
-							soapBinding->style = SOAP_RPC;
+							moapBinding->style = moap_RPC;
 						}
 
-						tmp = get_attribute(soapBindingNode->properties, "transport");
+						tmp = get_attribute(moapBindingNode->properties, "transport");
 						if (tmp) {
 							if (strncmp((char*)tmp->children->content, WSDL_HTTP_TRANSPORT, sizeof(WSDL_HTTP_TRANSPORT)) == 0) {
-								soapBinding->transport = SOAP_TRANSPORT_HTTP;
+								moapBinding->transport = moap_TRANSPORT_HTTP;
 							} else {
 								/* try the next binding */
-								efree(soapBinding);
+								efree(moapBinding);
 								efree(tmpbinding->location);
 								efree(tmpbinding);
 								trav = trav->next;
@@ -841,18 +841,18 @@ static sdlPtr load_wsdl(zval *this_ptr, char *struri TSRMLS_DC)
 							}
 						}
 					}
-					tmpbinding->bindingAttributes = (void *)soapBinding;
+					tmpbinding->bindingAttributes = (void *)moapBinding;
 				}
 
 				name = get_attribute(binding->properties, "name");
 				if (name == NULL) {
-					soap_error0(E_ERROR, "Parsing WSDL: Missing 'name' attribute for <binding>");
+					moap_error0(E_ERROR, "Parsing WSDL: Missing 'name' attribute for <binding>");
 				}
 				tmpbinding->name = estrdup((char*)name->children->content);
 
 				type = get_attribute(binding->properties, "type");
 				if (type == NULL) {
-					soap_error0(E_ERROR, "Parsing WSDL: Missing 'type' attribute for <binding>");
+					moap_error0(E_ERROR, "Parsing WSDL: Missing 'type' attribute for <binding>");
 				}
 
 				ctype = strrchr((char*)type->children->content,':');
@@ -862,7 +862,7 @@ static sdlPtr load_wsdl(zval *this_ptr, char *struri TSRMLS_DC)
 					++ctype;
 				}
 				if (zend_hash_find(&ctx.portTypes, ctype, strlen(ctype)+1, (void**)&tmp) != SUCCESS) {
-					soap_error1(E_ERROR, "Parsing WSDL: Missing <portType> with name '%s'", name->children->content);
+					moap_error1(E_ERROR, "Parsing WSDL: Missing <portType> with name '%s'", name->children->content);
 				}
 				portType = *tmp;
 
@@ -872,78 +872,78 @@ static sdlPtr load_wsdl(zval *this_ptr, char *struri TSRMLS_DC)
 					xmlNodePtr input, output, fault, portTypeOperation, trav3;
 					xmlAttrPtr op_name, paramOrder;
 
-					if ((tmpbinding->bindingType == BINDING_SOAP &&
-					    node_is_equal_ex(trav2, "binding", wsdl_soap_namespace)) ||
+					if ((tmpbinding->bindingType == BINDING_moap &&
+					    node_is_equal_ex(trav2, "binding", wsdl_moap_namespace)) ||
 					    !is_wsdl_element(trav2) ||
 					    node_is_equal(trav2,"documentation")) {
 						trav2 = trav2->next;
 						continue;
 					}
 					if (!node_is_equal(trav2,"operation")) {
-						soap_error1(E_ERROR, "Parsing WSDL: Unexpected WSDL element <%s>", trav2->name);
+						moap_error1(E_ERROR, "Parsing WSDL: Unexpected WSDL element <%s>", trav2->name);
 					}
 
 					operation = trav2;
 
 					op_name = get_attribute(operation->properties, "name");
 					if (op_name == NULL) {
-						soap_error0(E_ERROR, "Parsing WSDL: Missing 'name' attribute for <operation>");
+						moap_error0(E_ERROR, "Parsing WSDL: Missing 'name' attribute for <operation>");
 					}
 
 					trav3 = operation->children;
 					while  (trav3 != NULL) {
-						if (tmpbinding->bindingType == BINDING_SOAP &&
-						    node_is_equal_ex(trav3, "operation", wsdl_soap_namespace)) {
+						if (tmpbinding->bindingType == BINDING_moap &&
+						    node_is_equal_ex(trav3, "operation", wsdl_moap_namespace)) {
 						} else if (is_wsdl_element(trav3) &&
 						           !node_is_equal(trav3,"input") &&
 						           !node_is_equal(trav3,"output") &&
 						           !node_is_equal(trav3,"fault") &&
 						           !node_is_equal(trav3,"documentation")) {
-							soap_error1(E_ERROR, "Parsing WSDL: Unexpected WSDL element <%s>", trav3->name);
+							moap_error1(E_ERROR, "Parsing WSDL: Unexpected WSDL element <%s>", trav3->name);
 						}
 						trav3 = trav3->next;
 					}
 
 					portTypeOperation = get_node_with_attribute_ex(portType->children, "operation", WSDL_NAMESPACE, "name", (char*)op_name->children->content, NULL);
 					if (portTypeOperation == NULL) {
-						soap_error1(E_ERROR, "Parsing WSDL: Missing <portType>/<operation> with name '%s'", op_name->children->content);
+						moap_error1(E_ERROR, "Parsing WSDL: Missing <portType>/<operation> with name '%s'", op_name->children->content);
 					}
 
 					function = emalloc(sizeof(sdlFunction));
 					memset(function, 0, sizeof(sdlFunction));
 					function->functionName = estrdup((char*)op_name->children->content);
 
-					if (tmpbinding->bindingType == BINDING_SOAP) {
-						sdlSoapBindingFunctionPtr soapFunctionBinding;
-						sdlSoapBindingPtr soapBinding;
-						xmlNodePtr soapOperation;
+					if (tmpbinding->bindingType == BINDING_moap) {
+						sdlmoapBindingFunctionPtr moapFunctionBinding;
+						sdlmoapBindingPtr moapBinding;
+						xmlNodePtr moapOperation;
 						xmlAttrPtr tmp;
 
-						soapFunctionBinding = emalloc(sizeof(sdlSoapBindingFunction));
-						memset(soapFunctionBinding, 0, sizeof(sdlSoapBindingFunction));
-						soapBinding = (sdlSoapBindingPtr)tmpbinding->bindingAttributes;
-						soapFunctionBinding->style = soapBinding->style;
+						moapFunctionBinding = emalloc(sizeof(sdlmoapBindingFunction));
+						memset(moapFunctionBinding, 0, sizeof(sdlmoapBindingFunction));
+						moapBinding = (sdlmoapBindingPtr)tmpbinding->bindingAttributes;
+						moapFunctionBinding->style = moapBinding->style;
 
-						soapOperation = get_node_ex(operation->children, "operation", wsdl_soap_namespace);
-						if (soapOperation) {
-							tmp = get_attribute(soapOperation->properties, "soapAction");
+						moapOperation = get_node_ex(operation->children, "operation", wsdl_moap_namespace);
+						if (moapOperation) {
+							tmp = get_attribute(moapOperation->properties, "moapAction");
 							if (tmp) {
-								soapFunctionBinding->soapAction = estrdup((char*)tmp->children->content);
+								moapFunctionBinding->moapAction = estrdup((char*)tmp->children->content);
 							}
 
-							tmp = get_attribute(soapOperation->properties, "style");
+							tmp = get_attribute(moapOperation->properties, "style");
 							if (tmp) {
 								if (!strncmp((char*)tmp->children->content, "rpc", sizeof("rpc"))) {
-									soapFunctionBinding->style = SOAP_RPC;
+									moapFunctionBinding->style = moap_RPC;
 								} else {
-									soapFunctionBinding->style = SOAP_DOCUMENT;
+									moapFunctionBinding->style = moap_DOCUMENT;
 								}
 							} else {
-								soapFunctionBinding->style = soapBinding->style;
+								moapFunctionBinding->style = moapBinding->style;
 							}
 						}
 
-						function->bindingAttributes = (void *)soapFunctionBinding;
+						function->bindingAttributes = (void *)moapFunctionBinding;
 					}
 
 					input = get_node_ex(portTypeOperation->children, "input", WSDL_NAMESPACE);
@@ -952,7 +952,7 @@ static sdlPtr load_wsdl(zval *this_ptr, char *struri TSRMLS_DC)
 
 						message = get_attribute(input->properties, "message");
 						if (message == NULL) {
-							soap_error1(E_ERROR, "Parsing WSDL: Missing name for <input> of '%s'", op_name->children->content);
+							moap_error1(E_ERROR, "Parsing WSDL: Missing name for <input> of '%s'", op_name->children->content);
 						}
 						function->requestParameters = wsdl_message(&ctx, message->children->content);
 
@@ -966,11 +966,11 @@ static sdlPtr load_wsdl(zval *this_ptr, char *struri TSRMLS_DC)
 							function->requestName = estrdup(function->functionName);
 						}
 
-						if (tmpbinding->bindingType == BINDING_SOAP) {
+						if (tmpbinding->bindingType == BINDING_moap) {
 							input = get_node_ex(operation->children, "input", WSDL_NAMESPACE);
 							if (input != NULL) {
-								sdlSoapBindingFunctionPtr soapFunctionBinding = function->bindingAttributes;
-								wsdl_soap_binding_body(&ctx, input, wsdl_soap_namespace, &soapFunctionBinding->input, function->requestParameters);
+								sdlmoapBindingFunctionPtr moapFunctionBinding = function->bindingAttributes;
+								wsdl_moap_binding_body(&ctx, input, wsdl_moap_namespace, &moapFunctionBinding->input, function->requestParameters);
 							}
 						}
 					}
@@ -981,7 +981,7 @@ static sdlPtr load_wsdl(zval *this_ptr, char *struri TSRMLS_DC)
 
 						message = get_attribute(output->properties, "message");
 						if (message == NULL) {
-							soap_error1(E_ERROR, "Parsing WSDL: Missing name for <output> of '%s'", op_name->children->content);
+							moap_error1(E_ERROR, "Parsing WSDL: Missing name for <output> of '%s'", op_name->children->content);
 						}
 						function->responseParameters = wsdl_message(&ctx, message->children->content);
 
@@ -1000,11 +1000,11 @@ static sdlPtr load_wsdl(zval *this_ptr, char *struri TSRMLS_DC)
 							memcpy(function->responseName+len, "Response", sizeof("Response"));
 						}
 
-						if (tmpbinding->bindingType == BINDING_SOAP) {
+						if (tmpbinding->bindingType == BINDING_moap) {
 							output = get_node_ex(operation->children, "output", WSDL_NAMESPACE);
 							if (output != NULL) {
-								sdlSoapBindingFunctionPtr soapFunctionBinding = function->bindingAttributes;
-								wsdl_soap_binding_body(&ctx, output, wsdl_soap_namespace, &soapFunctionBinding->output, function->responseParameters);
+								sdlmoapBindingFunctionPtr moapFunctionBinding = function->bindingAttributes;
+								wsdl_moap_binding_body(&ctx, output, wsdl_moap_namespace, &moapFunctionBinding->output, function->responseParameters);
 							}
 						}
 					}
@@ -1022,11 +1022,11 @@ static sdlPtr load_wsdl(zval *this_ptr, char *struri TSRMLS_DC)
 
 							name = get_attribute(fault->properties, "name");
 							if (name == NULL) {
-								soap_error1(E_ERROR, "Parsing WSDL: Missing name for <fault> of '%s'", op_name->children->content);
+								moap_error1(E_ERROR, "Parsing WSDL: Missing name for <fault> of '%s'", op_name->children->content);
 							}
 							message = get_attribute(fault->properties, "message");
 							if (message == NULL) {
-								soap_error1(E_ERROR, "Parsing WSDL: Missing name for <output> of '%s'", op_name->children->content);
+								moap_error1(E_ERROR, "Parsing WSDL: Missing name for <output> of '%s'", op_name->children->content);
 							}
 
 							f = emalloc(sizeof(sdlFault));
@@ -1035,26 +1035,26 @@ static sdlPtr load_wsdl(zval *this_ptr, char *struri TSRMLS_DC)
 							f->name = estrdup((char*)name->children->content);
 							f->details = wsdl_message(&ctx, message->children->content);
 							if (f->details == NULL || zend_hash_num_elements(f->details) > 1) {
-								soap_error1(E_ERROR, "Parsing WSDL: The fault message '%s' must have a single part", message->children->content);
+								moap_error1(E_ERROR, "Parsing WSDL: The fault message '%s' must have a single part", message->children->content);
 							}
 
-							if (tmpbinding->bindingType == BINDING_SOAP) {
-								xmlNodePtr soap_fault = get_node_with_attribute_ex(operation->children, "fault", WSDL_NAMESPACE, "name", f->name, NULL);
-								if (soap_fault != NULL) {
-									xmlNodePtr trav = soap_fault->children;
+							if (tmpbinding->bindingType == BINDING_moap) {
+								xmlNodePtr moap_fault = get_node_with_attribute_ex(operation->children, "fault", WSDL_NAMESPACE, "name", f->name, NULL);
+								if (moap_fault != NULL) {
+									xmlNodePtr trav = moap_fault->children;
 									while (trav != NULL) {
-										if (node_is_equal_ex(trav, "fault", wsdl_soap_namespace)) {
+										if (node_is_equal_ex(trav, "fault", wsdl_moap_namespace)) {
 											xmlAttrPtr tmp;
-										  sdlSoapBindingFunctionFaultPtr binding;
+										  sdlmoapBindingFunctionFaultPtr binding;
 
-											binding = f->bindingAttributes = emalloc(sizeof(sdlSoapBindingFunctionFault));
-											memset(f->bindingAttributes, 0, sizeof(sdlSoapBindingFunctionFault));
+											binding = f->bindingAttributes = emalloc(sizeof(sdlmoapBindingFunctionFault));
+											memset(f->bindingAttributes, 0, sizeof(sdlmoapBindingFunctionFault));
 
 											tmp = get_attribute(trav->properties, "use");
 											if (tmp && !strncmp((char*)tmp->children->content, "encoded", sizeof("encoded"))) {
-												binding->use = SOAP_ENCODED;
+												binding->use = moap_ENCODED;
 											} else {
-												binding->use = SOAP_LITERAL;
+												binding->use = moap_LITERAL;
 											}
 
 											tmp = get_attribute(trav->properties, "namespace");
@@ -1062,22 +1062,22 @@ static sdlPtr load_wsdl(zval *this_ptr, char *struri TSRMLS_DC)
 												binding->ns = estrdup((char*)tmp->children->content);
 											}
 
-											if (binding->use == SOAP_ENCODED) {
+											if (binding->use == moap_ENCODED) {
 												tmp = get_attribute(trav->properties, "encodingStyle");
 												if (tmp) {
-													if (strncmp((char*)tmp->children->content, SOAP_1_1_ENC_NAMESPACE, sizeof(SOAP_1_1_ENC_NAMESPACE)) == 0) {
-														binding->encodingStyle = SOAP_ENCODING_1_1;
-													} else if (strncmp((char*)tmp->children->content, SOAP_1_2_ENC_NAMESPACE, sizeof(SOAP_1_2_ENC_NAMESPACE)) == 0) {
-														binding->encodingStyle = SOAP_ENCODING_1_2;
+													if (strncmp((char*)tmp->children->content, moap_1_1_ENC_NAMESPACE, sizeof(moap_1_1_ENC_NAMESPACE)) == 0) {
+														binding->encodingStyle = moap_ENCODING_1_1;
+													} else if (strncmp((char*)tmp->children->content, moap_1_2_ENC_NAMESPACE, sizeof(moap_1_2_ENC_NAMESPACE)) == 0) {
+														binding->encodingStyle = moap_ENCODING_1_2;
 													} else {
-														soap_error1(E_ERROR, "Parsing WSDL: Unknown encodingStyle '%s'", tmp->children->content);
+														moap_error1(E_ERROR, "Parsing WSDL: Unknown encodingStyle '%s'", tmp->children->content);
 													}
 												} else {
-													soap_error0(E_ERROR, "Parsing WSDL: Unspecified encodingStyle");
+													moap_error0(E_ERROR, "Parsing WSDL: Unspecified encodingStyle");
 												}
 											}
 										} else if (is_wsdl_element(trav) && !node_is_equal(trav,"documentation")) {
-											soap_error1(E_ERROR, "Parsing WSDL: Unexpected WSDL element <%s>", trav->name);
+											moap_error1(E_ERROR, "Parsing WSDL: Unexpected WSDL element <%s>", trav->name);
 										}
 										trav = trav->next;
 									}
@@ -1088,7 +1088,7 @@ static sdlPtr load_wsdl(zval *this_ptr, char *struri TSRMLS_DC)
 								zend_hash_init(function->faults, 0, NULL, delete_fault, 0);
 							}
 							if (zend_hash_add(function->faults, f->name, strlen(f->name)+1, (void**)&f, sizeof(sdlFaultPtr), NULL) != SUCCESS) {
-								soap_error2(E_ERROR, "Parsing WSDL: <fault> with name '%s' already defined in '%s'", f->name, op_name->children->content);
+								moap_error2(E_ERROR, "Parsing WSDL: <fault> with name '%s' already defined in '%s'", f->name, op_name->children->content);
 							}
 						}
 						fault = fault->next;
@@ -1130,11 +1130,11 @@ static sdlPtr load_wsdl(zval *this_ptr, char *struri TSRMLS_DC)
 			zend_hash_move_forward(&ctx.services);
 		}
 	} else {
-		soap_error0(E_ERROR, "Parsing WSDL: Couldn't bind to service");
+		moap_error0(E_ERROR, "Parsing WSDL: Couldn't bind to service");
 	}
 
 	if (ctx.sdl->bindings == NULL || ctx.sdl->bindings->nNumOfElements == 0) {
-		soap_error0(E_ERROR, "Parsing WSDL: Could not find any usable binding services in WSDL.");
+		moap_error0(E_ERROR, "Parsing WSDL: Could not find any usable binding services in WSDL.");
 	}
 
 	zend_hash_destroy(&ctx.messages);
@@ -1387,10 +1387,10 @@ static void sdl_deserialize_encoder(encodePtr enc, sdlTypePtr *types, char **in)
 		int ns_len = strlen(enc->details.ns);
 		int type_len = strlen(enc->details.type_str);
 
-		if (((ns_len == sizeof(SOAP_1_1_ENC_NAMESPACE)-1 &&
-		      memcmp(enc->details.ns, SOAP_1_1_ENC_NAMESPACE, sizeof(SOAP_1_1_ENC_NAMESPACE)-1) == 0) ||
-		     (ns_len == sizeof(SOAP_1_2_ENC_NAMESPACE)-1 &&
-		      memcmp(enc->details.ns, SOAP_1_2_ENC_NAMESPACE, sizeof(SOAP_1_2_ENC_NAMESPACE)-1) == 0))) {
+		if (((ns_len == sizeof(moap_1_1_ENC_NAMESPACE)-1 &&
+		      memcmp(enc->details.ns, moap_1_1_ENC_NAMESPACE, sizeof(moap_1_1_ENC_NAMESPACE)-1) == 0) ||
+		     (ns_len == sizeof(moap_1_2_ENC_NAMESPACE)-1 &&
+		      memcmp(enc->details.ns, moap_1_2_ENC_NAMESPACE, sizeof(moap_1_2_ENC_NAMESPACE)-1) == 0))) {
 			char *enc_nscat;
 			int enc_ns_len;
 			int enc_len;
@@ -1414,15 +1414,15 @@ static void sdl_deserialize_encoder(encodePtr enc, sdlTypePtr *types, char **in)
 	}	
 }
 
-static void sdl_deserialize_soap_body(sdlSoapBindingFunctionBodyPtr body, encodePtr *encoders, sdlTypePtr *types, char **in)
+static void sdl_deserialize_moap_body(sdlmoapBindingFunctionBodyPtr body, encodePtr *encoders, sdlTypePtr *types, char **in)
 {
 	int i, j, n;
 
 	WSDL_CACHE_GET_1(body->use, sdlEncodingUse, in);
-	if (body->use == SOAP_ENCODED) {
+	if (body->use == moap_ENCODED) {
 		WSDL_CACHE_GET_1(body->encodingStyle, sdlRpcEncodingStyle, in);
 	} else {
-		body->encodingStyle = SOAP_ENCODING_DEFAULT;
+		body->encodingStyle = moap_ENCODING_DEFAULT;
 	}
 	body->ns = sdl_deserialize_string(in);
 	WSDL_CACHE_GET_INT(i, in);
@@ -1430,14 +1430,14 @@ static void sdl_deserialize_soap_body(sdlSoapBindingFunctionBodyPtr body, encode
 		body->headers = emalloc(sizeof(HashTable));
 		zend_hash_init(body->headers, i, NULL, delete_header, 0);
 		while (i > 0) {
-			sdlSoapBindingFunctionHeaderPtr tmp = emalloc(sizeof(sdlSoapBindingFunctionHeader));
-			memset(tmp, 0, sizeof(sdlSoapBindingFunctionHeader));
+			sdlmoapBindingFunctionHeaderPtr tmp = emalloc(sizeof(sdlmoapBindingFunctionHeader));
+			memset(tmp, 0, sizeof(sdlmoapBindingFunctionHeader));
 			sdl_deserialize_key(body->headers, tmp, in);
 			WSDL_CACHE_GET_1(tmp->use, sdlEncodingUse, in);
-			if (tmp->use == SOAP_ENCODED) {
+			if (tmp->use == moap_ENCODED) {
 				WSDL_CACHE_GET_1(tmp->encodingStyle, sdlRpcEncodingStyle, in);
 			} else {
-				tmp->encodingStyle = SOAP_ENCODING_DEFAULT;
+				tmp->encodingStyle = moap_ENCODING_DEFAULT;
 			}
 			tmp->name = sdl_deserialize_string(in);
 			tmp->ns = sdl_deserialize_string(in);
@@ -1451,14 +1451,14 @@ static void sdl_deserialize_soap_body(sdlSoapBindingFunctionBodyPtr body, encode
 				tmp->headerfaults = emalloc(sizeof(HashTable));
 				zend_hash_init(tmp->headerfaults, i, NULL, delete_header, 0);
 				while (j > 0) {
-					sdlSoapBindingFunctionHeaderPtr tmp2 = emalloc(sizeof(sdlSoapBindingFunctionHeader));
-					memset(tmp2, 0, sizeof(sdlSoapBindingFunctionHeader));
+					sdlmoapBindingFunctionHeaderPtr tmp2 = emalloc(sizeof(sdlmoapBindingFunctionHeader));
+					memset(tmp2, 0, sizeof(sdlmoapBindingFunctionHeader));
 					sdl_deserialize_key(tmp->headerfaults, tmp2, in);
 					WSDL_CACHE_GET_1(tmp2->use, sdlEncodingUse, in);
-					if (tmp2->use == SOAP_ENCODED) {
+					if (tmp2->use == moap_ENCODED) {
 						WSDL_CACHE_GET_1(tmp2->encodingStyle, sdlRpcEncodingStyle, in);
 					} else {
-						tmp2->encodingStyle = SOAP_ENCODING_DEFAULT;
+						tmp2->encodingStyle = moap_ENCODING_DEFAULT;
 					}
 					tmp2->name = sdl_deserialize_string(in);
 					tmp2->ns = sdl_deserialize_string(in);
@@ -1644,10 +1644,10 @@ static sdlPtr get_sdl_from_cache(const char *fn, const char *uri, time_t t, time
 			binding->name = sdl_deserialize_string(&in);
 			binding->location = sdl_deserialize_string(&in);
 			WSDL_CACHE_GET_1(binding->bindingType,sdlBindingType,&in);
-			if (binding->bindingType == BINDING_SOAP && *in != 0) {
-			  sdlSoapBindingPtr soap_binding = binding->bindingAttributes = emalloc(sizeof(sdlSoapBinding));
-				WSDL_CACHE_GET_1(soap_binding->style,sdlEncodingStyle,&in);
-				WSDL_CACHE_GET_1(soap_binding->transport,sdlTransport,&in);
+			if (binding->bindingType == BINDING_moap && *in != 0) {
+			  sdlmoapBindingPtr moap_binding = binding->bindingAttributes = emalloc(sizeof(sdlmoapBinding));
+				WSDL_CACHE_GET_1(moap_binding->style,sdlEncodingStyle,&in);
+				WSDL_CACHE_GET_1(moap_binding->transport,sdlTransport,&in);
 			} else {
 				WSDL_CACHE_SKIP(1,&in);
 			}
@@ -1674,13 +1674,13 @@ static sdlPtr get_sdl_from_cache(const char *fn, const char *uri, time_t t, time
 			} else {
 				func->binding = bindings[binding_num-1];
 			}
-			if (func->binding && func->binding->bindingType == BINDING_SOAP && *in != 0) {
-				sdlSoapBindingFunctionPtr binding = func->bindingAttributes = emalloc(sizeof(sdlSoapBindingFunction));
-				memset(binding, 0, sizeof(sdlSoapBindingFunction));
+			if (func->binding && func->binding->bindingType == BINDING_moap && *in != 0) {
+				sdlmoapBindingFunctionPtr binding = func->bindingAttributes = emalloc(sizeof(sdlmoapBindingFunction));
+				memset(binding, 0, sizeof(sdlmoapBindingFunction));
 				WSDL_CACHE_GET_1(binding->style,sdlEncodingStyle,&in);
-				binding->soapAction = sdl_deserialize_string(&in);
-				sdl_deserialize_soap_body(&binding->input, encoders, types, &in);
-				sdl_deserialize_soap_body(&binding->output, encoders, types, &in);
+				binding->moapAction = sdl_deserialize_string(&in);
+				sdl_deserialize_moap_body(&binding->input, encoders, types, &in);
+				sdl_deserialize_moap_body(&binding->output, encoders, types, &in);
 			} else {
 				WSDL_CACHE_SKIP(1, &in);
 				func->bindingAttributes = NULL;
@@ -1703,13 +1703,13 @@ static sdlPtr get_sdl_from_cache(const char *fn, const char *uri, time_t t, time
 					fault->name =sdl_deserialize_string(&in);
 					fault->details =sdl_deserialize_parameters(encoders, types, &in);
 					if (*in != 0) {
-						sdlSoapBindingFunctionFaultPtr binding = fault->bindingAttributes = emalloc(sizeof(sdlSoapBindingFunctionFault));
-						memset(binding, 0, sizeof(sdlSoapBindingFunctionFault));
+						sdlmoapBindingFunctionFaultPtr binding = fault->bindingAttributes = emalloc(sizeof(sdlmoapBindingFunctionFault));
+						memset(binding, 0, sizeof(sdlmoapBindingFunctionFault));
 						WSDL_CACHE_GET_1(binding->use,sdlEncodingUse,&in);
-						if (binding->use == SOAP_ENCODED) {
+						if (binding->use == moap_ENCODED) {
 							WSDL_CACHE_GET_1(binding->encodingStyle, sdlRpcEncodingStyle, &in);
 						} else {
-							binding->encodingStyle = SOAP_ENCODING_DEFAULT;
+							binding->encodingStyle = moap_ENCODING_DEFAULT;
 						}
 						binding->ns = sdl_deserialize_string(&in);
 					} else {
@@ -2018,12 +2018,12 @@ static void sdl_serialize_parameters(HashTable *ht, HashTable *tmp_encoders, Has
 	}
 }
 
-static void sdl_serialize_soap_body(sdlSoapBindingFunctionBodyPtr body, HashTable *tmp_encoders, HashTable *tmp_types, smart_str *out)
+static void sdl_serialize_moap_body(sdlmoapBindingFunctionBodyPtr body, HashTable *tmp_encoders, HashTable *tmp_types, smart_str *out)
 {
 	int i, j;
 
 	WSDL_CACHE_PUT_1(body->use, out);
-	if (body->use == SOAP_ENCODED) {
+	if (body->use == moap_ENCODED) {
 		WSDL_CACHE_PUT_1(body->encodingStyle, out);
 	}
 	sdl_serialize_string(body->ns, out);
@@ -2034,12 +2034,12 @@ static void sdl_serialize_soap_body(sdlSoapBindingFunctionBodyPtr body, HashTabl
 	}
 	WSDL_CACHE_PUT_INT(i, out);
 	if (i > 0) {
-		sdlSoapBindingFunctionHeaderPtr *tmp;
+		sdlmoapBindingFunctionHeaderPtr *tmp;
 		zend_hash_internal_pointer_reset(body->headers);
 		while (zend_hash_get_current_data(body->headers, (void**)&tmp) == SUCCESS) {
 			sdl_serialize_key(body->headers, out);
 			WSDL_CACHE_PUT_1((*tmp)->use, out);
-			if ((*tmp)->use == SOAP_ENCODED) {
+			if ((*tmp)->use == moap_ENCODED) {
 				WSDL_CACHE_PUT_1((*tmp)->encodingStyle, out);
 			}
 			sdl_serialize_string((*tmp)->name, out);
@@ -2053,12 +2053,12 @@ static void sdl_serialize_soap_body(sdlSoapBindingFunctionBodyPtr body, HashTabl
 			}
 			WSDL_CACHE_PUT_INT(j, out);
 			if (j > 0) {
-				sdlSoapBindingFunctionHeaderPtr *tmp2;
+				sdlmoapBindingFunctionHeaderPtr *tmp2;
 				zend_hash_internal_pointer_reset((*tmp)->headerfaults);
 				while (zend_hash_get_current_data((*tmp)->headerfaults, (void**)&tmp2) == SUCCESS) {
 					sdl_serialize_key((*tmp)->headerfaults, out);
 					WSDL_CACHE_PUT_1((*tmp2)->use, out);
-					if ((*tmp2)->use == SOAP_ENCODED) {
+					if ((*tmp2)->use == moap_ENCODED) {
 						WSDL_CACHE_PUT_1((*tmp2)->encodingStyle, out);
 					}
 					sdl_serialize_string((*tmp2)->name, out);
@@ -2239,8 +2239,8 @@ static void add_sdl_to_cache(const char *fn, const char *uri, time_t t, sdlPtr s
 			sdl_serialize_string((*tmp)->name, out);
 			sdl_serialize_string((*tmp)->location, out);
 			WSDL_CACHE_PUT_1((*tmp)->bindingType,out);
-			if ((*tmp)->bindingType == BINDING_SOAP && (*tmp)->bindingAttributes != NULL) {
-				sdlSoapBindingPtr binding = (sdlSoapBindingPtr)(*tmp)->bindingAttributes;
+			if ((*tmp)->bindingType == BINDING_moap && (*tmp)->bindingAttributes != NULL) {
+				sdlmoapBindingPtr binding = (sdlmoapBindingPtr)(*tmp)->bindingAttributes;
 				WSDL_CACHE_PUT_1(binding->style, out);
 				WSDL_CACHE_PUT_1(binding->transport, out);
 			} else {
@@ -2273,12 +2273,12 @@ static void add_sdl_to_cache(const char *fn, const char *uri, time_t t, sdlPtr s
 			}
 			WSDL_CACHE_PUT_INT(*binding_num, out);
 			if (*binding_num >= 0) {
-				if ((*tmp)->binding->bindingType == BINDING_SOAP && (*tmp)->bindingAttributes != NULL) {
-					sdlSoapBindingFunctionPtr binding = (sdlSoapBindingFunctionPtr)(*tmp)->bindingAttributes;
+				if ((*tmp)->binding->bindingType == BINDING_moap && (*tmp)->bindingAttributes != NULL) {
+					sdlmoapBindingFunctionPtr binding = (sdlmoapBindingFunctionPtr)(*tmp)->bindingAttributes;
 					WSDL_CACHE_PUT_1(binding->style, out);
-					sdl_serialize_string(binding->soapAction, out);
-					sdl_serialize_soap_body(&binding->input, &tmp_encoders, &tmp_types, out);
-					sdl_serialize_soap_body(&binding->output, &tmp_encoders, &tmp_types, out);
+					sdl_serialize_string(binding->moapAction, out);
+					sdl_serialize_moap_body(&binding->input, &tmp_encoders, &tmp_types, out);
+					sdl_serialize_moap_body(&binding->output, &tmp_encoders, &tmp_types, out);
 				} else {
 					WSDL_CACHE_PUT_1(0,out);
 				}
@@ -2296,10 +2296,10 @@ static void add_sdl_to_cache(const char *fn, const char *uri, time_t t, sdlPtr s
 					sdl_serialize_key((*tmp)->faults, out);
 					sdl_serialize_string((*fault)->name, out);
 					sdl_serialize_parameters((*fault)->details, &tmp_encoders, &tmp_types, out);
-					if ((*tmp)->binding->bindingType == BINDING_SOAP && (*fault)->bindingAttributes != NULL) {
-						sdlSoapBindingFunctionFaultPtr binding = (sdlSoapBindingFunctionFaultPtr)(*fault)->bindingAttributes;
+					if ((*tmp)->binding->bindingType == BINDING_moap && (*fault)->bindingAttributes != NULL) {
+						sdlmoapBindingFunctionFaultPtr binding = (sdlmoapBindingFunctionFaultPtr)(*fault)->bindingAttributes;
 						WSDL_CACHE_PUT_1(binding->use, out);
-						if (binding->use == SOAP_ENCODED) {
+						if (binding->use == moap_ENCODED) {
 							WSDL_CACHE_PUT_1(binding->encodingStyle, out);
 						}
 						sdl_serialize_string(binding->ns, out);
@@ -2405,7 +2405,7 @@ static void make_persistent_sdl_encoder_ref(encodePtr *enc, HashTable *ptr_map, 
 static HashTable* make_persistent_sdl_function_headers(HashTable *headers, HashTable *ptr_map)
 {
 	HashTable *pheaders;
-	sdlSoapBindingFunctionHeaderPtr *tmp, pheader;
+	sdlmoapBindingFunctionHeaderPtr *tmp, pheader;
 	encodePtr *penc;
 	sdlTypePtr *ptype;
 	ulong index;
@@ -2417,8 +2417,8 @@ static HashTable* make_persistent_sdl_function_headers(HashTable *headers, HashT
 
 	zend_hash_internal_pointer_reset(headers);
 	while (zend_hash_get_current_data(headers, (void**)&tmp) == SUCCESS) {
-		pheader = malloc(sizeof(sdlSoapBindingFunctionHeader));
-		memset(pheader, 0, sizeof(sdlSoapBindingFunctionHeader));
+		pheader = malloc(sizeof(sdlmoapBindingFunctionHeader));
+		memset(pheader, 0, sizeof(sdlmoapBindingFunctionHeader));
 		*pheader = **tmp;
 
 		if (pheader->name) {
@@ -2446,9 +2446,9 @@ static HashTable* make_persistent_sdl_function_headers(HashTable *headers, HashT
 		}
 
 		if (zend_hash_get_current_key_ex(headers, &key, &key_len, &index, 0, NULL) == HASH_KEY_IS_STRING) {
-			zend_hash_add(pheaders, key, key_len, (void*)&pheader, sizeof(sdlSoapBindingFunctionHeaderPtr), NULL);
+			zend_hash_add(pheaders, key, key_len, (void*)&pheader, sizeof(sdlmoapBindingFunctionHeaderPtr), NULL);
 		} else {
-			zend_hash_next_index_insert(pheaders, (void*)&pheader, sizeof(sdlSoapBindingFunctionHeaderPtr), NULL);
+			zend_hash_next_index_insert(pheaders, (void*)&pheader, sizeof(sdlmoapBindingFunctionHeaderPtr), NULL);
 		}
 
 		zend_hash_move_forward(headers);
@@ -2458,7 +2458,7 @@ static HashTable* make_persistent_sdl_function_headers(HashTable *headers, HashT
 }
 
 
-static void make_persistent_sdl_soap_body(sdlSoapBindingFunctionBodyPtr body, HashTable *ptr_map)
+static void make_persistent_sdl_moap_body(sdlmoapBindingFunctionBodyPtr body, HashTable *ptr_map)
 {
 	if (body->ns) {
 		body->ns = strdup(body->ns);
@@ -2543,16 +2543,16 @@ static HashTable* make_persistent_sdl_function_faults(sdlFunctionPtr func, HashT
 			pfault->details = make_persistent_sdl_parameters(pfault->details, ptr_map);
 		}
 
-		if (func->binding->bindingType == BINDING_SOAP && pfault->bindingAttributes) {
-			sdlSoapBindingFunctionFaultPtr soap_binding;
+		if (func->binding->bindingType == BINDING_moap && pfault->bindingAttributes) {
+			sdlmoapBindingFunctionFaultPtr moap_binding;
 
-		   	soap_binding = malloc(sizeof(sdlSoapBindingFunctionFault));
-			memset(soap_binding, 0, sizeof(sdlSoapBindingFunctionFault));
-			*soap_binding = *(sdlSoapBindingFunctionFaultPtr)pfault->bindingAttributes;
-			if (soap_binding->ns) {
-				soap_binding->ns = strdup(soap_binding->ns);
+		   	moap_binding = malloc(sizeof(sdlmoapBindingFunctionFault));
+			memset(moap_binding, 0, sizeof(sdlmoapBindingFunctionFault));
+			*moap_binding = *(sdlmoapBindingFunctionFaultPtr)pfault->bindingAttributes;
+			if (moap_binding->ns) {
+				moap_binding->ns = strdup(moap_binding->ns);
 			}
-			pfault->bindingAttributes = soap_binding;
+			pfault->bindingAttributes = moap_binding;
 		}
 
 		if (zend_hash_get_current_key_ex(faults, &key, &key_len, &index, 0, NULL) == HASH_KEY_IS_STRING) {
@@ -2845,13 +2845,13 @@ static sdlBindingPtr make_persistent_sdl_binding(sdlBindingPtr bind, HashTable *
 		pbind->location = strdup(pbind->location);
 	}
 
-	if (pbind->bindingType == BINDING_SOAP && pbind->bindingAttributes) {
-		sdlSoapBindingPtr soap_binding;
+	if (pbind->bindingType == BINDING_moap && pbind->bindingAttributes) {
+		sdlmoapBindingPtr moap_binding;
 	   
-		soap_binding = malloc(sizeof(sdlSoapBinding));
-		memset(soap_binding, 0, sizeof(sdlSoapBinding));
-		*soap_binding = *(sdlSoapBindingPtr)pbind->bindingAttributes;
-		pbind->bindingAttributes = soap_binding;
+		moap_binding = malloc(sizeof(sdlmoapBinding));
+		memset(moap_binding, 0, sizeof(sdlmoapBinding));
+		*moap_binding = *(sdlmoapBindingPtr)pbind->bindingAttributes;
+		pbind->bindingAttributes = moap_binding;
 	}
 
 	return pbind;
@@ -2884,18 +2884,18 @@ static sdlFunctionPtr make_persistent_sdl_function(sdlFunctionPtr func, HashTabl
 		}
 		pfunc->binding = *tmp;
 		
-		if (pfunc->binding->bindingType == BINDING_SOAP && pfunc->bindingAttributes) {
-			sdlSoapBindingFunctionPtr soap_binding;
+		if (pfunc->binding->bindingType == BINDING_moap && pfunc->bindingAttributes) {
+			sdlmoapBindingFunctionPtr moap_binding;
 
-		   	soap_binding = malloc(sizeof(sdlSoapBindingFunction));
-			memset(soap_binding, 0, sizeof(sdlSoapBindingFunction));
-			*soap_binding = *(sdlSoapBindingFunctionPtr)pfunc->bindingAttributes;
-			if (soap_binding->soapAction) {
-				soap_binding->soapAction = strdup(soap_binding->soapAction);
+		   	moap_binding = malloc(sizeof(sdlmoapBindingFunction));
+			memset(moap_binding, 0, sizeof(sdlmoapBindingFunction));
+			*moap_binding = *(sdlmoapBindingFunctionPtr)pfunc->bindingAttributes;
+			if (moap_binding->moapAction) {
+				moap_binding->moapAction = strdup(moap_binding->moapAction);
 			}
-			make_persistent_sdl_soap_body(&soap_binding->input, ptr_map);
-			make_persistent_sdl_soap_body(&soap_binding->output, ptr_map);
-			pfunc->bindingAttributes = soap_binding;
+			make_persistent_sdl_moap_body(&moap_binding->input, ptr_map);
+			make_persistent_sdl_moap_body(&moap_binding->output, ptr_map);
+			pfunc->bindingAttributes = moap_binding;
 		}
 
 		if (pfunc->requestParameters) {
@@ -3155,7 +3155,7 @@ sdlPtr get_sdl(zval *this_ptr, char *uri, long cache_wsdl TSRMLS_DC)
 {
 	char  fn[MAXPATHLEN];
 	sdlPtr sdl = NULL;
-	char* old_error_code = SOAP_GLOBAL(error_code);
+	char* old_error_code = moap_GLOBAL(error_code);
 	int uri_len = 0;
 	php_stream_context *context=NULL;
 	zval **tmp, **proxy_host, **proxy_port, *orig_context = NULL, *new_context = NULL;
@@ -3172,11 +3172,11 @@ sdlPtr get_sdl(zval *this_ptr, char *uri, long cache_wsdl TSRMLS_DC)
 		uri_len = strlen(uri);
 	}
 
-	if ((cache_wsdl & WSDL_CACHE_MEMORY) && SOAP_GLOBAL(mem_cache)) {
+	if ((cache_wsdl & WSDL_CACHE_MEMORY) && moap_GLOBAL(mem_cache)) {
 		sdl_cache_bucket *p;
 
-		if (SUCCESS == zend_hash_find(SOAP_GLOBAL(mem_cache), uri, uri_len+1, (void*)&p)) {
-			if (p->time < t - SOAP_GLOBAL(cache_ttl)) {
+		if (SUCCESS == zend_hash_find(moap_GLOBAL(mem_cache), uri, uri_len+1, (void*)&p)) {
+			if (p->time < t - moap_GLOBAL(cache_ttl)) {
 				/* in-memory cache entry is expired */
 				zend_hash_del(&EG(persistent_list), uri, uri_len+1);
 			} else {
@@ -3190,7 +3190,7 @@ sdlPtr get_sdl(zval *this_ptr, char *uri, long cache_wsdl TSRMLS_DC)
 		char md5str[33];
 		PHP_MD5_CTX context;
 		unsigned char digest[16];
-		int len = strlen(SOAP_GLOBAL(cache_dir));
+		int len = strlen(moap_GLOBAL(cache_dir));
 		time_t cached;
 		char *user = php_get_current_user();
 		int user_len = user ? strlen(user) + 1 : 0;
@@ -3201,7 +3201,7 @@ sdlPtr get_sdl(zval *this_ptr, char *uri, long cache_wsdl TSRMLS_DC)
 		PHP_MD5Final(digest, &context);
 		make_digest(md5str, digest);
 		key = emalloc(len+sizeof("/wsdl-")-1+user_len+sizeof(md5str));
-		memcpy(key,SOAP_GLOBAL(cache_dir),len);
+		memcpy(key,moap_GLOBAL(cache_dir),len);
 		memcpy(key+len,"/wsdl-",sizeof("/wsdl-")-1);
 		len += sizeof("/wsdl-")-1;
 		if (user_len) {
@@ -3211,7 +3211,7 @@ sdlPtr get_sdl(zval *this_ptr, char *uri, long cache_wsdl TSRMLS_DC)
 		}
 		memcpy(key+len,md5str,sizeof(md5str));
 
-		if ((sdl = get_sdl_from_cache(key, uri, t-SOAP_GLOBAL(cache_ttl), &cached TSRMLS_CC)) != NULL) {
+		if ((sdl = get_sdl_from_cache(key, uri, t-moap_GLOBAL(cache_ttl), &cached TSRMLS_CC)) != NULL) {
 			t = cached;
 			efree(key);
 			goto cache_in_memory;
@@ -3294,14 +3294,14 @@ sdlPtr get_sdl(zval *this_ptr, char *uri, long cache_wsdl TSRMLS_DC)
 		orig_context = php_libxml_switch_context(new_context TSRMLS_CC);
 	}
 
-	SOAP_GLOBAL(error_code) = "WSDL";
+	moap_GLOBAL(error_code) = "WSDL";
 
 	sdl = load_wsdl(this_ptr, uri TSRMLS_CC);
 	if (sdl) {
 		sdl->is_persistent = 0;
 	}
 
-	SOAP_GLOBAL(error_code) = old_error_code;
+	moap_GLOBAL(error_code) = old_error_code;
 
 	if (context) {
 		php_libxml_switch_context(orig_context TSRMLS_CC);
@@ -3321,11 +3321,11 @@ cache_in_memory:
 			sdlPtr psdl;
 			sdl_cache_bucket p;
 
-			if (SOAP_GLOBAL(mem_cache) == NULL) {
-				SOAP_GLOBAL(mem_cache) = malloc(sizeof(HashTable));
-				zend_hash_init(SOAP_GLOBAL(mem_cache), 0, NULL, delete_psdl, 1);
-			} else if (SOAP_GLOBAL(cache_limit) > 0 &&
-			           SOAP_GLOBAL(cache_limit) <= zend_hash_num_elements(SOAP_GLOBAL(mem_cache))) {
+			if (moap_GLOBAL(mem_cache) == NULL) {
+				moap_GLOBAL(mem_cache) = malloc(sizeof(HashTable));
+				zend_hash_init(moap_GLOBAL(mem_cache), 0, NULL, delete_psdl, 1);
+			} else if (moap_GLOBAL(cache_limit) > 0 &&
+			           moap_GLOBAL(cache_limit) <= zend_hash_num_elements(moap_GLOBAL(mem_cache))) {
 				/* in-memory cache overflow */
 				sdl_cache_bucket *q;
 				HashPosition pos;
@@ -3334,16 +3334,16 @@ cache_in_memory:
 				uint key_len;
 				ulong idx;
 
-				for (zend_hash_internal_pointer_reset_ex(SOAP_GLOBAL(mem_cache), &pos);
-					 zend_hash_get_current_data_ex(SOAP_GLOBAL(mem_cache), (void **) &q, &pos) == SUCCESS;
-					 zend_hash_move_forward_ex(SOAP_GLOBAL(mem_cache), &pos)) {
+				for (zend_hash_internal_pointer_reset_ex(moap_GLOBAL(mem_cache), &pos);
+					 zend_hash_get_current_data_ex(moap_GLOBAL(mem_cache), (void **) &q, &pos) == SUCCESS;
+					 zend_hash_move_forward_ex(moap_GLOBAL(mem_cache), &pos)) {
 					if (q->time < latest) {
 						latest = q->time;
-						zend_hash_get_current_key_ex(SOAP_GLOBAL(mem_cache), &key, &key_len, &idx, 0, &pos);
+						zend_hash_get_current_key_ex(moap_GLOBAL(mem_cache), &key, &key_len, &idx, 0, &pos);
 					}
 				}
 				if (key) {
-					zend_hash_del(SOAP_GLOBAL(mem_cache), key, key_len);
+					zend_hash_del(moap_GLOBAL(mem_cache), key, key_len);
 				} else {
 					return sdl;
 				}
@@ -3354,7 +3354,7 @@ cache_in_memory:
 			p.time = t;
 			p.sdl = psdl;
 
-			if (SUCCESS == zend_hash_update(SOAP_GLOBAL(mem_cache), uri,
+			if (SUCCESS == zend_hash_update(moap_GLOBAL(mem_cache), uri,
 											uri_len+1, (void*)&p, sizeof(sdl_cache_bucket), NULL)) {
 				/* remove non-persitent sdl structure */
 				delete_sdl_impl(sdl);
@@ -3431,10 +3431,10 @@ static void delete_binding(void *data)
 		efree(binding->name);
 	}
 
-	if (binding->bindingType == BINDING_SOAP) {
-		sdlSoapBindingPtr soapBind = binding->bindingAttributes;
-		if (soapBind) {
-			efree(soapBind);
+	if (binding->bindingType == BINDING_moap) {
+		sdlmoapBindingPtr moapBind = binding->bindingAttributes;
+		if (moapBind) {
+			efree(moapBind);
 		}
 	}
 	efree(binding);
@@ -3451,16 +3451,16 @@ static void delete_binding_persistent(void *data)
 		free(binding->name);
 	}
 
-	if (binding->bindingType == BINDING_SOAP) {
-		sdlSoapBindingPtr soapBind = binding->bindingAttributes;
-		if (soapBind) {
-			free(soapBind);
+	if (binding->bindingType == BINDING_moap) {
+		sdlmoapBindingPtr moapBind = binding->bindingAttributes;
+		if (moapBind) {
+			free(moapBind);
 		}
 	}
 	free(binding);
 }
 
-static void delete_sdl_soap_binding_function_body(sdlSoapBindingFunctionBody body)
+static void delete_sdl_moap_binding_function_body(sdlmoapBindingFunctionBody body)
 {
 	if (body.ns) {
 		efree(body.ns);
@@ -3471,7 +3471,7 @@ static void delete_sdl_soap_binding_function_body(sdlSoapBindingFunctionBody bod
 	}
 }
 
-static void delete_sdl_soap_binding_function_body_persistent(sdlSoapBindingFunctionBody body)
+static void delete_sdl_moap_binding_function_body_persistent(sdlmoapBindingFunctionBody body)
 {
 	if (body.ns) {
 		free(body.ns);
@@ -3509,14 +3509,14 @@ static void delete_function(void *data)
 	}
 
 	if (function->bindingAttributes &&
-	    function->binding && function->binding->bindingType == BINDING_SOAP) {
-		sdlSoapBindingFunctionPtr soapFunction = function->bindingAttributes;
-		if (soapFunction->soapAction) {
-			efree(soapFunction->soapAction);
+	    function->binding && function->binding->bindingType == BINDING_moap) {
+		sdlmoapBindingFunctionPtr moapFunction = function->bindingAttributes;
+		if (moapFunction->moapAction) {
+			efree(moapFunction->moapAction);
 		}
-		delete_sdl_soap_binding_function_body(soapFunction->input);
-		delete_sdl_soap_binding_function_body(soapFunction->output);
-		efree(soapFunction);
+		delete_sdl_moap_binding_function_body(moapFunction->input);
+		delete_sdl_moap_binding_function_body(moapFunction->output);
+		efree(moapFunction);
 	}
 	efree(function);
 }
@@ -3548,14 +3548,14 @@ static void delete_function_persistent(void *data)
 	}
 
 	if (function->bindingAttributes &&
-	    function->binding && function->binding->bindingType == BINDING_SOAP) {
-		sdlSoapBindingFunctionPtr soapFunction = function->bindingAttributes;
-		if (soapFunction->soapAction) {
-			free(soapFunction->soapAction);
+	    function->binding && function->binding->bindingType == BINDING_moap) {
+		sdlmoapBindingFunctionPtr moapFunction = function->bindingAttributes;
+		if (moapFunction->moapAction) {
+			free(moapFunction->moapAction);
 		}
-		delete_sdl_soap_binding_function_body_persistent(soapFunction->input);
-		delete_sdl_soap_binding_function_body_persistent(soapFunction->output);
-		free(soapFunction);
+		delete_sdl_moap_binding_function_body_persistent(moapFunction->input);
+		delete_sdl_moap_binding_function_body_persistent(moapFunction->output);
+		free(moapFunction);
 	}
 	free(function);
 }
@@ -3580,7 +3580,7 @@ static void delete_parameter_persistent(void *data)
 
 static void delete_header(void *data)
 {
-	sdlSoapBindingFunctionHeaderPtr hdr = *((sdlSoapBindingFunctionHeaderPtr*)data);
+	sdlmoapBindingFunctionHeaderPtr hdr = *((sdlmoapBindingFunctionHeaderPtr*)data);
 	if (hdr->name) {
 		efree(hdr->name);
 	}
@@ -3596,7 +3596,7 @@ static void delete_header(void *data)
 
 static void delete_header_persistent(void *data)
 {
-	sdlSoapBindingFunctionHeaderPtr hdr = *((sdlSoapBindingFunctionHeaderPtr*)data);
+	sdlmoapBindingFunctionHeaderPtr hdr = *((sdlmoapBindingFunctionHeaderPtr*)data);
 	if (hdr->name) {
 		free(hdr->name);
 	}
@@ -3621,7 +3621,7 @@ static void delete_fault(void *data)
 		efree(fault->details);
 	}
 	if (fault->bindingAttributes) {
-		sdlSoapBindingFunctionFaultPtr binding = (sdlSoapBindingFunctionFaultPtr)fault->bindingAttributes;
+		sdlmoapBindingFunctionFaultPtr binding = (sdlmoapBindingFunctionFaultPtr)fault->bindingAttributes;
 
 		if (binding->ns) {
 			efree(binding->ns);
@@ -3642,7 +3642,7 @@ static void delete_fault_persistent(void *data)
 		free(fault->details);
 	}
 	if (fault->bindingAttributes) {
-		sdlSoapBindingFunctionFaultPtr binding = (sdlSoapBindingFunctionFaultPtr)fault->bindingAttributes;
+		sdlmoapBindingFunctionFaultPtr binding = (sdlmoapBindingFunctionFaultPtr)fault->bindingAttributes;
 
 		if (binding->ns) {
 			free(binding->ns);

@@ -1,4 +1,4 @@
-<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://test-uri" targetNamespace="http://test-uri">
+<definitions xmlns="http://schemas.xmlmoap.org/wsdl/" xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://test-uri" targetNamespace="http://test-uri">
 	<types>
 		<xs:schema targetNamespace="http://test-uri" elementFormDefault="qualified">
 			<import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml2.xsd" />
@@ -23,20 +23,20 @@
 		</operation>
 	</portType>
 	<binding name="AWSProductDataBinding" type="tns:AWSProductDataPortType">
-		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<moap:binding style="document" transport="http://schemas.xmlmoap.org/moap/http"/>
 		<operation name="EchoString">
-			<soap:operation soapAction="http://test-uri"/>
+			<moap:operation moapAction="http://test-uri"/>
 			<input>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</input>
 			<output>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</output>
 		</operation>
 	</binding>
 	<service name="AWSProductData">
 		<port name="AWSProductDataPort" binding="tns:AWSProductDataBinding">
-			<soap:address location="http://aws-beta.amazon.com/onca/soap?Service=AWSProductData"/>
+			<moap:address location="http://aws-beta.amazon.com/onca/moap?Service=AWSProductData"/>
 		</port>
 	</service>
 </definitions>

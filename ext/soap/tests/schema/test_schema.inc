@@ -11,17 +11,17 @@ function test_schema($schema,$type,$param,$style="rpc",$use="encoded", $attribut
 $wsdl  = <<<EOF
 <definitions name="InteropTest"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/"
     xmlns:tns="http://test-uri/"
-    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/"
+    xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/"
+    xmlns="http://schemas.xmlmoap.org/wsdl/"
     targetNamespace="http://test-uri/"
     >
   <types>
   <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://test-uri/" $attributeFormDefault>
-   <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
-   <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+   <xsd:import namespace="http://schemas.xmlmoap.org/moap/encoding/" />
+   <xsd:import namespace="http://schemas.xmlmoap.org/wsdl/" />
   	$schema
   </schema>
   </types>
@@ -34,17 +34,17 @@ $wsdl  = <<<EOF
 		</operation>
 	</portType>
 	<binding name="testBinding" type="testPortType">
-		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<moap:binding style="rpc" transport="http://schemas.xmlmoap.org/moap/http"/>
 		<operation name="test">
-			<soap:operation soapAction="#test" style="$style"/>
+			<moap:operation moapAction="#test" style="$style"/>
 			<input>
-				<soap:body use="$use" namespace="http://test-uri/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="$use" namespace="http://test-uri/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 		</operation>
 	</binding>
 	<service name="testService">
    <port name="testPort" binding="tns:testBinding">
-     <soap:address location="test://" /> 
+     <moap:address location="test://" /> 
    </port>
  </service>
 </definitions>
@@ -54,9 +54,9 @@ EOF;
   $f = fopen($fname,"w");
   fwrite($f,$wsdl);
   fclose($f);
-  ini_set("soap.wsdl_cache_enabled",0);
-  $x = new SoapClient($fname, array("trace"=>1,"exceptions"=>0,"features"=>$features));
-  $y = new SoapServer($fname, array("features"=>$features));
+  ini_set("moap.wsdl_cache_enabled",0);
+  $x = new moapClient($fname, array("trace"=>1,"exceptions"=>0,"features"=>$features));
+  $y = new moapServer($fname, array("features"=>$features));
 	$y->addfunction("test");
   unlink($fname);
 

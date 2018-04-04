@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-	xmlns:tns="urn:Formation" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+<wsdl:definitions xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/"
+	xmlns:tns="urn:Formation" xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Formation"
 	targetNamespace="urn:Formation">
 	<wsdl:types>
@@ -49,20 +49,20 @@
 			<wsdl:output message="tns:echoResponse"></wsdl:output>
 		</wsdl:operation>
 	</wsdl:portType>
-	<wsdl:binding name="FormationServiceV1" type="tns:Formation">		<soap:binding style="document"			transport="http://schemas.xmlsoap.org/soap/http" />		<wsdl:operation name="echo">
-			<soap:operation soapAction="urn:Formation/echo" />
+	<wsdl:binding name="FormationServiceV1" type="tns:Formation">		<moap:binding style="document"			transport="http://schemas.xmlmoap.org/moap/http" />		<wsdl:operation name="echo">
+			<moap:operation moapAction="urn:Formation/echo" />
 			<wsdl:input>
-				<soap:body use="literal" />
+				<moap:body use="literal" />
 			</wsdl:input>
 			<wsdl:output>
-				<soap:body use="literal" />
+				<moap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
 	</wsdl:binding>
 	<wsdl:service name="Formation">
 		<wsdl:port binding="tns:FormationServiceV1"
-			name="FormationSOAP">
-			<soap:address
+			name="Formationmoap">
+			<moap:address
 				location="http://localhost:8080/webapp/services/FormationServiceV1" />
 		</wsdl:port>
 	</wsdl:service>

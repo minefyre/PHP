@@ -1,5 +1,5 @@
 --TEST--
-SOAP Server 8: setclass and getfunctions
+moap Server 8: setclass and getfunctions
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --FILE--
@@ -14,7 +14,7 @@ class Foo {
   }
 }
 
-$server = new soapserver(null,array('uri'=>"http://testuri.org"));
+$server = new moapserver(null,array('uri'=>"http://testuri.org"));
 $server->setclass("Foo");
 var_dump($server->getfunctions());
 echo "ok\n";

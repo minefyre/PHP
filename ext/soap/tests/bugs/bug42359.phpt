@@ -1,13 +1,13 @@
 --TEST--
-Bug #42326 (SoapServer crash)
+Bug #42326 (moapServer crash)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --INI--
-soap.wsdl_cache_enabled=0
+moap.wsdl_cache_enabled=0
 --FILE--
 <?php
-$soap = new SoapClient(dirname(__FILE__)."/bug42359.wsdl");
-print_r($soap->__getTypes());
+$moap = new moapClient(dirname(__FILE__)."/bug42359.wsdl");
+print_r($moap->__getTypes());
 ?>
 --EXPECT--
 Array

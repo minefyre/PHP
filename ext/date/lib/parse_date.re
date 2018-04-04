@@ -58,7 +58,7 @@
 #define TIME     258
 #define DATE     259
 
-#define TIMELIB_XMLRPC_SOAP    260
+#define TIMELIB_XMLRPC_moap    260
 #define TIMELIB_TIME12         261
 #define TIMELIB_TIME24         262
 #define TIMELIB_GNU_NOCOLON    263
@@ -923,7 +923,7 @@ datenoyearrev    = day ([ .\t-])* monthtext;
 datenocolon      = year4 monthlz daylz;
 
 /* Special formats */
-soap             = year4 "-" monthlz "-" daylz "T" hour24lz ":" minutelz ":" secondlz frac tzcorrection?;
+moap             = year4 "-" monthlz "-" daylz "T" hour24lz ":" minutelz ":" secondlz frac tzcorrection?;
 xmlrpc           = year4 monthlz daylz "T" hour24 ":" minutelz ":" secondlz;
 xmlrpcnocolon    = year4 monthlz daylz 't' hour24 minutelz secondlz;
 wddx             = year4 "-" month "-" day "T" hour24 ":" minute ":" second;
@@ -1409,10 +1409,10 @@ weekdayof        = (reltextnumber|reltexttext) space (dayfull|dayabbr) space 'of
 		return TIMELIB_DATE_NOCOLON;
 	}
 
-	xmlrpc | xmlrpcnocolon | soap | wddx | exif
+	xmlrpc | xmlrpcnocolon | moap | wddx | exif
 	{
 		int tz_not_found;
-		DEBUG_OUTPUT("xmlrpc | xmlrpcnocolon | soap | wddx | exif");
+		DEBUG_OUTPUT("xmlrpc | xmlrpcnocolon | moap | wddx | exif");
 		TIMELIB_INIT;
 		TIMELIB_HAVE_TIME();
 		TIMELIB_HAVE_DATE();
@@ -1432,7 +1432,7 @@ weekdayof        = (reltextnumber|reltexttext) space (dayfull|dayabbr) space 'of
 			}
 		}
 		TIMELIB_DEINIT;
-		return TIMELIB_XMLRPC_SOAP;
+		return TIMELIB_XMLRPC_moap;
 	}
 
 	pgydotd

@@ -65,7 +65,7 @@ CREDIT_LINE("Sessions", "Sascha Schumann, Andrei Zmievski");
 CREDIT_LINE("Shared Memory Operations", "Slava Poliakov, Ilia Alshanetsky");
 CREDIT_LINE("SimpleXML", "Sterling Hughes, Marcus Boerger, Rob Richards");
 CREDIT_LINE("SNMP", "Rasmus Lerdorf, Harrie Hazewinkel, Mike Jackson, Steven Lawrance, Johann Hanne");
-CREDIT_LINE("SOAP", "Brad Lafountain, Shane Caraveo, Dmitry Stogov");
+CREDIT_LINE("moap", "Brad Lafountain, Shane Caraveo, Dmitry Stogov");
 CREDIT_LINE("Sockets", "Chris Vandomelen, Sterling Hughes, Daniel Beulshausen, Jason Greene");
 CREDIT_LINE("SPL", "Marcus Boerger, Etienne Kneuss");
 CREDIT_LINE("SQLite3", "Scott MacVicar, Ilia Alshanetsky");

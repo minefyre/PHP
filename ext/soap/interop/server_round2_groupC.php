@@ -19,17 +19,17 @@
 // $Id: server_round2_groupC.php 242949 2007-09-26 15:44:16Z cvs2svn $
 //
 
-class SOAP_Interop_GroupC {
-    var $method_namespace = 'http://soapinterop.org/echoheader/';
+class moap_Interop_GroupC {
+    var $method_namespace = 'http://moapinterop.org/echoheader/';
 
     function echoMeStringRequest($string)
     {
-        return new SoapHeader($this->method_namespace, "echoMeStringResponse", $string);
+        return new moapHeader($this->method_namespace, "echoMeStringResponse", $string);
     }
 
     function echoMeStructRequest($struct)
     {
-        return new SoapHeader($this->method_namespace, "echoMeStructResponse", $struct);
+        return new moapHeader($this->method_namespace, "echoMeStructResponse", $struct);
     }
 
     function echoVoid()
@@ -37,7 +37,7 @@ class SOAP_Interop_GroupC {
     }
 }
 
-$server = new SoapServer((isset($_SERVER['HTTPS'])?"https://":"http://").$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/echoheadersvc.wsdl.php");
-$server->setClass("SOAP_Interop_GroupC");
+$server = new moapServer((isset($_SERVER['HTTPS'])?"https://":"http://").$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/echoheadersvc.wsdl.php");
+$server->setClass("moap_Interop_GroupC");
 $server->handle();
 ?>

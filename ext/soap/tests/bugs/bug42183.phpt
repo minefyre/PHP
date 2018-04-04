@@ -9,14 +9,14 @@ class PHPObject {
 
 $req = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://ws.sit.com" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><SOAP-ENV:Body><ns1:test/></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/" xmlns:ns1="http://ws.sit.com" moap-ENV:encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"><moap-ENV:Body><ns1:test/></moap-ENV:Body></moap-ENV:Envelope>
 EOF;
 
 function test() {
 	return new PHPObject();
 }
 
-$server = new SoapServer(NULL, array('uri' => 'http://ws.sit.com', 
+$server = new moapServer(NULL, array('uri' => 'http://ws.sit.com', 
 	'classmap' => array('Object' => 'PHPObject')));
 $server->addFunction("test");
 ob_start();

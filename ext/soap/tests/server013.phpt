@@ -1,5 +1,5 @@
 --TEST--
-SOAP Server 13: array handling
+moap Server 13: array handling
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --FILE--
@@ -14,31 +14,31 @@ function Sum($a) {
   return $sum;
 }
 
-$server = new soapserver(null,array('uri'=>"http://testuri.org"));
+$server = new moapserver(null,array('uri'=>"http://testuri.org"));
 $server->addfunction("Sum");
 
 $HTTP_RAW_POST_DATA = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope
-  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
-  SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+<moap-ENV:Envelope
+  xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/"
+  moap-ENV:encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
+  xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SOAP-ENV:Body xmlns:ns1="http://linuxsrv.home/~dmitry/soap/">
+  <moap-ENV:Body xmlns:ns1="http://linuxsrv.home/~dmitry/moap/">
     <ns1:sum>
-      <param0 SOAP-ENC:arrayType="xsd:int[2]" xsi:type="SOAP-ENC:Array">
+      <param0 moap-ENC:arrayType="xsd:int[2]" xsi:type="moap-ENC:Array">
         <val xsi:type="xsd:int">3</val>
         <val xsi:type="xsd:int">5</val>
       </param0>
     </ns1:sum>
-  </SOAP-ENV:Body>
-</SOAP-ENV:Envelope>
+  </moap-ENV:Body>
+</moap-ENV:Envelope>
 EOF;
 $server->handle($HTTP_RAW_POST_DATA);
 echo "ok\n";
 ?>
 --EXPECT--
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://testuri.org" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><SOAP-ENV:Body><ns1:sumResponse><return xsi:type="xsd:int">8</return></ns1:sumResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/" xmlns:ns1="http://testuri.org" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/" moap-ENV:encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"><moap-ENV:Body><ns1:sumResponse><return xsi:type="xsd:int">8</return></ns1:sumResponse></moap-ENV:Body></moap-ENV:Envelope>
 ok

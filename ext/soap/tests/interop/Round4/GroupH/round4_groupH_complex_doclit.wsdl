@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions
-	xmlns="http://schemas.xmlsoap.org/wsdl/"
-	xmlns:tns="http://soapinterop.org/wsdl"
-	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns="http://schemas.xmlmoap.org/wsdl/"
+	xmlns:tns="http://moapinterop.org/wsdl"
+	xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xmlns:ns2="http://soapinterop.org/types"
-	xmlns:ns3="http://soapinterop.org/types/part"
-	xmlns:ns4="http://soapinterop.org/types/requestresponse"
-	targetNamespace="http://soapinterop.org/wsdl">
+	xmlns:ns2="http://moapinterop.org/types"
+	xmlns:ns3="http://moapinterop.org/types/part"
+	xmlns:ns4="http://moapinterop.org/types/requestresponse"
+	targetNamespace="http://moapinterop.org/wsdl">
 
 	<types>
 		<schema elementFormDefault="qualified"
 			xmlns="http://www.w3.org/2001/XMLSchema"
-			xmlns:tns="http://soapinterop.org/types"
-			targetNamespace="http://soapinterop.org/types">
+			xmlns:tns="http://moapinterop.org/types"
+			targetNamespace="http://moapinterop.org/types">
 
-			<import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+			<import namespace="http://schemas.xmlmoap.org/moap/encoding/"/>
 
-			<complexType name="SOAPStruct">
+			<complexType name="moapStruct">
 				<sequence>
 					<element name="varString" type="xsd:string"/>
 					<element name="varInt" type="xsd:int"/>
@@ -25,15 +25,15 @@
 				</sequence>
 			</complexType>
 
-			<complexType name="SOAPStructFault">
+			<complexType name="moapStructFault">
 				<sequence>
-					<element name="soapStruct" type="tns:SOAPStruct"/>
+					<element name="moapStruct" type="tns:moapStruct"/>
 				</sequence>
 			</complexType>
 
 			<complexType name="BaseStruct">
 				<sequence>
-					<element name="structMessage" type="tns:SOAPStruct"/>
+					<element name="structMessage" type="tns:moapStruct"/>
 					<element name="shortMessage" type="xsd:short"/>
 				</sequence>
 			</complexType>
@@ -64,10 +64,10 @@
 
 		<schema elementFormDefault="qualified"
 			xmlns="http://www.w3.org/2001/XMLSchema"
-			xmlns:tns="http://soapinterop.org/types/part"
-			targetNamespace="http://soapinterop.org/types/part">
+			xmlns:tns="http://moapinterop.org/types/part"
+			targetNamespace="http://moapinterop.org/types/part">
 
-			<element name="SOAPStructFaultPart" type="ns2:SOAPStructFault"/>
+			<element name="moapStructFaultPart" type="ns2:moapStructFault"/>
 			<element name="BaseStructPart" type="ns2:BaseStruct"/>
 			<element name="ExtendedStructPart" type="ns2:ExtendedStruct"/>
 			<element name="MoreExtendedStructPart" type="ns2:MoreExtendedStruct"/>
@@ -76,11 +76,11 @@
 
 		<schema elementFormDefault="qualified"
 			xmlns="http://www.w3.org/2001/XMLSchema"
-			xmlns:tns="http://soapinterop.org/types/requestresponse"
-			targetNamespace="http://soapinterop.org/types/requestresponse">
+			xmlns:tns="http://moapinterop.org/types/requestresponse"
+			targetNamespace="http://moapinterop.org/types/requestresponse">
 
-			<element name="echoSOAPStructFaultRequest" type="ns2:SOAPStruct"/>
-			<element name="echoSOAPStructFaultResponse">
+			<element name="echomoapStructFaultRequest" type="ns2:moapStruct"/>
+			<element name="echomoapStructFaultResponse">
 				<complexType/>
 			</element>
 
@@ -98,7 +98,7 @@
 				<complexType>
 					<sequence>
 						<element name="whichFault" type="xsd:int"/>
-						<element name="param1" type="ns2:SOAPStruct"/>
+						<element name="param1" type="ns2:moapStruct"/>
 						<element name="param2" type="ns2:BaseStruct"/>
 					</sequence>
 				</complexType>
@@ -124,11 +124,11 @@
 		</schema>
 	</types>
 
-	<message name="echoSOAPStructFaultRequest">
-		<part name="param" element="ns4:echoSOAPStructFaultRequest"/>
+	<message name="echomoapStructFaultRequest">
+		<part name="param" element="ns4:echomoapStructFaultRequest"/>
 	</message>
-	<message name="echoSOAPStructFaultResponse">
-		<part name="param" element="ns4:echoSOAPStructFaultResponse"/>
+	<message name="echomoapStructFaultResponse">
+		<part name="param" element="ns4:echomoapStructFaultResponse"/>
 	</message>
 
 	<message name="echoBaseStructFaultRequest">
@@ -160,8 +160,8 @@
 	</message>
 
 	<!-- Fault messages -->
-	<message name="SOAPStructFault">
-		<part name="part3" element="ns3:SOAPStructFaultPart"/>
+	<message name="moapStructFault">
+		<part name="part3" element="ns3:moapStructFaultPart"/>
 	</message>
 	<message name="BaseStructFault">
 		<part name="part1" element="ns3:BaseStructPart"/>
@@ -175,12 +175,12 @@
 
 	<portType name="ComplexDocLitPortType">
 		<!--
-			Throws a fault with an embedded SOAPStruct
+			Throws a fault with an embedded moapStruct
 		-->
-		<operation name="echoSOAPStructFault" parameterOrder="">
-			<input message="tns:echoSOAPStructFaultRequest"/>
-			<output message="tns:echoSOAPStructFaultResponse"/>
-			<fault name="ComplexFault" message="tns:SOAPStructFault"/>
+		<operation name="echomoapStructFault" parameterOrder="">
+			<input message="tns:echomoapStructFaultRequest"/>
+			<output message="tns:echomoapStructFaultResponse"/>
+			<fault name="ComplexFault" message="tns:moapStructFault"/>
 		</operation>
 
 		<!--
@@ -209,7 +209,7 @@
 		<operation name="echoMultipleFaults1" parameterOrder="param">
 			<input message="tns:echoMultipleFaults1Request"/>
 			<output message="tns:echoMultipleFaults1Response"/>
-			<fault name="ComplexFault1" message="tns:SOAPStructFault"/>
+			<fault name="ComplexFault1" message="tns:moapStructFault"/>
 			<fault name="ComplexFault2" message="tns:BaseStructFault"/>
 		</operation>
 
@@ -227,101 +227,101 @@
 	</portType>
 
 	<binding name="ComplexDocLitBinding" type="tns:ComplexDocLitPortType">
-		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-		<operation name="echoSOAPStructFault">
+		<moap:binding transport="http://schemas.xmlmoap.org/moap/http" style="document"/>
+		<operation name="echomoapStructFault">
 			<input>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</input>
 			<output>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</output>
 			<fault name="ComplexFault">
-				<soap:fault
+				<moap:fault
 					name="ComplexFault"
 					use="literal"/>
 			</fault>
-			<soap:operation soapAction=""/>
+			<moap:operation moapAction=""/>
 		</operation>
 
 		<operation name="echoBaseStructFault">
 			<input>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</input>
 			<output>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</output>
 			<fault name="ComplexFault">
-				<soap:fault
+				<moap:fault
 					name="ComplexFault"
 					use="literal"/>
 			</fault>
-			<soap:operation soapAction=""/>
+			<moap:operation moapAction=""/>
 		</operation>
 
 		<operation name="echoExtendedStructFault">
 			<input>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</input>
 			<output>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</output>
 			<fault name="ComplexFault">
-				<soap:fault
+				<moap:fault
 					name="ComplexFault"
 					use="literal"/>
 			</fault>
-			<soap:operation soapAction=""/>
+			<moap:operation moapAction=""/>
 		</operation>
 
 		<operation name="echoMultipleFaults1">
 			<input>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</input>
 			<output>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</output>
 			<fault name="ComplexFault1">
-				<soap:fault 
+				<moap:fault 
 					name="ComplexFault1"
 					use="literal"/>
 			</fault>
 			<fault name="ComplexFault2">
-				<soap:fault
+				<moap:fault
 					name="ComplexFault2"
 					use="literal"/>
 			</fault>
-			<soap:operation soapAction=""/>
+			<moap:operation moapAction=""/>
 		</operation>
 
 		<operation name="echoMultipleFaults2">
 			<input>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</input>
 			<output>
-				<soap:body use="literal"/>
+				<moap:body use="literal"/>
 			</output>
 			<fault name="ComplexFault1">
-				<soap:fault
+				<moap:fault
 					name="ComplexFault1"
 					use="literal"/>
 			</fault>
 			<fault name="ComplexFault2">
-				<soap:fault 
+				<moap:fault 
 					name="ComplexFault2"
 					use="literal"/>
 			</fault>
 			<fault name="ComplexFault3">
-				<soap:fault 
+				<moap:fault 
 					name="ComplexFault3"
 					use="literal"/>
 			</fault>
-			<soap:operation soapAction=""/>
+			<moap:operation moapAction=""/>
 		</operation>
 	</binding>
 
 	<service name="ComplexDocLitService">
 		<port name="ComplexDocLitPort" binding="tns:ComplexDocLitBinding">
-			<soap:address
+			<moap:address
 				location="test://"/>
 		</port>
 	</service>

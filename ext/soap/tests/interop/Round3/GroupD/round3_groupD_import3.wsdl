@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions name="SoapInterop" targetNamespace="http://soapinterop.org/main2/" 
-		xmlns:wsdlns="http://soapinterop.org/main2/"  
-		xmlns:impns="http://soapinterop.org/definitions/"  
-		xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 		
-		xmlns:typens2="http://soapinterop.org/xsd2" 		
-		xmlns:typens="http://soapinterop.org/xsd"
-		xmlns="http://schemas.xmlsoap.org/wsdl/">
+<definitions name="moapInterop" targetNamespace="http://moapinterop.org/main2/" 
+		xmlns:wsdlns="http://moapinterop.org/main2/"  
+		xmlns:impns="http://moapinterop.org/definitions/"  
+		xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" 		
+		xmlns:typens2="http://moapinterop.org/xsd2" 		
+		xmlns:typens="http://moapinterop.org/xsd"
+		xmlns="http://schemas.xmlmoap.org/wsdl/">
 	
-	<import namespace = "http://soapinterop.org/xsd" location = "round3_groupD_import2.wsdl"/>
-	<import namespace = "http://soapinterop.org/definitions/" location = "round3_groupD_import2.wsdl"/>
+	<import namespace = "http://moapinterop.org/xsd" location = "round3_groupD_import2.wsdl"/>
+	<import namespace = "http://moapinterop.org/definitions/" location = "round3_groupD_import2.wsdl"/>
 	
 	<types>
-	<schema targetNamespace='http://soapinterop.org/xsd2'
+	<schema targetNamespace='http://moapinterop.org/xsd2'
 	      xmlns='http://www.w3.org/2001/XMLSchema'  
-	      xmlns:SOAP-ENC='http://schemas.xmlsoap.org/soap/encoding/'      
-	      xmlns:wsdl = "http://schemas.xmlsoap.org/wsdl/"		    
+	      xmlns:moap-ENC='http://schemas.xmlmoap.org/moap/encoding/'      
+	      xmlns:wsdl = "http://schemas.xmlmoap.org/wsdl/"		    
 	      elementFormDefault='unqualified'>
-	      <import namespace = "http://schemas.xmlsoap.org/soap/encoding/"/>
-	      <import namespace = "http://soapinterop.org/xsd"/>	
-	      <complexType  name ='ArrayOfSOAPStruct'>
+	      <import namespace = "http://schemas.xmlmoap.org/moap/encoding/"/>
+	      <import namespace = "http://moapinterop.org/xsd"/>	
+	      <complexType  name ='ArrayOfmoapStruct'>
 	        <complexContent>
-        	  <restriction base='SOAP-ENC:Array'>
-            		<attribute ref='SOAP-ENC:arrayType' wsdl:arrayType='typens:SOAPStruct[]'/>
+        	  <restriction base='moap-ENC:Array'>
+            		<attribute ref='moap-ENC:arrayType' wsdl:arrayType='typens:moapStruct[]'/>
 	          </restriction>
         	</complexContent>
 	      </complexType>
@@ -29,13 +29,13 @@
 	</types>
 
 	<message name='Server.echoStructArray'>
-    		<part name='inputArray' type='typens2:ArrayOfSOAPStruct'/>
+    		<part name='inputArray' type='typens2:ArrayOfmoapStruct'/>
   	</message>
   	<message name='Server.echoStructArrayResponse'>
-    		<part name='Result' type='typens2:ArrayOfSOAPStruct'/>
+    		<part name='Result' type='typens2:ArrayOfmoapStruct'/>
   	</message>
 
-	<portType name="SoapInteropImport3PortType">
+	<portType name="moapInteropImport3PortType">
 		<operation name='echoStruct' parameterOrder='inputStruct'>
     			  <input message='impns:Server.echoStruct' />
       			  <output message='impns:Server.echoStructResponse' />
@@ -46,30 +46,30 @@
 		</operation>
 	</portType>	
 
-	<binding name="SoapInteropImport3Binding" type="wsdlns:SoapInteropImport3PortType">
-		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+	<binding name="moapInteropImport3Binding" type="wsdlns:moapInteropImport3PortType">
+		<moap:binding style="rpc" transport="http://schemas.xmlmoap.org/moap/http"/>
 		<operation name="echoStruct">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 		<operation name="echoStructArray">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 	</binding>
 	<service name="Import3">
-		<port name="SoapInteropImport3Port" binding="wsdlns:SoapInteropImport3Binding">
-			<soap:address location="round3_groupD_import3.inc"/>
+		<port name="moapInteropImport3Port" binding="wsdlns:moapInteropImport3Binding">
+			<moap:address location="round3_groupD_import3.inc"/>
 		</port>
 	</service>
 </definitions>

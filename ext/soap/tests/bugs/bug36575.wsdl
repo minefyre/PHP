@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <definitions name="shoppingcart"
-	xmlns="http://schemas.xmlsoap.org/wsdl/"
-	xmlns:tns="urn:test.soap#" targetNamespace="urn:test.soap#"
-	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns="http://schemas.xmlmoap.org/wsdl/"
+	xmlns:tns="urn:test.moap#" targetNamespace="urn:test.moap#"
+	xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/"
+	xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/"
+	xmlns:moapenc="http://schemas.xmlmoap.org/moap/encoding/"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:types="urn:test.soap.types#">
+	xmlns:types="urn:test.moap.types#">
 	<!-- all datatypes will be imported to namespace types: -->
 	<types>
 		<xs:schema
 			xmlns:xs="http://www.w3.org/2001/XMLSchema"
-			xmlns:soap = "http://schemas.xmlsoap.org/wsdl/soap/"
-			xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-			xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
-			xmlns:tns="urn:test.soap.types#"
-			targetNamespace="urn:test.soap.types#">
+			xmlns:moap = "http://schemas.xmlmoap.org/wsdl/moap/"
+			xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/"
+			xmlns:moapenc="http://schemas.xmlmoap.org/moap/encoding/"
+			xmlns:tns="urn:test.moap.types#"
+			targetNamespace="urn:test.moap.types#">
 
 			<xs:complexType name="A1">
 				<xs:all>
@@ -61,18 +61,18 @@
 
 	<!-- @type doesn't like tns: -->
 	<binding name="catalog-binding" type="tns:catalog-porttype">
-		<soap:binding style="rpc"
-			transport="http://schemas.xmlsoap.org/soap/http"/>
+		<moap:binding style="rpc"
+			transport="http://schemas.xmlmoap.org/moap/http"/>
 
 		<operation name="test">
-			<soap:operation soapAction="urn:test.soap#test"/>
+			<moap:operation moapAction="urn:test.moap#test"/>
 			<input>
-				<soap:body use="encoded" namespace="urn:test.soap#"
-				encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="urn:test.moap#"
+				encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="urn:test.soap#"
-				encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="urn:test.moap#"
+				encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 	</binding>
@@ -80,7 +80,7 @@
 	<service name="catalog">
 		<!-- @binding doesn't like to be tns: -->
 		<port name="catalog-port" binding="tns:catalog-binding">
-			<soap:address location="xxxxxxxx"/>
+			<moap:address location="xxxxxxxx"/>
 		</port>
 	</service>
 

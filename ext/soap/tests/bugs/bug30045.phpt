@@ -1,30 +1,30 @@
 --TEST--
-Bug #30045 (Cannot pass big integers (> 2147483647) in SOAP requests)
+Bug #30045 (Cannot pass big integers (> 2147483647) in moap requests)
 --SKIPIF--
 <?php 
-  if (!extension_loaded('soap')) die('skip soap extension not available');
+  if (!extension_loaded('moap')) die('skip moap extension not available');
   if (!extension_loaded('simplexml')) die('skip simplexml extension not available');
 ?>
 --INI--
-soap.wsdl_cache_enabled=1
+moap.wsdl_cache_enabled=1
 --FILE--
 <?php
 
 function foo($type, $num) {
-  return new SoapVar($num, $type);
+  return new moapVar($num, $type);
 }
 
-class LocalSoapClient extends SoapClient {
+class LocalmoapClient extends moapClient {
 
   function __construct($wsdl, $options) {
     parent::__construct($wsdl, $options);
-    $this->server = new SoapServer($wsdl, $options);
+    $this->server = new moapServer($wsdl, $options);
     $this->server->addFunction('foo');
   }
 
   function __doRequest($request, $location, $action, $version, $one_way = 0) {
     $xml = simplexml_load_string($request);
-    echo $xml->children("http://schemas.xmlsoap.org/soap/envelope/")->Body->children("http://test-uri")->children()->param1->asXML(),"\n";
+    echo $xml->children("http://schemas.xmlmoap.org/moap/envelope/")->Body->children("http://test-uri")->children()->param1->asXML(),"\n";
     unset($xml);
 
     ob_start();
@@ -37,15 +37,15 @@ class LocalSoapClient extends SoapClient {
 
 }
 
-$soap = new LocalSoapClient(NULL, array("uri"=>"http://test-uri", "location"=>"test://"));
+$moap = new LocalmoapClient(NULL, array("uri"=>"http://test-uri", "location"=>"test://"));
 
 function test($type, $num) {
-  global $soap;
+  global $moap;
   try {
 	  printf("  %0.0f\n    ", $num);  	
-	  $ret = $soap->foo($type, new SoapVar($num, $type));
+	  $ret = $moap->foo($type, new moapVar($num, $type));
 	  printf("    %0.0f\n", $ret);
-	} catch (SoapFault $ex) {
+	} catch (moapFault $ex) {
 	  var_dump($ex);
 	}
 }

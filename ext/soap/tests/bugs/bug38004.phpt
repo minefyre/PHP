@@ -1,9 +1,9 @@
 --TEST--
-Bug #38004 (Parameters in SoapServer are decoded twice)
+Bug #38004 (Parameters in moapServer are decoded twice)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --INI--
-soap.wsdl_cache_enabled=0
+moap.wsdl_cache_enabled=0
 --FILE--
 <?php
 function Test($param) {
@@ -12,10 +12,10 @@ function Test($param) {
 	return $g;
 }
 
-class TestSoapClient extends SoapClient {
+class TestmoapClient extends moapClient {
   function __construct($wsdl) {
     parent::__construct($wsdl);
-    $this->server = new SoapServer($wsdl);
+    $this->server = new moapServer($wsdl);
     $this->server->addFunction('Test');
   }
 
@@ -28,7 +28,7 @@ class TestSoapClient extends SoapClient {
   }
 }
 
-$client = new TestSoapClient(dirname(__FILE__).'/bug38004.wsdl');
+$client = new TestmoapClient(dirname(__FILE__).'/bug38004.wsdl');
 $strA = 'test &amp; test';
 $strB = 'test & test';
 $res = $client->Test(array('strA'=>$strA, 'strB'=>$strB));

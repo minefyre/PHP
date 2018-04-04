@@ -3,10 +3,10 @@ Bug #34643 (wsdl default value)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --INI--
-soap.wsdl_cache_enabled=0
+moap.wsdl_cache_enabled=0
 --FILE--
 <?php
-ini_set("soap.wsdl_cache_enabled", 0);
+ini_set("moap.wsdl_cache_enabled", 0);
 
 class fp {
 	public function get_it($opt="zzz") {
@@ -14,11 +14,11 @@ class fp {
 	}
 }
 
-class LocalSoapClient extends SoapClient {
+class LocalmoapClient extends moapClient {
 
   function __construct($wsdl, $options) {
     parent::__construct($wsdl, $options);
-    $this->server = new SoapServer($wsdl, $options);
+    $this->server = new moapServer($wsdl, $options);
     $this->server->setClass('fp');
   }
 
@@ -32,7 +32,7 @@ class LocalSoapClient extends SoapClient {
 
 }
 
-$cl = new LocalSoapClient(dirname(__FILE__).'/bug34643.wsdl', array("trace"=>1));
+$cl = new LocalmoapClient(dirname(__FILE__).'/bug34643.wsdl', array("trace"=>1));
 print_r($cl->__getFunctions());
 echo $cl->get_it("aaa")."\n";
 echo $cl->get_it()."\n";

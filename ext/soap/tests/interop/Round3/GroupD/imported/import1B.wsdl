@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<definitions name="SoapInterop" targetNamespace="http://soapinterop.org/definitions/" 
-		xmlns:wsdlns="http://soapinterop.org/definitions/" 
-		xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+<definitions name="moapInterop" targetNamespace="http://moapinterop.org/definitions/" 
+		xmlns:wsdlns="http://moapinterop.org/definitions/" 
+		xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" 
 		xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-		xmlns="http://schemas.xmlsoap.org/wsdl/">
+		xmlns="http://schemas.xmlmoap.org/wsdl/">
 	<types/>
 	<message name="echoStringRequest">
 		<part name="x" type="xsd:string"/>
@@ -11,7 +11,7 @@
 	<message name="echoStringResponse">
 		<part name="Result" type="xsd:string"/>
 	</message>
-	<portType name="SoapInteropImport1PortType">
+	<portType name="moapInteropImport1PortType">
 		<operation name="echoString" parameterOrder="x">
 			<input message="wsdlns:echoStringRequest"/>
 			<output message="wsdlns:echoStringResponse"/>

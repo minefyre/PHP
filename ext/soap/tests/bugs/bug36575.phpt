@@ -3,7 +3,7 @@ Bug #36575 (Incorrect complex type instantiation with hierarchies)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --INI--
-soap.wsdl_cache_enabled=0
+moap.wsdl_cache_enabled=0
 --FILE--
 <?php
 abstract class CT_A1 {
@@ -29,24 +29,24 @@ function test( $a1 ) {
 
 $classMap = array("A1" => "CT_A1", "A2" => "CT_A2", "A3" => "CT_A3");
 
-$client = new SoapClient(dirname(__FILE__)."/bug36575.wsdl", array("trace" => 1, "exceptions" => 0, "classmap" => $classMap));
+$client = new moapClient(dirname(__FILE__)."/bug36575.wsdl", array("trace" => 1, "exceptions" => 0, "classmap" => $classMap));
 $a2 = new CT_A2();
 $a2->var1 = "one";
 $a2->var2 = "two";
 $client->test($a2);
 
-$soapRequest = $client->__getLastRequest();
+$moapRequest = $client->__getLastRequest();
 
-echo $soapRequest;
+echo $moapRequest;
 
-$server = new SoapServer(dirname(__FILE__)."/bug36575.wsdl", array("classmap" => $classMap));
+$server = new moapServer(dirname(__FILE__)."/bug36575.wsdl", array("classmap" => $classMap));
 $server->addFunction("test");
-$server->handle($soapRequest);
+$server->handle($moapRequest);
 echo "ok\n";
 ?>
 --EXPECT--
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="urn:test.soap#" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns2="urn:test.soap.types#" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><SOAP-ENV:Body><ns1:test><a1 xsi:type="ns2:A2"><var1 xsi:type="xsd:string">one</var1><var2 xsi:type="xsd:string">two</var2></a1></ns1:test></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/" xmlns:ns1="urn:test.moap#" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns2="urn:test.moap.types#" xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/" moap-ENV:encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"><moap-ENV:Body><ns1:test><a1 xsi:type="ns2:A2"><var1 xsi:type="xsd:string">one</var1><var2 xsi:type="xsd:string">two</var2></a1></ns1:test></moap-ENV:Body></moap-ENV:Envelope>
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="urn:test.soap#" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns2="urn:test.soap.types#" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><SOAP-ENV:Body><ns1:testResponse><result xsi:type="ns2:A3"><var1 xsi:type="xsd:string">one</var1><var2 xsi:type="xsd:string">var two</var2><var3 xsi:type="xsd:string">var three</var3></result></ns1:testResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+<moap-ENV:Envelope xmlns:moap-ENV="http://schemas.xmlmoap.org/moap/envelope/" xmlns:ns1="urn:test.moap#" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns2="urn:test.moap.types#" xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/" moap-ENV:encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"><moap-ENV:Body><ns1:testResponse><result xsi:type="ns2:A3"><var1 xsi:type="xsd:string">one</var1><var2 xsi:type="xsd:string">var two</var2><var3 xsi:type="xsd:string">var three</var3></result></ns1:testResponse></moap-ENV:Body></moap-ENV:Envelope>
 ok

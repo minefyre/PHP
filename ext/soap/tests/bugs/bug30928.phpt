@@ -1,10 +1,10 @@
 --TEST--
-Bug #30928 (When Using WSDL, SoapServer doesn't handle private or protected properties)
+Bug #30928 (When Using WSDL, moapServer doesn't handle private or protected properties)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --FILE--
 <?php
-ini_set("soap.wsdl_cache_enabled", 0);
+ini_set("moap.wsdl_cache_enabled", 0);
 
 class foo {
 	public    $a="a";
@@ -16,11 +16,11 @@ function test($x) {
   return $x;
 }
 
-class LocalSoapClient extends SoapClient {
+class LocalmoapClient extends moapClient {
 
   function __construct($wsdl, $options) {
     parent::__construct($wsdl, $options);
-    $this->server = new SoapServer($wsdl, $options);
+    $this->server = new moapServer($wsdl, $options);
     $this->server->addFunction('test');
   }
 
@@ -33,11 +33,11 @@ class LocalSoapClient extends SoapClient {
   }
 }
 
-$x = new LocalSoapClient(dirname(__FILE__)."/bug30928.wsdl", 
+$x = new LocalmoapClient(dirname(__FILE__)."/bug30928.wsdl", 
                          array());
 var_dump($x->test(new foo()));
 
-$x = new LocalSoapClient(dirname(__FILE__)."/bug30928.wsdl", 
+$x = new LocalmoapClient(dirname(__FILE__)."/bug30928.wsdl", 
                          array("classmap" => array('testType'=>'foo')));
 var_dump($x->test(new foo()));
 

@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions name="SoapInterop" targetNamespace="http://soapinterop.org/main/" 
-		xmlns:wsdlns1="http://soapinterop.org/definitions/"  
-		xmlns:wsdlns="http://soapinterop.org/main/"  
-		xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 		
-		xmlns="http://schemas.xmlsoap.org/wsdl/">
-	<import location="imported/import2B.wsdl" namespace="http://soapinterop.org/definitions/" /> 
+<definitions name="moapInterop" targetNamespace="http://moapinterop.org/main/" 
+		xmlns:wsdlns1="http://moapinterop.org/definitions/"  
+		xmlns:wsdlns="http://moapinterop.org/main/"  
+		xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" 		
+		xmlns="http://schemas.xmlmoap.org/wsdl/">
+	<import location="imported/import2B.wsdl" namespace="http://moapinterop.org/definitions/" /> 
 
-	<binding name="SoapInteropImport2Binding" type="wsdlns1:SoapInteropImport2PortType">
-		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+	<binding name="moapInteropImport2Binding" type="wsdlns1:moapInteropImport2PortType">
+		<moap:binding style="rpc" transport="http://schemas.xmlmoap.org/moap/http"/>
 		<operation name="echoStruct">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 	</binding>
 	<service name="Import2">
-		<port name="SoapInteropImport2Port" binding="wsdlns:SoapInteropImport2Binding">
-			<soap:address location="round3_groupD_import2.inc"/>
+		<port name="moapInteropImport2Port" binding="wsdlns:moapInteropImport2Binding">
+			<moap:address location="round3_groupD_import2.inc"/>
 		</port>
 	</service>
 </definitions>

@@ -59,7 +59,7 @@
 #define TIME     258
 #define DATE     259
 
-#define TIMELIB_XMLRPC_SOAP    260
+#define TIMELIB_XMLRPC_moap    260
 #define TIMELIB_TIME12         261
 #define TIMELIB_TIME24         262
 #define TIMELIB_GNU_NOCOLON    263
@@ -13378,7 +13378,7 @@ yy843:
 	YYDEBUG(843, *YYCURSOR);
 	{
 		int tz_not_found;
-		DEBUG_OUTPUT("xmlrpc | xmlrpcnocolon | soap | wddx | exif");
+		DEBUG_OUTPUT("xmlrpc | xmlrpcnocolon | moap | wddx | exif");
 		TIMELIB_INIT;
 		TIMELIB_HAVE_TIME();
 		TIMELIB_HAVE_DATE();
@@ -13398,7 +13398,7 @@ yy843:
 			}
 		}
 		TIMELIB_DEINIT;
-		return TIMELIB_XMLRPC_SOAP;
+		return TIMELIB_XMLRPC_moap;
 	}
 yy844:
 	YYDEBUG(844, *YYCURSOR);

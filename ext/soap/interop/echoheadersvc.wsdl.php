@@ -3,42 +3,42 @@ header("Content-Type: text/xml");
 echo '<?xml version="1.0"?>';
 echo "\n";
 ?>
-<definitions name="InteropTest" targetNamespace="http://soapinterop.org/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://soapinterop.org/" xmlns:s="http://soapinterop.org/xsd" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<definitions name="InteropTest" targetNamespace="http://moapinterop.org/" xmlns="http://schemas.xmlmoap.org/wsdl/" xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:moap-ENC="http://schemas.xmlmoap.org/moap/encoding/" xmlns:tns="http://moapinterop.org/" xmlns:s="http://moapinterop.org/xsd" xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/">
 
 	<types>
-		<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://soapinterop.org/xsd">
+		<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://moapinterop.org/xsd">
 
-			<import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+			<import namespace="http://schemas.xmlmoap.org/moap/encoding/" />
 
 			<complexType name="ArrayOfstring">
 				<complexContent>
-					<restriction base="SOAP-ENC:Array">
-						<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="string[]"/>
+					<restriction base="moap-ENC:Array">
+						<attribute ref="moap-ENC:arrayType" wsdl:arrayType="string[]"/>
 					</restriction>
 				</complexContent>
 			</complexType>
 			<complexType name="ArrayOfint">
 				<complexContent>
-					<restriction base="SOAP-ENC:Array">
-						<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="int[]"/>
+					<restriction base="moap-ENC:Array">
+						<attribute ref="moap-ENC:arrayType" wsdl:arrayType="int[]"/>
 					</restriction>
 				</complexContent>
 			</complexType>
 			<complexType name="ArrayOffloat">
 				<complexContent>
-					<restriction base="SOAP-ENC:Array">
-						<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="float[]"/>
+					<restriction base="moap-ENC:Array">
+						<attribute ref="moap-ENC:arrayType" wsdl:arrayType="float[]"/>
 					</restriction>
 				</complexContent>
 			</complexType>
-			<complexType name="ArrayOfSOAPStruct">
+			<complexType name="ArrayOfmoapStruct">
 				<complexContent>
-					<restriction base="SOAP-ENC:Array">
-						<attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="s:SOAPStruct[]"/>
+					<restriction base="moap-ENC:Array">
+						<attribute ref="moap-ENC:arrayType" wsdl:arrayType="s:moapStruct[]"/>
 					</restriction>
 				</complexContent>
 			</complexType>
-			<complexType name="SOAPStruct">
+			<complexType name="moapStruct">
 				<all>
 					<element name="varString" type="string" nillable="true"/>
 					<element name="varInt" type="int" nillable="true"/>
@@ -55,10 +55,10 @@ echo "\n";
 		<part name="echoMeStringResponse" type="xsd:string"/>
 	</message>
 	<message name="echoHeaderStruct_Request">
-		<part name="echoMeStructRequest" type="s:SOAPStruct"/>
+		<part name="echoMeStructRequest" type="s:moapStruct"/>
 	</message>
 	<message name="echoHeaderStruct_Response">
-		<part name="echoMeStructResponse" type="s:SOAPStruct"/>
+		<part name="echoMeStructResponse" type="s:moapStruct"/>
 	</message>
 	<message name="echoStringRequest">
 		<part name="inputString" type="xsd:string"/>
@@ -97,16 +97,16 @@ echo "\n";
 		<part name="return" type="s:ArrayOffloat"/>
 	</message>
 	<message name="echoStructRequest">
-		<part name="inputStruct" type="s:SOAPStruct"/>
+		<part name="inputStruct" type="s:moapStruct"/>
 	</message>
 	<message name="echoStructResponse">
-		<part name="return" type="s:SOAPStruct"/>
+		<part name="return" type="s:moapStruct"/>
 	</message>
 	<message name="echoStructArrayRequest">
-		<part name="inputStructArray" type="s:ArrayOfSOAPStruct"/>
+		<part name="inputStructArray" type="s:ArrayOfmoapStruct"/>
 	</message>
 	<message name="echoStructArrayResponse">
-		<part name="return" type="s:ArrayOfSOAPStruct"/>
+		<part name="return" type="s:ArrayOfmoapStruct"/>
 	</message>
 	<message name="echoVoidRequest"/>
 	<message name="echoVoidResponse"/>
@@ -201,188 +201,188 @@ echo "\n";
 	</portType>
 
 	<binding name="InteropEchoHeaderBinding" type="tns:InteropTestPortType">
-		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<moap:binding style="rpc" transport="http://schemas.xmlmoap.org/moap/http"/>
 
 		<operation name="echoString">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 		<operation name="echoStringArray">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 		<operation name="echoInteger">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 		<operation name="echoIntegerArray">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 		<operation name="echoFloat">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 		<operation name="echoFloatArray">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 		<operation name="echoStruct">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 		<operation name="echoStructArray">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 		<operation name="echoVoid">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 		<operation name="echoBase64">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 		<operation name="echoDate">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 		<operation name="echoHexBinary">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 		<operation name="echoDecimal">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 		<operation name="echoBoolean">
-			<soap:operation soapAction="http://soapinterop.org/"/>
+			<moap:operation moapAction="http://moapinterop.org/"/>
 			<input>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Request" part="echoMeStringRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Request" part="echoMeStructRequest" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</input>
 			<output>
-				<soap:body use="encoded" namespace="http://soapinterop.org/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-				<soap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://soapinterop.org/echoheader/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+				<moap:body use="encoded" namespace="http://moapinterop.org/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderString_Response" part="echoMeStringResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
+				<moap:header use="encoded" message="tns:echoHeaderStruct_Response" part="echoMeStructResponse" namespace="http://moapinterop.org/echoheader/" encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"/>
 			</output>
 		</operation>
 
@@ -391,7 +391,7 @@ echo "\n";
 	<service name="interopLabEchoHeader">
 
   		<port name="interopPortEchoHdr" binding="tns:InteropEchoHeaderBinding">
-    			<soap:address location="<?php echo ((isset($_SERVER['HTTPS'])?"https://":"http://").$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));?>/server_round2_groupC.php"/>
+    			<moap:address location="<?php echo ((isset($_SERVER['HTTPS'])?"https://":"http://").$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']));?>/server_round2_groupC.php"/>
   		</port>
 
 	</service>

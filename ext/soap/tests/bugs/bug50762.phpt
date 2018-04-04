@@ -1,10 +1,10 @@
 --TEST--
-Bug #50762 (in WSDL mode Soap Header handler function only being called if defined in WSDL)
+Bug #50762 (in WSDL mode moap Header handler function only being called if defined in WSDL)
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --FILE--
 <?php
-class testSoap {
+class testmoap {
 	private $auth;
 	public function authToken($token){
 		$this->auth=true;
@@ -14,12 +14,12 @@ class testSoap {
 	}
 }
 
-class LocalSoapClient extends SoapClient {
+class LocalmoapClient extends moapClient {
 
   function __construct($wsdl, $options) {
     parent::__construct($wsdl, $options);
-    $this->server = new SoapServer($wsdl, $options);
-	$this->server->setObject(new testSoap());
+    $this->server = new moapServer($wsdl, $options);
+	$this->server->setObject(new testmoap());
   }
 
   function __doRequest($request, $location, $action, $version, $one_way = 0) {
@@ -32,7 +32,7 @@ class LocalSoapClient extends SoapClient {
 
 }
 
-$cl = new LocalSoapClient(dirname(__FILE__).'/bug50762.wsdl', array('cache_wsdl'=>WSDL_CACHE_NONE, 'trace'=>true));
+$cl = new LocalmoapClient(dirname(__FILE__).'/bug50762.wsdl', array('cache_wsdl'=>WSDL_CACHE_NONE, 'trace'=>true));
 
 class authToken{
 	public function __construct($token){
@@ -40,7 +40,7 @@ class authToken{
 	}
 }
 
-$cl->__setSoapHeaders(array(new SoapHeader('http://sova.pronto.ru/', 'authToken', new authToken('tokendata'))));
+$cl->__setmoapHeaders(array(new moapHeader('http://sova.pronto.ru/', 'authToken', new authToken('tokendata'))));
 echo $cl->testHeader('param') . PHP_EOL;
 ?>
 --EXPECT--

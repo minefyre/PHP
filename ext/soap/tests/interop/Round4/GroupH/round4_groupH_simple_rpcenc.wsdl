@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions
-	xmlns="http://schemas.xmlsoap.org/wsdl/"
-	xmlns:tns="http://soapinterop.org/wsdl"
-	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns="http://schemas.xmlmoap.org/wsdl/"
+	xmlns:tns="http://moapinterop.org/wsdl"
+	xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xmlns:ns2="http://soapinterop.org/types"
-	targetNamespace="http://soapinterop.org/wsdl">
+	xmlns:ns2="http://moapinterop.org/types"
+	targetNamespace="http://moapinterop.org/wsdl">
 	<types>
 		<schema elementFormDefault="qualified"
 			xmlns="http://www.w3.org/2001/XMLSchema"
-			xmlns:tns="http://soapinterop.org/types"
+			xmlns:tns="http://moapinterop.org/types"
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-			xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/"
-			xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-			targetNamespace="http://soapinterop.org/types">
+			xmlns:moap-enc="http://schemas.xmlmoap.org/moap/encoding/"
+			xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/"
+			targetNamespace="http://moapinterop.org/types">
 
-			<import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+			<import namespace="http://schemas.xmlmoap.org/moap/encoding/"/>
 
 			<complexType name="EmptyFault"/>
 
 			<complexType name="ArrayOfString">
 				<complexContent>
-					<restriction base="soap-enc:Array">
-						<attribute ref="soap-enc:arrayType" wsdl:arrayType="string[]"/>
+					<restriction base="moap-enc:Array">
+						<attribute ref="moap-enc:arrayType" wsdl:arrayType="string[]"/>
 					</restriction>
 				</complexContent>
 			</complexType>
 
 			<complexType name="ArrayOfInt">
 				<complexContent>
-					<restriction base="soap-enc:Array">
-						<attribute ref="soap-enc:arrayType" wsdl:arrayType="int[]"/>
+					<restriction base="moap-enc:Array">
+						<attribute ref="moap-enc:arrayType" wsdl:arrayType="int[]"/>
 					</restriction>
 				</complexContent>
 			</complexType>
 
 			<complexType name="ArrayOfFloat">
 				<complexContent>
-					<restriction base="soap-enc:Array">
-						<attribute ref="soap-enc:arrayType" wsdl:arrayType="float[]"/>
+					<restriction base="moap-enc:Array">
+						<attribute ref="moap-enc:arrayType" wsdl:arrayType="float[]"/>
 					</restriction>
 				</complexContent>
 			</complexType>
@@ -192,216 +192,216 @@
 	</portType>
 
 	<binding name="SimpleRpcEncBinding" type="tns:SimpleRpcEncPortType">
-		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+		<moap:binding transport="http://schemas.xmlmoap.org/moap/http" style="rpc"/>
 
 		<operation name="echoEmptyFault">
 			<input>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</input>
 			<output>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</output>
 			<fault name="SimpleFault">
-				<soap:fault
+				<moap:fault
 					name="SimpleFault"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</fault>
-			<soap:operation soapAction=""/>
+			<moap:operation moapAction=""/>
 		</operation>
 
 		<operation name="echoStringFault">
 			<input>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</input>
 			<output>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</output>
 			<fault name="SimpleFault">
-				<soap:fault
+				<moap:fault
 					name="SimpleFault"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</fault>
-			<soap:operation soapAction=""/>
+			<moap:operation moapAction=""/>
 		</operation>
 
 		<operation name="echoIntArrayFault">
 			<input>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</input>
 			<output>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</output>
 			<fault name="SimpleFault">
-				<soap:fault
+				<moap:fault
 					name="SimpleFault"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</fault>
-			<soap:operation soapAction=""/>
+			<moap:operation moapAction=""/>
 		</operation>
 
 		<operation name="echoMultipleFaults1">
 			<input>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</input>
 			<output>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</output>
 			<fault name="SimpleFault1">
-				<soap:fault
+				<moap:fault
 					name="SimpleFault1"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</fault>
 			<fault name="SimpleFault2">
-				<soap:fault
+				<moap:fault
 					name="SimpleFault2"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</fault>
 			<fault name="SimpleFault3">
-				<soap:fault
+				<moap:fault
 					name="SimpleFault3"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</fault>
-			<soap:operation soapAction=""/>
+			<moap:operation moapAction=""/>
 		</operation>
 
 		<operation name="echoMultipleFaults2">
 			<input>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</input>
 			<output>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</output>
 			<fault name="SimpleFault1">
-				<soap:fault
+				<moap:fault
 					name="SimpleFault1"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</fault>
 			<fault name="SimpleFault2">
-				<soap:fault
+				<moap:fault
 					name="SimpleFault2"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</fault>
 			<fault name="SimpleFault3">
-				<soap:fault
+				<moap:fault
 					name="SimpleFault3"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</fault>
-			<soap:operation soapAction=""/>
+			<moap:operation moapAction=""/>
 		</operation>
 
 		<operation name="echoMultipleFaults3">
 			<input>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</input>
 			<output>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</output>
 			<fault name="SimpleFault1">
-				<soap:fault
+				<moap:fault
 					name="SimpleFault1"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl/fault1"/>
+					namespace="http://moapinterop.org/wsdl/fault1"/>
 			</fault>
 			<fault name="SimpleFault2">
-				<soap:fault
+				<moap:fault
 					name="SimpleFault2"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl/fault2"/>
+					namespace="http://moapinterop.org/wsdl/fault2"/>
 			</fault>
-			<soap:operation soapAction=""/>
+			<moap:operation moapAction=""/>
 		</operation>
 
 		<operation name="echoMultipleFaults4">
 			<input>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</input>
 			<output>
-				<soap:body
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+				<moap:body
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</output>
 			<fault name="SimpleFault1">
-				<soap:fault
+				<moap:fault
 					name="SimpleFault1"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</fault>
 			<fault name="SimpleFault2">
-				<soap:fault
+				<moap:fault
 					name="SimpleFault2"
-					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					encodingStyle="http://schemas.xmlmoap.org/moap/encoding/"
 					use="encoded"
-					namespace="http://soapinterop.org/wsdl"/>
+					namespace="http://moapinterop.org/wsdl"/>
 			</fault>
-			<soap:operation soapAction=""/>
+			<moap:operation moapAction=""/>
 		</operation>
 
 	</binding>
 
 	<service name="SimpleRpcEncService">
 		<port name="SimpleRpcEncPort" binding="tns:SimpleRpcEncBinding">
-			<soap:address location="test://"/>
+			<moap:address location="test://"/>
 		</port>
 	</service>
 </definitions>

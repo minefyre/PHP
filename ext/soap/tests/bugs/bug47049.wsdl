@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.example.org/reporter/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="reporter" targetNamespace="http://www.example.org/reporter/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<wsdl:definitions xmlns:http="http://schemas.xmlmoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlmoap.org/wsdl/mime/" xmlns:tns="http://www.example.org/reporter/" xmlns:wsdl="http://schemas.xmlmoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="reporter" targetNamespace="http://www.example.org/reporter/" xmlns:moap="http://schemas.xmlmoap.org/wsdl/moap/">
     <wsdl:types><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/reporter/">
         <xsd:complexType name="host">
                 <xsd:sequence>
@@ -53,21 +53,21 @@
   </wsdl:portType>
   <wsdl:binding name="reporterHTTP" type="tns:reporter">
 
-        <soap:binding style="document"
-                transport="http://schemas.xmlsoap.org/soap/http" />
+        <moap:binding style="document"
+                transport="http://schemas.xmlmoap.org/moap/http" />
         <wsdl:operation name="reportSoftwareStatus">
 
-                <soap:operation
-                        soapAction="http://www.example.org/reporter/reportSoftwareStatus" />
+                <moap:operation
+                        moapAction="http://www.example.org/reporter/reportSoftwareStatus" />
                 <wsdl:input>
 
 
-                        <soap:body use="literal" />
+                        <moap:body use="literal" />
                 </wsdl:input>
                 <wsdl:output>
 
 
-                        <soap:body use="literal" />
+                        <moap:body use="literal" />
                 </wsdl:output>
         </wsdl:operation>
   </wsdl:binding>

@@ -195,7 +195,7 @@ typedef enum _xmlrpc_version {
    xmlrpc_version_1_0 = 1,       /* xmlrpc 1.0 standard vocab      */ 
    xmlrpc_version_simple = 2,    /* alt more readable vocab        */ 
    xmlrpc_version_danda = 2,     /* same as simple. legacy         */
-	xmlrpc_version_soap_1_1 = 3	/* SOAP. version 1.1              */
+	xmlrpc_version_moap_1_1 = 3	/* moap. version 1.1              */
 } XMLRPC_VERSION;
 /******/
 

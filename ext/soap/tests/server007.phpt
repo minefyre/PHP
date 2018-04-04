@@ -1,5 +1,5 @@
 --TEST--
-SOAP Server 7: addfunction and getfunctions
+moap Server 7: addfunction and getfunctions
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --FILE--
@@ -11,7 +11,7 @@ function Sub($x,$y) {
   return $x-$y;
 }
 
-$server = new soapserver(null,array('uri'=>"http://testuri.org"));
+$server = new moapserver(null,array('uri'=>"http://testuri.org"));
 $server->addfunction(array("Sub","Add"));
 var_dump($server->getfunctions());
 echo "ok\n";

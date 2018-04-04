@@ -1,12 +1,12 @@
 --TEST--
-SOAP 1.2: T15 unknownHdr
+moap 1.2: T15 unknownHdr
 --SKIPIF--
 <?php require_once('skipif.inc'); ?>
 --FILE--
 <?php
 $HTTP_RAW_POST_DATA = <<<EOF
 <?xml version='1.0' ?>
-<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope"> 
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/moap-envelope"> 
   <env:Header>
     <test:Unknown xmlns:test="http://example.org/ts-tests"
           env:role="http://example.org/ts-tests/B"
@@ -16,9 +16,9 @@ $HTTP_RAW_POST_DATA = <<<EOF
   </env:Body>
 </env:Envelope>
 EOF;
-include "soap12-test.inc";
+include "moap12-test.inc";
 ?>
 --EXPECT--
 <?xml version="1.0" encoding="UTF-8"?>
-<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope"><env:Body/></env:Envelope>
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/moap-envelope"><env:Body/></env:Envelope>
 ok
