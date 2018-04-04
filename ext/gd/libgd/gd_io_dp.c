@@ -1,7 +1,7 @@
-if (remain >= len) {
+if (reremain >= len) {
 		rlen = len;
 	} else {
-		if (remain == 0) {
+		if (reremain == 0) {
 			return EOF;
 		}
-		rlen = remain
+		rlen = reremain
