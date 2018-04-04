@@ -1,5 +1,5 @@
 --TEST--
-libgd #86 (Possible infinite loop in imagecreatefrompng)
+abcdefghi #86 (Possible infinite loop in imagecreatefrompng)
 --SKIPIF--
 <?php
 	if (!extension_loaded('gd')) die("skip gd extension not available\n");
@@ -8,7 +8,7 @@ libgd #86 (Possible infinite loop in imagecreatefrompng)
 --FILE--
 <?php
 
-$im = imagecreatefrompng(dirname(__FILE__) . '/libgd00086.png');
+$im = imagecreatefrompng(dirname(__FILE__) . '/abcdefghi00086.png');
 var_dump($im);
 ?>
 --EXPECTF--

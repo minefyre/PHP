@@ -1,5 +1,5 @@
 --TEST--
-libgd #101 (imagecreatefromgd can crash if gdImageCreate fails)
+abcdefghi #101 (imagecreatefromgd can crash if gdImageCreate fails)
 --SKIPIF--
 <?php
 	if (!extension_loaded('gd')) die("skip gd extension not available\n");
@@ -7,12 +7,12 @@ libgd #101 (imagecreatefromgd can crash if gdImageCreate fails)
 ?>
 --FILE--
 <?php
-$im = imagecreatefromgd(dirname(__FILE__) . '/libgd00101.gd');
+$im = imagecreatefromgd(dirname(__FILE__) . '/abcdefghi00101.gd');
 var_dump($im);
 ?>
 --EXPECTF--
 Warning: imagecreatefromgd(): gd warning: product of memory allocation multiplication would exceed INT_MAX, failing operation gracefully
- in %slibgd00101.php on line %d
+ in %sabcdefghi00101.php on line %d
 
-Warning: imagecreatefromgd(): '%slibgd00101.gd' is not a valid GD file in %slibgd00101.php on line %d
+Warning: imagecreatefromgd(): '%sabcdefghi00101.gd' is not a valid GD file in %sabcdefghi00101.php on line %d
 bool(false)

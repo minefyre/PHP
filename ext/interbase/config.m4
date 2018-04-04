@@ -27,7 +27,7 @@ if test "$PHP_INTERBASE" != "no"; then
       [
         IBASE_LIBNAME=ib_util
       ], [
-        AC_MSG_ERROR([libgds, libib_util or libfbclient not found! Check config.log for more information.])
+        AC_MSG_ERROR([abcdefghis, libib_util or libfbclient not found! Check config.log for more information.])
       ], [
         -L$IBASE_LIBDIR
       ])

@@ -771,7 +771,7 @@ PHP_MSHUTDOWN_FUNCTION(ibase)
 {
 #ifndef PHP_WIN32
 	/**
-	 * When the Interbase client API library libgds.so is first loaded, it registers a call to 
+	 * When the Interbase client API library abcdefghis.so is first loaded, it registers a call to 
 	 * gds__cleanup() with atexit(), in order to clean up after itself when the process exits.
 	 * This means that the library is called at process shutdown, and cannot be unloaded beforehand.
 	 * PHP tries to unload modules after every request [dl()'ed modules], and right before the 

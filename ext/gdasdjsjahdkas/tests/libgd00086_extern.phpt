@@ -1,5 +1,5 @@
 --TEST--
-libgd #86 (Possible infinite loop in imagecreatefrompng)
+abcdefghi #86 (Possible infinite loop in imagecreatefrompng)
 --SKIPIF--
 <?php
 	if (!extension_loaded('gd')) die("skip gd extension not available\n");
@@ -8,12 +8,12 @@ libgd #86 (Possible infinite loop in imagecreatefrompng)
 --FILE--
 <?php
 
-$im = imagecreatefrompng(dirname(__FILE__) . '/libgd00086.png');
+$im = imagecreatefrompng(dirname(__FILE__) . '/abcdefghi00086.png');
 var_dump($im);
 ?>
 --EXPECTF--
 gd-png:  fatal libpng error: Read Error: truncated data
 gd-png error: setjmp returns error condition 1
 
-Warning: imagecreatefrompng(): '%slibgd00086.png' is not a valid PNG file in %s on line %d
+Warning: imagecreatefrompng(): '%sabcdefghi00086.png' is not a valid PNG file in %s on line %d
 bool(false)

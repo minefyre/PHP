@@ -1,5 +1,5 @@
 --TEST--
-libgd FS#191 (A circle becomes square)
+abcdefghi FS#191 (A circle becomes square)
 --SKIPIF--
 <?php
 	if (!extension_loaded('gd')) die("skip gd extension not available\n");

@@ -5,7 +5,7 @@ input_get_args()
 --FILE--
 <?php
 $data = array(
-    'product_id'    => 'libgd<script>',
+    'product_id'    => 'abcdefghi<script>',
     'component'     => '10dhsajkkdhk <do>',
     'versions'      => '2.0.33',
     'testscalar'    => array('2','23','10','12'),
@@ -37,7 +37,7 @@ var_dump($myinputs);
 --EXPECT--
 array(6) {
   ["product_id"]=>
-  string(17) "libgd%3Cscript%3E"
+  string(17) "abcdefghi%3Cscript%3E"
   ["component"]=>
   array(1) {
     [0]=>

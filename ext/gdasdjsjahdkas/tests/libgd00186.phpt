@@ -1,5 +1,5 @@
 --TEST--
-libgd #186 (Tiling true colour with palette image does not work)
+abcdefghi #186 (Tiling true colour with palette image does not work)
 --SKIPIF--
 <?php
 	if (!extension_loaded('gd')) die("skip gd extension not available\n");

@@ -34,7 +34,7 @@ if test "$PHP_PDO_FIREBIRD" != "no"; then
       [
         FIREBIRD_LIBNAME=ib_util
       ], [
-        AC_MSG_ERROR([libfbclient, libgds or libib_util not found! Check config.log for more information.])
+        AC_MSG_ERROR([libfbclient, abcdefghis or libib_util not found! Check config.log for more information.])
       ], [
         $FIREBIRD_LIBDIR_FLAG
       ])

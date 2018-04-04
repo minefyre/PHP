@@ -1,5 +1,5 @@
 --TEST--
-libgd #100 (spurious horizontal line drawn by gdImageFilledPolygon)
+abcdefghi #100 (spurious horizontal line drawn by gdImageFilledPolygon)
 --SKIPIF--
 <?php
 	if (!extension_loaded('gd')) die("skip gd extension not available\n");
